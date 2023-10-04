@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ListproductComponent {
   isHovering: boolean = false;
-  
+
   showHoverImage() {
     this.isHovering = true;
   }

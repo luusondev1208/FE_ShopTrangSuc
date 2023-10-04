@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class BlogpageComponent {
   items: string[] = [
-  'Top 5 trang sức không đính đá PNJ mới nhất tháng 9/2023', 
+  'Top 5 trang sức không đính đá PNJ mới nhất tháng 9/2023',
   'TRUNG TÂM KIM HOÀN HUỲNH THÚC KHÁNG, GIA NGHĨA TƯNG BỪNG KHAI TRƯƠNG KHÔNG GIAN MỚI',
   'TRUNG TÂM KIM HOÀN HUỲNH THÚC KHÁNG, GIA NGHĨA TƯNG BỪNG KHAI TRƯƠNG KHÔNG GIAN MỚI']; // Các mục trong slideshow
   activeIndex: number = 0; // Chỉ số của mục hiện tại

@@ -8,6 +8,7 @@ import { BlogpageComponent } from './pages/blogpage/blogpage.component';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { UserPaymentComponent } from './pages/user-payment/user-payment.component';
 import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 const routes: Routes = [
   //client
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'invoice', component: InvoiceComponent },
       { path: 'user-payment', component: UserPaymentComponent },
       { path: 'checkout-cart', component: CheckoutCartComponent },
+      { path: 'product-detail', component: ProductDetailsComponent },
 
     ],
   },

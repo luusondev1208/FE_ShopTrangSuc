@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { UserPaymentComponent } from './pages/user-payment/user-payment.component';
 import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.compo
     InvoiceComponent,
     UserPaymentComponent,
     CheckoutCartComponent,
+    ProductDetailsComponent,
 
   ],
   imports: [

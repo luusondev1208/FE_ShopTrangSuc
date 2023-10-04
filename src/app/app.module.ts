@@ -11,6 +11,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { WebsiteLayoutComponent } from './layouts/website-layout/website-layout.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InvoiceComponent } from './pages/invoice/invoice.component';
+import { UserPaymentComponent } from './pages/user-payment/user-payment.component';
+import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminLayoutComponent,
     WebsiteLayoutComponent,
     SlideshowComponent,
-    
+    InvoiceComponent,
+    UserPaymentComponent,
+    CheckoutCartComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ListproductComponent } from './pages/listproduct/listproduct.component';
@@ -11,7 +13,17 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { WebsiteLayoutComponent } from './layouts/website-layout/website-layout.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { AddProdcutComponent } from './pages/admin/add-prodcut/add-prodcut.component';
+import { SiderbarAdminComponent } from './components/siderbar-admin/siderbar-admin.component';
+import { HeaderAdminComponent } from './components/admin/header-admin/header-admin.component';
+import { FooterAdminComponent } from './components/admin/footer-admin/footer-admin.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { UpdateProductComponent } from './pages/admin/update-product/update-product.component';
+import { ListComponent } from './pages/admin/list/list.component';
+import { ListCategoriComponent } from './pages/admin/list-categori/list-categori.component';
+import { AddCategoriComponent } from './pages/admin/add-categori/add-categori.component';
+import { UpdateCategoriComponent } from './pages/admin/update-categori/update-categori.component';
+import { NgxFileDropModule } from 'ngx-file-drop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,12 +35,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminLayoutComponent,
     WebsiteLayoutComponent,
     SlideshowComponent,
+    AddProdcutComponent,
+    SiderbarAdminComponent,
+    HeaderAdminComponent,
+    FooterAdminComponent,
+    DashboardComponent,
+    UpdateProductComponent,
+    ListComponent,
+    ListCategoriComponent,
+    AddCategoriComponent,
+    UpdateCategoriComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxFileDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

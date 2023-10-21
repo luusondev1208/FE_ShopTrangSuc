@@ -76,329 +76,80 @@
     </div>
 </div>
 <!-- bộ lọc -->
-<div class="mx-[150px]">
-    <div class="flex">
-        <div>
-            <p>Bộ lọc:</p>
-            <div class="space-x-2">
-                <select id="countries" class="border-2 px-2 py-2 border-gray-300 rounded">
-                    <option selected class="px-2 text-[15px]">
-                        Thương hiệu
-                    </option>
-                    <option value="US">giá: Tăng dần</option>
-                    <option value="US">gia: Giảm dần</option>
-                    <option value="US">Tên: A - Z</option>
-                    <option value="US">Tên: Z - A</option>
-                </select>
-                <select id="countries" class="border-2 px-2 py-2 border-gray-300 rounded">
-                    <option selected class="px-2 text-[15px]">
-                        Chất liệu
-                    </option>
-                    <option value="US">giá: Tăng dần</option>
-                    <option value="US">gia: Giảm dần</option>
-                    <option value="US">Tên: A - Z</option>
-                    <option value="US">Tên: Z - A</option>
-                </select>
-                <select id="countries" class="border-2 px-2 py-2 border-gray-300 rounded">
-                    <option selected class="px-2 text-[15px]">
-                        Loại trang sức
-                    </option>
-                    <option value="US">giá: Tăng dần</option>
-                    <option value="US">gia: Giảm dần</option>
-                    <option value="US">Tên: A - Z</option>
-                    <option value="US">Tên: Z - A</option>
-                </select>
-                <select id="countries" class="border-2 px-2 py-2 border-gray-300 rounded">
-                    <option selected class="px-2 text-[15px]">
-                        Giá
-                    </option>
-                    <option value="US">giá: Tăng dần</option>
-                    <option value="US">gia: Giảm dần</option>
-                    <option value="US">Tên: A - Z</option>
-                    <option value="US">Tên: Z - A</option>
-                </select>
-                <select id="countries" class="border-2 px-2 py-2 border-gray-300 rounded">
-                    <option selected class="px-2 text-[15px]">
-                        Giới Tính
-                    </option>
-                    <option value="US">giá: Tăng dần</option>
-                    <option value="US">gia: Giảm dần</option>
-                    <option value="US">Tên: A - Z</option>
-                    <option value="US">Tên: Z - A</option>
-                </select>
-                <select id="countries" class="border-2 px-2 py-2 border-gray-300 rounded">
-                    <option selected class="px-2 text-[15px]">
-                        Màu
-                    </option>
-                    <option value="US">giá: Tăng dần</option>
-                    <option value="US">gia: Giảm dần</option>
-                    <option value="US">Tên: A - Z</option>
-                    <option value="US">Tên: Z - A</option>
-                </select>
-                <select id="countries" class="border-2 px-2 py-2 border-gray-300 rounded">
-                    <option selected class="px-2 text-[15px]">
-                        Màu chất liệu
-                    </option>
-                    <option value="US">giá: Tăng dần</option>
-                    <option value="US">gia: Giảm dần</option>
-                    <option value="US">Tên: A - Z</option>
-                    <option value="US">Tên: Z - A</option>
-                </select>
-            </div>
-        </div>
-        <div class="ml-[80px]">
-            <p>Sắp xếp:</p>
-            <select id="countries" class="border-2 px-2 py-2 border-gray-300 rounded">
-                <option selected class="px-2 text-[15px]">
-                    Sản phẩm phổ biến nhất
-                </option>
-                <option value="US">Sản phẩm mới nhất</option>
-                <option value="US">Giá từ thấp đến cao</option>
-                <option value="US">Giá từ cao đến thấp</option>
-                <option value="US">Sản phẩm bán chạy nhất</option>
-            </select>
-        </div>
+<div class="mx-[150px] mb-[15px]">
+    <div class="flex items-center">
+        <button (click)="toggleForm()" class="border border-black w-[230px] h-[40px]  hover:border-green-500 hover:bg-gradient-to-r hover:from-cyan-300 hover:to-blue-500">Bộ lọc sản phẩm ></button>
+    <div *ngIf="showForm" class="ml-[250px] flex space-x-3 absolute">
+        <button (click)="toggleSortByPrice()" class="w-[230px] hover:border-green-500 border-2 px-12 py-2 
+        hover:bg-gradient-to-r hover:from-cyan-300 hover:to-blue-500">Giá từ thấp đến cao</button>
+        <button (click)="toggleSortByPriceS()" class="w-[230px] hover:border-green-500 border-2 px-12 py-2 hover:bg-gradient-to-r hover:from-cyan-300 hover:to-blue-500">Giá từ cao đến thấp</button>
+        <button (click)="filterProductsByassess()" class="w-[230px] border-2 px-12 py-2 hover:border-green-500 hover:bg-gradient-to-r hover:from-cyan-300 hover:to-blue-500">Đánh giá cao</button>
+        <button (click)="filterProductsBySold()" class="w-[230px] border-2 px-12 py-2 hover:border-green-500 hover:bg-gradient-to-r hover:from-cyan-300 hover:to-blue-500">Bán chạy</button>
+    </div>
     </div>
 </div>
+
 <div class="mx-[150px] my-6">
-    <div class="grid grid-cols-4 gap-4">
+    <div *ngIf="products.length > 0" class="grid grid-cols-4 gap-4">
         <!-- san pham 1 -->
-        <div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
-            <div class="image-container ">
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/120/gnxmxmw002530-nhan-cuoi-vang-trang-10k-dinh-da-ecz-pnj-01.png"
-                  alt="Ảnh gốc"
-                  class="original-image w-[300px]"
-                />
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/136/gnddddw003706-nhan-kim-cuong-vang-trang-14k-pnj-true-love-19-1.png"
-                  alt="Ảnh thay thế"
-                  class="hover-image w-[300px]"
-                />
-              </div>
-             
-            <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
-            <p class=" text-[16px]">nhẫn kim cương vàng trắng 14k PNJ</p>
-            <div class="flex justify-center space-x-6">
-                <p class="text-amber-600 font-medium my-2">19.398.289đ</p>
-                <p class="text-gray-400 font-medium my-2 line-through">21.398.289đ</p>
-            </div>
-            <div class="flex justify-between mx-3 my-2">
-                <p>5⭐️(23)</p>
-                <p>1000+đã bán</p>
+        <div *ngFor="let product of products">
+            <div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
+                <div class="image-container ">
+                    <img src={{product.images[0]}} class="original-image"/>
+                    <img src={{product.images[1]}} alt="Ảnh thay thế" class="hover-image w-[300px]" />
+                </div>
+
+                <img class="w-10 absolute -mt-14 ml-4 mb-4"
+                    src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
+                <p class=" text-[16px]">{{product.title}}</p>
+                <div class="flex justify-center space-x-6">
+                    <p class="text-amber-600 font-medium my-2">{{product.price}}</p>
+                    <p class="text-gray-400 font-medium my-2 line-through">{{product.priceroot}}</p>
+                </div>
+                <div class="flex justify-between mx-3 my-2">
+                    <p>5⭐️({{product.assess}})</p>
+                    <p>{{product.sold}}+  đã bán</p>
+                </div>
             </div>
         </div>
-         <!-- san pham 1 -->
-         <div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
-            <div class="image-container ">
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/120/gnxmxmw002530-nhan-cuoi-vang-trang-10k-dinh-da-ecz-pnj-01.png"
-                  alt="Ảnh gốc"
-                  class="original-image w-[300px]"
-                />
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/136/gnddddw003706-nhan-kim-cuong-vang-trang-14k-pnj-true-love-19-1.png"
-                  alt="Ảnh thay thế"
-                  class="hover-image w-[300px]"
-                />
-              </div>
-             
-            <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
-            <p class=" text-[16px]">nhẫn kim cương vàng trắng 14k PNJ</p>
-            <div class="flex justify-center space-x-6">
-                <p class="text-amber-600 font-medium my-2">19.398.289đ</p>
-                <p class="text-gray-400 font-medium my-2 line-through">21.398.289đ</p>
-            </div>
-            <div class="flex justify-between mx-3 my-2">
-                <p>5⭐️(23)</p>
-                <p>1000+đã bán</p>
-            </div>
-        </div>
-         <!-- san pham 1 -->
-         <div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
-            <div class="image-container ">
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/120/gnxmxmw002530-nhan-cuoi-vang-trang-10k-dinh-da-ecz-pnj-01.png"
-                  alt="Ảnh gốc"
-                  class="original-image w-[300px]"
-                />
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/136/gnddddw003706-nhan-kim-cuong-vang-trang-14k-pnj-true-love-19-1.png"
-                  alt="Ảnh thay thế"
-                  class="hover-image w-[300px]"
-                />
-              </div>
-             
-            <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
-            <p class=" text-[16px]">nhẫn kim cương vàng trắng 14k PNJ</p>
-            <div class="flex justify-center space-x-6">
-                <p class="text-amber-600 font-medium my-2">19.398.289đ</p>
-                <p class="text-gray-400 font-medium my-2 line-through">21.398.289đ</p>
-            </div>
-            <div class="flex justify-between mx-3 my-2">
-                <p>5⭐️(23)</p>
-                <p>1000+đã bán</p>
-            </div>
-        </div>
-         <!-- san pham 1 -->
-         <div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
-            <div class="image-container ">
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/120/gnxmxmw002530-nhan-cuoi-vang-trang-10k-dinh-da-ecz-pnj-01.png"
-                  alt="Ảnh gốc"
-                  class="original-image w-[300px]"
-                />
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/136/gnddddw003706-nhan-kim-cuong-vang-trang-14k-pnj-true-love-19-1.png"
-                  alt="Ảnh thay thế"
-                  class="hover-image w-[300px]"
-                />
-              </div>
-             
-            <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
-            <p class=" text-[16px]">nhẫn kim cương vàng trắng 14k PNJ</p>
-            <div class="flex justify-center space-x-6">
-                <p class="text-amber-600 font-medium my-2">19.398.289đ</p>
-                <p class="text-gray-400 font-medium my-2 line-through">21.398.289đ</p>
-            </div>
-            <div class="flex justify-between mx-3 my-2">
-                <p>5⭐️(23)</p>
-                <p>1000+đã bán</p>
-            </div>
-        </div>
-         <!-- san pham 1 -->
-         <div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
-            <div class="image-container ">
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/120/gnxmxmw002530-nhan-cuoi-vang-trang-10k-dinh-da-ecz-pnj-01.png"
-                  alt="Ảnh gốc"
-                  class="original-image w-[300px]"
-                />
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/136/gnddddw003706-nhan-kim-cuong-vang-trang-14k-pnj-true-love-19-1.png"
-                  alt="Ảnh thay thế"
-                  class="hover-image w-[300px]"
-                />
-              </div>
-             
-            <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
-            <p class=" text-[16px]">nhẫn kim cương vàng trắng 14k PNJ</p>
-            <div class="flex justify-center space-x-6">
-                <p class="text-amber-600 font-medium my-2">19.398.289đ</p>
-                <p class="text-gray-400 font-medium my-2 line-through">21.398.289đ</p>
-            </div>
-            <div class="flex justify-between mx-3 my-2">
-                <p>5⭐️(23)</p>
-                <p>1000+đã bán</p>
-            </div>
-        </div>
-         <!-- san pham 1 -->
-         <div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
-            <div class="image-container ">
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/120/gnxmxmw002530-nhan-cuoi-vang-trang-10k-dinh-da-ecz-pnj-01.png"
-                  alt="Ảnh gốc"
-                  class="original-image w-[300px]"
-                />
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/136/gnddddw003706-nhan-kim-cuong-vang-trang-14k-pnj-true-love-19-1.png"
-                  alt="Ảnh thay thế"
-                  class="hover-image w-[300px]"
-                />
-              </div>
-             
-            <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
-            <p class=" text-[16px]">nhẫn kim cương vàng trắng 14k PNJ</p>
-            <div class="flex justify-center space-x-6">
-                <p class="text-amber-600 font-medium my-2">19.398.289đ</p>
-                <p class="text-gray-400 font-medium my-2 line-through">21.398.289đ</p>
-            </div>
-            <div class="flex justify-between mx-3 my-2">
-                <p>5⭐️(23)</p>
-                <p>1000+đã bán</p>
-            </div>
-        </div>
-         <!-- san pham 1 -->
-         <div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
-            <div class="image-container ">
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/120/gnxmxmw002530-nhan-cuoi-vang-trang-10k-dinh-da-ecz-pnj-01.png"
-                  alt="Ảnh gốc"
-                  class="original-image w-[300px]"
-                />
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/136/gnddddw003706-nhan-kim-cuong-vang-trang-14k-pnj-true-love-19-1.png"
-                  alt="Ảnh thay thế"
-                  class="hover-image w-[300px]"
-                />
-              </div>
-             
-            <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
-            <p class=" text-[16px]">nhẫn kim cương vàng trắng 14k PNJ</p>
-            <div class="flex justify-center space-x-6">
-                <p class="text-amber-600 font-medium my-2">19.398.289đ</p>
-                <p class="text-gray-400 font-medium my-2 line-through">21.398.289đ</p>
-            </div>
-            <div class="flex justify-between mx-3 my-2">
-                <p>5⭐️(23)</p>
-                <p>1000+đã bán</p>
-            </div>
-        </div>
-         <!-- san pham 1 -->
-         <div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
-            <div class="image-container ">
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/120/gnxmxmw002530-nhan-cuoi-vang-trang-10k-dinh-da-ecz-pnj-01.png"
-                  alt="Ảnh gốc"
-                  class="original-image w-[300px]"
-                />
-                <img
-                  src="https://cdn.pnj.io/images/thumbnails/300/300/detailed/136/gnddddw003706-nhan-kim-cuong-vang-trang-14k-pnj-true-love-19-1.png"
-                  alt="Ảnh thay thế"
-                  class="hover-image w-[300px]"
-                />
-              </div>
-             
-            <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
-            <p class=" text-[16px]">nhẫn kim cương vàng trắng 14k PNJ</p>
-            <div class="flex justify-center space-x-6">
-                <p class="text-amber-600 font-medium my-2">19.398.289đ</p>
-                <p class="text-gray-400 font-medium my-2 line-through">21.398.289đ</p>
-            </div>
-            <div class="flex justify-between mx-3 my-2">
-                <p>5⭐️(23)</p>
-                <p>1000+đã bán</p>
-            </div>
-        </div>
+
     </div>
-    
+
 </div>
 <div class="flex justify-center my-6">
     <nav aria-label="Page navigation example">
-      <ul class="flex list-style-none">
-        <li class="page-item disabled"><a
-            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
-            href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
-        <li class="page-item"><a
-            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-            href="#">1</a></li>
-        <li class="page-item active"><a
-            class="page-link relative block py-1.5 px-3 rounded border-0 bg-black outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-            href="#">2 <span class="visually-hidden"></span></a></li>
-        <li class="page-item"><a
-            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-            href="#">3</a></li>
-        <li class="page-item"><a
-            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-            href="#">Next</a></li>
-      </ul>
+        <div class="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+            <nav>
+                <ul class="flex">
+                    <li>
+                        <button (click)="previousPage()" [disabled]="page === 1" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300" href="#" aria-label="Previous">
+                            <span class="material-icons text-sm">keyboard_arrow_left</span>
+                        </button>
+                    </li>
+                    <li>
+                        <a class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-500/20 transition duration-150 ease-in-out" href="#">{{page}}</a>
+                    </li>
+                    <li>
+                        <button (click)="nextPage()" [disabled]="products.length < limit" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300" href="#" aria-label="Next">
+                            <span class="material-icons text-sm">keyboard_arrow_right</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            
+      </div>
+        <!-- <ul class="flex list-style-none">
+            <div>
+                <button (click)="previousPage()" [disabled]="page === 1">Trang trước</button>
+                <span>{{ page }}</span>
+                <button (click)="nextPage()" [disabled]="products.length < limit">Trang sau</button>
+            </div>
+        </ul> -->
     </nav>
-  </div>
+</div>
+<!-- <div
+  [ngStyle]="{ 'background-image': hover ? 'url(https://cdn.pnj.io/images/thumbnails/300/300/detailed/134/gnxmxmw000205-nhan-vang-trang-10k-dinh-da-ecz-pnj-1.png)' : 'url(https://cdn.pnj.io/images/thumbnails/485/485/detailed/134/gnxmxmw000205-nhan-vang-trang-10k-dinh-da-ecz-pnj-3.png)' }"
+  (mouseenter)="hover = true"
+  (mouseleave)="hover = false"
+  class="image-container"
+></div> -->

@@ -25,7 +25,6 @@
           vui long nhap title
           </p>
       </div>
-     <div class="flex">
       <div class="mb-5">
         <label
           class="mb-3 block text-base font-medium text-[#07074D]"
@@ -37,7 +36,7 @@
           type="text"
           name="brand"
           id="brand"
-          class="w-[270px] rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
         <p class="text-red-500"
           *ngIf="
@@ -48,30 +47,6 @@
           vui long nhap brand
           </p>
       </div>
-      <div class="mb-5 ml-3">
-        <label
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Slug
-        </label>
-        <input
-        formControlName="slug"
-          type="text"
-          name="slug"
-          id="slug"
-          class="w-[270px] rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
-        <p class="text-red-500"
-        *ngIf="
-        productForm.get('slug')?.hasError('required')&&
-        (productForm.get('slug')?.touched || productForm.get('slug')?.dirty)
-        "
-        >
-        vui long nhap slug
-        </p>
-      </div>
-     </div>
-      
      
       <div class="mb-5">
         <label
@@ -139,7 +114,29 @@
         vui long nhap description
         </p>
       </div>
-     
+      <div class="mb-5">
+        <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Slug
+        </label>
+        <input
+        formControlName="slug"
+          type="text"
+          name="slug"
+          id="slug"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        <p class="text-red-500"
+        *ngIf="
+        productForm.get('slug')?.hasError('required')&&
+        (productForm.get('slug')?.touched || productForm.get('slug')?.dirty)
+        "
+        >
+        vui long nhap slug
+        </p>
+      </div>
+      
 
       <!-- <div className="mb-5">
       <label

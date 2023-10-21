@@ -23,7 +23,7 @@ import { ListComponent } from './pages/admin/list/list.component';
 import { ListCategoriComponent } from './pages/admin/list-categori/list-categori.component';
 import { AddCategoriComponent } from './pages/admin/add-categori/add-categori.component';
 import { UpdateCategoriComponent } from './pages/admin/update-categori/update-categori.component';
-import { NgxFileDropModule } from 'ngx-file-drop';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +54,6 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxFileDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

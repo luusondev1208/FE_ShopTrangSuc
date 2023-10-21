@@ -99,6 +99,8 @@ export class ListproductComponent {
       .getProducts(this.page, this.limit)
       .subscribe((data: any[]) => {
         this.products = data;
+        // console.log(this.products);
+
         this.filteredProducts = this.products.productDatas.filter(
           (product: any) => product.assess > 50
         );

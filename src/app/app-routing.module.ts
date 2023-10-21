@@ -13,6 +13,10 @@ import { ListComponent } from './pages/admin/list/list.component';
 import { ListCategoriComponent } from './pages/admin/list-categori/list-categori.component';
 import { AddCategoriComponent } from './pages/admin/add-categori/add-categori.component';
 import { UpdateCategoriComponent } from './pages/admin/update-categori/update-categori.component';
+import { InvoiceComponent } from './pages/invoice/invoice.component';
+import { UserPaymentComponent } from './pages/user-payment/user-payment.component';
+import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 const routes: Routes = [
   //client
@@ -40,6 +44,11 @@ const routes: Routes = [
       { path: 'addCategori', component: AddCategoriComponent },
       { path: 'updateCategori/:id', component: UpdateCategoriComponent },
       
+      { path: 'invoice', component: InvoiceComponent },
+      { path: 'user-payment', component: UserPaymentComponent },
+      { path: 'checkout-cart', component: CheckoutCartComponent },
+      { path: 'product-detail', component: ProductDetailsComponent },
+
     ],
   },
 ];

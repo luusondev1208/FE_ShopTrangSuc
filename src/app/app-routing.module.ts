@@ -9,6 +9,8 @@ import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { UserPaymentComponent } from './pages/user-payment/user-payment.component';
 import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   //client
@@ -27,10 +29,12 @@ const routes: Routes = [
 
     ],
   },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

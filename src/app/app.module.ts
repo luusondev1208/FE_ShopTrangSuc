@@ -15,6 +15,11 @@ import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { UserPaymentComponent } from './pages/user-payment/user-payment.component';
 import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -31,12 +36,17 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     UserPaymentComponent,
     CheckoutCartComponent,
     ProductDetailsComponent,
+    RegisterComponent,
+    LoginComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

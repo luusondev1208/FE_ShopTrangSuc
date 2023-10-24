@@ -1,0 +1,170 @@
+<!-- component -->
+<div class="flex items-center justify-center p-12 ml-[200px] bg-gradient-to-r from-cyan-300 to-blue-500">
+  <div class="mx-auto w-full max-w-[550px]">
+    <h2 class="font-bold text-center my-10 text-2xl">Form Update</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onHandleSubmit()">
+      <div class="mb-5">
+        <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+        title
+        </label>
+        <input
+        formControlName="title"
+          type="text"
+          name="title"
+          id="title"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        <p class="text-red-500"
+          *ngIf="
+          productForm.get('title')?.hasError('required')&&
+          (productForm.get('title')?.touched || productForm.get('title')?.dirty)
+          "
+          >
+          vui long nhap title
+          </p>
+      </div>
+      <div class="mb-5">
+        <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+        brand
+        </label>
+        <input
+        formControlName="brand"
+          type="text"
+          name="brand"
+          id="brand"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        <p class="text-red-500"
+          *ngIf="
+          productForm.get('brand')?.hasError('required')&&
+          (productForm.get('brand')?.touched || productForm.get('brand')?.dirty)
+          "
+          >
+          vui long nhap brand
+          </p>
+      </div>
+     
+      <div class="mb-5">
+        <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          price
+        </label>
+        <input
+        formControlName="price"
+          type="number"
+          name="price"
+          id="price"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        <p class="text-red-500"
+          *ngIf="
+          productForm.get('price')?.hasError('required')&&
+          (productForm.get('price')?.touched || productForm.get('price')?.dirty)
+          "
+          >
+          vui long nhap price
+          </p>
+      </div>
+      <div class="mb-5">
+        <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          image
+        </label>
+        <input
+        formControlName="images"
+          type="text"
+          name="images"
+          id="images"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        <p class="text-red-500"
+          *ngIf="
+          productForm.get('images')?.hasError('required')&&
+          (productForm.get('images')?.touched || productForm.get('images')?.dirty)
+          "
+          >
+          vui long nhap images
+          </p>
+      </div>
+      <div class="mb-5">
+        <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          description
+        </label>
+        <input
+        formControlName="description"
+          type="text"
+          name="description"
+          id="description"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        <p class="text-red-500"
+        *ngIf="
+        productForm.get('description')?.hasError('required')&&
+        (productForm.get('description')?.touched || productForm.get('description')?.dirty)
+        "
+        >
+        vui long nhap description
+        </p>
+      </div>
+      <div class="mb-5">
+        <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Slug
+        </label>
+        <input
+        formControlName="slug"
+          type="text"
+          name="slug"
+          id="slug"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        <p class="text-red-500"
+        *ngIf="
+        productForm.get('slug')?.hasError('required')&&
+        (productForm.get('slug')?.touched || productForm.get('slug')?.dirty)
+        "
+        >
+        vui long nhap slug
+        </p>
+      </div>
+      
+
+      <!-- <div className="mb-5">
+      <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          origin
+        </label>
+            <select
+              class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+             
+            >
+              <option value="">Chọn xuất xứ</option>
+              <option value="Vietnam">Ninh Binh</option>
+              <option value="Thailand">Ha Noi</option>
+              <option value="Taiwan">Nam Dinh</option>
+            </select>
+            
+          </div> -->
+      
+      <div>
+        <button
+        type="submit"
+        
+          class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mt-5"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

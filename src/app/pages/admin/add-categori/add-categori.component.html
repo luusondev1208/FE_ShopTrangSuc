@@ -1,0 +1,48 @@
+<!-- component -->
+<div class="flex items-center justify-center p-12 ml-[200px] bg-gradient-to-r from-cyan-300 to-blue-500 py-24 pb-[1000px]">
+  <div class="mx-auto w-full max-w-[550px]">
+    <h2 class="font-bold text-center my-10 text-2xl">Thêm danh mục</h2>
+    <form [formGroup]="categoryForm" (ngSubmit)="onsubmit()">
+      <div class="mb-5">
+        <label
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+        Tên danh mục
+        </label>
+        <input
+        [(ngModel)]="categories.title"
+        formControlName="title"
+          type="text"
+          name="title"
+          id="title"
+          placeholder="nhập tên"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        <p class="text-red-500"
+        *ngIf="
+        categoryForm.get('title')?.hasError('required')&&
+        (categoryForm.get('title')?.touched || categoryForm.get('title')?.dirty)
+        "
+        >
+        Vui lòng nhập tên danh mục
+        </p>
+        <p class="text-red-500"
+        *ngIf="
+        categoryForm.get('title')?.hasError('minlength')&&
+        (categoryForm.get('title')?.touched || categoryForm.get('title')?.dirty)
+        "
+        >
+        vui lòng nhập tên danh mục trên 6 ký tự
+        </p>
+      </div>
+      <div>
+        <button
+        type="submit"
+          class="hover:shadow-form hover:bg-blue-800 rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mt-5"
+        >
+          Thêm
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

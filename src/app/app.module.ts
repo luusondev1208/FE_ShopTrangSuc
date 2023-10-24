@@ -27,6 +27,9 @@ import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { UserPaymentComponent } from './pages/user-payment/user-payment.component';
 import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -49,11 +52,12 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     ListCategoriComponent,
     AddCategoriComponent,
     UpdateCategoriComponent,
-    
     InvoiceComponent,
     UserPaymentComponent,
     CheckoutCartComponent,
     ProductDetailsComponent,
+    RegisterComponent,
+    LoginComponent
 
   ],
   imports: [
@@ -63,6 +67,10 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

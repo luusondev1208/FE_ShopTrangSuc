@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
+
 export class ListComponent {
   products: any = []
   page: number = 1;
@@ -68,7 +70,17 @@ export class ListComponent {
     this.loadData();
   }
 
-  
+  searchResults: any[] = [];
+  searchTerm: string = '';
+  filteredList: any[] = [];
+
+  search() {
+    this.filteredList = this.products.filter((item:any) =>
+      item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    this.products = this.filteredList
+    console.log(this.filteredList)
+  }
 
  
 }

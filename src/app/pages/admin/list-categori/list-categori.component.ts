@@ -46,4 +46,16 @@ export class ListCategoriComponent {
       // Thực hiện các hành động khác tùy ý
     }
   }
+
+  searchResults: any[] = [];
+  searchTerm: string = '';
+  filteredList: any[] = [];
+
+  search() {
+    this.filteredList = this.categories.filter((item:any) =>
+      item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    this.categories = this.filteredList
+    console.log(this.categories)
+  }
 }

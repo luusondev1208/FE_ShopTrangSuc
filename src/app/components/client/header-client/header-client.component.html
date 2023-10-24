@@ -93,8 +93,8 @@
           </li>
         </ul>
         <div class="flex">
-            <input class="w-[400px] hover:bg-gray-300 hover:border-red-500 bg-zinc-200 px-2 py-2 rounded-xl ml-[100px]" type="text" placeholder="Tìm kiếm nhanh">
-            <img class="-ml-[30px]" src="https://cdn.pnj.io/images/image-update/layout/mobile/find-icon.svg" alt="">
+            <input [(ngModel)]="searchTerm" class="w-[400px] hover:bg-gray-300 hover:border-red-500 bg-zinc-200 px-2 py-2 rounded-xl ml-[100px]" type="text" placeholder="Tìm kiếm nhanh">
+            <img (click)="search()" class="-ml-[30px]" src="https://cdn.pnj.io/images/image-update/layout/mobile/find-icon.svg" alt="">
         </div>
       </nav>
 

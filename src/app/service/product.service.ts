@@ -29,6 +29,9 @@ export class ProductService {
     return this.http.delete<any>(`${this.API_URL}/${id}`);
   }
 
+  searchByName(title: string): Observable<any> {
+    return this.http.get(`${this.API_URL}/search?title=${title}`);
+  }
   
 
 }

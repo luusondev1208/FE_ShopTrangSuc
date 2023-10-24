@@ -28,7 +28,10 @@ const routes: Routes = [
       { path: 'products', component: ListproductComponent },
       { path: 'slide', component: SlideshowComponent },
       { path: 'blog', component: BlogpageComponent },
-     
+      { path: 'invoice', component: InvoiceComponent },
+      { path: 'user-payment', component: UserPaymentComponent },
+      { path: 'checkout-cart', component: CheckoutCartComponent },
+      { path: 'product-detail', component: ProductDetailsComponent },
     ],
   },
    //admin
@@ -43,11 +46,7 @@ const routes: Routes = [
       { path: 'listCategori', component: ListCategoriComponent },
       { path: 'addCategori', component: AddCategoriComponent },
       { path: 'updateCategori/:id', component: UpdateCategoriComponent },
-      
-      { path: 'invoice', component: InvoiceComponent },
-      { path: 'user-payment', component: UserPaymentComponent },
-      { path: 'checkout-cart', component: CheckoutCartComponent },
-      { path: 'product-detail', component: ProductDetailsComponent },
+     
 
     ],
   },

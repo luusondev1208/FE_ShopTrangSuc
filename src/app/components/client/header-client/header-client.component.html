@@ -1,13 +1,13 @@
-<div class="mx-[150px] my-5">
+<div  class="mx-[150px] my-5">
     <div class="flex justify-between items-center mb-2">
         <div class="flex space-x-6 items-center">
             <div class="flex space-x-2 hover:text-red-500">
-                <img class="-mt-[12px]" src="https://cdn.pnj.io/images/image-update/layout/icon-stores-new.svg" alt="">
-                <p class="">Cửa hàng</p>
+                <button><img class="-mt-[1px]" src="https://cdn.pnj.io/images/image-update/layout/icon-stores-new.svg" alt=""></button>
+                <button (click)="showMap()" class="">Cửa hàng</button>
             </div>
             <div class="flex space-x-2 hover:text-red-500">
-                <img class="-mt-[12px]" src="https://cdn.pnj.io/images/image-update/layout/icon-hotline-new.svg" alt="">
-                <p>0347617094</p>
+                <button><img class="-mt-[1px]" src="https://cdn.pnj.io/images/image-update/layout/icon-hotline-new.svg" alt=""></button>
+                <button><a  href="https://id.zalo.me/account?continue=https://chat.zalo.me">0347617094</a></button>
             </div>
         </div>
         <div>
@@ -15,12 +15,12 @@
         </div>
         <div class="flex space-x-6 items-center">
             <div class="flex space-x-2 hover:text-red-500">
-                <img class="w-[20px] -mt-[12px]" src="https://cdn.pnj.io/images/2023/user-regular.svg" alt="">
-                <p>Tài khoản của tôi</p>
+               <button> <img class="w-[20px] -mt-[1px]" src="https://cdn.pnj.io/images/2023/user-regular.svg" alt=""></button>
+                <button><a href="">Tài khoản của tôi</a></button>
             </div>
             <div class="flex space-x-2 hover:text-red-500">
-                <img  class="-mt-[12px]" src="https://cdn.pnj.io/images/image-update/layout/icon-cart-new.svg" alt="">
-                <p routerLink="checkout-cart">Giỏ hàng</p>
+                <button><img  class="-mt-[1px]" src="https://cdn.pnj.io/images/image-update/layout/icon-cart-new.svg" alt=""></button>
+                <button> <a  routerLink="checkout-cart">Giỏ hàng</a></button>
             </div>
         </div>
     </div>
@@ -98,4 +98,10 @@
         </div>
       </nav>
 
+</div>
+<div *ngIf="showmap" class="absolute">
+  <svg (click)="showMap()"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-black font-bold absolute ml-[1485px]">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+  </svg>
+  <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59586.013455851!2d105.76670218121524!3d21.027650216541648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab481755e517%3A0xd946ead59c90aad2!2zUE5KIDMzNCBD4bqndSBHaeG6pXk!5e0!3m2!1sen!2s!4v1698136367871!5m2!1sen!2s" width="1513" height="666" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>

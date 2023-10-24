@@ -8,6 +8,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./header-client.component.scss']
 })
 export class HeaderClientComponent {
+  showmap: boolean = false;
   page: number = 1;
   limit: number = 10;
   constructor(private productService: ProductService, private router: Router) {
@@ -40,5 +41,8 @@ export class HeaderClientComponent {
     );
     this.products = this.filteredList
     console.log(this.products)
+  }
+  showMap(){
+    this.showmap = !this.showmap
   }
 }

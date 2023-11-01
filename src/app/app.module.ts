@@ -29,6 +29,12 @@ import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.compo
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
+import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
+
+
+
 
 
 @NgModule({
@@ -57,7 +63,11 @@ import { LoginComponent } from './pages/login/login.component';
     CheckoutCartComponent,
     ProductDetailsComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CartComponent,
+    InforAccountComponent,
+    UpdateAccountComponent
+   
 
   ],
   imports: [

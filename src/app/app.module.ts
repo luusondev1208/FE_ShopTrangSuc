@@ -34,6 +34,12 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { ListuserComponent } from './pages/admin/listuser/listuser.component';
 import { UpdateUserComponent } from './pages/admin/update-user/update-user.component';
 import { AddUserComponent } from './pages/admin/add-user/add-user.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
+import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
+
+
+
 
 
 @NgModule({
@@ -65,7 +71,11 @@ import { AddUserComponent } from './pages/admin/add-user/add-user.component';
     LoginComponent,
     ListuserComponent,
     UpdateUserComponent,
-    AddUserComponent
+    AddUserComponent,
+    CartComponent,
+    InforAccountComponent,
+    UpdateAccountComponent
+   
 
   ],
   imports: [

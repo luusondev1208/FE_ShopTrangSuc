@@ -22,6 +22,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { ListuserComponent } from './pages/admin/listuser/listuser.component';
 import { UpdateUserComponent } from './pages/admin/update-user/update-user.component';
 import { AddUserComponent } from './pages/admin/add-user/add-user.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
+import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
 
 const routes: Routes = [
   //client
@@ -37,6 +40,13 @@ const routes: Routes = [
       { path: 'user-payment', component: UserPaymentComponent },
       { path: 'checkout-cart', component: CheckoutCartComponent },
       { path: 'product-detail', component: ProductDetailsComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'infor-account', component: InforAccountComponent },
+      { path: 'update-account', component: UpdateAccountComponent },
+
+
+
+
     ],
   },
    //admin
@@ -60,6 +70,8 @@ const routes: Routes = [
   },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+ 
+
 ];
 
 @NgModule({

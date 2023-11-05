@@ -1,35 +1,41 @@
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-private API_URL='http://localhost:5000/api/user';
+
+  private API_URL = 'http://localhost:5000/api/user';
   constructor(private http: HttpClient) { }
-  getAllUser(): Observable<any> {
+  getUsers(): Observable<any> {
     return this.http.get<any>(this.API_URL);
-  };
-
-  getUser(id:string) :Observable<any>{
-    const url=`${this.API_URL}/${id}`;
-    return this.http.get<any>(url);
     
-  };
-  addUser(user:any):Observable<any>{
-    return this.http.post<any>(`${this.API_URL}/add`,user)
+  }
+  
+  getUser(id: string):Observable<any> {
+    const url = `${`http://localhost:5000/api/user/current`}/${id}`;
+    return this.http.get<any>(url);
+  }
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete<any>(`http://localhost:5000/api/user/?_id=${id}`);
+  }
+  // addProducts(product:any,  files: File[]): Observable<any> {
+  //   return this.http.post<any>(`${this.API_URL}/add`, product); 
+  // }
+  addUser(user:any):Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/add`, user); 
+  }
 
-  };
-  updateUser(user:any):Observable<any>{
-    return this.http.put<any>(`${this.API_URL}/${user.id}`,user)
-
-  };
-  deleteUser(id:string):Observable<any>{
-    return this.http.delete<any>(`${this.API_URL}/${id}`)
-
-  };
-
+  updateUser(user: any): Observable<any> {
+    return this.http.put<any>(
+      `${`http://localhost:5000/api/user/current`}/${user.id}`,
+      user
+    );
+  }
 
 
 }

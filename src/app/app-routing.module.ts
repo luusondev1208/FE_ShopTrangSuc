@@ -19,6 +19,9 @@ import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.compo
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ListuserComponent } from './pages/admin/listuser/listuser.component';
+import { UpdateUserComponent } from './pages/admin/update-user/update-user.component';
+import { AddUserComponent } from './pages/admin/add-user/add-user.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
@@ -58,6 +61,9 @@ const routes: Routes = [
       { path: 'listCategori', component: ListCategoriComponent },
       { path: 'addCategori', component: AddCategoriComponent },
       { path: 'updateCategori/:id', component: UpdateCategoriComponent },
+      { path: 'listUser', component: ListuserComponent },
+      { path: 'addUser', component: AddUserComponent },
+      { path: 'updateUser/:id', component: UpdateUserComponent },
      
 
     ],

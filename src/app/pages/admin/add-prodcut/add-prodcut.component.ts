@@ -3,12 +3,30 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload';
+import { NgxUploaderModule,UploaderOptions  } from 'ngx-uploader';
+
 @Component({
   selector: 'app-add-prodcut',
   templateUrl: './add-prodcut.component.html',
   styleUrls: ['./add-prodcut.component.scss'],
 })
 export class AddProdcutComponent {
+  public files: File[] = [];
+  public images: File[] = [];
+  // public uploader: FileUploader = new FileUploader({ url: 'http://localhost:5000/api/upload' });
+  
+  onFileSelect(event: any): void {
+    const selectedFiles = event.target.files;
+    
+    // Lặp qua các tệp đã chọn và đưa chúng vào mảng images
+    for (let i = 0; i < selectedFiles.length; i++) {
+        this.images.push(selectedFiles[i]);
+    }
+
+    // Kiểm tra mảng images sau khi thêm tệp
+    console.log(this.images);
+}
   products: any = {};
   productForm = this.formBuider.group({
     title:[
@@ -36,9 +54,12 @@ export class AddProdcutComponent {
       [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
     ]
   })
-  constructor(private productService: ProductService, private router: Router, private formBuider: FormBuilder) {}
+  constructor(private productService: ProductService, private router: Router, private formBuider: FormBuilder) {
+   
+
+  }
   onsubmit() {
-    this.productService.addProducts(this.products).subscribe((response) => {
+    this.productService.addProducts(this.products, this.files).subscribe((response) => {
       console.log('san pham them thanh cong: ',response);
       this.router.navigate(['/admin/list'])
       alert("add thanh cong")
@@ -50,7 +71,7 @@ export class AddProdcutComponent {
     }
     );
   }
-  imageList: string[] = [];
+
 
   // onFileDropped(event: any) {
   //   if (event instanceof FileList) {

@@ -60,30 +60,7 @@
             Vui lòng nhập thương hiệu sản phẩm
             </p>
           </div>
-          <div class="mb-5 ml-8">
-            <label
-              class="mb-3 block text-base font-medium text-[#07074D]"
-            >
-            slug
-            </label>
-            <input
-            [(ngModel)]="products.slug"
-            formControlName="slug"
-              type="text"
-              name="slug"
-              id="slug"
-              placeholder="Full slug"
-              class="w-[260px] rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-            <p class="text-red-500"
-            *ngIf="
-            productForm.get('slug')?.hasError('required')&&
-            (productForm.get('slug')?.touched || productForm.get('slug')?.dirty)
-            "
-            >
-           Vui lòng nhập slug
-            </p>
-          </div>
+          
         </div>
        
         <div class="mb-5">
@@ -125,9 +102,9 @@
             Ảnh
           </label>
           <input
-          [(ngModel)]="products.images"
+          type="file"  ngxFileSelect (onFileDrop)="onFileSelect($event)" multiple="multiple" accept="image/*"
+         
           formControlName="images"
-            type="text"
             name="images"
             id="images"
             placeholder="Nhập ảnh"
@@ -189,6 +166,7 @@
         
         <div>
           <button
+          
           type="submit"
             class="hover:shadow-form rounded-md bg-[#6A64F1] hover:bg-blue-800 py-3 px-8 text-base font-semibold text-white outline-none mt-5"
           >

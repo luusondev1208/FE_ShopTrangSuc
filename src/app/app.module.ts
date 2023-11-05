@@ -29,6 +29,11 @@ import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.compo
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
+import { NgxUploaderModule } from 'ngx-uploader';
+import { FileUploadModule } from 'ng2-file-upload';
+import { ListuserComponent } from './pages/admin/listuser/listuser.component';
+import { UpdateUserComponent } from './pages/admin/update-user/update-user.component';
+import { AddUserComponent } from './pages/admin/add-user/add-user.component';
 
 
 @NgModule({
@@ -57,7 +62,10 @@ import { LoginComponent } from './pages/login/login.component';
     CheckoutCartComponent,
     ProductDetailsComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ListuserComponent,
+    UpdateUserComponent,
+    AddUserComponent
 
   ],
   imports: [
@@ -70,7 +78,10 @@ import { LoginComponent } from './pages/login/login.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxUploaderModule,
+    FileUploadModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

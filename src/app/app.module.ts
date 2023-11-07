@@ -37,7 +37,8 @@ import { AddUserComponent } from './pages/admin/add-user/add-user.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
-import { NgToastModule } from 'ng-angular-popup'
+import { NgToastModule } from 'ng-angular-popup';
+import { SendEmailComponent } from './pages/send-email/send-email.component'
 
 
 
@@ -74,7 +75,8 @@ import { NgToastModule } from 'ng-angular-popup'
     AddUserComponent,
     CartComponent,
     InforAccountComponent,
-    UpdateAccountComponent
+    UpdateAccountComponent,
+    SendEmailComponent
 
 
   ],

@@ -25,6 +25,7 @@ import { AddUserComponent } from './pages/admin/add-user/add-user.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
+import { SendEmailComponent } from './pages/send-email/send-email.component';
 
 const routes: Routes = [
   //client
@@ -49,8 +50,8 @@ const routes: Routes = [
 
     ],
   },
-   //admin
-   {
+  //admin
+  {
     path: 'admin',
     component: AdminLayoutComponent,
     children: [
@@ -64,13 +65,14 @@ const routes: Routes = [
       { path: 'listUser', component: ListuserComponent },
       { path: 'addUser', component: AddUserComponent },
       { path: 'updateUser/:id', component: UpdateUserComponent },
-     
+
 
     ],
   },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
- 
+  { path: 'forgotPassword', component: SendEmailComponent },
+
 
 ];
 

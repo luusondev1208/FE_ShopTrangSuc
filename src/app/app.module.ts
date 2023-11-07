@@ -37,7 +37,7 @@ import { AddUserComponent } from './pages/admin/add-user/add-user.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
-
+import { NgToastModule } from 'ng-angular-popup'
 
 
 
@@ -75,7 +75,7 @@ import { UpdateAccountComponent } from './pages/account/update-account/update-ac
     CartComponent,
     InforAccountComponent,
     UpdateAccountComponent
-   
+
 
   ],
   imports: [
@@ -91,7 +91,7 @@ import { UpdateAccountComponent } from './pages/account/update-account/update-ac
     ReactiveFormsModule,
     NgxUploaderModule,
     FileUploadModule,
-    
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/Auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private toast: NgToastService
   ) {
     this.formLogin = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -25,11 +27,11 @@ export class LoginComponent {
     if (this.formLogin.invalid) return;
     this.authService.loggin(this.formLogin.value).subscribe({
       next: (user) => {
-        alert("Đăng nhập thành công!")
+        this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thành công!', duration: 5000, position: "topCenter" });
         this.router.navigate(['/'])
       },
       error: ({ error }) => {
-        alert("Đăng nhập thất bại!")
+        this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thất bại!', duration: 5000, position: "topCenter" });
       }
     })
   }

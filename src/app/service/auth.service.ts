@@ -18,5 +18,9 @@ export class AuthService {
   loggin(user: any): Observable<any> {
     return this.http.post(`${this.API_Url}/login`, user)
   }
+  sendEmail(email: string): Observable<any> {
+    const url = `${this.API_Url}/forgotpassword?email=${email}`;
+    return this.http.get(url);
+  }
 
 }

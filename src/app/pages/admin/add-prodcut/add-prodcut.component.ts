@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { NgxUploaderModule,UploaderOptions  } from 'ngx-uploader';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-prodcut',
@@ -54,15 +55,18 @@ export class AddProdcutComponent {
       [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
     ]
   })
-  constructor(private productService: ProductService, private router: Router, private formBuider: FormBuilder) {
+  constructor(private productService: ProductService, private router: Router, private formBuider: FormBuilder, private toastr: ToastrService) {
    
 
   }
   onsubmit() {
     this.productService.addProducts(this.products, this.files).subscribe((response) => {
       console.log('san pham them thanh cong: ',response);
+      this.toastr.success(
+        'Unable merge, please try again!'
+      );
       this.router.navigate(['/admin/list'])
-      alert("add thanh cong")
+      // alert("add thanh cong")
       // Thực hiện các hành động sau khi sản phẩm được thêm thành công
     },
     error => {

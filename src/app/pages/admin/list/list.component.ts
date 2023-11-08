@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
 import { Pipe, PipeTransform } from '@angular/core';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -13,8 +13,21 @@ export class ListComponent {
   products: any = []
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router) {
+  constructor(private productService: ProductService, private router: Router, private toastr:ToastrService) {
     
+  }
+  
+
+  showWarning() {
+    this.toastr.warning('Cảnh báo: Hãy làm điều gì đó.');
+  }
+
+  showError() {
+    this.toastr.error('Đã xảy ra lỗi. Vui lòng thử lại.');
+  }
+
+  showInfo() {
+    this.toastr.info('Thông tin bổ sung.');
   }
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe(
@@ -41,7 +54,7 @@ export class ListComponent {
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.productService.deleteProduct(id).subscribe(
         response => {
-          alert('Sản phẩm đã được xóa');
+          this.toastr.success('Sản phẩm đã được xóa');
           this.router.navigate(['/admin/list']);
           // Thực hiện các hành động sau khi sản phẩm được xóa thành công
         },

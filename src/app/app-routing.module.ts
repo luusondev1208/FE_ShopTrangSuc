@@ -44,10 +44,6 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'infor-account', component: InforAccountComponent },
       { path: 'update-account', component: UpdateAccountComponent },
-
-
-
-
     ],
   },
   //admin

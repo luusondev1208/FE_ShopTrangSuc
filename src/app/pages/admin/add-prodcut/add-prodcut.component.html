@@ -1,14 +1,15 @@
-<!-- component -->
+
 <div class="flex items-center justify-center p-12 ml-[200px] bg-gradient-to-r from-cyan-300 to-blue-500">
     <div class="mx-auto w-full max-w-[550px]">
       <h2 class="font-bold text-center my-10 text-2xl">Thêm sản phẩm</h2>
       <form [formGroup]="productForm" (ngSubmit)="onsubmit()">
-        <div class="mb-5">
+        <div  class="mb-5">
           <label
             class="mb-3 block text-base font-medium text-[#07074D]"
           >
           Tên sản phẩm
           </label>
+          
           <input
           [(ngModel)]="products.title"
           formControlName="title"

@@ -29,5 +29,8 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
+  },
+  "paths": {
+    "ngx-toastr": ["node_modules/ngx-toastr/toastr.css"]
   }
 }

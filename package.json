@@ -24,6 +24,7 @@
     "bootstrap-datepicker": "^1.10.0",
     "font-awesome": "^4.7.0",
     "mdb-ui-kit": "^6.4.2",
+    "ng-angular-popup": "^0.5.2",
     "ng2-file-upload": "^5.0.0",
     "ngx-file-drop": "^16.0.0",
     "ngx-toastr": "^17.0.2",

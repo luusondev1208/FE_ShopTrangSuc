@@ -38,6 +38,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { SendEmailComponent } from './pages/send-email/send-email.component'
 
 
 
@@ -74,8 +75,9 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     AddUserComponent,
     CartComponent,
     InforAccountComponent,
-    UpdateAccountComponent
-   
+    UpdateAccountComponent,
+    SendEmailComponent
+
 
   ],
   imports: [

@@ -40,6 +40,7 @@ import { UpdateAccountComponent } from './pages/account/update-account/update-ac
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgToastModule } from 'ng-angular-popup';
 import { SendEmailComponent } from './pages/send-email/send-email.component'
+import { NgToastModule } from 'ng-angular-popup';
 
 
 

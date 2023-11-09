@@ -1,4 +1,16 @@
+<!-- slideshow -->
+<div class="slideshow">
+    <div class="slide" *ngFor="let image of images; let i = index" [ngClass]="{'active': i === currentIndex}">
+      <img class="" [src]="image" alt="Slide">
 
+    </div>
+
+  </div>
+ <div class="flex justify-between mx-4">
+    <button class="font-bold text-3xl  " (click)="prevSlide()"></button>
+    <button class="font-bold text-3xl -mt-[50px]" (click)="nextSlide()">➤</button>
+
+ </div>
 <div class="grid grid-cols-3 gap-4 my-4">
     <img src="https://cdn.pnj.io/images/promo/183/Banner_Scheme_Trau_Cau__494x247_.png" alt="">
     <img src="https://cdn.pnj.io/images/promo/173/qua-tang-494x247CTA.jpg" alt="">

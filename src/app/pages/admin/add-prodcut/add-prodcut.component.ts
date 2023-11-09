@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { NgxUploaderModule,UploaderOptions  } from 'ngx-uploader';
 import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
   selector: 'app-add-prodcut',
@@ -15,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AddProdcutComponent {
   public files: File[] = [];
   public images: File[] = [];
+  categories: any = []
   // public uploader: FileUploader = new FileUploader({ url: 'http://localhost:5000/api/upload' });
   
   onFileSelect(event: any): void {
@@ -53,10 +55,22 @@ export class AddProdcutComponent {
     images:[
       '',
       [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
+    ],
+    priceroot:[
+      '',
+      [Validators.required,Validators.min(1), Validators.minLength(6), Validators.maxLength(255)]
     ]
+    
   })
-  constructor(private productService: ProductService, private router: Router, private formBuider: FormBuilder, private toastr: ToastrService) {
-   
+  constructor(private productService: ProductService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toastr: ToastrService) {
+    this.categoryService.getCategories().subscribe(
+      (response:any) => {
+        this.categories = response.getAllCategory;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
   }
   onsubmit() {

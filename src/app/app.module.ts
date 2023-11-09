@@ -38,6 +38,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { NgToastModule } from 'ng-angular-popup';
 import { SendEmailComponent } from './pages/send-email/send-email.component'
 
 
@@ -93,11 +94,13 @@ import { SendEmailComponent } from './pages/send-email/send-email.component'
     ReactiveFormsModule,
     NgxUploaderModule,
     FileUploadModule,
+    NgToastModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       progressBar: false,
       positionClass: 'toast-top-right',
-      closeButton: true
+      closeButton: true,
+      toastClass: 'custom-toastr'
     }),
   ],
   providers: [

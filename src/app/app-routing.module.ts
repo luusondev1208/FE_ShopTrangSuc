@@ -53,18 +53,24 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'list', component: ListComponent },
-      { path: 'addProduct', component: AddProdcutComponent },
-      { path: 'update/:id', component: UpdateProductComponent },
       { path: 'listCategori', component: ListCategoriComponent },
-      { path: 'addCategori', component: AddCategoriComponent },
-      { path: 'updateCategori/:id', component: UpdateCategoriComponent },
+     
       { path: 'listUser', component: ListuserComponent },
       { path: 'addUser', component: AddUserComponent },
-      { path: 'updateUser/:id', component: UpdateUserComponent },
-
-
     ],
   },
+  {
+    path: 'admin',
+   
+    children: [
+      { path: 'addProduct', component: AddProdcutComponent },
+      { path: 'addCategori', component: AddCategoriComponent },
+      { path: 'update/:id', component: UpdateProductComponent },
+      { path: 'updateCategori/:id', component: UpdateCategoriComponent },
+      { path: 'updateUser/:id', component: UpdateUserComponent },
+    ],
+  },
+  
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgotPassword', component: SendEmailComponent },

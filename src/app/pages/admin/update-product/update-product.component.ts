@@ -28,6 +28,11 @@ export class UpdateProductComponent {
       0,
       [Validators.required, Validators.min(1)]
     ],
+    priceroot:[
+      0,
+      [Validators.required, Validators.min(1)]
+    ],
+    
     description:[
       '',
      
@@ -54,6 +59,7 @@ export class UpdateProductComponent {
           this.productForm.patchValue({
             title: product.productData.title,
             price: product.productData.price,
+            priceroot: product.productData.price,
             images: product.productData.images,
             brand: product.productData.brand,
             description: product.productData.description,
@@ -73,6 +79,7 @@ export class UpdateProductComponent {
         id:this.product._id,
         title: this.productForm.value.title || '',
         price: this.productForm.value.price || 0,
+        priceroot: this.productForm.value.priceroot || 0,
         description: this.productForm.value.description || '',
         images: this.productForm.value.images || '',
         brand: this.productForm.value.brand || '',

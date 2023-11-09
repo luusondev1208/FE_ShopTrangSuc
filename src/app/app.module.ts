@@ -99,7 +99,8 @@ import { NgToastModule } from 'ng-angular-popup';
       timeOut: 5000,
       progressBar: false,
       positionClass: 'toast-top-right',
-      closeButton: true
+      closeButton: true,
+      toastClass: 'custom-toastr'
     }),
   ],
   providers: [

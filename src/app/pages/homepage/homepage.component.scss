@@ -32,4 +32,25 @@
   //   /* Điều chỉnh các hiệu ứng CSS khi hover */
   // }
   
+  .slideshow {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+  
+  .slide {
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .slide.active {
+    display:block;
+  }
   

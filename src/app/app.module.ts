@@ -39,6 +39,7 @@ import { InforAccountComponent } from './pages/account/infor-account/infor-accou
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { SendEmailComponent } from './pages/send-email/send-email.component'
+import { NgToastModule } from 'ng-angular-popup';
 
 
 
@@ -93,6 +94,7 @@ import { SendEmailComponent } from './pages/send-email/send-email.component'
     ReactiveFormsModule,
     NgxUploaderModule,
     FileUploadModule,
+    NgToastModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       progressBar: false,

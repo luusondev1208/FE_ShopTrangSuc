@@ -16,10 +16,14 @@ export class AddCategoriComponent {
       [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
     ]
   })
-  constructor(private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder,  private toastr: ToastrService) {}
+  constructor(private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder,  private toastrService: ToastrService) {}
   onsubmit() {
     this.categoryService.addCategory(this.categories).subscribe((response) => {
-      this.toastr.info("thanh cong !!");
+      this.toastrService.error('everything is broken', 'Major Error', {
+        timeOut: 3000,
+      });
+      // this.toastr.info("thanh cong !!");
+      this.showSuccess()
       console.log('danh muc them thanh cong: ',response);
       this.router.navigate(['/admin/listCategori'])
      
@@ -30,5 +34,8 @@ export class AddCategoriComponent {
       // Xử lý lỗi nếu có
     }
     );
+  }
+  showSuccess() {
+    // this.toastr.success('Hello world!', 'Toastr fun!');
   }
 }

@@ -101,11 +101,12 @@
     </div>
 
     <div class="-ml-[500px]">
-        <div class="mx-[15px] my-6">
+        <div class="mx-[15px] my-16">
             <div *ngIf="products.length > 0" class="grid grid-cols-4 gap-9 ml-10">
                 <!-- san pham 1 -->
                 <div *ngFor="let product of products">
-                    <div class="text-center w-[265px] bg-gray-100 rounded-xl py-3">
+                    <div class="text-center w-[265px] bg-gray-100 rounded-xl pb-3">
+                        <p class="border bg-red-500 w-[100px] text-white font-medium py-1 absolute mt-10" *ngIf="product.quantity === 0 " >Hết hàng</p>
                         <div class="image-container">
                             <img src={{product.images[0]}} class="original-image w-[250px]" />
                             <img src={{product.images[1]}} alt="Ảnh thay thế" class="hover-image w-[250px]" />

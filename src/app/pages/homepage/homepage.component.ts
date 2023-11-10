@@ -8,34 +8,73 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent {
+  topcreatedAt: any = []
+  saleproduct: any = []
+  topProducts: any = []
   filteredProducts: any = [];
   showForm: boolean = false
   sortedByPrice: boolean = false
   products: any = [];
+  topFourItems: any = [];
   page: number = 1;
-  limit: number = 4;
+  limit: number = 100;
   constructor(private productService: ProductService, private router: Router) {}
   isHovering: boolean = false;
 
   loadData() {
-    this.productService.getProducts(this.page, this.limit).subscribe(
-      (response: any) => {
-        this.products = response.productDatas;
-        // console.log(this.products);
-
-        //  console.log(this.products.docs);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
-  ngOnInit() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
-      this.filteredProducts = this.products.productDatas.filter((product:any) => product.price > 100);
+      this.filteredProducts = this.products.productDatas.filter((product:any) => product.sold > 100);
+      console.log(this.filteredProducts);
+      
     });
+  }
+  
+  toggleSortByPrice() {
+    this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
+      this.products = data;
+      this.topProducts = this.products.productDatas.filter((product:any) => product.assess > 100);
+      console.log(this.topProducts);
+      
+    });
+  }
+
+  filtercreatedAt() {
+    this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
+      this.products = data;
+      this.topcreatedAt = this.products.productDatas
+      // Sắp xếp theo createdAt giảm dần (newest first)
+      this.topcreatedAt = this.topcreatedAt.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      // this.topcreatedAt = this.products.productDatas.filter((product:any) => product.createdAt >= 1698009190100);
+      console.log(this.topcreatedAt);
+    });
+  }
+
+  doubledPriceProducts(){
+    this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
+      this.products = data;
+      this.saleproduct = this.products.productDatas;
+      // Tạo mảng mới với các sản phẩm có giá gốc gấp đôi giá hiện tại
+      // this.saleproduct = this.saleproduct.filter((product:any) => product.price * 2 === product.priceroot);
+      // console.log(this.saleproduct);
+        // Tính giảm giá phần trăm và lọc sản phẩm giảm giá hơn 50%
+        this.saleproduct = this.saleproduct.filter((product:any) => {
+          
+          const discountPercentage = ((product.price - product.priceroot) / product.price) * 100;
+         
+          return discountPercentage > 50;
+          
+          
+        });
+        console.log(this.saleproduct);
+    })
+  } 
+
+  ngOnInit() {
+    this.toggleSortByPrice()
+    this.loadData()
+    this.filtercreatedAt()
+    this.doubledPriceProducts()
   }
   
   images = ['https://cdn.pnj.io/images/promo/184/CT_LOVE_WEDDING_1972x640CTA.jpg', 
@@ -59,64 +98,8 @@ export class HomepageComponent {
   }
   hover: Boolean = false;
 
-  previousPage() {
-    if (this.page > 1) {
-      this.page--;
-      this.loadData();
-    }
-  }
+  
 
-  nextPage() {
-    this.page++;
-    this.loadData();
-  }
+ 
 
-  toggleSortByPrice() {
-    this.sortedByPrice = !this.sortedByPrice;
-
-    if (this.sortedByPrice) {
-      this.products.sort((a:any, b:any) => a.price - b.price);
-    } else {
-      this.loadData();
-    }
-  }
-
-  toggleSortByPriceS() {
-    this.sortedByPrice = !this.sortedByPrice;
-
-    if (this.sortedByPrice) {
-      this.products.sort((a:any, b:any) => b.price - a.price);
-    } else {
-      this.loadData();
-    }
-  }
-   
-  // Trong component
-toggleForm() {
-  this.showForm = !this.showForm;
-}
-filterProductsBySold(){
-  this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
-    this.products = data;
-    // console.log(this.products);
-    
-    this.filteredProducts = this.products.productDatas.filter((product:any) => product.sold > 50);
-    console.log(this.filteredProducts);
-    // this.products = this.filteredProducts
-    
-  });
-}
-
-
-// filterProductsByassess(){
-//   this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
-//     this.products = data;
-//     // console.log(this.products);
-    
-//     this.filteredProducts = this.products.productDatas.filter((product:any) => product.assess > 50);
-//     console.log(this.filteredProducts);
-//     this.products = this.filteredProducts
-    
-//   });
-// }
 }

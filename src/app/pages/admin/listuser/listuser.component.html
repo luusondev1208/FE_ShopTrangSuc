@@ -1,6 +1,6 @@
 <!-- component -->
 
-<div class="ml-auto mb-[100px] lg:w-[75%] xl:w-[80%] 2xl:w-[85%] ">
+<div class="ml-[230px] mb-[100px] lg:w-[75%] xl:w-[80%] 2xl:w-[85%] ">
     <div class="flex flex-col">
       <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -77,6 +77,13 @@
                   <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                     Mobile
                   </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                    CreatedAt
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                    UpdatedAt
+                  </th>
+                  
             
                   <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                     action
@@ -94,6 +101,12 @@
                   </td>
                   <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     {{user.mobile}}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{user.createdAt}}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {{user.updatedAt}}
                   </td>
                   
                  

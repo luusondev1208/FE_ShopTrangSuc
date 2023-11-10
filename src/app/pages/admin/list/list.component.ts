@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/service/product.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgToastService } from 'ng-angular-popup';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -14,21 +15,20 @@ export class ListComponent {
   products: any = []
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router, private toastr:ToastrService,private toastService: NgToastService) {
+  constructor(private productService: ProductService, private router: Router,private toastr: ToastrService,private toastService: NgToastService) {
     
   }
   
 
-  showWarning() {
-    this.toastr.warning('Cảnh báo: Hãy làm điều gì đó.');
+  showMessage(message: string, title: string = 'Thông báo'): void {
+    this.toastr.success(message, title);
   }
-
-  showError() {
-    this.toastr.error('Đã xảy ra lỗi. Vui lòng thử lại.');
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
-
-  showInfo() {
-    this.toastr.info('Thông tin bổ sung.');
+  
+  showError(message: string, title: string = 'Lỗi'): void {
+    this.toastr.error(message, title);
   }
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe(
@@ -55,7 +55,8 @@ export class ListComponent {
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.productService.deleteProduct(id).subscribe(
         response => {
-          this.toastr.success('Thông báo thành công!', 'Tiêu đề');
+          this.toastr.success("xoa thành công~~")
+          this.showSuccess()
           this.router.navigate(['/admin/list']);
           // Thực hiện các hành động sau khi sản phẩm được xóa thành công
         },

@@ -145,148 +145,38 @@ trang sức người thân mùa trung thu đoàn viên
         <p class="font-medium text-xl">CUNG & MỆNH</p>
         <hr class="border-2 border-blue-900 w-[1050px] ml-4 mb-2">
     </div>
+   <div *ngFor="let item of blogs.slice(0, 5)">
     <div class="flex space-x-4 my-5">
         <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2023/09/Thien-Binh-hop-voi-cung-nao-Co-nang-Thien-Binh-nen-deo-trang-suc-gi-de-tinh-yeu-no-ro.jpg"
+            src={{item.image}}
             alt="">
         <div>
-            <p class="text-[20px] hover:text-gray-500">Thiên Bình hợp với cung nào? Cô nàng Thiên Bình nên đeo trang sức
-                gì để tình yêu nở rộ?</p>
-            <div class="flex space-x-4 py-3">
+            <p class="text-[20px] hover:text-gray-500">{{item.title}}</p>
+            <div class="flex space-x-4 py-5">
                 <p>Trang Sức Cung - Mệnh</p>
                 <p>22/09/2023</p>
             </div>
-            <p>Một Thiên Bình ngọt ngào nhưng cũng vô cùng cứng rắn sẽ hợp với cung hoàng đạo nào? Đâu sẽ là món trang
-                sức. Những người có ngày sinh từ 22/9 đến 23/10 sẽ thuộc cung Thiên Bình. Biểu tượng của cung hoàng đạo này là cán cân công lý. Tính cách nổi bật của Thiên Bình là sự khéo léo, tinh tế và tràn đầy năng lượng tích cực. Họ là người xem trọng công bằng, tự do và khát vọng được sống hết mình  Nhìn chung, những người thuộc cung hoàng đạo này rất thông minh, có tài ứng biến. Họ cũng là người giỏi tranh luận, tư duy sắc sảo và nhạy bén nên rất được nhiều người tôn trọng....</p>
+            <p >{{item.description}}</p>
         </div>
     </div>
-    <div class="flex space-x-4 my-5">
-        <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2023/09/Quy-Dau-1993-dieu-gi-dang-cho-doi-ban-trong-thang-10-2023-Da-quy-nao-se-phu-hop-voi-ban.jpg"
-            alt="">
-        <div>
-            <p class="text-[20px] hover:text-gray-500">Quý Dậu 1993, điều gì đang chờ đợi bạn trong tháng 10/2023? Đá quý nào sẽ phù hợp với bạn?</p>
-            <div class="flex space-x-4 py-3">
-                <p>Trang Sức Cung - Mệnh</p>
-                <p>22/09/2023</p>
-            </div>
-            <p>Người tuổi Quý Dậu vốn sống tình cảm, trọng nghĩa khí, có nhiều bạn bè và bằng hữu. Họ là người có đầu óc thông minh, nhanh nhẹn lại vô cùng chăm chỉ và cần cù. Trong công việc, Quý Dậu luôn xông pha, đảm nhận những trọng trách lớn và không ngại khó khăn. Nhờ tài ăn nói và sự chân thành, người tuổi này luôn nhận được sự tin tưởng và yêu thương từ đồng nghiệp, cấp trên. Người tuổi này còn có khả năng nhìn xa trông rộng, phán đoán và giỏi xoay sở cho những tình huống khó xử...</p>
-        </div>
-    </div>
-    <div class="flex space-x-4 my-5">
-        <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2023/09/Mau-Dan-1998-dieu-gi-dang-cho-doi-ban-trong-thang-10-2023-Da-quy-nao-se-phu-hop-voi-ban-1024x768.png"
-            alt="">
-        <div>
-            <p class="text-[20px] hover:text-gray-500">Mậu Dần 1998, điều gì đang chờ đợi bạn trong tháng 10/2023? Đá quý nào sẽ phù hợp với bạn?</p>
-            <div class="flex space-x-4 py-3">
-                <p>Trang Sức Cung - Mệnh</p>
-                <p>22/09/2023</p>
-            </div>
-            <p>Mậu Dần 1998 là những người giàu nhiệt huyết, làm việc hết mình và không ngại khó khăn. Họ là những người có tư duy sáng tạo, nhạy bén và luôn giữ thái độ cầu tiến trong mọi hoàn cảnh. Trong giao tiếp, Mậu Dần luôn được yêu mến bởi sự thân thiện, hoà đồng. Họ có khả năng thích nghi với mọi môi trường, giỏi xoay xở và biết cách nắm bắt cảm xúc của người khác. Tuy nhiên, người tuổi này cũng có nhiều suy nghĩ và trăn trở giữ riêng cho mình. Họ thích phiêu lưu mạo hiểm, làm việc hăng say và mong muốn trải nghiệm thật nhiều....</p>
-        </div>
-    </div>
-    <div class="flex space-x-4 my-5">
-        <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2022/07/Nguon-goc-tao-nen-tinh-hoa-cua-da-quy-nhung-dieu-ban-chua-biet-ve-da-quy-1.jpg"
-            alt="">
-        <div>
-            <p class="text-[20px] hover:text-gray-500">Nguồn gốc tạo nên tinh hoa của đá quý & những điều bạn chưa biết về đá quý</p>
-            <div class="flex space-x-4 py-3">
-                <p>Trang Sức Cung - Mệnh</p>
-                <p>22/09/2023</p>
-            </div>
-            <p>Cũng như các loại đá và khoáng vật, đa phần đá quý được hình thành trong quá trình địa chất tự nhiên. Các quá trình này đã, đang và diễn ra trong lòng đất, có tính chu kỳ và quan hệ mật thiết với nhau, được gọi là chu trình tạo khoáng.
-
-                Trái Đất của chúng ta được hình thành qua nhiều lớp vỏ, theo thứ tự: vỏ, Manti, nhân ngoài và nhân trong. Hầu hết những viên đá óng ánh xuất hiện tại phần trên Manti (sâu so với bề mặt trái đất khoảng 60km) nhưng tập trung chủ yếu ở lớp vỏ.....</p>
-        </div>
-    </div>
-    <div class="flex space-x-4 my-5 mb-10">
-        <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2023/09/At-Hoi-1995-dieu-gi-dang-cho-doi-ban-trong-thang-9-2023-Da-quy-nao-se-phu-hop-voi-ban.jpg"
-            alt="">
-        <div>
-            <p class="text-[20px] hover:text-gray-500">Ất Hợi 1995, điều gì đang chờ đợi bạn trong tháng 9/2023? Đá quý nào sẽ phù hợp với bạn?</p>
-            <div class="flex space-x-4 py-3">
-                <p>Trang Sức Cung - Mệnh</p>
-                <p>22/09/2023</p>
-            </div>
-            <p>Ất Hợi 1995 là những người thật thà, chân thành và ghét giả dối. Họ xem trọng tình huynh đệ, gia đình và bạn bè thân thiết. Khi hành động, người tuổi này ít nghĩ về lợi ích cá nhân mà luôn đặt lợi ích của cộng đồng lên trên tất cả. Trong công việc, Ất Hợi luôn dành trọn sự tâm huyết, làm việc miệt mài và luôn mưu cầu sự tiến bộ mỗi ngày. Chính vì thế, họ luôn nhận được sự trọng dụng và kính trọng của cấp trên, đồng nghiệp. Họ cũng là người có tư duy sáng tạo, thích tìm tòi và đưa ra những giải pháp thú vị, hiệu quả....</p>
-        </div>
-    </div>
+    
+   </div>
     <div class="flex items-center">
         <p class="font-medium text-xl">KIẾN THỨC TRANG SỨC</p>
         <hr class="border-2 border-blue-900 w-[950px] ml-6 mb-2">
     </div>
-    <div class="flex space-x-4 my-5">
-        <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2022/10/Kim-cuong-roi-la-gi-Co-nen-mua-kim-cuong-roi-tai-PNJ-1.jpg"
-            alt="">
-        <div>
-            <p class="text-[20px] hover:text-gray-500">MỸ QUYỀN KHÔNG CẦN KHUÔN MẪU!</p>
-            <div class="flex space-x-4 py-3">
-                <p>Trang Sức Cung - Mệnh</p>
-                <p>22/09/2023</p>
+    <div *ngFor="let item of blogs, index as i">
+        <div *ngIf="i>=5" class="flex space-x-4 my-5">
+            <img class="w-[270px]"
+                src={{item.image}}
+                alt="">
+            <div>
+                <p class="text-[20px] hover:text-gray-500">{{item.title}}</p>
+                <div class="flex space-x-4 py-5">
+                    <p>Trang Sức Cung - Mệnh</p>
+                    <p>22/09/2023</p>
+                </div>
+                <p >{{item.description}}</p>
             </div>
-            <p>Có một thực tế rằng: Xã hội vốn định danh quyền làm đẹp bởi một khuôn mẫu chung, nhưng mỗi người phụ nữ là một hình mẫu riêng và có hoàn cảnh rất riêng. Ở họ luôn bừng lên vẻ đẹp riêng cùng lựa chọn, cách giải quyết vấn đề khác biệt. Họ là minh chứng cho thấy rằng, đẹp và quyền làm đẹp không nhất thiết cứ phải đi theo một khuôn mẫu, cách làm đẹp của người này không nhất thiết phải như cách của người kia. Đó là bản năng chu toàn trước mọi biến động, là cách đẹp riêng không bị gò bởi bất kỳ chuẩn mực! 
-                Luôn tôn vinh và ủng hộ những lựa chọn khác biệt, giá trị đích thực của người phụ nữ, PNJ cũng tôn vinh Mỹ ....</p>
         </div>
-    </div>
-    <div class="flex space-x-4 my-5">
-        <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2022/08/Qua-trinh-ket-tinh-da-quy-la-gi-Nhung-loi-ich-ma-da-quy-mang-den-cho-ban-1.jpg"
-            alt="">
-        <div>
-            <p class="text-[20px] hover:text-gray-500">Kim cương rời là gì? Có nên mua kim cương rời tại PNJ?</p>
-            <div class="flex space-x-4 py-3">
-                <p>Trang Sức Cung - Mệnh</p>
-                <p>22/09/2023</p>
-            </div>
-            <p>Theo như nhiều chia sẻ, kim cương rời là những viên kim cương không được gắn lên sản phẩm, không có giấy tờ chứng minh nguồn gốc xuất xứ và không có giấy kiểm định. Hiểu thêm một cách khác, đây là dòng sản phẩm được khai thác từ thiên nhiên và được nhập về bán nhưng không có một đơn vị nào thẩm định. Với những lý do trên, kim cương rời thường có chi phí thấp hơn. Xem kim cương PNJ rời tại đây.
-
-                Tuy nhiên, việc mua sắm kim cương rời nhưng không thể kiểm tra nguồn có thể khiến bạn mua nhầm sản phẩm kém chất lượng, thậm chí là hàng giả....</p>
-        </div>
-    </div>
-    <div class="flex space-x-4 my-5">
-        <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2022/08/Qua-trinh-ket-tinh-da-quy-la-gi-Nhung-loi-ich-ma-da-quy-mang-den-cho-ban-3.jpg"
-            alt="">
-        <div>
-            <p class="text-[20px] hover:text-gray-500">
-                Quá trình kết tinh đá quý là gì & những lợi ích mà đá quý mang đến cho bạn?</p>
-            <div class="flex space-x-4 py-3">
-                <p>Trang Sức Cung - Mệnh</p>
-                <p>22/09/2023</p>
-            </div>
-            <p>Đầu tiên, chúng ta cần hiểu kết tinh là gì. Đây là hiện tượng hóa cứng các phân tử hoặc nguyên tử trong một chất tạo thành dạng tinh thể có cấu trúc cao hơn. Ngoài ra, kết tinh còn được biết là kỹ thuật dùng để tách chất lỏng với rắn. Điều này có nghĩa là dung dịch ở trạng thái lỏng sang rắn và ở dạng tinh thể. Có rất nhiều cách để có được tinh thể: kết tủa trong dung dịch, sự lắng đọng của chất khí hoặc đông đặc của chất. Sự kết tinh xuất hiện còn phụ thuộc vào một số yếu tố như: áp suất không khí, nhiệt độ và thời điểm.....</p>
-        </div>
-    </div>
-    <div class="flex space-x-4 my-5">
-        <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2022/07/Nguon-goc-tao-nen-tinh-hoa-cua-da-quy-nhung-dieu-ban-chua-biet-ve-da-quy.jpg"
-            alt="">
-        <div>
-            <p class="text-[20px] hover:text-gray-500">Nguồn gốc tạo nên tinh hoa của đá quý & những điều bạn chưa biết về đá quý</p>
-            <div class="flex space-x-4 py-3">
-                <p>Trang Sức Cung - Mệnh</p>
-                <p>22/09/2023</p>
-            </div>
-            <p>Cũng như các loại đá và khoáng vật, đa phần đá quý được hình thành trong quá trình địa chất tự nhiên. Các quá trình này đã, đang và diễn ra trong lòng đất, có tính chu kỳ và quan hệ mật thiết với nhau, được gọi là chu trình tạo khoáng.
-
-                Trái Đất của chúng ta được hình thành qua nhiều lớp vỏ, theo thứ tự: vỏ, Manti, nhân ngoài và nhân trong. Hầu hết những viên đá óng ánh xuất hiện tại phần trên Manti (sâu so với bề mặt trái đất khoảng 60km) nhưng tập trung chủ yếu ở lớp vỏ.....</p>
-        </div>
-    </div>
-    <div class="flex space-x-4 my-5 mb-10">
-        <img class="w-[270px]"
-            src="https://www.pnj.com.vn/blog/wp-content/uploads/2021/12/Hieu-ve-da-Morganite-vien-da-dep-den-nao-long.jpg"
-            alt="">
-        <div>
-            <p class="text-[20px] hover:text-gray-500">Hiểu về đá Morganite – viên đá đẹp đến nao lòng</p>
-            <div class="flex space-x-4 py-3">
-                <p>Trang Sức Cung - Mệnh</p>
-                <p>22/09/2023</p>
-            </div>
-            <p>Bảng màu của Morganite cũng rất đa dạng, chạy dài từ hồng nhạt đến hồng đậm, đôi khi là màu tím hay màu của cá hồi. Đặc biệt, những khối đá lớn sẽ có tông màu rực rỡ và đậm đà hơn. Nếu may mắn, bạn có thể sở hữu Morganite có màu đỏ tươi cực quý hiếm, được tìm thấy ở khu vực Madagascar. Ưu điểm của dòng đá này là ít tạp chấp nên sở hữu độ trong veo hoàn hảo, đáng mơ ước. Do đó, chúng thường được chế tác thành những món trang sức đắt giá, làm điểm nhấn khiến các chủ nhân thêm lộng lẫy và xa hoa.....</p>
-        </div>
-    </div>
 </div>

@@ -37,10 +37,12 @@ import { AddUserComponent } from './pages/admin/add-user/add-user.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrModule, ToastrService,ToastNoAnimationModule  } from 'ngx-toastr';
 import { SendEmailComponent } from './pages/send-email/send-email.component'
 import { NgToastModule } from 'ng-angular-popup';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
+import { provideToastr } from 'ngx-toastr';
 
 
 
@@ -84,27 +86,22 @@ import { NgToastModule } from 'ng-angular-popup';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
     NgxUploaderModule,
     FileUploadModule,
     NgToastModule,
-    ToastrModule.forRoot({
-      timeOut: 5000,
-      progressBar: false,
-      positionClass: 'toast-top-right',
-      closeButton: true,
-      toastClass: 'custom-toastr'
-    }),
+    ToastNoAnimationModule.forRoot(),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     ToastrService,
+    provideAnimations(), // required animations providers
+    provideToastr(), // Toastr providers
   ],
   bootstrap: [AppComponent]
 })

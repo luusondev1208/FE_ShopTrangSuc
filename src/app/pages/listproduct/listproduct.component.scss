@@ -44,3 +44,46 @@
 .slide.active {
   display:block;
 }
+
+/* CSS */
+.product-container {
+  position: relative;
+}
+
+.buy-button {
+  position: absolute;
+  top: 15px;
+  margin-left: 52px;
+  transform: translate(-50%, -50%);
+  display: none; /* Ẩn nút ban đầu */
+  // padding: 5px 20px;
+  width: 100px;
+  padding: 6px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.buy-buttons {
+  position: absolute;
+  top: 15px;
+  left: 70%;
+  margin-left: 30px;
+  transform: translate(-50%, -50%);
+  display: none; /* Ẩn nút ban đầu */
+  width: 100px;
+  padding: 6px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.product-container:hover .buy-button {
+  display: block;
+}
+
+.product-container:hover .buy-buttons {
+  display: block;
+}
+

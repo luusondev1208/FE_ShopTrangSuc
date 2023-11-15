@@ -22,5 +22,8 @@ export class AuthService {
     const url = `${this.API_Url}/forgotpassword?email=${email}`;
     return this.http.get(url);
   }
+  resetpassword(reset: any): Observable<any> {
+    return this.http.put(`${this.API_Url}/resetpassword`, reset)
+  }
 
 }

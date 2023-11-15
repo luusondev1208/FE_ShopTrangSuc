@@ -31,11 +31,11 @@ export class SendEmailComponent {
 
     this.authService.sendEmail(recipientEmail).subscribe({
       next: (user) => {
-        this.toast.success({ detail: "Thông báo", summary: 'Gửi yêu cầu thành công!', duration: 5000, position: "topCenter" });
-        this.router.navigate(['/'])
+        this.toast.success({ detail: "Thông báo", summary: 'Gửi yêu cầu thành công!', duration: 5000, position: "topRight" });
+        this.router.navigate(['/resetpassword'])
       },
       error: ({ error }) => {
-        this.toast.success({ detail: "Thông báo", summary: 'Gửi yêu cầu thất bại!', duration: 5000, position: "topCenter" });
+        this.toast.error({ detail: "Thông báo", summary: 'Gửi yêu cầu thất bại!', duration: 5000, position: "topRight" });
       }
     }
     );

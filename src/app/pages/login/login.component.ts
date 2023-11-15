@@ -27,11 +27,11 @@ export class LoginComponent {
     if (this.formLogin.invalid) return;
     this.authService.loggin(this.formLogin.value).subscribe({
       next: (user) => {
-        this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thành công!', duration: 5000, position: "topCenter" });
+        this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thành công!', duration: 5000, position: "topRight" });
         this.router.navigate(['/'])
       },
       error: ({ error }) => {
-        this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thất bại!', duration: 5000, position: "topCenter" });
+        this.toast.error({ detail: "Thông báo", summary: 'Đăng nhập thất bại!', duration: 5000, position: "topRight" });
       }
     })
   }

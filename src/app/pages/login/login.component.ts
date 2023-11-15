@@ -27,6 +27,8 @@ export class LoginComponent {
     if (this.formLogin.invalid) return;
     this.authService.loggin(this.formLogin.value).subscribe({
       next: (user) => {
+        localStorage.setItem('accessToken', JSON.stringify(user.accessToken));
+        localStorage.setItem('user', JSON.stringify(user.userData));
         this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thành công!', duration: 5000, position: "topRight" });
         this.router.navigate(['/'])
       },

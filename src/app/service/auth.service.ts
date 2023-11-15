@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(
     private http: HttpClient
   ) { }
@@ -25,5 +24,7 @@ export class AuthService {
   resetpassword(reset: any): Observable<any> {
     return this.http.put(`${this.API_Url}/resetpassword`, reset)
   }
-
+  checklogin(): boolean {
+    return localStorage.getItem('user') !== null || localStorage.getItem('accessToken') !== null;
+  }
 }

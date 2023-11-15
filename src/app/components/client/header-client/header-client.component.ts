@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -11,8 +12,8 @@ export class HeaderClientComponent {
   showmap: boolean = false;
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router) {
-    
+  constructor(private productService: ProductService, private router: Router, private authService: AuthService) {
+
   }
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe(
@@ -36,13 +37,23 @@ export class HeaderClientComponent {
   filteredList: any[] = [];
 
   search() {
-    this.filteredList = this.products.filter((item:any) =>
+    this.filteredList = this.products.filter((item: any) =>
       item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.products = this.filteredList
     console.log(this.products)
   }
-  showMap(){
+  showMap() {
     this.showmap = !this.showmap
+  }
+  CheckLogin(): boolean {
+    if (this.authService.checklogin()) {
+      this.router.navigate(['/infor-account']);
+      return true;
+
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 }

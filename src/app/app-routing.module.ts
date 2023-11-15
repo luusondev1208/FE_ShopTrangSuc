@@ -26,6 +26,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   //client
@@ -54,14 +55,14 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'list', component: ListComponent },
       { path: 'listCategori', component: ListCategoriComponent },
-     
+
       { path: 'listUser', component: ListuserComponent },
       { path: 'addUser', component: AddUserComponent },
     ],
   },
   {
     path: 'admin',
-   
+
     children: [
       { path: 'addProduct', component: AddProdcutComponent },
       { path: 'addCategori', component: AddCategoriComponent },
@@ -70,11 +71,11 @@ const routes: Routes = [
       { path: 'updateUser/:id', component: UpdateUserComponent },
     ],
   },
-  
+
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgotPassword', component: SendEmailComponent },
-
+  { path: 'resetpassword', component: ForgotPasswordComponent },
 
 ];
 

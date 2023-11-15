@@ -33,11 +33,11 @@ export class RegisterComponent {
   onHandleSubmit() {
     this.authService.register(this.formRegister.value).subscribe({
       next: (user) => {
-        this.toast.success({ detail: "Thông báo", summary: 'Đăng ký thành công!', duration: 5000, position: "topCenter" });
+        this.toast.success({ detail: "Thông báo", summary: 'Đăng ký thành công!', duration: 5000, position: "topRight" });
         this.router.navigate(['/login'])
       },
       error: (errors) => {
-        this.toast.success({ detail: "Thông báo", summary: 'Đăng ký thất bại!', duration: 5000, position: "topCenter" });
+        this.toast.error({ detail: "Thông báo", summary: 'Đăng ký thất bại!', duration: 5000, position: "topRight" });
       }
     })
   }

@@ -28,6 +28,8 @@ export class LoginComponent {
     this.authService.loggin(this.formLogin.value).subscribe({
       next: (user) => {
         this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thành công!', duration: 5000, position: "topCenter" });
+        localStorage.setItem('accessToken', JSON.stringify(user.accessToken));
+        localStorage.setItem('user', JSON.stringify(user.userData));
         this.router.navigate(['/'])
       },
       error: ({ error }) => {

@@ -20,7 +20,7 @@ export class UserService {
     const url = `${`http://localhost:5000/api/user/current`}/${id}`;
     return this.http.get<any>(url);
   }
-  deleteUser(id: string): Observable<any> {
+  deleteUser(id: string): Observable<any>{
     return this.http.delete<any>(`http://localhost:5000/api/user/?_id=${id}`);
   }
   // addProducts(product:any,  files: File[]): Observable<any> {

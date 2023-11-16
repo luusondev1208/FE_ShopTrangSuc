@@ -43,6 +43,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { provideToastr } from 'ngx-toastr';
+import { BlogDetailComponent } from './pages/blog-detail/blog-detail.component';
 
 
 
@@ -79,7 +80,8 @@ import { provideToastr } from 'ngx-toastr';
     CartComponent,
     InforAccountComponent,
     UpdateAccountComponent,
-    SendEmailComponent
+    SendEmailComponent,
+    BlogDetailComponent
 
 
   ],

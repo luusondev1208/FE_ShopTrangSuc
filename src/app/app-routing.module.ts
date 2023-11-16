@@ -1,3 +1,4 @@
+import { BlogDetailComponent } from './pages/blog-detail/blog-detail.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListproductComponent } from './pages/listproduct/listproduct.component';
@@ -27,6 +28,7 @@ import { InforAccountComponent } from './pages/account/infor-account/infor-accou
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
 
+
 const routes: Routes = [
   //client
   {
@@ -44,6 +46,11 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'infor-account', component: InforAccountComponent },
       { path: 'update-account', component: UpdateAccountComponent },
+      { path: 'blog-detail',component:BlogDetailComponent },
+      { path: 'blog-page',component:BlogpageComponent }
+
+
+      
     ],
   },
   //admin

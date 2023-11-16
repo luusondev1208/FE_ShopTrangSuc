@@ -22,5 +22,10 @@ export class AuthService {
     const url = `${this.API_Url}/forgotpassword?email=${email}`;
     return this.http.get(url);
   }
+  logout(){
+    localStorage.removeItem("user");
+    localStorage.removeItem("accessToken");
+
+  }
 
 }

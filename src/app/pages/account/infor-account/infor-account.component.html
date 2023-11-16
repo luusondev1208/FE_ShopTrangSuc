@@ -8,8 +8,7 @@
     <nav class="nav nav-borders">
         <a class="nav-link" href="" target="__blank">Profile</a>
         <a class="nav-link" href="update-account" target="__blank">Đơn Hàng</a>
-        <a class="nav-link" href="update-account" target="__blank">Security</a>
-        <a class="nav-link" href="update-account"  target="__blank">Notifications</a>
+        
     </nav>
     <hr class="mt-0 mb-4">
     <div class="row">
@@ -22,7 +21,8 @@
                     <img class="img-account-profile rounded-circle mb-2"style="margin-left:107px" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
                     <!-- Profile picture help block-->
                     <div class="small font-bold mb-4">Họ Và Tên: </div>
-                    <p onclick="logout()">Đăng xuất</p>
+                    <button (click)="signOut()" class="btn btn-danger"style="margin-right:14px">Đăng xuất</button>
+
                         
                    
                     
@@ -42,17 +42,17 @@
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                             <label class="small mb-1" for="inputUsername">Họ Và Tên</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username"value="">
+                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username"value="{{userData.lastname}}">
                             <i class="fas fa-user icon"id="iconUser"></i>
                         </div>
-                            
+    
                         </div>
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                              <!-- Form Group (phone number)-->
                              <div class="col-md-6">
                                 <label class="small mb-1" for="inputPhone">Số Điện Thoại</label>
-                                <input class="form-control" min="0" id="mobile" type="number" placeholder="mobile" value="" name="">
+                                <input class="form-control" min="0" id="mobile" placeholder="mobile" value="{{userData.mobile}}">
                                 <i class="fas fa-mobile icon"id="iconPhone"></i>
 
                             </div>
@@ -64,7 +64,7 @@
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLocation">Địa Chỉ</label>
                                
-                                <input class="form-control" id="address" type="text" placeholder="address"formControlName="address" >
+                                <input class="form-control" id="address" type="text" placeholder="address"value="{{userData.address}}" >
                                 <i class="fas fa-home icon"id="iconHome"style="font-size:13px;padding-top:3.3px"></i>
                                 
                               
@@ -74,25 +74,14 @@
                           
                         </div>
                         <!-- Form Group (email address)-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (phone number)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Ngày Sinh</label>
-                                
-                                <input class="form-control"type="text" id="datepicker" placeholder="Enter your phone BirthDay" value="">
-                                <i class="fas fa-calendar-alt icon"></i>
-
-                            </div>
-                            <!-- Form Group (birthday)-->
-                           
-                        </div>
+                        
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                            
                             <!-- Form Group (birthday)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputEmail">Email</label>
-                                <input class="form-control" id="inputEmail" type="text" name="birthday" placeholder="Enter your Email" value="daoloi0000@gmail.com">
+                                <input class="form-control" id="inputEmail" type="text" name="birthday" placeholder="Enter your Email"value="{{userData.email}}">
                                 <i class="fas fa-envelope icon"id="iconEmail"style="padding-left:1px;margin-top:2px"></i>
                             </div>
                         </div>

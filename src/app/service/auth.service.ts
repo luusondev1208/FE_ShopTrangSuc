@@ -27,4 +27,9 @@ export class AuthService {
   checklogin(): boolean {
     return localStorage.getItem('user') !== null || localStorage.getItem('accessToken') !== null;
   }
+  logout(){
+    localStorage.removeItem("user");
+    localStorage.removeItem("accessToken");
+
+  }
 }

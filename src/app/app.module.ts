@@ -86,6 +86,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -98,7 +99,13 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     NgToastModule,
     ToastNoAnimationModule.forRoot(),
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(
+      
+      {   timeOut: 5000,
+        progressBar: false,
+        positionClass: 'toast-top-right',
+        closeButton: true}
+    ), // ToastrModule added
   ],
   providers: [
     ToastrService,

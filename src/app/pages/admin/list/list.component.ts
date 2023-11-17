@@ -12,29 +12,30 @@ import { NgToastService } from 'ng-angular-popup';
 })
 
 export class ListComponent {
+  images: any = []
   products: any = []
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router,private toastr: ToastrService,private toastService: NgToastService) {
+  constructor(private productService: ProductService, private router: Router,private toast: ToastrService,private toastService: NgToastService) {
     
   }
   
 
-  showMessage(message: string, title: string = 'Thông báo'): void {
-    this.toastr.success(message, title);
-  }
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
-  }
+  // showMessage(message: string, title: string = 'Thông báo'): void {
+  //   this.toast.success(message, title);
+  // }
+  // showSuccess() {
+  //   this.toast.success('Hello world!', 'Toastr fun!');
+  // }
   
-  showError(message: string, title: string = 'Lỗi'): void {
-    this.toastr.error(message, title);
-  }
+  // showError(message: string, title: string = 'Lỗi'): void {
+  //   this.toast.error(message, title);
+  // }
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe(
       (response: any) => {
         this.products = response.productDatas;
-        // console.log(this.products);
+        console.log(this.products);
 
         //  console.log(this.products.docs);
       },
@@ -55,8 +56,11 @@ export class ListComponent {
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.productService.deleteProduct(id).subscribe(
         response => {
-          this.toastr.success("xoa thành công~~")
-          this.showSuccess()
+         
+          this.toast.success('Xóa thành công!', 'Thông báo');
+  
+          
+          // this.showSuccess()
           this.router.navigate(['/admin/list']);
           // Thực hiện các hành động sau khi sản phẩm được xóa thành công
         },
@@ -74,7 +78,7 @@ export class ListComponent {
   }
   
   showAlert(): void {
-    this.toastr.success('Thông báo thành công!', 'Tiêu đề');
+    this.toast.success('Thông báo thành công!', 'Tiêu đề');
    }
    
   

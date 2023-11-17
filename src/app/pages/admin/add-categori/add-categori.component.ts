@@ -16,14 +16,11 @@ export class AddCategoriComponent {
       [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
     ]
   })
-  constructor(private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder,  private toastrService: ToastrService) {}
+  constructor(private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder,  private toastr: ToastrService) {}
   onsubmit() {
     this.categoryService.addCategory(this.categories).subscribe((response) => {
-      this.toastrService.error('everything is broken', 'Major Error', {
-        timeOut: 3000,
-      });
-      // this.toastr.info("thanh cong !!");
-      this.showSuccess()
+      // Hiển thị thông báo thành công
+    this.toastr.info('Sản phẩm đã được thêm vào cửa hàng Thêm sản phẩm');
       console.log('danh muc them thanh cong: ',response);
       this.router.navigate(['/admin/listCategori'])
      
@@ -36,6 +33,6 @@ export class AddCategoriComponent {
     );
   }
   showSuccess() {
-    // this.toastr.success('Hello world!', 'Toastr fun!');
+    this.toastr.success('Hello world! Toastr fun!');
   }
 }

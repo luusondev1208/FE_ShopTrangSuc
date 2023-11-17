@@ -17,19 +17,26 @@ export class AddProdcutComponent {
   public files: File[] = [];
   public images: File[] = [];
   categories: any = []
-  // public uploader: FileUploader = new FileUploader({ url: 'http://localhost:5000/api/upload' });
+  onFileChange(event: any) {
+    const files = event.target.files;
   
-  onFileSelect(event: any): void {
-    const selectedFiles = event.target.files;
-    
-    // Lặp qua các tệp đã chọn và đưa chúng vào mảng images
-    for (let i = 0; i < selectedFiles.length; i++) {
-        this.images.push(selectedFiles[i]);
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+  
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        // Lưu trữ thông tin đầy đủ của file, không chỉ là đường dẫn ảnh
+        const imageFile: File = file;
+        this.images.push(imageFile);
+  
+        // Bạn có thể sử dụng imageFile.name, imageFile.size, và các thuộc tính khác của File nếu cần
+      };
+  
+      reader.readAsDataURL(file);
     }
+  }
+  
 
-    // Kiểm tra mảng images sau khi thêm tệp
-    console.log(this.images);
-}
   products: any = {};
   productForm = this.formBuider.group({
     title:[
@@ -54,12 +61,16 @@ export class AddProdcutComponent {
     ],
     images:[
       '',
-      [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
+      [Validators.required]
     ],
     priceroot:[
       '',
       [Validators.required,Validators.min(1), Validators.minLength(6), Validators.maxLength(255)]
-    ]
+    ],
+    category:[
+      '',
+      [Validators.required]
+    ],
     
   })
   constructor(private productService: ProductService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toastr: ToastrService) {
@@ -88,6 +99,7 @@ export class AddProdcutComponent {
       // Xử lý lỗi nếu có
     }
     );
+    console.log('Danh sách ảnh:', this.images);
   }
 
 

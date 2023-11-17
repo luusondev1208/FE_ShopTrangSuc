@@ -14,7 +14,9 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./infor-account.component.scss']
 })
 export class InforAccountComponent {
-userData!:any;
+// userData!:any;
+user!:any;
+userForm:any={};
 
 
 constructor(
@@ -22,16 +24,30 @@ constructor(
   private userService:UserService,
   private router: Router,
   private authService:AuthService,
-  private toast:NgToastService
+  private toast:NgToastService,
+  private route:ActivatedRoute
 
 ) 
 {
-  this.userData = localStorage.getItem('user');
-  
-    if (this.userData) {
-       this.userData = JSON.parse(this.userData);
+  // this.userData = localStorage.getItem('user');
+  //   if (this.userData) {
+  //      this.userData = JSON.parse(this.userData);
       
-    }
+  //   }
+  this.route.paramMap.subscribe((param)=>{
+    const users = JSON.parse(localStorage.getItem("user") as string);
+    const id = users._id
+     
+    this.userService.getUser(id).subscribe(
+      (user) => {
+        console.log(user);
+        this.user = user.use;
+       
+        
+      },
+      (error) => console.log(error.message)
+    );
+  });
  
 }
 signOut() {

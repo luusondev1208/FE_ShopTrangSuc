@@ -26,15 +26,13 @@ export class UserService {
   // addProducts(product:any,  files: File[]): Observable<any> {
   //   return this.http.post<any>(`${this.API_URL}/add`, product); 
   // }
-  addUser(user:any):Observable<any> {
+  addUser(user:any):Observable<any>{
     return this.http.post<any>(`${this.API_URL}/add`, user); 
   }
 
-  updateUser(user: any): Observable<any> {
-    return this.http.put<any>(
-      `${`http://localhost:5000/api/user/current`}/${user.id}`,
-      user
-    );
+  updateUser(user: any): Observable<any> {  
+    
+    return this.http.put<any>(`http://localhost:5000/api/user/current`,user);
   }
 
 

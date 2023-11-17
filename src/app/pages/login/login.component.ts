@@ -29,8 +29,16 @@ export class LoginComponent {
       next: (user) => {
         localStorage.setItem('accessToken', JSON.stringify(user.accessToken));
         localStorage.setItem('user', JSON.stringify(user.userData));
-        this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thành công!', duration: 5000, position: "topRight" });
-        this.router.navigate(['/'])
+
+        if (this.authService.isAdmin()) {
+          this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thành công!', duration: 5000, position: "topRight" });
+          this.router.navigate(['/admin']);
+          console.log(user.accessToken);
+        } else {
+          this.toast.success({ detail: "Thông báo", summary: 'Đăng nhập thành công!', duration: 5000, position: "topRight" });
+          this.router.navigate(['/'])
+          console.log(user.accessToken);
+        }
       },
       error: ({ error }) => {
         this.toast.error({ detail: "Thông báo", summary: 'Đăng nhập thất bại!', duration: 5000, position: "topRight" });
@@ -38,4 +46,3 @@ export class LoginComponent {
     })
   }
 }
-

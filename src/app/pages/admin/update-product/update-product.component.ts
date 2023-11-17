@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 @Component({
   selector: 'app-update-product',
@@ -9,6 +10,7 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class UpdateProductComponent {
   product!:any;
+  categories: any = []
   productForm = this.formBuilder.group({
    
     title:[
@@ -40,13 +42,18 @@ export class UpdateProductComponent {
     slug:[
       '',
      
-    ]
+    ],
+    category:[
+      '',
+     
+    ],
   });
   constructor(
     private formBuilder: FormBuilder,
     private producService: ProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private categoryService: CategoryService
   ){
     this.route.paramMap.subscribe((param)=> {
       const id = String(param.get('id'))
@@ -63,7 +70,8 @@ export class UpdateProductComponent {
             images: product.productData.images,
             brand: product.productData.brand,
             description: product.productData.description,
-            slug: product.productData.slug
+            slug: product.productData.slug,
+            category: product.productData.category
           })
           
         },
@@ -84,6 +92,7 @@ export class UpdateProductComponent {
         images: this.productForm.value.images || '',
         brand: this.productForm.value.brand || '',
         slug:  this.productForm.value.slug || '',
+        category: this.productForm.value.category 
       };
 
       this.producService.updateProduct(product).subscribe((product) => {
@@ -93,5 +102,20 @@ export class UpdateProductComponent {
     }
   }
 
+
+  addcate(){
+    this.categoryService.getCategories().subscribe(
+      (response:any) => {
+        this.categories = response.getAllCategory;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+  }
+ ngOnInit(){
+this.addcate()
+}
   
 }

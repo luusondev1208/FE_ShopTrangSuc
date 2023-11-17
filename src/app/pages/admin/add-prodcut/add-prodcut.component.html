@@ -106,7 +106,7 @@
               <p class="bg-white  pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600
                   ">Ảnh</p>
                   <input
-                  type="file"  ngxFileSelect (onFileDrop)="onFileSelect($event)" multiple="multiple" accept="image/*"
+                  type="file"  (change)="onFileChange($event)" multiple
                  
                   formControlName="images"
                     name="images"
@@ -123,8 +123,8 @@
          Vui lòng nhập images sản phẩm
           </p>
           
-            </div>
-              <div class="relative">
+         </div>
+              <!-- <div class="relative">
                 <p class="bg-white  pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600
                     ">Thương hiệu</p>
                 <input  [(ngModel)]="products.brand"
@@ -150,6 +150,47 @@
             >
             Vui lòng nhập brand sản phẩm trên 6 ký tự
             </p>
+              </div> -->
+              <div class="mg-b-5">
+                <p class="bg-white  pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600
+                ">Thương hiệu</p>
+                <div class="flex justify-between items-center border placeholder-gray-400 focus:outline-none
+                focus:border-black w-full pt-3 pr-4 pb-3 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
+                border-gray-300 rounded-md">
+                  <div class="items-center flex space-x-3">
+                    <input
+                      type="radio"
+                      name="brand"
+                      id="brand"
+                      [value]="'TTL'"
+                      [(ngModel)]="products.brand"
+                      formControlName="brand"
+                    />
+                    <label for="brand">TTL</label>
+                  </div>
+                  <div class="items-center flex space-x-3">
+                    <input
+                      type="radio"
+                      name="brand"
+                      id="brand"
+                      [value]="'PNJ'"
+                      [(ngModel)]="products.brand"
+                      formControlName="brand"
+                    />
+                    <label for="brand">PNJ</label>
+                  </div>
+                  <div class="items-center flex space-x-3">
+                    <input
+                      type="radio"
+                      [value]="'NRO'"
+                      id="brand"
+                      name="brand"
+                      [(ngModel)]="products.brand"
+                      formControlName="brand"
+                    />
+                    <label for="brand">NRO </label>
+                  </div>
+                </div>
               </div>
               <div class="relative">
                 <p class="bg-white  pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600
@@ -195,7 +236,7 @@
                        
                       >
                         
-                        <option value="category" *ngFor="let item of categories, index as i">{{item.title}}</option>
+                        <option value="category"  *ngFor="let item of categories" [value]="item._id">{{item.title}}</option>
                        
                       </select>
                       

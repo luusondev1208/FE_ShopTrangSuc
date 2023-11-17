@@ -79,11 +79,12 @@ import { provideToastr } from 'ngx-toastr';
     CartComponent,
     InforAccountComponent,
     UpdateAccountComponent,
-    SendEmailComponent
+    SendEmailComponent,
 
 
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -96,7 +97,13 @@ import { provideToastr } from 'ngx-toastr';
     NgToastModule,
     ToastNoAnimationModule.forRoot(),
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(
+      
+      {   timeOut: 5000,
+        progressBar: false,
+        positionClass: 'toast-top-right',
+        closeButton: true}
+    ), // ToastrModule added
   ],
   providers: [
     ToastrService,

@@ -43,6 +43,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { provideToastr } from 'ngx-toastr';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 
 
@@ -80,6 +81,7 @@ import { provideToastr } from 'ngx-toastr';
     InforAccountComponent,
     UpdateAccountComponent,
     SendEmailComponent,
+    ForgotPasswordComponent
 
 
   ],

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 @Component({
@@ -53,7 +54,8 @@ export class UpdateProductComponent {
     private producService: ProductService,
     private router: Router,
     private route: ActivatedRoute,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private toast: NgToastService
   ){
     this.route.paramMap.subscribe((param)=> {
       const id = String(param.get('id'))
@@ -96,7 +98,7 @@ export class UpdateProductComponent {
       };
 
       this.producService.updateProduct(product).subscribe((product) => {
-        alert("update thanh cong !!");
+        this.toast.success({ detail: "Thông báo", summary: 'Update thành công!', duration: 5000, position: "topRight" });
         this.router.navigate(['/admin/list']);
       });
     }

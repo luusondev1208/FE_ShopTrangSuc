@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class UpdateCategoriComponent {
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toast: NgToastService
   ){
     this.route.paramMap.subscribe((param)=> {
       const id = String(param.get('id'))
@@ -49,7 +51,7 @@ export class UpdateCategoriComponent {
       console.log(category);
 
       this.categoryService.updateCategory(category).subscribe((category) => {
-        alert("update thanh cong !!");
+        this.toast.success({ detail: "Thông báo", summary: 'Sửa thành công!', duration: 5000, position: "topRight" });
         this.router.navigate(['/admin/listCategori']);
       });
     }

@@ -148,7 +148,7 @@ trang sức người thân mùa trung thu đoàn viên
    <div *ngFor="let item of blogs.slice(0, 5)">
     <div class="flex space-x-4 my-5">
         <img class="w-[270px]"
-            src={{item.image}}
+            src={{item.image[0]}}
             alt="">
         <div>
             <p class="text-[20px] hover:text-gray-500">{{item.title}}</p>

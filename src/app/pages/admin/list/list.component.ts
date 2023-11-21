@@ -16,21 +16,10 @@ export class ListComponent {
   products: any = []
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router,private toast: ToastrService,private toastService: NgToastService) {
+  constructor(private productService: ProductService, private router: Router,private toast: NgToastService) {
     
   }
   
-
-  // showMessage(message: string, title: string = 'Thông báo'): void {
-  //   this.toast.success(message, title);
-  // }
-  // showSuccess() {
-  //   this.toast.success('Hello world!', 'Toastr fun!');
-  // }
-  
-  // showError(message: string, title: string = 'Lỗi'): void {
-  //   this.toast.error(message, title);
-  // }
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe(
       (response: any) => {
@@ -57,14 +46,12 @@ export class ListComponent {
       this.productService.deleteProduct(id).subscribe(
         response => {
          
-          this.toast.success('Xóa thành công!', 'Thông báo');
-  
-          
-          // this.showSuccess()
+          this.toast.success({ detail: "Thông báo", summary: 'Xóa thành công!', duration: 5000, position: "topRight" });
           this.router.navigate(['/admin/list']);
           // Thực hiện các hành động sau khi sản phẩm được xóa thành công
         },
         error => {
+          this.toast.error({ detail: "Thông báo", summary: 'Lỗi khi xóa sản phẩm!', duration: 5000, position: "topRight" });
           console.error('Lỗi khi xóa sản phẩm:', error);
 
           // Xử lý lỗi nếu có
@@ -77,9 +64,6 @@ export class ListComponent {
     }
   }
   
-  showAlert(): void {
-    this.toast.success('Thông báo thành công!', 'Tiêu đề');
-   }
    
   
   previousPage() {

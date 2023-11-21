@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -10,7 +11,7 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ListCategoriComponent {
   categories: any = []
-  constructor(private categoryService: CategoryService, private router: Router) {
+  constructor(private categoryService: CategoryService, private router: Router, private toast:NgToastService) {
     this.categoryService.getCategories().subscribe(
       (response:any) => {
         this.categories = response.getAllCategory;
@@ -31,13 +32,15 @@ export class ListCategoriComponent {
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.categoryService.deleteCategory(id).subscribe(
         response => {
-          alert('Sản phẩm đã được xóa');
+          this.toast.success({ detail: "Thông báo", summary: 'xóa thành công!', duration: 5000, position: "topRight" });
           this.router.navigate(['/admin/listCategori']);
-          // Thực hiện các hành động sau khi sản phẩm được xóa thành công
+          
+          
         },
         error => {
+          this.toast.success({ detail: "Thông báo", summary: 'lỗi rồi !!', duration: 5000, position: "topRight" });
           console.error('Lỗi khi xóa sản phẩm:', error);
-          // Xử lý lỗi nếu có
+          
         }
       )
     } else {

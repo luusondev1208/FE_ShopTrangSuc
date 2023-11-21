@@ -7,6 +7,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { NgxUploaderModule,UploaderOptions  } from 'ngx-uploader';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/service/category.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-prodcut',
@@ -73,7 +74,7 @@ export class AddProdcutComponent {
     ],
     
   })
-  constructor(private productService: ProductService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toastr: ToastrService) {
+  constructor(private productService: ProductService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService) {
     this.categoryService.getCategories().subscribe(
       (response:any) => {
         this.categories = response.getAllCategory;
@@ -87,14 +88,13 @@ export class AddProdcutComponent {
   onsubmit() {
     this.productService.addProducts(this.products, this.files).subscribe((response) => {
       console.log('san pham them thanh cong: ',response);
-      this.toastr.success(
-        'Unable merge, please try again!'
-      );
+      this.toast.success({ detail: "Thông báo", summary: 'add thành công!', duration: 5000, position: "topRight" });
       this.router.navigate(['/admin/list'])
       // alert("add thanh cong")
       // Thực hiện các hành động sau khi sản phẩm được thêm thành công
     },
     error => {
+      this.toast.error({ detail: "Thông báo", summary: 'Lỗi khi thêm sản phẩm!', duration: 5000, position: "topRight" });
       console.log("loi khi them san pham: ", error);
       // Xử lý lỗi nếu có
     }

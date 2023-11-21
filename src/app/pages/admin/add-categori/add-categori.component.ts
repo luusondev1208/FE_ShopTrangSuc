@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/service/category.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-add-categori',
   templateUrl: './add-categori.component.html',
@@ -16,12 +17,10 @@ export class AddCategoriComponent {
       [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
     ]
   })
-  constructor(private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder,  private toastr: ToastrService) {}
+  constructor(private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder,  private toast:NgToastService,) {}
   onsubmit() {
     this.categoryService.addCategory(this.categories).subscribe((response) => {
-      // Hiển thị thông báo thành công
-    this.toastr.info('Sản phẩm đã được thêm vào cửa hàng Thêm sản phẩm');
-      console.log('danh muc them thanh cong: ',response);
+      this.toast.success({ detail: "Thông báo", summary: 'add thành công!', duration: 5000, position: "topRight" });
       this.router.navigate(['/admin/listCategori'])
      
       // Thực hiện các hành động sau khi sản phẩm được thêm thành công
@@ -32,7 +31,5 @@ export class AddCategoriComponent {
     }
     );
   }
-  showSuccess() {
-    this.toastr.success('Hello world! Toastr fun!');
-  }
+  
 }

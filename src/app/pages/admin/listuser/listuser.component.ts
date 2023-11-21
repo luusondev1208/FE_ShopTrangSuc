@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ListuserComponent {
   users: any = []
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private toast:NgToastService) {
     this.userService.getUsers().subscribe(
       (response:any) => {
         this.users = response.users;
@@ -33,7 +34,7 @@ export class ListuserComponent {
     // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
     this.userService.deleteUser(_id).subscribe(
       response => {
-        alert('tai khoan đã được xóa');
+        this.toast.error({ detail: "Thông báo", summary: 'xóa thành công!', duration: 5000, position: "topRight" });
         this.router.navigate(['/admin/listUser']);
         // Thực hiện các hành động sau khi sản phẩm được xóa thành công
       },

@@ -26,16 +26,16 @@ export class HomepageComponent {
       this.products = data;
       this.filteredProducts = this.products.productDatas.filter((product:any) => product.sold > 100);
       console.log(this.filteredProducts);
-      
+
     });
   }
-  
+
   toggleSortByPrice() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
       this.topProducts = this.products.productDatas.filter((product:any) => product.assess > 100);
       console.log(this.topProducts);
-      
+
     });
   }
 
@@ -59,16 +59,16 @@ export class HomepageComponent {
       // console.log(this.saleproduct);
         // Tính giảm giá phần trăm và lọc sản phẩm giảm giá hơn 50%
         this.saleproduct = this.saleproduct.filter((product:any) => {
-          
+
           const discountPercentage = ((product.price - product.priceroot) / product.price) * 100;
-         
+
           return discountPercentage > 50;
-          
-          
+
+
         });
         console.log(this.saleproduct);
     })
-  } 
+  }
 
   ngOnInit() {
     this.toggleSortByPrice()
@@ -76,8 +76,8 @@ export class HomepageComponent {
     this.filtercreatedAt()
     this.doubledPriceProducts()
   }
-  
-  images = ['https://cdn.pnj.io/images/promo/184/CT_LOVE_WEDDING_1972x640CTA.jpg', 
+
+  images = ['https://cdn.pnj.io/images/promo/184/CT_LOVE_WEDDING_1972x640CTA.jpg',
   'https://cdn.pnj.io/images/promo/182/TABSALE_CHUNG_THANG_09-1972x640CTA.jpg',
    'https://cdn.pnj.io/images/promo/180/pnjfast-1972x640CTA.jpg'];
   currentIndex = 0;
@@ -98,8 +98,12 @@ export class HomepageComponent {
   }
   hover: Boolean = false;
 
-  
+  selectProduct(id: Number) {
+    console.log(id);
 
- 
+  this.router.navigate(['/product', id]).then();
+  }
+
+
 
 }

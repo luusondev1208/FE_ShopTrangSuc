@@ -45,8 +45,10 @@ export class ListComponent {
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.productService.deleteProduct(id).subscribe(
         response => {
-         
-          this.toast.success({ detail: "Thông báo", summary: 'Xóa thành công!', duration: 5000, position: "topRight" });
+          console.log(response);
+          
+          this.products = this.products.filter((product:any) => product._id !== response.deletedProduct._id)
+          this.toast.success({ detail: "Thông báo", summary: `Xóa thành công sản phẩm: ${response.deletedProduct.title}`, duration: 5000, position: "topRight" });
           this.router.navigate(['/admin/list']);
           // Thực hiện các hành động sau khi sản phẩm được xóa thành công
         },

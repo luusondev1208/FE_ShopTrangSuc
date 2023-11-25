@@ -98,7 +98,10 @@ export class UpdateProductComponent {
       };
 
       this.producService.updateProduct(product).subscribe((product) => {
-        this.toast.success({ detail: "Thông báo", summary: 'Update thành công!', duration: 5000, position: "topRight" });
+        console.log(product);
+        
+        this.toast.success({ detail: "Thông báo", summary: `update thành công: ${product.updatedProduct
+          .title}`, duration: 5000, position: "topRight" });
         this.router.navigate(['/admin/list']);
       });
     }

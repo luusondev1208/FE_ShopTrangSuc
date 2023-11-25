@@ -88,7 +88,8 @@ export class AddProdcutComponent {
   onsubmit() {
     this.productService.addProducts(this.products, this.files).subscribe((response) => {
       console.log('san pham them thanh cong: ',response);
-      this.toast.success({ detail: "Thông báo", summary: 'add thành công!', duration: 5000, position: "topRight" });
+      
+      this.toast.success({ detail: "Thông báo", summary: `add thành công: ${response.createdProduct.title}`, duration: 5000, position: "topRight" });
       this.router.navigate(['/admin/list'])
       // alert("add thanh cong")
       // Thực hiện các hành động sau khi sản phẩm được thêm thành công

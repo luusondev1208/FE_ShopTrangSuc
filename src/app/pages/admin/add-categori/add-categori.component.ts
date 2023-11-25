@@ -11,6 +11,7 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class AddCategoriComponent {
   categories: any = {};
+  title: any
   categoryForm = this.formBuider.group({
     title:[
       '',
@@ -20,7 +21,9 @@ export class AddCategoriComponent {
   constructor(private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder,  private toast:NgToastService,) {}
   onsubmit() {
     this.categoryService.addCategory(this.categories).subscribe((response) => {
-      this.toast.success({ detail: "Thông báo", summary: 'add thành công!', duration: 5000, position: "topRight" });
+     this.title = response.createdCategory.title;
+      
+      this.toast.success({ detail: "Thông báo", summary: `add thành công danh mục: ${this.title}`, duration: 5000, position: "topRight" });
       this.router.navigate(['/admin/listCategori'])
      
       // Thực hiện các hành động sau khi sản phẩm được thêm thành công

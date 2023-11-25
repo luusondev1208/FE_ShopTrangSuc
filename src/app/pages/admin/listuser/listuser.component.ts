@@ -10,6 +10,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ListuserComponent {
   users: any = []
+  userr: any
   constructor(private userService: UserService, private router: Router, private toast:NgToastService) {
     this.userService.getUsers().subscribe(
       (response:any) => {
@@ -34,9 +35,11 @@ export class ListuserComponent {
     // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
     this.userService.deleteUser(_id).subscribe(
       response => {
-        this.toast.error({ detail: "Thông báo", summary: 'xóa thành công!', duration: 5000, position: "topRight" });
+        console.log(response);
+        this.toast.success({ detail: "Thông báo", summary: `:${response.deletedUser}`, duration: 5000, position: "topRight" });
         this.router.navigate(['/admin/listUser']);
         // Thực hiện các hành động sau khi sản phẩm được xóa thành công
+        this.users = this.users.filter((user:any) => user._id !== response.data._id)
       },
       error => {
         console.error('Lỗi khi xóa tai khoan:', error);

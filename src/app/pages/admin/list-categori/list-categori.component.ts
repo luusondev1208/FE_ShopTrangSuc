@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ListCategoriComponent {
   categories: any = []
+  title: any
   constructor(private categoryService: CategoryService, private router: Router, private toast:NgToastService) {
     this.categoryService.getCategories().subscribe(
       (response:any) => {
@@ -25,16 +26,19 @@ export class ListCategoriComponent {
   
   //deleteCategory
   deleteCategory(id:any){
-    var result = confirm("Bạn có muốn xóa không?");
+    var result = confirm(`Bạn có muốn xóa không ?`);
     if (result) {
       // Người dùng đã chọn Đồng ý
       console.log("Người dùng đã chọn xóa.");
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.categoryService.deleteCategory(id).subscribe(
         response => {
-          this.toast.success({ detail: "Thông báo", summary: 'xóa thành công!', duration: 5000, position: "topRight" });
+          this.title = response.deleteCategory.title;
+          this.toast.success({ detail: "Thông báo", summary: `xóa thành công danh mục: ${this.title}`, duration: 5000, position: "topRight" });
           this.router.navigate(['/admin/listCategori']);
+          console.log(response);
           
+          this.categories = this.categories.filter((cate:any) => cate._id !== response.deleteCategory._id)
           
         },
         error => {

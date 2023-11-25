@@ -11,6 +11,7 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class UpdateCategoriComponent {
   category!:any;
+  title: any
   categoryForm = this.formBuilder.group({
    
     title:[
@@ -48,10 +49,13 @@ export class UpdateCategoriComponent {
        
         
       };
-      console.log(category);
+      
 
       this.categoryService.updateCategory(category).subscribe((category) => {
-        this.toast.success({ detail: "Thông báo", summary: 'Sửa thành công!', duration: 5000, position: "topRight" });
+        console.log(category);
+        
+        this.title = category.updateCategory.title;
+        this.toast.success({ detail: "Thông báo", summary: `Sửa thành công, danh mục mới: ${this.title}`, duration: 5000, position: "topRight" });
         this.router.navigate(['/admin/listCategori']);
       });
     }

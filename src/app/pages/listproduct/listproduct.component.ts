@@ -88,7 +88,7 @@ export class ListproductComponent {
     this.showFormss = !this.showFormss;
   }
 
-  // lọc theo số lượng sản phẩm đã bán 
+  // lọc theo số lượng sản phẩm đã bán
   filterProductsBySold() {
     this.sortedByPrice = !this.sortedByPrice;
     if(this.sortedByPrice){
@@ -105,7 +105,7 @@ export class ListproductComponent {
     } else {
       this.loadData();
     }
-    
+
   }
 
   // lọc theo sóo lượng người đánh giá
@@ -127,7 +127,7 @@ export class ListproductComponent {
     } else {
       this.loadData();
     }
-   
+
   }
 
   searchResults: any[] = [];
@@ -159,7 +159,7 @@ export class ListproductComponent {
     } else {
       this.loadData()
     }
-   
+
   }
 
   // lọc theo brand  TNJ
@@ -179,10 +179,10 @@ export class ListproductComponent {
     } else {
       this.loadData()
     }
-   
+
   }
 
-  images = ['https://cdn.pnj.io/images/promo/184/CT_LOVE_WEDDING_1972x640CTA.jpg', 
+  images = ['https://cdn.pnj.io/images/promo/184/CT_LOVE_WEDDING_1972x640CTA.jpg',
   'https://cdn.pnj.io/images/promo/182/TABSALE_CHUNG_THANG_09-1972x640CTA.jpg',
    'https://cdn.pnj.io/images/promo/180/pnjfast-1972x640CTA.jpg'];
   currentIndex = 0;
@@ -193,7 +193,7 @@ export class ListproductComponent {
   prevSlide() {
     this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
   }
-  
+
   // lọc theo brand  TNJ
   filterProductsByBrandTTL() {
     this.sortedByPrice = !this.sortedByPrice;
@@ -211,6 +211,11 @@ export class ListproductComponent {
     } else {
       this.loadData()
     }
-    
+
+  }
+  selectProduct(id: Number) {
+    console.log(id);
+
+  this.router.navigate(['/product', id]).then();
   }
 }

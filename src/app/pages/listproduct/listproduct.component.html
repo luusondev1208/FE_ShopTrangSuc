@@ -21,7 +21,7 @@
         </div>
         <div class="w-full text-white -ml-[30px] ">
             <div class="flex items-center  " (click)="toggleForm()">
-                <button 
+                <button
                 class=" w-full h-[50px] ml-5  hover: from-indigo-700 ... hover:bg-gradient-to-r font-medium"
                 [ngClass]="{'from-indigo-700 ... bg-gradient-to-r': showForm}">Bộ lọc sản phẩm</button>
                 <svg *ngIf="!showForm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500 font-bold">
@@ -30,14 +30,14 @@
                   <svg  *ngIf="showForm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500 font-bold">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                  
+
             </div>
             <div *ngIf="showForm" class="">
-                <button (click)="toggleSortByPrice()" class="w-full hover:border-green-500  px-12 py-2 
+                <button (click)="toggleSortByPrice()" class="w-full hover:border-green-500  px-12 py-2
           hover: from-indigo-700 ... hover:bg-gradient-to-r "
           >Giá từ thấp đến cao </button><br>
-          
-          
+
+
                 <button (click)="toggleSortByPriceS()"
                     class="w-full hover:border-green-500   px-12 py-2 pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r">Giá
                     từ cao đến thấp</button><br>
@@ -51,7 +51,7 @@
         </div>
         <div class="w-full text-white -ml-[30px]">
             <div class="flex items-center" (click)="toggleForms()">
-                <button 
+                <button
                 class=" w-full h-[50px] ml-5  hover:from-indigo-700 ... hover:bg-gradient-to-r font-medium"
                 [ngClass]="{'from-indigo-700 ... bg-gradient-to-r': showForms}">Trang sức</button>
                 <svg *ngIf="!showForms" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500 font-bold">
@@ -60,23 +60,23 @@
                   <svg  *ngIf="showForms" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500 font-bold">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                  
+
             </div>
             <div *ngIf="showForms" class="">
-                
+
                 <button (click)="toggleSortByPriceS()"
                     class="w-full hover:border-green-500  px-12 py-2 pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r">Nhẫn</button><br>
                 <button (click)="filterProductsByassess()"
                     class="w-full  px-12 py-2 hover:border-green-500 pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r">Vòng</button><br>
                 <button (click)="filterProductsBySold()"
                     class="w-full px-12 py-2 hover:border-green-500 pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r">Dây chuyền</button><br>
-                    <button (click)="toggleSortByPrice()" class="w-full hover:border-green-500  px-12 py-2 
+                    <button (click)="toggleSortByPrice()" class="w-full hover:border-green-500  px-12 py-2
           hover: from-indigo-700 ... hover:bg-gradient-to-r ">Bông tai</button><br>
             </div>
         </div>
         <div class="w-full text-white -ml-[30px]">
             <div class="flex items-center" (click)="toggleFormss()">
-                <button 
+                <button
                 class=" w-full h-[50px] ml-5  hover:from-indigo-700 ... hover:bg-gradient-to-r font-medium"
                 [ngClass]="{'from-indigo-700 ... bg-gradient-to-r': showForms}">Thương hiệu</button>
                 <svg *ngIf="!showFormss" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500 font-bold">
@@ -85,17 +85,17 @@
                   <svg  *ngIf="showFormss" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500 font-bold">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                  
+
             </div>
             <div *ngIf="showFormss" class="">
-                
+
                 <button (click)="filterProductsByBrandPNJ()"
                     class="w-full hover:border-green-500  px-12 py-2 pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r">PNJ</button><br>
                 <button (click)="filterProductsByBrandNRO()"
                     class="w-full  px-12 py-2 hover:border-green-500 pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r">NRO</button><br>
                 <button (click)="filterProductsByBrandTTL()"
                     class="w-full px-12 py-2 hover:border-green-500 pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r pr-10  hover: from-indigo-700 ... hover:bg-gradient-to-r">TTL</button><br>
-                  
+
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@
             <div *ngIf="products.length > 0" class="grid grid-cols-4 gap-10 ml-10">
                 <!-- san pham 1 -->
                 <div *ngFor="let product of products" class="mt-5">
-                    <div class="text-center w-[265px] bg-gray-100 rounded-xl pb-3 position-relative product-container">
+                  <a href="/product/{{product._id}}"><div class="text-center w-[265px] bg-gray-100 rounded-xl pb-3 position-relative product-container">
                          <!-- Nút mua hàng -->
                          <button class="buy-button" *ngIf="product.quantity > 0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart ml-9 hover:bg-black" viewBox="0 0 16 16">
@@ -122,7 +122,7 @@
                             <img src={{product.images[0]}} class="original-image w-[250px]" />
                             <img src={{product.images[1]}} alt="Ảnh thay thế" class="hover-image w-[250px]" />
                         </div>
-                
+
                         <img class="w-10 absolute -mt-14 ml-4 mb-4"
                             src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
                         <p class="text-[13px]">{{product.title}}</p>
@@ -134,11 +134,11 @@
                             <p>5⭐️({{product.assess}})</p>
                             <p>{{product.sold}}+ đã bán</p>
                         </div>
-                
-                       
-                    </div>
+
+
+                    </div></a>
                 </div>
-                
+
                 <!-- <div *ngFor="let product of products" class="mt-5">
                     <div class="text-center w-[265px] bg-gray-100 rounded-xl pb-3">
                         <p class="border bg-red-500 w-[100px] text-white font-medium py-1 absolute mt-10" *ngIf="product.quantity === 0 " >Hết hàng</p>
@@ -146,7 +146,7 @@
                             <img src={{product.images[0]}} class="original-image w-[250px]" />
                             <img src={{product.images[1]}} alt="Ảnh thay thế" class="hover-image w-[250px]" />
                         </div>
-    
+
                         <img class="w-10 absolute -mt-14 ml-4 mb-4"
                             src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
                         <p class=" text-[13px]">{{product.title}}</p>
@@ -160,9 +160,9 @@
                         </div>
                     </div>
                 </div> -->
-    
+
             </div>
-    
+
         </div>
         <div class="flex justify-center my-6">
             <nav aria-label="Page navigation example">
@@ -190,7 +190,7 @@
                             </li>
                         </ul>
                     </nav>
-    
+
                 </div>
                 <!-- <ul class="flex list-style-none">
                 <div>

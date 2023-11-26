@@ -16,6 +16,13 @@ export class ListproductComponent {
   products: any = [];
   page: number = 1;
   limit: number = 12;
+  type:string = ""
+filterOptions = {
+  filterProduct: 'option1',
+  filterCategory: 'option1',
+  filterBrand: 'option1'
+};
+
   constructor(private productService: ProductService, private router: Router) {}
   isHovering: boolean = false;
   //lấy dữ liệu
@@ -33,6 +40,39 @@ export class ListproductComponent {
   ngOnInit() {
     this.loadData();
   }
+  
+
+//lọc
+
+filterProducts() {
+  if(this.filterOptions.filterProduct === "option2"){
+    this.toggleSortByPrice()
+  } else if(this.filterOptions.filterProduct === "option3"){
+    this.toggleSortByPriceS()
+  } else if(this.filterOptions.filterProduct === "option4"){
+    this.filterProductsByassess()
+  } else if(this.filterOptions.filterProduct === "option5"){
+    this.filterProductsBySold()
+  }
+//   console.log('Filter Options:', this.filterOptions);
+
+//   // Xử lý lọc dữ liệu dựa trên các giá trị từ nhiều select box cùng lúc
+//   if (
+//     this.filterOptions.filterProduct === 'option2' &&
+//     this.filterOptions.filterCategory === 'option1' &&
+//     this.filterOptions.filterBrand === 'option2'
+//   ) {
+//     this.combinedFilter();
+//   } else {
+//     alert('No action for the current combination of selections.');
+//     // Thực hiện các hành động khác nếu cần thiết
+//   }
+}
+
+// combinedFilter(){
+// this.toggleSortByPrice()
+// this.filterProductsByBrandPNJ()
+// }
 // đổi ảnh sản phẩm
 
   showHoverImage() {
@@ -59,11 +99,12 @@ export class ListproductComponent {
 // lọc giá từ thấp đến cao
   toggleSortByPrice() {
     this.sortedByPrice = !this.sortedByPrice;
-
+  
     if (this.sortedByPrice) {
+  
       this.products.sort((a: any, b: any) => a.price - b.price);
     } else {
-      this.loadData();
+      
     }
   }
 // lọc giá từ cao đến thấp
@@ -71,9 +112,10 @@ export class ListproductComponent {
     this.sortedByPrice = !this.sortedByPrice;
 
     if (this.sortedByPrice) {
+
       this.products.sort((a: any, b: any) => b.price - a.price);
     } else {
-      this.loadData();
+      
     }
   }
 
@@ -103,7 +145,7 @@ export class ListproductComponent {
         this.products = this.filteredProducts;
       });
     } else {
-      this.loadData();
+      
     }
 
   }
@@ -125,7 +167,7 @@ export class ListproductComponent {
         this.products = this.filteredProducts;
       });
     } else {
-      this.loadData();
+      
     }
 
   }
@@ -157,7 +199,7 @@ export class ListproductComponent {
         this.products = this.filteredProducts;
       });
     } else {
-      this.loadData()
+      
     }
 
   }

@@ -1,35 +1,99 @@
-<ul >
-  <li *ngFor="let item of cartItems.products">
-    <div *ngIf="item.images">
-      <img src={{item.images[1]}} [alt]="item.product.name">
-    </div>
-    <div>
-      <a routerLink="/product/{{cartItems.id}}">
-        {{item.product.title}}
-      </a>
-    </div>
-    <div>
-      <input #quantitySelect
-      [value]="item.quantity"
-      (input)="updateCartItem(item, quantitySelect.value)">
+<div
+  *ngIf="cartItems && cartItems.products.length > 0; else emptyCart"
+  class="container"
+>
+  <ul>
+    <li *ngFor="let item of cartItems.products">
+      <div>
+        <img src="{{ item.product.images[0] }}" [alt]="item.product.title" />
+      </div>
+      <div>
+        <a routerLink="/product/{{ item.product.id }}">
+          {{ item.product.title }}
+        </a>
+      </div>
+      <div>
+        <form class="max-w-sm mx-auto">
+          <label
+            for="number-input"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Số lượng:</label
+          >
+          <input
+            #quantitySelect
+            [value]="item.quantity"
+            (input)="updateCartItem(item, quantitySelect.value)"
+            type="number"
+            id="number-input"
+            aria-describedby="helper-text-explanation"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="90210"
+            required
+          />
+        </form>
+        <form class="max-w-xs mx-auto">
+          <label
+            for="number-input"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Kích thước:</label
+          >
+          <input
+            disabled
+            type="text"
+            id="quantity-input"
+            data-input-counter
+            aria-describedby="helper-text-explanation"
+            class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="999"
+            required
+            [value]="item.size"
+          />
+        </form>
+      </div>
 
-    </div>
+      <div>
+        <button class="remove-button" (click)="removeFromCart(item)">
+          Remove
+        </button>
+      </div>
+    </li>
+  </ul>
+  <div class="checkout">
     <div>
-      {{item.size}}
+      <div class="total-price">
+        {{ getTotalPrice() | currency : "VND" }} VNĐ
+      </div>
     </div>
 
-    <div>
-      <button class="remove-button" (click)="removeFromCart(item)">
-        Remove
-      </button>
-    </div>
-  </li>
-</ul>
-<div class="checkout">
-  <div>
-    <div class="products-count">Tổng Tiền: {{getTotalPrice()}} VNĐ</div>
-
+    <a (click)="proceedOrder()">Đặt hàng</a><br />
+    <a routerLink="">Quay về trang chủ</a>
   </div>
-
-  <a routerLink="/checkout">Proceed to Checkout</a>
 </div>
+
+<ng-template #emptyCart>
+  <input id="INPUT_2" type="hidden" value="r-desktop" />
+
+  <noscript id="NOSCRIPT_3"> </noscript>
+
+  <div id="DIV_4">
+    <div id="DIV_5"></div>
+    <div id="DIV_6"></div>
+    <div id="DIV_7"></div>
+    <div id="DIV_8">
+      <div id="DIV_586">
+        <div id="DIV_587">
+          <div id="DIV_588">
+            <div id="DIV_589">
+              <p id="P_590">Giỏ hàng của bạn chưa có sản phẩm</p>
+              <div id="DIV_591">
+                <a routerLink="" id="A_592">Mua hàng</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="DIV_849"></div>
+    </div>
+  </div>
+</ng-template>

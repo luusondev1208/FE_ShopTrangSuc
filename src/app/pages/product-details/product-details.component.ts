@@ -4,6 +4,8 @@ import { Product } from 'src/app/shared/model/product';
 import { ProductService } from 'src/app/service/product.service';
 import { CartService } from 'src/app/service/cart.service';
 import { ChangeDetectionStrategy, ChangeDetectorRef, NgZone } from '@angular/core';
+import { sizeOptions } from 'src/app/shared/model/size';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-product-details',
@@ -15,6 +17,8 @@ export class ProductDetailsComponent implements OnInit {
   product: any = {};
   imgList: any;
   demoProduct: any = {}
+  sizeOption: any[] = Object.values(sizeOptions).filter(value => typeof value === 'number')
+  selectedSize: number | null = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,7 +26,9 @@ export class ProductDetailsComponent implements OnInit {
     private router: Router,
     private cartService: CartService,
     private cdr: ChangeDetectorRef,
-    private zone: NgZone
+    private zone: NgZone,
+    private authService: AuthService,
+
   ) {
     activatedRoute.params.subscribe((params) => {
       productService.getProduct(params['id']).subscribe((data) => {
@@ -32,6 +38,7 @@ export class ProductDetailsComponent implements OnInit {
 
         this.imgList = data.productData.images;
         this.cdr.detectChanges(); // Thử loại bỏ NgZone
+        this.getSizeOptions(this.demoProduct._id)
       });
     });
   }
@@ -50,28 +57,37 @@ export class ProductDetailsComponent implements OnInit {
     this.currentIndex = (this.currentIndex - 1 + this.imgList.length) % this.imgList.length;
   }
 
-  addToCart() {
-    const local = localStorage.getItem("user");
-    const user:any = local && JSON.parse(local);
+  // onSizeChange(event: any) {
+  //   // event.preventDefault()
+  //   // this.selectedSize = event.target.value;
+  //   // console.log('Selected Size:', this.selectedSize);
+  // }
 
+  addToCart() {
+
+    const local = localStorage.getItem("user");
+    const user: any = local && JSON.parse(local);
+    const selectedSize = (document.querySelector('#sizeSelect') as HTMLSelectElement).value;
     const productId = this.demoProduct._id;
 
-    console.log(user?._id);
-    console.log(productId);
 
-    const size = 20; // Đặt giá trị cho size nếu cần
-    const quantity = 2;
+    const size = Number(selectedSize)
+    const quantity = 1;
+    if (this.authService.checklogin()) {
+      this.cartService.addToCart(productId, size, quantity, user?._id).subscribe(
+        (response) => {
+          console.log('Add to cart successful', response);
 
-    this.cartService.addToCart(productId, size, quantity,user?._id).subscribe(
-      (response) => {
-        console.log('Add to cart successful', response);
-        // Bước 3: Xử lý thêm vào giỏ hàng thành công (nếu cần)
-      },
-      (error) => {
-        console.error('Add to cart failed', error);
-        // Xử lý lỗi nếu có
-      }
-    );
+        },
+        (error) => {
+          console.error('Add to cart failed', error);
+
+        }
+      );
+    } else {
+
+      console.log('Vui lòng đăng nhập trước khi thêm giỏ hàng.');
+    }
   }
 
 
@@ -80,5 +96,15 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProduct(id).subscribe((res: any) => {
       this.product = res.product;
     });
+  }
+  getSizeOptions(productId: string): void {
+    this.productService.getSizeOptions(productId).subscribe(
+      (response) => {
+        this.sizeOption = Object.values(sizeOptions);
+      },
+      (error) => {
+        console.error('Error getting size options', error);
+      }
+    );
   }
 }

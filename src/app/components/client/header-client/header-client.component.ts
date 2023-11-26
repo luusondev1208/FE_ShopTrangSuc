@@ -41,7 +41,7 @@ export class HeaderClientComponent {
       item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.products = this.filteredList
-    console.log(this.products)
+    // console.log(this.products)
   }
   showMap() {
     this.showmap = !this.showmap

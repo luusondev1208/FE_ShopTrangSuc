@@ -37,13 +37,17 @@ import { AddUserComponent } from './pages/admin/add-user/add-user.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { InforAccountComponent } from './pages/account/infor-account/infor-account.component';
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
-import { ToastrModule, ToastrService,ToastNoAnimationModule  } from 'ngx-toastr';
+import { ToastrModule, ToastrService, ToastNoAnimationModule } from 'ngx-toastr';
 import { SendEmailComponent } from './pages/send-email/send-email.component'
 import { NgToastModule } from 'ng-angular-popup';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { provideToastr } from 'ngx-toastr';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { AuthGuardComponent } from './pages/auth-guard/auth-guard.component';
+import { OrderComponent } from './pages/order/order.component';
+import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
+import { TitleComponent } from './pages/title/title.component';
 
 
 
@@ -81,7 +85,11 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     InforAccountComponent,
     UpdateAccountComponent,
     SendEmailComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    AuthGuardComponent,
+    OrderComponent,
+    ChangeStatusOrderComponent,
+    TitleComponent
 
 
   ],
@@ -100,11 +108,13 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     ToastNoAnimationModule.forRoot(),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(
-      
-      {   timeOut: 5000,
+
+      {
+        timeOut: 5000,
         progressBar: false,
         positionClass: 'toast-top-right',
-        closeButton: true}
+        closeButton: true
+      }
     ), // ToastrModule added
   ],
   providers: [

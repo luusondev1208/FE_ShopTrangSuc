@@ -27,7 +27,9 @@ import { InforAccountComponent } from './pages/account/infor-account/infor-accou
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-
+import { OrderComponent } from './pages/order/order.component';
+import { AuthGuardComponent } from './pages/auth-guard/auth-guard.component';
+import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
 const routes: Routes = [
   //client
   {
@@ -42,9 +44,19 @@ const routes: Routes = [
       { path: 'user-payment', component: UserPaymentComponent },
       { path: 'checkout', component: CheckoutCartComponent },
       { path: 'product/:id', component: ProductDetailsComponent },
-      { path: 'cart', component: CartComponent },
+      {
+        path: 'cart',
+        component: CartComponent
+      },
       { path: 'infor-account', component: InforAccountComponent },
       { path: 'update-account', component: UpdateAccountComponent },
+      {
+        path: 'order',
+        component: OrderComponent
+      },
+      {
+        path: 'change-status', component: ChangeStatusOrderComponent
+      }
     ],
   },
   //admin

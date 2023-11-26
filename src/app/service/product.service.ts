@@ -17,7 +17,7 @@
 //     return this.http.get<any>(url);
 //   }
 //   addProducts(product:any,  files: File[]): Observable<any> {
-//     return this.http.post<any>(`${this.API_URL}/add`, product); 
+//     return this.http.post<any>(`${this.API_URL}/add`, product);
 //   }
 
 //   updateProduct(product: any): Observable<any> {
@@ -74,5 +74,11 @@ export class ProductService {
   searchByName(title: string): Observable<any> {
     return this.http.get(`${this.API_URL}/search?title=${title}`);
   }
+
+getSizeOptions(id: string): Observable<any> {
+  const url = `${this.API_URL}/sizes/${id}`;
+  return this.http.get<any>(url);
+}
+
 }
 

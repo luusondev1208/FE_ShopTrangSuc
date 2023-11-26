@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/service/cart.service';
 import { CartItem } from 'src/app/shared/model/cart';
 import { Product } from 'src/app/shared/model/product';
-
+import { AuthService } from 'src/app/service/auth.service';
+import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -13,13 +14,13 @@ export class CartComponent implements OnInit {
   cartItems: any;
   cart: any;
   imgList: any;
-  constructor(private cartService: CartService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private cartService: CartService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService) {
     activatedRoute.params.subscribe((params) => {
+
       if (params['id']) {
         cartService.getCartItemById(params['id']).subscribe(data => {
           this.cartItems = data;
           this.imgList = Product.images;
-
         });
       }
     });
@@ -29,14 +30,22 @@ export class CartComponent implements OnInit {
     this.loadCartItems();
   }
 
+  showImg() {
+    console.log(this.imgList);
+
+  }
+
   loadCartItems(): void {
     const local = localStorage.getItem("user");
     const user: any = local && JSON.parse(local);
-    // console.log(user?.cart);
-    this.cartService.getCart(user?.cart).subscribe((items: any) => {
-      // console.log('Cart Items:', items);
-      this.cartItems = items?.cart;
-    });
+
+    this.userService.getUser(user._id).subscribe((res) => { // đây
+      this.cartService.getCart(res.use.cart).subscribe((items: any) => {
+        this.cartItems = items?.cart;
+      });
+    })
+
+
   }
 
 
@@ -45,11 +54,13 @@ export class CartComponent implements OnInit {
     const user = local && JSON.parse(local);
     // console.log(user?.cart);
 
-    this.cartService.removeCartItem(cartItem.product._id, user?.cart).subscribe(() => {
-      this.loadCartItems();
-      // console.log(cartItem);
+    this.userService.getUser(user._id).subscribe((res) => { // đây
+      this.cartService.removeCartItem(cartItem.product._id, res.use.cart).subscribe(() => {
+        this.loadCartItems();
 
-    });
+      });
+    })
+
   }
 
   // getTotalItemsCount(): number {
@@ -66,11 +77,11 @@ export class CartComponent implements OnInit {
   // getTotal(): number {\ so luong nhan gia tien
 
   // }
-  updateCartItem(cartItem: CartItem,quantity:any): void {
+  updateCartItem(cartItem: CartItem, quantity: any): void {
     const local = localStorage.getItem("user");
     const user = local && JSON.parse(local);
 
-    const data:any={
+    const data: any = {
       productId: cartItem.product._id,
       quantity: quantity,
       userId: user?._id
@@ -80,7 +91,8 @@ export class CartComponent implements OnInit {
     });
   }
 
-  proceedToCheckout(): void {
-    this.router.navigateByUrl('/checkout');
+  proceedOrder(): void {
+    this.router.navigateByUrl('/order');
   }
+
 }

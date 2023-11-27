@@ -46,6 +46,21 @@
     justify-content: space-between;
     transition: 0.5s; 
 }
+.nro-text {
+  font-size: 3em;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  color: #FFD700; /* Màu vàng */
+  text-transform: uppercase; /* Chuyển đổi về chữ in hoa */
+  letter-spacing: 8px; /* Khoảng cách giữa các ký tự */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Đổ bóng chữ */
+  display: inline-block;
+  transition: transform 0.3s ease-in-out; /* Hiệu ứng chuyển động */
+}
+
+.nro-text:hover {
+  transform: translateY(-5px); /* Nhảy lên khi hover */
+}
 
 
 

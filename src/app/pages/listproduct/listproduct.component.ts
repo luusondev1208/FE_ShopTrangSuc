@@ -53,7 +53,13 @@ filterProducts() {
     this.filterProductsByassess()
   } else if(this.filterOptions.filterProduct === "option5"){
     this.filterProductsBySold()
-  }
+  } else if(this.filterOptions.filterBrand === "option2"){
+    this.filterProductsByBrandPNJ()
+  } else if(this.filterOptions.filterBrand === "option3"){
+    this.filterProductsByBrandNRO()
+  }  else if(this.filterOptions.filterBrand === "option4"){
+    this.filterProductsByBrandTTL()
+  } 
 //   console.log('Filter Options:', this.filterOptions);
 
 //   // Xử lý lọc dữ liệu dựa trên các giá trị từ nhiều select box cùng lúc

@@ -8,7 +8,7 @@
 //   color: transparent;
 // }
 .nro-text {
-  font-size: 3em;
+  font-size: 2em;
   font-weight: bold;
   font-family: 'Arial', sans-serif;
   color: #FFD700; /* Màu vàng */
@@ -17,6 +17,7 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Đổ bóng chữ */
   display: inline-block;
   transition: transform 0.3s ease-in-out; /* Hiệu ứng chuyển động */
+  margin-top: 25px;
 }
 
 .nro-text:hover {
@@ -74,7 +75,7 @@ nav ul {
   }
   nav a:hover {
     text-decoration: underline;
-    color: red;
+    color: rgb(154, 154, 7);
   }
   
   nav li:hover > .submenu {

@@ -1,5 +1,5 @@
 <!-- slideshow -->
-<div class="slideshow">
+<div class="xl:slideshow">
     <div class="slide" *ngFor="let image of images; let i = index" [ngClass]="{'active': i === currentIndex}">
       <img class="" [src]="image" alt="Slide">
 
@@ -11,7 +11,7 @@
     <button class="font-bold text-3xl -mt-[50px]" (click)="nextSlide()">➤</button>
 
  </div>
-<div class="grid grid-cols-5 gap-4 mx-[220px] mt-10 ">
+<div class="grid xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mx-[190px] mt-10 ">
 
     <select class="custom-select" [(ngModel)]="filterOptions.filterProduct">
         <option value="option1">Bộ lọc sản phẩm</option>
@@ -33,7 +33,7 @@
         <option value="option3" (click)="filterProductsByBrandNRO()">NRO</option>
         <option value="option4" (click)="filterProductsByBrandTTL()">TTL</option>
       </select>
-      <button (click)="filterProducts()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">Gửi</button>
+      <button (click)="filterProducts()" class="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">Gửi</button>
 
       
       <div class="flex">
@@ -45,7 +45,7 @@
 
 
 <!-- component -->
-<div tabindex="0" class="focus:outline-none">
+<div tabindex="0" class="focus:outline-none -mb-[50px]">
     <!-- Remove py-8 -->
     <div class="mx-auto container py-8">
         
@@ -53,7 +53,7 @@
             <div *ngFor="let product of products" tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
                 <div class="product">
                     <div class="image-container">
-                        <img src={{product.images[0]}} alt="Product Image" class="product-image">
+                       <a [routerLink]="['/product', product._id]"> <img src={{product.images[0]}} alt="Product Image" class="product-image"></a>
                         <div class="button-container flex space-x-10 ">
                             <button class="custom-button ">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">

@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./header-client.component.scss']
 })
 export class HeaderClientComponent {
-  showmap: boolean = false;
+  isMenuOpen: boolean = true;
   page: number = 1;
   limit: number = 10;
   constructor(private productService: ProductService, private router: Router, private authService: AuthService) {
@@ -35,7 +35,11 @@ export class HeaderClientComponent {
   searchResults: any[] = [];
   searchTerm: string = '';
   filteredList: any[] = [];
+  
 
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
   search() {
     this.filteredList = this.products.filter((item: any) =>
       item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
@@ -43,9 +47,7 @@ export class HeaderClientComponent {
     this.products = this.filteredList
     // console.log(this.products)
   }
-  showMap() {
-    this.showmap = !this.showmap
-  }
+  
   CheckLogin(): boolean {
     if (this.authService.checklogin()) {
       this.router.navigate(['/infor-account']);

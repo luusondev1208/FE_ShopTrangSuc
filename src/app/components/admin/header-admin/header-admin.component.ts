@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Renderer2 ,ElementRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -9,7 +9,8 @@ import { Router, NavigationEnd } from '@angular/router';
 export class HeaderAdminComponent {
   currentUrl: any
   currentUrls: any
-  constructor(private router: Router) {
+  isDarkMode: boolean = false;
+  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = this.router.url.split("/").slice(-2)[0].toUpperCase();
@@ -19,11 +20,10 @@ export class HeaderAdminComponent {
       }
     
     });
+    
+    
   }
-
-
-
-
+  
 
 
 }

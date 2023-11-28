@@ -1,0 +1,48 @@
+/* CSS cho chế độ tối */
+.dark-theme {
+    background-color: #160202;
+    color: #fff;
+    /* Các thuộc tính CSS khác cho chế độ tối */
+  }
+  
+  /* Style cho toggle switch */
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Style cho slider (thanh trượt) */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: 0.4s;
+  }
+  
+  /* Style cho slider khi ở trạng thái được chọn */
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  

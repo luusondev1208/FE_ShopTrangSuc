@@ -27,6 +27,7 @@ import { InforAccountComponent } from './pages/account/infor-account/infor-accou
 import { UpdateAccountComponent } from './pages/account/update-account/update-account.component';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { AuthGuard } from './Guard/auth.guard';
 
 const routes: Routes = [
   //client
@@ -49,7 +50,7 @@ const routes: Routes = [
   },
   //admin
   {
-    path: 'admin',
+    path: 'admin', canActivate: [AuthGuard],
     component: AdminLayoutComponent,
     children: [
       { path: '', component: DashboardComponent },

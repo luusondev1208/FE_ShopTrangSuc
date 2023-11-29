@@ -35,6 +35,9 @@ export class AuthService {
     }
     return false;
   }
+  isAuthen() {
+    return JSON.parse(localStorage.getItem('user') || '{}')
+  }
   logout() {
     localStorage.removeItem("user");
     localStorage.removeItem("accessToken");

@@ -31,6 +31,7 @@ import { OrderComponent } from './pages/order/order.component';
 import { AuthGuardComponent } from './pages/auth-guard/auth-guard.component';
 import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
 import { UpdatePasswordComponent } from './pages/account/update-password/update-password.component';
+import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
 const routes: Routes = [
   //client
   {
@@ -41,6 +42,8 @@ const routes: Routes = [
       { path: 'products', component: ListproductComponent },
       { path: 'slide', component: SlideshowComponent },
       { path: 'blog', component: BlogpageComponent },
+      { path: 'blog/:id', component: BlogDetailsComponent },
+
       { path: 'invoice', component: InvoiceComponent },
       { path: 'user-payment', component: UserPaymentComponent },
       { path: 'checkout', component: CheckoutCartComponent },

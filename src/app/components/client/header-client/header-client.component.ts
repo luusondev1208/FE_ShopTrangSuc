@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { ProductService } from 'src/app/service/product.service';
+import { NgToastService } from 'ng-angular-popup';
+
 
 @Component({
   selector: 'app-header-client',
@@ -12,7 +14,7 @@ export class HeaderClientComponent {
   isMenuOpen: boolean = true;
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router, private authService: AuthService) {
+  constructor(private productService: ProductService, private router: Router, private authService: AuthService,private toast:NgToastService) {
 
   }
   loadData() {
@@ -58,4 +60,22 @@ export class HeaderClientComponent {
       return false;
     }
   }
+  signOut() {
+    var result= confirm("Bạn có muốn đăng xuất không?")
+    if(result){
+     this.authService.logout();
+     this.toast.success({ detail: "Thông báo", summary: 'Đăng Xuất thành công!', duration: 5000, position: "topRight" });
+     this.router.navigate(['/login']);
+    }
+    else if(!localStorage.getItem("user")){
+            alert("người dùng chưa đăng nhập")
+    }
+    else{
+      alert("Người dùng không đăng xuất ");
+      
+    }
+    
+  
+  }
+
 }

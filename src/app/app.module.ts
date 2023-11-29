@@ -48,6 +48,7 @@ import { AuthGuardComponent } from './pages/auth-guard/auth-guard.component';
 import { OrderComponent } from './pages/order/order.component';
 import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
 import { TitleComponent } from './pages/title/title.component';
+import { UpdatePasswordComponent } from './pages/account/update-password/update-password.component';
 
 
 
@@ -89,7 +90,8 @@ import { TitleComponent } from './pages/title/title.component';
     AuthGuardComponent,
     OrderComponent,
     ChangeStatusOrderComponent,
-    TitleComponent
+    TitleComponent,
+    UpdatePasswordComponent
 
 
   ],

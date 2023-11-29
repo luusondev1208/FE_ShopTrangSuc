@@ -31,15 +31,15 @@ export class UpdateAccountComponent {
     address: [
       '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(255)]
-    ],
-    password: [
-      '',
-      [Validators.required, Validators.minLength(8), Validators.maxLength(255)]
-    ],
-    newPassword: [
-      '',
-      [Validators.required, Validators.minLength(8), Validators.maxLength(255)]
     ]
+    // password: [
+    //   '',
+    //   [Validators.required, Validators.minLength(8), Validators.maxLength(255)]
+    // ],
+    // newPassword: [
+    //   '',
+    //   [Validators.required, Validators.minLength(8), Validators.maxLength(255)]
+    // ]
   })
   constructor(
     private formBuilder: FormBuilder,
@@ -62,7 +62,7 @@ export class UpdateAccountComponent {
             email: user.use.email,
             address: user.use.address,
             mobile: user.use.mobile,
-            password: user.use.password
+            // password: user.use.password
 
           })
 
@@ -88,12 +88,14 @@ export class UpdateAccountComponent {
         email: this.userForm.value.email || '',
         address: this.userForm.value.address || '',
         mobile: this.userForm.value.mobile || '',
-        password: this.userForm.value.newPassword || '',
+        // password: this.userForm.value.newPassword || '',
       };
       this.userService.updateUser(user).subscribe((response) => {
         this.toast.success({ detail: "Thông báo", summary: 'Cập Nhật Tài Khoản Thành Công', duration: 5000, position: "topRight" });
-
-        // console.log(response);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        console.log(response);
 
 
       })

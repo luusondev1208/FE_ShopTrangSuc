@@ -5,11 +5,11 @@
     <p style="text-align: center;font-size:40px;padding:15px">Thông Tin Tài Khoản Cá Nhân</p>
    
     <!-- Account page navigation-->
-    <nav class="nav nav-borders">
-        <a class="nav-link" a href="/infor-account"  target="__blank">Hồ Sơ</a>
+    <!-- <nav class="nav nav-borders">
+        <a class="nav-link" a href="account/infor-account"  target="__blank">Hồ Sơ</a>
         <a class="nav-link"  target="__blank">Đơn Hàng Của Bạn</a>
        
-    </nav>
+    </nav> -->
     <hr class="mt-0 mb-4">
     <div class="row">
         <div class="col-xl-4">
@@ -22,13 +22,13 @@
                     <!-- Profile picture help block-->
                     <div class="small font-bold mb-4">Họ Và Tên:{{user.firstname}} {{user.lastname}} </div>
                    
-                    <button (click)="signOut()" class="btn btn-danger"style="margin-right:14px">Đăng xuất</button>
+                    <!-- <button (click)="signOut()" class="btn btn-danger"style="margin-right:14px">Đăng xuất</button> -->
 
                         
                    
                     
                     <!-- Profile picture upload button-->
-                    <button class="btn btn-primary" type="button"routerLink="/update-account">Cập Nhật Tài Khoản</button>
+                    <button class="btn btn-primary" type="button"routerLink="/account/update-account">Cập Nhật Tài Khoản</button>
 
                 </div>
             </div>

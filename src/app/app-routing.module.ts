@@ -30,6 +30,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { OrderComponent } from './pages/order/order.component';
 import { AuthGuardComponent } from './pages/auth-guard/auth-guard.component';
 import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
+import { UpdatePasswordComponent } from './pages/account/update-password/update-password.component';
 const routes: Routes = [
   //client
   {
@@ -48,8 +49,10 @@ const routes: Routes = [
         path: 'cart',
         component: CartComponent
       },
-      { path: 'infor-account', component: InforAccountComponent },
-      { path: 'update-account', component: UpdateAccountComponent },
+      { path: 'account/infor-account', component: InforAccountComponent },
+      { path: 'account/update-account', component: UpdateAccountComponent },
+      { path: 'account/update-password', component:UpdatePasswordComponent  },
+
       {
         path: 'order',
         component: OrderComponent

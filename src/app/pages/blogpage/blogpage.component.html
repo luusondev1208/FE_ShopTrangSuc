@@ -1,4 +1,4 @@
-<div class="mx-[170px] my-4 xl:flex space-x-5 hidden ">
+<div class="mx-[170px] my-4 flex space-x-5">
     <div>
         <p class="text-4xl w-[600px] px-6 absolute text-white font-medium pt-[380px] hover:text-red-500">Gợi ý 30 lời
             chúc hay, thân tình
@@ -51,7 +51,7 @@ trang sức người thân mùa trung thu đoàn viên
         </div>
     </div>
 </div>
-<div class="mx-[150px] my-10 hidden xl:block">
+<div class="mx-[150px] my-10">
     <div class="flex items-center">
         <p class="font-medium text-xl">MIX & MATCH</p>
         <hr class="border-2 border-blue-900 w-[1050px] ml-4 mb-2">
@@ -103,7 +103,7 @@ trang sức người thân mùa trung thu đoàn viên
     </div>
 </div>
 <div class="mx-[150px]">
-    <div class="xl:flex hidden">
+    <div class="flex">
         <div>
             <div class="flex items-center">
                 <p class="font-medium text-xl">CẨM NANG CƯỚI</p>
@@ -141,18 +141,18 @@ trang sức người thân mùa trung thu đoàn viên
 
         </div>
     </div>
-    <div class="xl:flex -ml-4 items-center">
+    <div class="flex items-center">
         <p class="font-medium text-xl">CUNG & MỆNH</p>
         <hr class="border-2 border-blue-900 w-[1050px] ml-4 mb-2">
     </div>
    <div *ngFor="let item of blogs.slice(0, 5)">
-    <div class="lg:flex lg:space-x-4 my-5">
+    <div class="flex space-x-4 my-5">
         <img class="w-[270px]"
-            src={{item.images[0]}}
+            src={{item.image}}
             alt="">
         <div>
-            <p class="text-[20px] hover:text-gray-500 mt-2">{{item.title}}</p>
-            <div class="flex space-x-4 py-3">
+            <p class="text-[20px] hover:text-gray-500">{{item.title}}</p>
+            <div class="flex space-x-4 py-5">
                 <p>Trang Sức Cung - Mệnh</p>
                 <p>22/09/2023</p>
             </div>
@@ -166,13 +166,14 @@ trang sức người thân mùa trung thu đoàn viên
         <hr class="border-2 border-blue-900 w-[950px] ml-6 mb-2">
     </div>
     <div *ngFor="let item of blogs, index as i">
-        <div *ngIf="i>=5" class="lg:flex space-x-4 my-5">
-            <img class="w-[270px]"
-                src={{item.images[0]}}
-                alt="">
+        <div *ngIf="i>=5" class="flex space-x-4 my-5">
+           
+                <a [routerLink]="['/blog',item._id]"> <img class="w-[270px]"
+                    src={{item.images[0]}}
+                    alt=""></a>
             <div>
                 <p class="text-[20px] hover:text-gray-500">{{item.title}}</p>
-                <div class="flex space-x-4 py-3">
+                <div class="flex space-x-4 py-5">
                     <p>Trang Sức Cung - Mệnh</p>
                     <p>22/09/2023</p>
                 </div>

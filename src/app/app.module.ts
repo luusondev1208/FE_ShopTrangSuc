@@ -49,6 +49,7 @@ import { OrderComponent } from './pages/order/order.component';
 import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
 import { TitleComponent } from './pages/title/title.component';
 import { UpdatePasswordComponent } from './pages/account/update-password/update-password.component';
+import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
 
 
 
@@ -91,7 +92,8 @@ import { UpdatePasswordComponent } from './pages/account/update-password/update-
     OrderComponent,
     ChangeStatusOrderComponent,
     TitleComponent,
-    UpdatePasswordComponent
+    UpdatePasswordComponent,
+    BlogDetailsComponent
 
 
   ],

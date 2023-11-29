@@ -1,0 +1,71 @@
+body {
+    width: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.banner img {
+    max-width: 100%;
+    height: auto;
+}
+
+hr {
+    margin: 5px;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-gap: 30px;
+}
+
+.noidung {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.noidung p:hover {
+    color: red;
+}
+
+@media screen and (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr; /* Hiển thị một cột trên màn hình có chiều rộng tối đa 1200px */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr; /* Hiển thị một cột trên màn hình nhỏ hơn hoặc bằng 768px */
+    }
+
+    .noidung {
+        font-size: 20px; /* Giảm kích thước font cho màn hình nhỏ hơn */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main-content {
+        grid-template-columns: 1fr; /* Hiển thị một cột trên màn hình nhỏ hơn hoặc bằng 480px */
+    }
+
+    .noidung {
+        font-size: 18px; /* Giảm kích thước font cho màn hình nhỏ hơn */
+    }
+
+    .noidungchan {
+        grid-template-columns: 1fr; /* Hiển thị một cột trên màn hình nhỏ hơn hoặc bằng 480px cho phần noidungchan */
+    }
+}
+.noidungchan{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+grid-gap:20px
+}

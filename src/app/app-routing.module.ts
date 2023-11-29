@@ -30,6 +30,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { OrderComponent } from './pages/order/order.component';
 import { AuthGuardComponent } from './pages/auth-guard/auth-guard.component';
 import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
+import { AuthGuard } from './Guard/auth.guard';
+
 const routes: Routes = [
   //client
   {
@@ -61,7 +63,7 @@ const routes: Routes = [
   },
   //admin
   {
-    path: 'admin',
+    path: 'admin', canActivate: [AuthGuard],
     component: AdminLayoutComponent,
     children: [
       { path: '', component: DashboardComponent },

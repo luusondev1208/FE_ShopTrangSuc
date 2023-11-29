@@ -56,8 +56,12 @@ export class InforAccountComponent {
       this.toast.success({ detail: "Thông báo", summary: 'Đăng Xuất thành công!', duration: 5000, position: "topRight" });
       this.router.navigate(['/login']);
     }
+  }
+  userRole!: string;
 
-
+  ngOnInit() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.userRole = user != null && user.role != null ? user.role : '';
   }
 }
 

@@ -31,6 +31,9 @@ import { OrderComponent } from './pages/order/order.component';
 import { AuthGuardComponent } from './pages/auth-guard/auth-guard.component';
 import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
 import { ListOderComponent } from './pages/admin/list-oder/list-oder.component';
+import { UpdatePasswordComponent } from './pages/account/update-password/update-password.component';
+import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
+import { AuthGuard } from './Guard/auth.guard';
 const routes: Routes = [
   //client
   {
@@ -41,6 +44,8 @@ const routes: Routes = [
       { path: 'products', component: ListproductComponent },
       { path: 'slide', component: SlideshowComponent },
       { path: 'blog', component: BlogpageComponent },
+      { path: 'blog/:id', component: BlogDetailsComponent },
+
       { path: 'invoice', component: InvoiceComponent },
       { path: 'user-payment', component: UserPaymentComponent },
       { path: 'checkout', component: CheckoutCartComponent },
@@ -49,8 +54,10 @@ const routes: Routes = [
         path: 'cart',
         component: CartComponent
       },
-      { path: 'infor-account', component: InforAccountComponent },
-      { path: 'update-account', component: UpdateAccountComponent },
+      { path: 'account/infor-account', component: InforAccountComponent },
+      { path: 'account/update-account', component: UpdateAccountComponent },
+      { path: 'account/update-password', component: UpdatePasswordComponent },
+
       {
         path: 'order',
         component: OrderComponent
@@ -62,7 +69,7 @@ const routes: Routes = [
   },
   //admin
   {
-    path: 'admin',
+    path: 'admin', canActivate: [AuthGuard],
     component: AdminLayoutComponent,
     children: [
       { path: '', component: DashboardComponent },

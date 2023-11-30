@@ -58,7 +58,7 @@ export class ProductService {
     const url = `${this.API_URL}/${id}`;
     return this.http.get<any>(url);
   }
-  addProducts(product: any, files: File[]): Observable<any> {
+  addProduct(product: any): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/add`, product, this.httpOptions);
   }
 

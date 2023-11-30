@@ -18,13 +18,13 @@ export class UserService {
   };
   constructor(private http: HttpClient) { }
   getUsers(): Observable<any> {
-    return this.http.get<any>(this.API_URL);
+    return this.http.get<any>(this.API_URL, this.httpOptions);
 
   }
 
   getUser(id: string): Observable<any> {
     const url = `${`http://localhost:5000/api/user/current`}/${id}`;
-    return this.http.get<any>(url);
+    return this.http.get<any>(url, this.httpOptions);
   }
   deleteUser(id: string): Observable<any> {
     return this.http.delete<any>(`http://localhost:5000/api/user/?_id=${id}`, this.httpOptions);
@@ -38,7 +38,7 @@ export class UserService {
 
   updateUser(user: any): Observable<any> {
     return this.http.put<any>(
-      `${`http://localhost:5000/api/user/current`}/${user.id}`,
+      `${`http://localhost:5000/api/user/current`}/${user._id}`,
       user, this.httpOptions
     );
   }

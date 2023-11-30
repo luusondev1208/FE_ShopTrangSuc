@@ -12,7 +12,22 @@
             <div class="flex space-x-2 hover:text-red-500 mt-[25px]">
               <button> <img class="w-[20px] -mt-[1px]" src="https://cdn.pnj.io/images/2023/user-regular.svg"
                   alt=""></button>
-              <button (click)="CheckLogin()"><a href="infor-account">Tài khoản của tôi</a></button>
+              <button (click)="CheckLogin()">
+                <nav class="">
+                  <ul class="space-x-5 ">
+                  <li>
+                    <a>Tài khoản của tôi</a>
+                    <ul class="submenu w-[110px]">
+                      <li><a href="account/infor-account">Hồ Sơ</a></li>
+                      <li><a href="">Đơn Hàng</a></li>
+                      <!-- <li><a href="account/update-password">Đổi Mật Khẩu</a></li> -->
+                      <li><a style="color:red"(click)="signOut()">Đăng xuất</a></li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+                </nav>
+              </button>
             </div>
           </a>
           <a href="#"

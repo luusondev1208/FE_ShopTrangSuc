@@ -107,35 +107,26 @@ export class AddProdcutComponent {
     }
 
 
-    this.productService.addProduct(formData).subscribe(
-      (response) => {
-        console.log('Product added successfully', response);
-      },
-      (error) => {
-        console.error('Error adding product', error);
-      }
-    );
+    
+  this.productService.addProduct(formData).subscribe(
+    (response) => {
+      this.toast.success({
+        detail: 'Thông báo',
+        summary: `Thêm sản phẩm thành công: ${response.createdProduct.title}`,
+        duration: 5000,
+        position: 'topRight'
+      });
+      this.router.navigate(['/admin/list']);
+    },
+    (error) => {
+      this.toast.error({
+        detail: 'Thông báo',
+        summary: 'Lỗi khi thêm sản phẩm!',
+        duration: 5000,
+        position: 'topRight'
+      });
+      console.error('Lỗi khi thêm sản phẩm: ', error);
+    }
+  );
   }
-  // onFileDropped(event: any) {
-  //   if (event instanceof FileList) {
-  //     for (let i = 0; i < event.length; i++) {
-  //       const file = event.item(i);
-  //       if (file) {
-  //         const reader = new FileReader();
-  //         reader.onload = (e) => {
-  //           if (e && e.target) {
-  //             this.imageList.push(e.target.result as string);
-  //           } else {
-  //             console.error('Lỗi: e hoặc e.target là null');
-  //           }
-  //         };
-  //         reader.readAsDataURL(file);
-  //       } else {
-  //         console.error('Lỗi: File là null');
-  //       }
-  //     }
-  //   } else {
-  //     console.error('Lỗi: Sự kiện không phải là FileList');
-  //   }
-  // }
 }

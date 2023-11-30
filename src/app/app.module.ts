@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -48,6 +49,7 @@ import { AuthGuardComponent } from './pages/auth-guard/auth-guard.component';
 import { OrderComponent } from './pages/order/order.component';
 import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
 import { TitleComponent } from './pages/title/title.component';
+import { ListOderComponent } from './pages/admin/list-oder/list-oder.component';
 
 
 
@@ -89,7 +91,8 @@ import { TitleComponent } from './pages/title/title.component';
     AuthGuardComponent,
     OrderComponent,
     ChangeStatusOrderComponent,
-    TitleComponent
+    TitleComponent,
+    ListOderComponent
 
 
   ],
@@ -107,6 +110,8 @@ import { TitleComponent } from './pages/title/title.component';
     NgToastModule,
     ToastNoAnimationModule.forRoot(),
     BrowserAnimationsModule, // required animations module
+    // NgbPaginationModule,
+    // NgbAlertModule,
     ToastrModule.forRoot(
 
       {
@@ -115,7 +120,8 @@ import { TitleComponent } from './pages/title/title.component';
         positionClass: 'toast-top-right',
         closeButton: true
       }
-    ), // ToastrModule added
+    ),
+    
   ],
   providers: [
     ToastrService,

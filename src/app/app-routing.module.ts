@@ -30,6 +30,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { OrderComponent } from './pages/order/order.component';
 import { AuthGuardComponent } from './pages/auth-guard/auth-guard.component';
 import { ChangeStatusOrderComponent } from './pages/change-status-order/change-status-order.component';
+import { ListOderComponent } from './pages/admin/list-oder/list-oder.component';
 const routes: Routes = [
   //client
   {
@@ -67,7 +68,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'list', component: ListComponent },
       { path: 'listCategori', component: ListCategoriComponent },
-
+      { path: 'listOrder', component: ListOderComponent },
       { path: 'listUser', component: ListuserComponent },
       { path: 'addUser', component: AddUserComponent },
     ],

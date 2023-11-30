@@ -29,6 +29,8 @@ filterOptions = {
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe(
       (response: any) => {
+        console.log(response);
+        
         this.products = response.productDatas;
       },
       (error) => {

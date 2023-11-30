@@ -35,6 +35,12 @@ export class BlogpageComponent {
       }
     );
   }
+
+  // open() {
+	// 	const modalRef = this.modalService.open(NgbdModalContent);
+	// 	modalRef.componentInstance.name = 'World';
+	// }
+
   ngOnInit() {
     this.loadData();
   }

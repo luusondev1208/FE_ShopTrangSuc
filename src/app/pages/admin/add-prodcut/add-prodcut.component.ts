@@ -63,6 +63,8 @@ export class AddProdcutComponent {
     this.categoryService.getCategories().subscribe(
       (response:any) => {
         this.categories = response.getAllCategory;
+        console.log(this.categories);
+        
       },
       (error) => {
         console.log(error);
@@ -98,6 +100,7 @@ export class AddProdcutComponent {
     formData.append('description', this.productForm.value.description);
     formData.append('brand', this.productForm.value.brand);
     formData.append('price', this.productForm.value.price);
+    formData.append('category', this.productForm.value.category);
     // ... append other form fields ...
 
     if (this.selectedImages) {
@@ -116,7 +119,7 @@ export class AddProdcutComponent {
         duration: 5000,
         position: 'topRight'
       });
-      this.router.navigate(['/admin/list']);
+      // this.router.navigate(['/admin/list']);
     },
     (error) => {
       this.toast.error({

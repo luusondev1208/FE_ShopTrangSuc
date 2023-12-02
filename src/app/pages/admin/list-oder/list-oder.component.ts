@@ -48,10 +48,14 @@ export class ListOderComponent {
         console.log(response);
         
         this.orders = response.response;
+        console.log(this.orders);
+        
         this.ordersSearch = response.response;
         
         
         const updatedOrdersObservables = this.orders.map((item: any) => {
+          // console.log(this.order);
+          
           
           const createdAtDate = new Date(item.createdAt);
           //   // console.log(item.createdAt);

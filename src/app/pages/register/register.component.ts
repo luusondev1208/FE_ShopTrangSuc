@@ -13,11 +13,11 @@ export class RegisterComponent {
   formRegister = this.fb.group({
     firstname: ['', [Validators.required]],
     lastname: ['', [Validators.required]],
-    email: ['', [Validators.required,Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
-    mobile: ['', [Validators.required,Validators.pattern(/^(09|03|07|08|05)\d{8}$/)]],
+    email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
+    mobile: ['', [Validators.required, Validators.pattern(/^(09|03|07|08|05)\d{8}$/)]],
     address: ['', [Validators.required]],
     name: ['', [Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
 
   })
 

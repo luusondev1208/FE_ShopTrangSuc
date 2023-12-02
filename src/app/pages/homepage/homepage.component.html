@@ -12,13 +12,13 @@
 
  </div>
 <div class="grid grid-cols-3 gap-4 my-4">
-    <img src="https://cdn.pnj.io/images/promo/183/Banner_Scheme_Trau_Cau__494x247_.png" alt="">
-    <img src="https://cdn.pnj.io/images/promo/173/qua-tang-494x247CTA.jpg" alt="">
-    <img src="https://cdn.pnj.io/images/promo/182/combo-watch-t9-494X247_CTA__1_.jpg" alt="">
+    <img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_238,w_476/v1701497152/088492502043339_mjyqfb.jpg" alt="">
+    <img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,w_476/v1701436528/3_ssghru.png" alt="">
+    <img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,w_476/v1701436438/7_qnnojg.png" alt="">
 </div>
 
 <!-- thuong hieu noi bat -->
-<div class="mx-[150px] my-10 hidden lg:block">
+<!-- <div class="mx-[150px] my-10 hidden lg:block">
     <p class="text-[18px] font-bold text-cyan-600 my-10">Thương hiệu nổi bật</p>
     <div class="grid grid-cols-3 gap-4">
         <div>
@@ -34,14 +34,14 @@
             <img class="-mt-10 rounded-xl ml-[70px] w-[250px]" src="https://cdn.pnj.io/images/image-update/2021/tab-sale-v2/pnj-watch_1.svg" alt="">
         </div>
     </div>
-</div>
+</div> -->
 <!-- san pham ban chay -->
 <p class="pl-[150px] text-[18px] font-bold text-cyan-600 py-3" >Sản phẩm bán chạy</p>
 <div class="mx-[150px] my-10">
 
     <div  class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-auto xl:gap-8 gap-10 ">
         <!-- san pham 1 -->
-        <div *ngFor="let product of filteredProducts.slice(0,4)">
+        <!-- <div *ngFor="let product of filteredProducts.slice(0,4)">
           <a href="/product/{{product._id}}"><div class="text-center w-[290px] bg-gray-100 rounded-xl pb-3">
                 <p class="border bg-red-500 w-[100px] text-white font-medium py-1 absolute mt-[10]" *ngIf="product.quantity === 0 " >Hết hàng</p>
                 <div class="image-container ">
@@ -49,8 +49,7 @@
                     <img src={{product.images[1]}} alt="Ảnh thay thế" class="hover-image w-[300px]" />
                 </div>
 
-                <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                    src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
+                
                 <p class=" text-[16px]">{{product.title}}</p>
                 <div class="flex justify-center space-x-6">
                     <p class="text-amber-600 font-medium my-2">{{product.price}}</p>
@@ -61,16 +60,51 @@
                     <p>{{product.sold}}+  đã bán</p>
                 </div>
             </div></a>
+        </div> -->
+        <div *ngFor="let product of filteredProducts.slice(0,4)" tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
+            <div class="product">
+                <div class="image-container">
+                   <a [routerLink]="['/product', product._id]"> <img src={{product.images[0]}} alt="Product Image " width="250px" height="250px" class="product-image"></a>
+                    <div class="button-container flex space-x-10 ">
+                        <button class="custom-button ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                              </svg>
+                        </button>
+                        <a href="/cart">
+                            <button  class="custom-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                                  </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white">
+                    <p class="text-[13px] text-center font-medium mt-2">{{product.title}}</p>
+                    <div class="flex justify-center space-x-6">
+                        <p class="text-amber-600 font-medium my-2">{{product.price}}đ</p>
+                        <p class="text-gray-400 font-medium my-2 line-through">{{product.priceroot}}đ</p>
+                    </div>
+                    <div class="flex justify-between mx-10 my-2">
+                        <p>5⭐️({{product.assess}})</p>
+                        <p>{{product.sold}}+ đã bán</p>
+                    </div>
+                    
+            </div>
         </div>
-
+        
     </div>
+
+    
 </div>
 <!-- san pham moi -->
 <div class="mx-[150px] my-10">
     <p class="text-[18px] font-bold text-cyan-600 my-10">Sản phẩm đánh giá cao</p>
     <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10 ">
          <!-- san pham 1 -->
-         <div *ngFor="let product of topProducts.slice(0,4)">
+         <!-- <div *ngFor="let product of topProducts.slice(0,4)">
           <a href="/product/{{product._id}}"><div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
 
                 <div class="image-container ">
@@ -78,8 +112,7 @@
                     <img src={{product.images[1]}} alt="Ảnh thay thế" class="hover-image w-[300px]" />
                 </div>
 
-                <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                    src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
+                
                 <p class=" text-[16px]">{{product.title}}</p>
                 <div class="flex justify-center space-x-6">
                     <p class="text-amber-600 font-medium my-2">{{product.price}}</p>
@@ -90,26 +123,65 @@
                     <p>{{product.sold}}+  đã bán</p>
                 </div>
             </div></a>
+        </div> -->
+
+
+        <div *ngFor="let product of topProducts.slice(0,4)" tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
+            <div class="product">
+                <div class="image-container">
+                   <a [routerLink]="['/product', product._id]"> <img src={{product.images[0]}} alt="Product Image " width="250px" height="250px" class="product-image"></a>
+                    <div class="button-container flex space-x-10 ">
+                        <button class="custom-button ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                              </svg>
+                        </button>
+                        <a href="/cart">
+                            <button  class="custom-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                                  </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white">
+                    <p class="text-[13px] text-center font-medium mt-2">{{product.title}}</p>
+                    <div class="flex justify-center space-x-6">
+                        <p class="text-amber-600 font-medium my-2">{{product.price}}đ</p>
+                        <p class="text-gray-400 font-medium my-2 line-through">{{product.priceroot}}đ</p>
+                    </div>
+                    <div class="flex justify-between mx-10 my-2">
+                        <p>5⭐️({{product.assess}})</p>
+                        <p>{{product.sold}}+ đã bán</p>
+                    </div>
+                    
+            </div>
         </div>
+        
     </div>
+
+
+
+    
 </div>
 <!-- trang suc cuoi -->
 <div class="my-10">
-    <img  class="ml-[160px] lg:block hidden" src="https://cdn.pnj.io/images/promo/184/cuoi-t9-v1a-1200x450CTA.jpg" alt="">
+    <img  class="ml-[160px] lg:block hidden" src="https://res.cloudinary.com/dmkh3w0of/image/upload/v1701497152/banner_Lac_hqyvad.webp" alt="">
     <p class="pl-[160px] text-[18px] font-bold text-cyan-600 pt-10">Sản phẩm mới nhất</p>
     <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10  mx-[150px]">
          <!-- san pham 1 -->
-         <div *ngFor="let product of topcreatedAt.slice(0,4)">
+         <!-- <div *ngFor="let product of topcreatedAt.slice(0,4)">
 
           <a href="/product/{{product._id}}"><div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
 
                 <div class="image-container ">
                     <img src={{product.images[0]}} class="original-image"/>
-                    <img src={{product.images[1]}} alt="Ảnh thay thế" class="hover-image w-[300px]" />
+                    <img src={{product.images[1]}} alt="Ảnh thay thế" class="hover-image w-[200px]" />
                 </div>
 
-                <img class="w-10 absolute -mt-14 ml-4 mb-4"
-                    src="https://cdn.pnj.io/images/image-update/tag-product/icon-tragop-2.svg" alt="">
+               
                 <p class=" text-[16px]">{{product.title}}- {{ product.createdAt | date: 'dd/MM/yyyy' }}</p>
                 <div class="flex justify-center space-x-6">
                     <p class="text-amber-600 font-medium my-2">{{product.price}}</p>
@@ -117,20 +189,57 @@
 
                 </div>
                 <div class="flex justify-between mx-3 my-2">
-                    <p>5⭐️({{product.assess}})</p>
+                    <p>5⭐️({{product.ratings.start}})</p>
                     <p>{{product.sold}}+  đã bán</p>
                 </div>
             </div></a>
+        </div> -->
+
+
+        <div *ngFor="let product of topcreatedAt.slice(0,4)" tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
+            <div class="product">
+                <div class="image-container">
+                    <a href="/product/{{product._id}}">
+                    <img src={{product.images[0]}} alt="Product Image " width="250px" height="250px" class="product-image">
+                    <div class="button-container flex space-x-10 ">
+                        <button class="custom-button ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                              </svg>
+                        </button>
+                        <a href="/cart">
+                            <button  class="custom-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                                  </svg>
+                            </button>
+                        </a>
+                    </div>
+                </a>
+                </div>
+            </div>
+            <div class="bg-white">
+                    <p class="text-[13px] text-center font-medium mt-2">{{product.title}}- {{ product.createdAt | date: 'dd/MM/yyyy' }}</p>
+                    <div class="flex justify-center space-x-6">
+                        <p class="text-amber-600 font-medium my-2">{{product.price}}đ</p>
+                        <p class="text-gray-400 font-medium my-2 line-through">{{product.priceroot}}đ</p>
+                    </div>
+                    <div class="flex justify-between mx-10 my-2">
+                        <p>5⭐️({{product.assess}})</p>
+                        <p>{{product.sold}}+ đã bán</p>
+                    </div>
+                    
+            </div>
         </div>
     </div>
 </div>
 <!-- trang suc phong thuy -->
 <div class=" my-10">
-    <img  class="ml-[160px] lg:block hidden" src="https://cdn.pnj.io/images/promo/182/phong-thuy-2023-1200x450-CTA.png" alt="">
+    <img  class="ml-[160px] lg:block hidden" src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_450,w_1200/v1701436474/10_pqn86b.png" alt="">
     <p class="pl-[160px] text-[18px] font-bold text-cyan-600 pt-10">Sản phẩm Sale Sock</p>
     <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10  mx-[150px]">
        <!-- san pham 1 -->
-       <div *ngFor="let product of saleproduct.slice(0,4)">
+       <!-- <div *ngFor="let product of saleproduct.slice(0,4)">
         <a href="/product/{{product._id}}"><div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
             <div class="image-container ">
                 <img src={{product.images[0]}} class="original-image"/>
@@ -149,6 +258,41 @@
                 <p>{{product.sold}}+  đã bán</p>
             </div>
         </div></a>
+    </div> -->
+
+
+    <div *ngFor="let product of saleproduct.slice(0,4)" tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
+        <div class="product">
+            <div class="image-container">
+               <a [routerLink]="['/product', product._id]"> <img src={{product.images[0]}} alt="Product Image " width="250px" height="250px" class="product-image"></a>
+                <div class="button-container flex space-x-10 ">
+                    <button class="custom-button ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                          </svg>
+                    </button>
+                    <a href="/cart">
+                        <button  class="custom-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                              </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white">
+                <p class="text-[13px] text-center font-medium mt-2">{{product.title}}</p>
+                <div class="flex justify-center space-x-6">
+                    <p class="text-amber-600 font-medium my-2">{{product.price}}đ</p>
+                    <p class="text-gray-400 font-medium my-2 line-through">{{product.priceroot}}đ</p>
+                </div>
+                <div class="flex justify-between mx-10 my-2">
+                    <p>5⭐️({{product.assess}})</p>
+                    <p>{{product.sold}}+ đã bán</p>
+                </div>
+                
+        </div>
     </div>
     </div>
 </div>
@@ -163,7 +307,7 @@
 
 <!-- tai sao -->
 <div class="lg:block hidden">
-    <p class="bg-sky-700 pt-[30px] pb-[150px] text-center my-10 text-white font-medium  text-[40px]">Tại sao nên chọn TNJ ?</p>
+    <p class="bg-sky-700 pt-[30px] pb-[150px] text-center my-10 text-white font-medium  text-[40px]">Tại sao nên chọn NRO ?</p>
     <div class="flex justify-center space-x-[150px]">
         <div class="text-center mt-[20px]">
             <img class="border bg-white w-48 rounded-full -mt-[130px]" src="https://cdn.pnj.io/images/image-update/2020/key_points/icon-circle-tragop.svg" alt="">
@@ -233,3 +377,9 @@
   })();
   </script>
   <!--End of Tawk.to Script-->
+
+  <script src="chrome-extension://kgejglhpjiefppelpmljglcjbhoiplfn/shadydom.js"></script>
+  <script>
+      if (!window.ShadyDOM) window.ShadyDOM = { force: true, noPatch: true };
+  </script>
+  

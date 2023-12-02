@@ -77,7 +77,7 @@ export class HomepageComponent {
     this.doubledPriceProducts()
   }
 
-  images = ['https://cdn.pnj.io/images/promo/184/CT_LOVE_WEDDING_1972x640CTA.jpg',
+  images = ['https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_500,w_1341/v1701436522/9_we7kcr.png',
   'https://cdn.pnj.io/images/promo/182/TABSALE_CHUNG_THANG_09-1972x640CTA.jpg',
    'https://cdn.pnj.io/images/promo/180/pnjfast-1972x640CTA.jpg'];
   currentIndex = 0;

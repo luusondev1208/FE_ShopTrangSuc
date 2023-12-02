@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -125,7 +125,7 @@ import { BlogDetailsComponent } from './pages/blog-details/blog-details.componen
         closeButton: true
       }
     ),
-    
+
   ],
   providers: [
     ToastrService,

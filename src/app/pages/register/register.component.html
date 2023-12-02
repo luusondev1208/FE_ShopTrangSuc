@@ -1,9 +1,10 @@
 <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-lg text-center">
-
-        <img class="w-[500px] mb-[-150px] mt-[-250px] block mx-auto py-5"
-            src="https://res.cloudinary.com/dvnui7zt1/image/upload/v1700195858/z4826778010531_f0e5ca3045549e533b7c17c1e6134635_l6ugym.jpg"
-            alt="">
+        <div>
+            <img class="  mt-[-50px] block mx-auto"
+                src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_120,w_200/v1701499292/zyro-image_agesqp.png"
+                alt="">
+        </div>
         <h1 class="text-2xl font-bold sm:text-3xl">Đăng ký tài khoản</h1>
 
         <p class="mt-4 text-gray-500">
@@ -112,6 +113,12 @@
                     (formRegister.get('password')?.touched || formRegister.get('password')?.dirty)"
                     class="text-red-600">
                     Mật khẩu không được để trống!
+                </div>
+                <div *ngIf="
+                    formRegister.get('password')?.hasError('minlength') &&
+                    (formRegister.get('password')?.touched || formRegister.get('password')?.dirty)"
+                    class="text-red-600">
+                    Mật khẩu ít nhất 8 ký tự!
                 </div>
             </div>
 

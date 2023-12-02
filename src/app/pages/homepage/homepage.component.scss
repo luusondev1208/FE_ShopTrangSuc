@@ -1,56 +1,287 @@
+// .image-container {
+//     position: relative;
+//     width: 250px;
+//     height: 200px;
+//     margin-top: -30px;
+//     margin-left: 18px;
+//     margin-bottom: 20px;
+//     padding: 10px 0px 0px 0px;
+//   }
+  
+//   .image-container .hover-image {
+//     display: none;
+//     position: absolute;
+//   }
+  
+//   .image-container:hover .original-image {
+//     display: none;
+//   }
+  
+//   .image-container:hover .hover-image {
+//     display: block;
+//   }
+//   // .image-container {
+//   //   width: 200px;
+//   //   height: 200px;
+//   //   background-size: cover;
+//   //   transition: background-image 0.3s;
+//   // }
+  
+//   // .image-container:hover {
+//   //   filter: brightness(100%);
+//   //   /* Điều chỉnh các hiệu ứng CSS khi hover */
+//   // }
+  
+//   .slideshow {
+//     width: 100%;
+//     height: 400px;
+//     overflow: hidden;
+//   }
+  
+//   .slide {
+//     width: 100%;
+//     height: 100%;
+//     display: none;
+//   }
+  
+//   .slide img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//   }
+  
+//   .slide.active {
+//     display:block;
+//   }
+  
+
+
+
+// .image-container {
+//   position: relative;
+//   width: 250px;
+//   height: 200px;
+//   margin-top: -30px;
+//   margin-left: 10px;
+//   margin-bottom: 20px;
+//   padding: 10px 0px 0px 0px;
+// }
+
+// .image-container .hover-image {
+//   display: none;
+//   position: absolute;
+// }
+
+// .image-container:hover .original-image {
+//   display: none;
+// }
+
+// .image-container:hover .hover-image {
+//   display: block;
+// }
+
+// show
+
+.slideshow {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin-top: -30px;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide.active {
+  display:block;
+}
+
+/* CSS */
+// .product-container {
+//   position: relative;
+// }
+
+// .buy-button {
+//   position: absolute;
+//   top: 15px;
+//   margin-left: 52px;
+//   transform: translate(-50%, -50%);
+//   display: none; /* Ẩn nút ban đầu */
+//   // padding: 5px 20px;
+//   width: 100px;
+//   padding: 6px;
+//   background-color: #3498db;
+//   color: #fff;
+//   border: none;
+//   cursor: pointer;
+// }
+// .buy-buttons {
+//   position: absolute;
+//   top: 15px;
+//   left: 70%;
+//   margin-left: 30px;
+//   transform: translate(-50%, -50%);
+//   display: none; /* Ẩn nút ban đầu */
+//   width: 100px;
+//   padding: 6px;
+//   background-color: #3498db;
+//   color: #fff;
+//   border: none;
+//   cursor: pointer;
+// }
+
+// .product-container:hover .buy-button {
+//   display: block;
+// }
+
+// .product-container:hover .buy-buttons {
+//   display: block;
+// }
+
+
+// .product {
+//   position: relative;
+//   width: 300px; /* Điều chỉnh kích thước theo ý muốn */
+// }
+
 .image-container {
-    position: relative;
-    width: 250px;
-    height: 200px;
-    margin-top: -30px;
-    margin-left: 18px;
-    margin-bottom: 20px;
-    padding: 10px 0px 0px 0px;
-  }
-  
-  .image-container .hover-image {
-    display: none;
-    position: absolute;
-  }
-  
-  .image-container:hover .original-image {
-    display: none;
-  }
-  
-  .image-container:hover .hover-image {
-    display: block;
-  }
-  // .image-container {
-  //   width: 200px;
-  //   height: 200px;
-  //   background-size: cover;
-  //   transition: background-image 0.3s;
-  // }
-  
-  // .image-container:hover {
-  //   filter: brightness(100%);
-  //   /* Điều chỉnh các hiệu ứng CSS khi hover */
-  // }
-  
-  .slideshow {
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-  }
-  
-  .slide {
-    width: 100%;
-    height: 100%;
-    display: none;
-  }
-  
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .slide.active {
-    display:block;
-  }
-  
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.button-container {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+
+.product:hover .product-image {
+  transform: scale(1.1);
+}
+
+.product:hover .button-container {
+  bottom: 10px;
+  opacity: 1;
+}
+
+.custom-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  text-align: center;
+}
+
+.custom-button:hover {
+  background-color: #2980b9;
+  border-color: #2980b9;
+  transform: translateY(-2px); /* Di chuyển nút lên trên khi hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ */
+}
+
+.custom-button:active {
+  transform: translateY(1px); /* Di chuyển nút xuống dưới khi được nhấn */
+  box-shadow: none; /* Xóa bóng đổ */
+}
+
+// .buy-button,
+// .add-to-cart-button {
+//   padding: 8px 16px;
+//   background-color: #3498db; /* Màu sắc theo ý muốn */
+//   color: white;
+//   border: none;
+//   border-radius: 4px;
+//   cursor: pointer;
+//   margin: 4px;
+//   transition: background-color 0.3s ease;
+// }
+
+// .buy-button:hover,
+// .add-to-cart-button:hover {
+//   background-color: #2980b9; /* Màu sắc hover theo ý muốn */
+// }
+
+.product {
+  position: relative;
+  width: 200px; /* Kích thước sản phẩm */
+  border: 2px solid transparent; /* Border ban đầu */
+  border-radius: 5px; /* Góc bo tròn */
+  overflow: hidden; /* Loại bỏ việc border vượt ra ngoài */
+  transition: all 0.3s ease; /* Hiệu ứng transition */
+  margin-left: 40px;
+  background-color: rgb(248 250 252);
+  margin-top: 10px;
+}
+
+.product:hover {
+  border-color: #3498db; /* Màu sắc của border khi hover */
+  background-color: #f0f0f0; /* Màu nền khi hover */
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease; /* Hiệu ứng transform */
+  margin-bottom: 15px;
+}
+
+.product:hover .product-image {
+  transform: scale(1.1); /* Phóng to hình ảnh khi hover */
+}
+
+//select
+/* Thiết lập giao diện chọn */
+.custom-select {
+  display: block;
+  font-size: 16px;
+  padding: 8px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('https://cdn.jsdelivr.net/gh/encharm/Font-Awesome-SVG-PNG/black/svg/chevron-down.svg');
+  background-position: right 10px top 50%;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  color: #333; /* Màu chữ */
+  background-color: #f5f5f5; /* Màu nền */
+}
+
+/* Hover effect */
+.custom-select:hover {
+  border-color: #999;
+}
+
+/* Focus effect */
+.custom-select:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+

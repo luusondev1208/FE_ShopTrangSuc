@@ -24,8 +24,20 @@ export class OrderService {
     return this.http.get(`${this.apiUrl}`);
   }
 
+  
+  // updateStatus(status:any): Observable<any> {
+  //   return this.http.put<any>(`${this.apiUrl}/status`, status);
+  // }
+  
+  updateOrderStatus(id: string, newStatus: string) {
+    const url = `${this.apiUrl}/status/${id}`;
+    const body = { status: newStatus }; // Dữ liệu cần gửi đi để cập nhật trạng thái
+
+    return this.http.put(url, body); // Gửi yêu cầu PUT đến API
+  }
+
   getAllOrders(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/admin`);
+    return this.http.get(`${this.apiUrl}/getAll`);
   }
 
   createPaymentUrl(data: { amount: number, language: string }): Observable<any> {

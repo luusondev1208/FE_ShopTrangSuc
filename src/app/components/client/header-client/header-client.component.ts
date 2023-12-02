@@ -14,7 +14,7 @@ export class HeaderClientComponent {
   isMenuOpen: boolean = true;
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router, private authService: AuthService,private toast:NgToastService) {
+  constructor(private productService: ProductService, private router: Router, private authService: AuthService, private toast: NgToastService) {
 
   }
   loadData() {
@@ -32,12 +32,13 @@ export class HeaderClientComponent {
   }
   ngOnInit() {
     this.loadData();
+    this.ButtonAdmin();
   }
   products: any = []
   searchResults: any[] = [];
   searchTerm: string = '';
   filteredList: any[] = [];
-  
+
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -49,7 +50,7 @@ export class HeaderClientComponent {
     this.products = this.filteredList
     // console.log(this.products)
   }
-  
+
   CheckLogin(): boolean {
     if (this.authService.checklogin()) {
       this.router.navigate(['/infor-account']);
@@ -61,21 +62,27 @@ export class HeaderClientComponent {
     }
   }
   signOut() {
-    var result= confirm("Bạn có muốn đăng xuất không?")
-    if(result){
-     this.authService.logout();
-     this.toast.success({ detail: "Thông báo", summary: 'Đăng Xuất thành công!', duration: 5000, position: "topRight" });
-     this.router.navigate(['/login']);
+    var result = confirm("Bạn có muốn đăng xuất không?")
+    if (result) {
+      this.authService.logout();
+      this.toast.success({ detail: "Thông báo", summary: 'Đăng Xuất thành công!', duration: 5000, position: "topRight" });
+      this.router.navigate(['/login']);
     }
-    else if(!localStorage.getItem("user")){
-            alert("người dùng chưa đăng nhập")
+    else if (!localStorage.getItem("user")) {
+      alert("người dùng chưa đăng nhập")
     }
-    else{
+    else {
       alert("Người dùng không đăng xuất ");
-      
+
     }
-    
-  
+
+
+  }
+  userRole!: string;
+
+  ButtonAdmin() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.userRole = user != null && user.role != null ? user.role : '';
   }
 
 }

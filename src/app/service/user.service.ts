@@ -38,7 +38,7 @@ export class UserService {
 
   updateUser(user: any): Observable<any> {
     return this.http.put<any>(
-      `${`http://localhost:5000/api/user/current`}/${user._id}`,
+      `${`http://localhost:5000/api/user/current`}`,
       user, this.httpOptions
     );
   }

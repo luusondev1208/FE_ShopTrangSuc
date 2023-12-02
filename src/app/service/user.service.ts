@@ -42,4 +42,8 @@ export class UserService {
       user, this.httpOptions
     );
   }
+  updatePass(data:any):Observable<any>{
+    return this.http.put<any>(`${this.API_URL}/current/password`,data);
+  
+}
 }

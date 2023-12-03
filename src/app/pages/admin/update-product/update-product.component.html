@@ -282,10 +282,8 @@
               <p class="bg-white  pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600
                   ">Ảnh</p>
                   <input
-                  type="file" multiple="multiple" accept="image/*"
-                 
-                  formControlName="images"
-                    name="images"
+                  type="file" multiple 
+                  (change)="onFilesSelected($event)"
                     id="images"
                     placeholder="Nhập ảnh"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -294,6 +292,35 @@
           *ngIf="
           productForm.get('images')?.hasError('required')&&
           (productForm.get('images')?.touched || productForm.get('images')?.dirty)
+          "
+          >
+         Vui lòng nhập images sản phẩm
+          </p>
+          <p class="text-red-500"
+          *ngIf="
+          productForm.get('images')?.hasError('minlength')&&
+          (productForm.get('images')?.touched || productForm.get('images')?.dirty)
+          "
+          >
+          Vui lòng nhập images sản phẩm trên 6 ký tự
+          </p>
+            </div>
+            <div class="relative ">
+              <p class="bg-white  pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600
+                  ">Ảnh</p>
+                  <input
+                  type="text" multiple="multiple" accept="image/*"
+                 
+                  formControlName="imageschange"
+                    name="imageschange"
+                    id="imageschange"
+                    placeholder="Nhập ảnh"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  />
+                  <p class="text-red-500"
+          *ngIf="
+          productForm.get('imageschange')?.hasError('required')&&
+          (productForm.get('imageschange')?.touched || productForm.get('images')?.dirty)
           "
           >
          Vui lòng nhập images sản phẩm

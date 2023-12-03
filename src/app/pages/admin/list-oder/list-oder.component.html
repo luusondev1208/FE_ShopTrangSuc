@@ -83,7 +83,7 @@
                   Ngày tạo
                 </th>
                 <th *ngIf="showText" scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                  Email
+                  Địa chỉ
                 </th>
                 <th *ngIf="!showText" scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                   Tổng tiền
@@ -128,7 +128,7 @@
                   {{datePart}}
                 </td>
                 <td *ngIf="showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{order.email}}
+                  {{order.address}}
                 </td>
                 <td *ngIf="!showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   {{order.totalPrice}}
@@ -145,7 +145,7 @@
 
 
                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap space-x-4">
-                 <a>
+                 <a >
                   <button *ngIf="!showText" class="relative inline-block px-3 py-1 font-semibold text-green-500 leading-tight">
                     <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
                     <span (click)="changeStatus(order, newStatus)" class="relative"
@@ -234,7 +234,7 @@
                         <p class="text-gray-500">Bạc</p>
                       </ng-container>
                       <ng-template #goldBlock>
-                        <ng-container *ngIf="order.ord <= 20; else diamondBlock">
+                        <ng-container *ngIf="order.ord <= 15; else diamondBlock">
                           <p class="text-yellow-500">Vàng</p>
                         </ng-container>
                         <ng-template #diamondBlock>

@@ -31,9 +31,9 @@ export class UpdateCategoriComponent {
       this.categoryService.getCategory(id).subscribe(
         (category) => {
           console.log(category);
-          this.category = category.categoryData;
+          this.category = category.getOneCategory;
           this.categoryForm.patchValue({
-            title: category.categoryData.title,
+            title: category.getOneCategory.title,
           })
           
         },

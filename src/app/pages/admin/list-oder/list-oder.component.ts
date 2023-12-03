@@ -55,6 +55,8 @@ export class ListOderComponent {
         
         const updatedOrdersObservables = this.orders.map((item: any) => {
           // console.log(this.order);
+          console.log(item.user);
+          
           
           
           const createdAtDate = new Date(item.createdAt);
@@ -77,7 +79,10 @@ export class ListOderComponent {
             
             this.orders[index].name = response.use.firstname +" "+ response.use.lastname;
             this.orders[index].phone = response.use.mobile;
+            this.orders[index].address = response.use.address;
             this.orders[index].email = response.use.email;
+            console.log(response.use.address);
+            
             this.orders[index].ord = response.use.orders?.length;
             this.ordersSearch[index].name = response.use.firstname +" "+ response.use.lastname;
             this.ordersSearch[index].phone = response.use.mobile;
@@ -107,6 +112,7 @@ export class ListOderComponent {
   
 
 changeStatus(order: any, newStatus:string) {
+ console.log(newStatus);
  
   switch (order.status) {
     case "Chờ thanh toán":
@@ -126,7 +132,10 @@ changeStatus(order: any, newStatus:string) {
       
       break;
   }
-  this.orderService.updateOrderStatus(this.order.id, newStatus).subscribe(
+  console.log(order.status);
+  
+  
+  this.orderService.updateOrderStatus(order._id, String(order.status)).subscribe(
     response => {
       console.log('Trạng thái đã được cập nhật thành công!', response);
       this.order.status = newStatus; // Cập nhật trạng thái trong giao diện sau khi thành công

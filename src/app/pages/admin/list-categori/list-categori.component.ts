@@ -15,7 +15,10 @@ export class ListCategoriComponent {
   constructor(private categoryService: CategoryService, private router: Router, private toast:NgToastService) {
     this.categoryService.getCategories().subscribe(
       (response:any) => {
+        
+        
         this.categories = response.getAllCategory;
+        console.log(this.categories);
       },
       (error) => {
         console.log(error);

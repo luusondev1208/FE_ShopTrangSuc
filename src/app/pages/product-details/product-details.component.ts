@@ -88,6 +88,7 @@ export class ProductDetailsComponent implements OnInit {
       );
     } else {
 
+      this.router.navigate(['/login']);
       console.log('Vui lòng đăng nhập trước khi thêm giỏ hàng.');
     }
   }

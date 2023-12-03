@@ -33,6 +33,7 @@ export class HeaderClientComponent {
   ngOnInit() {
     this.loadData();
     this.ButtonAdmin();
+
   }
   products: any = []
   searchResults: any[] = [];
@@ -84,5 +85,4 @@ export class HeaderClientComponent {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.userRole = user != null && user.role != null ? user.role : '';
   }
-
 }

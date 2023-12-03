@@ -6,6 +6,7 @@ import { CartService } from 'src/app/service/cart.service';
 import { ChangeDetectionStrategy, ChangeDetectorRef, NgZone } from '@angular/core';
 import { sizeOptions } from 'src/app/shared/model/size';
 import { AuthService } from 'src/app/service/auth.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-product-details',
@@ -28,6 +29,7 @@ export class ProductDetailsComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private zone: NgZone,
     private authService: AuthService,
+    private toast: NgToastService
 
   ) {
     activatedRoute.params.subscribe((params) => {
@@ -106,5 +108,16 @@ export class ProductDetailsComponent implements OnInit {
         console.error('Error getting size options', error);
       }
     );
+  }
+  CheckLogin(): boolean {
+    if (this.authService.checklogin()) {
+      this.router.navigate(['/cart']);
+      return true;
+
+    } else {
+      this.toast.error({ detail: "Thông báo", summary: 'Vui lòng đăng nhập để tiếp tục!', duration: 5000, position: "topRight" });
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 }

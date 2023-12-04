@@ -101,6 +101,34 @@
           </p>
            
               </div>
+              <div class="relative ">
+                <p class="bg-white  pr-2 pl-2-mb-3 mb-10 ml-2 font-medium text-gray-600
+                    ">Đánh giá</p>
+                <input  [(ngModel)]="products.assess"
+                formControlName="assess"
+                  type="number"
+                  name="assess"
+                  id="assess" placeholder="assess" class="border placeholder-gray-400 focus:outline-none
+                    focus:border-black w-full pt-3 pr-4 pb-3 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
+                    border-gray-300 rounded-md"/>
+                    <p class="text-red-500"
+            *ngIf="
+            productForm.get('assess')?.hasError('required')&&
+            (productForm.get('assess')?.touched || productForm.get('assess')?.dirty)
+            "
+            >
+           Vui lòng nhập assess sản phẩm
+            </p>
+            <p class="text-red-500"
+          *ngIf="
+          productForm.get('assess')?.hasError('min')&&
+          (productForm.get('assess')?.touched || productForm.get('assess')?.dirty)
+          "
+          >
+          Vui lòng nhập assess sản phẩm lớn hơn 0
+          </p>
+           
+              </div>
              </div>
              <div class="relative">
               <p class="bg-white  pr-2 pl-2-mb-3 mb-10 ml-2 font-medium text-gray-600">Ảnh</p>

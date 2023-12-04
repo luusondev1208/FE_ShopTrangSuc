@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { ProductService } from '../service/product.service';
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
@@ -8,7 +9,8 @@ import { Router, NavigationEnd } from '@angular/router';
 export class SlideshowComponent {
   currentUrl: any
   currentUrls: any
-  constructor(private router: Router) {
+  constructor(private router: Router,  private productService: ProductService, ) {
+   
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = this.router.url.split("/").slice(-2)[1]
@@ -18,5 +20,6 @@ export class SlideshowComponent {
       }
     
     })
+   
   }
 }

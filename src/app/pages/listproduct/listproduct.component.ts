@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./listproduct.component.scss'],
 })
 export class ListproductComponent {
+  categories: any = []
+  title: any
   filteredProducts: any = [];
   showForm: boolean = false;
   showForms: boolean = false;
@@ -23,7 +26,19 @@ filterOptions = {
   filterBrand: 'option1'
 };
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private productService: ProductService, private router: Router, private categoryService: CategoryService) {
+    this.categoryService.getCategories().subscribe(
+      (response:any) => {
+        
+        
+        this.categories = response.getAllCategory;
+        console.log(this.categories);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
   isHovering: boolean = false;
   //lấy dữ liệu
   loadData() {

@@ -154,8 +154,8 @@ trang sức người thân mùa trung thu đoàn viên
     </div>
    <div *ngFor="let item of blogs.slice(0, 5)">
     <div class="flex space-x-4 my-5">
-        <img class="w-[270px]"
-            src={{item.image}}
+        <img class="w-[250px]"
+            src={{item.images[0]}}
             alt="">
         <div>
             <p class="text-[20px] hover:text-gray-500">{{item.title}}</p>
@@ -175,7 +175,7 @@ trang sức người thân mùa trung thu đoàn viên
     <div *ngFor="let item of blogs, index as i">
         <div *ngIf="i>=5" class="flex space-x-4 my-5">
            
-                <a [routerLink]="['/blog',item._id]"> <img class="w-[270px]"
+                <a [routerLink]="['/blog',item._id]"> <img class="w-[1300px]"
                     src={{item.images[0]}}
                     alt=""></a>
             <div>

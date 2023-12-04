@@ -16,8 +16,9 @@ import { NgToastService } from 'ng-angular-popup';
 export class InforAccountComponent {
   // userData!:any;
   user!: any;
+  userRole!: string;
   userForm: any = {};
-
+  showbtn: boolean = false
 
   constructor(
 
@@ -39,10 +40,10 @@ export class InforAccountComponent {
 
       this.userService.getUser(id).subscribe(
         (user) => {
-          // console.log(user);
+          console.log(user);
           this.user = user.use;
-
-
+          this.userRole = user.use.role
+          
         },
         (error) => console.log(error.message)
       );
@@ -58,6 +59,15 @@ export class InforAccountComponent {
     }
 
 
+  }
+  
+
+  ButtonAdmin() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.userRole = user != null && user.role != null ? user.role : '';
+  }
+  show(){
+    this.showbtn = !this.showbtn
   }
 }
 

@@ -78,4 +78,7 @@ export class CategoryService {
     return this.http.delete<any>(`${this.API_URL}/${id}`, this.httpOptions);
   }
 
+  getAllCategory(): Observable<any> {
+    return this.http.get<any>(`http://localhost:5000/api/blogcategory/`, this.httpOptions);
+  }
 }

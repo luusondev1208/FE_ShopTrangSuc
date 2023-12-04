@@ -119,7 +119,7 @@ export class AddProdcutComponent {
         duration: 5000,
         position: 'topRight'
       });
-      // this.router.navigate(['/admin/list']);
+      this.router.navigate(['/admin/list']);
     },
     (error) => {
       this.toast.error({

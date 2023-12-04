@@ -34,7 +34,7 @@ export class ChangeStatusOrderComponent implements OnInit {
       (response) => {
         console.log('Dữ liệu đơn hàng:', response.orders);
         this.orderDetails = response.orders;
-        this.logOrderDetails(); // Gọi hàm log để hiển thị dữ liệu trong console
+     
       },
       (error) => {
         console.error('Lỗi khi lấy dữ liệu đơn hàng:', error);
@@ -42,23 +42,4 @@ export class ChangeStatusOrderComponent implements OnInit {
     );
   }
 
-  // Hàm log để hiển thị thông tin trong console
-  logOrderDetails() {
-    for (const order of this.orderDetails) {
-      console.log('Địa chỉ:', order.address);
-      console.log('Số lượng sản phẩm:', order.products.length);
-      console.log('Tổng giá tiền:', order.totalPrice);
-      console.log('Tổng giá tiền:', order.products?.product);
-      // Thêm các trường khác tùy ý
-      for (const product of order.products) {
-        // Kiểm tra xem có trường `product` và có trường `title` không
-        if (product.product && product.product.title) {
-          console.log('Tiêu đề sản phẩm:', product.product.title);
-          // Thêm các trường khác tùy ý
-        } else {
-          console.log('Không có thông tin sản phẩm hoặc tiêu đề.');
-        }
-      }
-    }
-  }
 }

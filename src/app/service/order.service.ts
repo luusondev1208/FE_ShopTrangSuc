@@ -24,7 +24,10 @@ export class OrderService {
     return this.http.get(`${this.apiUrl}`);
   }
 
-  
+  getOrderDetails(orderIds: string[]): Observable<any> {
+    const url = `${this.apiUrl}/getOrder`; // Thêm "/getOrder" vào URL
+    return this.http.post<any>(url, { orderIds });
+  }
   // updateStatus(status:any): Observable<any> {
   //   return this.http.put<any>(`${this.apiUrl}/status`, status);
   // }

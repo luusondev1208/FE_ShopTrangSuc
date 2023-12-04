@@ -52,6 +52,9 @@ import { TitleComponent } from './pages/title/title.component';
 import { ListOderComponent } from './pages/admin/list-oder/list-oder.component';
 import { UpdatePasswordComponent } from './pages/account/update-password/update-password.component';
 import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
+import { AddBlogComponent } from './pages/admin/blog/add-blog/add-blog.component';
+import { ListBlogComponent } from './pages/admin/blog/list-blog/list-blog.component';
+import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.component';
 
 
 
@@ -97,6 +100,9 @@ import { BlogDetailsComponent } from './pages/blog-details/blog-details.componen
     ListOderComponent,
     UpdatePasswordComponent,
     BlogDetailsComponent,
+    AddBlogComponent,
+    ListBlogComponent,
+    UpdateBlogComponent,
 
 
   ],

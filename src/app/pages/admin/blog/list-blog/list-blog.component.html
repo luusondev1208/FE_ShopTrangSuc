@@ -70,27 +70,52 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let blog of blogs, index as i," class="bg-gray-100 border-b">
+                <tr *ngFor="let blog of blogs, index as i, " class="bg-gray-100 border-b">
                   <td class="px-6  whitespace-nowrap text-sm text-gray-900">{{i+1}}</td>
-                  <td class="text-sm title text-gray-900 font-light px-6  whitespace-nowrap w-[200px]">
-                    {{blog.title}}
+                  <td class="text-sm text-gray-900 font-light px-6 whitespace-nowrap">
+                    <div *ngIf="!isExpanded">
+                      {{ blog.title | slice:0:15 }}
+                      <button (click)="toggleExpand()" *ngIf="blog.title.length > 50">......</button>
+                      
+                    </div>
+                    <div *ngIf="isExpanded" >
+                      {{ blog.title }}
+                      <button (click)="toggleExpand()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                        </svg>
+                      </button>
+                    </div>
                   </td>
-                  <td  class="text-sm text-gray-900 font-light pl-6  whitespace-nowrap">
-                    <img class="w-[90px]" src={{blog.images[0]}} alt="">
+                  <td  class="text-sm text-gray-900 font-light px-2 py-2 whitespace-nowrap">
+                    <img class="w-[200px]" src={{blog.images[0]}} alt="">
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
-                    {{blog.description}}
+                  <td class="text-sm text-gray-900 font-light px-6 whitespace-nowrap">
+                    <div *ngIf="!isExpanded">
+                      {{ blog.description | slice:0:15 }}
+                      <button (click)="toggleExpand()" *ngIf="blog.description.length > 50">......</button>
+                      
+                    </div>
+                    <div *ngIf="isExpanded" >
+                      {{ blog.description }}
+                      <button (click)="toggleExpand()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                        </svg>
+                      </button>
+                    </div>
                   </td>
+                  
                   <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
                     {{blog.numberViews}}
                   </td>
                   <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
                     {{blog.likes}}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
-                    {{blog.createdAt}}
+                  <td  class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
+                    {{blog.datePart}}
                   </td>
-                  <td class="text-sm text-gray-900 font-light pl-12  whitespace-nowrap space-x-4">
+                  <td class="text-sm text-gray-900 font-light pr-7 whitespace-nowrap space-x-4">
                     <a [routerLink]="'/admin/updateBlog/' + blog._id"> <button
                         class="hover:text-yellow-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square ml-8" viewBox="0 0 16 16">

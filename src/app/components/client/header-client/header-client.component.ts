@@ -14,8 +14,12 @@ export class HeaderClientComponent {
   isMenuOpen: boolean = true;
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router, private authService: AuthService, private toast: NgToastService) {
-
+  currentUrl: any
+  currentUrls: any
+  isDarkMode: boolean = false;
+  constructor(private productService: ProductService, private router: Router, private authService: AuthService, private toast: NgToastService) 
+  {
+    
   }
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe(

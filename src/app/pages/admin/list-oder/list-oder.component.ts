@@ -29,6 +29,7 @@ export class ListOderComponent {
   size: any;
   page: number = 1;
   limit: number = 10;
+  title: any
   constructor(
     private orderService: OrderService,
     private router: Router, 
@@ -51,13 +52,15 @@ export class ListOderComponent {
         console.log(this.orders);
         
         this.ordersSearch = response.response;
-        
+          
         
         const updatedOrdersObservables = this.orders.map((item: any) => {
-          // console.log(this.order);
-          console.log(item.user);
+          console.log(item);
+          // console.log(item.user);
           
           
+          
+          console.log(this.title);
           
           const createdAtDate = new Date(item.createdAt);
           //   // console.log(item.createdAt);

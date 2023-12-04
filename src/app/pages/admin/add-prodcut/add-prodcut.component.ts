@@ -75,6 +75,8 @@ export class AddProdcutComponent {
       description: [''],
       brand: [''],
       price: [0],
+      priceroot: [0],
+      assess: [0],
       // ... other form fields ...
     });
 
@@ -82,6 +84,7 @@ export class AddProdcutComponent {
   ngOnInit(): void {
     this.productForm = this.formBuider.group({
       title: ['', [Validators.required]],
+      assess: ['', [Validators.required, Validators.min(0)]],
       priceroot: ['', [Validators.required, Validators.min(0)]],
       price: ['', [Validators.required, Validators.min(0)]],
       images: ['', [Validators.required]], // Add the required validator for images
@@ -100,6 +103,8 @@ export class AddProdcutComponent {
     formData.append('description', this.productForm.value.description);
     formData.append('brand', this.productForm.value.brand);
     formData.append('price', this.productForm.value.price);
+    formData.append('assess', this.productForm.value.assess);
+    formData.append('priceroot', this.productForm.value.priceroot);
     formData.append('category', this.productForm.value.category);
     // ... append other form fields ...
 
@@ -119,7 +124,7 @@ export class AddProdcutComponent {
         duration: 5000,
         position: 'topRight'
       });
-      // this.router.navigate(['/admin/list']);
+      this.router.navigate(['/admin/list'])
     },
     (error) => {
       this.toast.error({

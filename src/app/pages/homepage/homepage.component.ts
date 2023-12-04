@@ -23,6 +23,8 @@ export class HomepageComponent {
 
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
+      console.log(data);
+      
       this.products = data;
       this.filteredProducts = this.products.productDatas.filter((product:any) => product.sold > 100);
       console.log(this.filteredProducts);
@@ -60,7 +62,7 @@ export class HomepageComponent {
         // Tính giảm giá phần trăm và lọc sản phẩm giảm giá hơn 50%
         this.saleproduct = this.saleproduct.filter((product:any) => {
 
-          const discountPercentage = ((product.price - product.priceroot) / product.price) * 100;
+          const discountPercentage = ((product.priceroot - product.price) / product.priceroot) * 100;
 
           return discountPercentage > 50;
 

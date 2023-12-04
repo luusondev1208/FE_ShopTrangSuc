@@ -70,9 +70,13 @@
                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                   STT
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                <th *ngIf="!showText" scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                  Sản phẩm
+                </th>
+                <th *ngIf="showText" scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                   Name
                 </th>
+                
                 <th *ngIf="!showText" scope="col" class="text-sm font-medium text-gray-900 px-3 py-4 text-left">
                   Số lượng/Size
                 </th>
@@ -114,10 +118,12 @@
                       <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
                     </svg> -->
                 </td>
-                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <td *ngIf="!showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  {{order.products[0]?.product?.title}}
+                </td>
+                <td *ngIf="showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   {{order.name}}
                 </td>
-
                 <td *ngIf="!showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap flex">
                   {{order.products[0].quantity}} <p class="mx-3">/</p> {{order.products[0].size}}
                 </td>

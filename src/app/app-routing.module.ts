@@ -34,6 +34,9 @@ import { ListOderComponent } from './pages/admin/list-oder/list-oder.component';
 import { UpdatePasswordComponent } from './pages/account/update-password/update-password.component';
 import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
 import { AuthGuard } from './Guard/auth.guard';
+import { ListBlogComponent } from './pages/admin/blog/list-blog/list-blog.component';
+import { AddBlogComponent } from './pages/admin/blog/add-blog/add-blog.component';
+import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.component';
 const routes: Routes = [
   //client
   {
@@ -76,6 +79,7 @@ const routes: Routes = [
       { path: 'list', component: ListComponent },
       { path: 'listCategori', component: ListCategoriComponent },
       { path: 'listOrder', component: ListOderComponent },
+      { path: 'listBlog', component: ListBlogComponent },
       { path: 'listUser', component: ListuserComponent },
       { path: 'addUser', component: AddUserComponent },
     ],
@@ -86,9 +90,11 @@ const routes: Routes = [
     children: [
       { path: 'addProduct', component: AddProdcutComponent },
       { path: 'addCategori', component: AddCategoriComponent },
+      { path: 'addBlog', component: AddBlogComponent },
       { path: 'update/:id', component: UpdateProductComponent },
       { path: 'updateCategori/:id', component: UpdateCategoriComponent },
       { path: 'updateUser/:id', component: UpdateUserComponent },
+      { path: 'updateBlog/:id', component: UpdateBlogComponent },
     ],
   },
 

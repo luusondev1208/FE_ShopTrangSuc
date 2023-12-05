@@ -71,8 +71,7 @@
               </div>
             </div>
             <div class="flex">
-              <span style="margin-right: 30px" class="title-font font-medium text-2xl text-gray-900">{{ product.price |
-                currency : "VND" }}</span>
+              <span style="margin-right: 30px" class="title-font font-medium text-2xl text-gray-900">{{ formatPrice(product.price)}}</span>
               <a href="/cart">
                 <button (click)="addToCart()"
                   class="w-[150px] flex ml-auto text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">

@@ -111,7 +111,9 @@ onSubmit(){
   try {
     this.userService.updatePass(user).subscribe((response) => {
       this.toast.success({ detail: "Thông báo", summary: 'Cập Nhật Mật Khẩu Thành Công', duration: 5000, position: "topRight" });
-
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
       console.log(response);
      
       

@@ -37,6 +37,7 @@ import { AuthGuard } from './Guard/auth.guard';
 import { ListBlogComponent } from './pages/admin/blog/list-blog/list-blog.component';
 import { AddBlogComponent } from './pages/admin/blog/add-blog/add-blog.component';
 import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.component';
+import { ErrorComponent } from './pages/error/error.component';
 const routes: Routes = [
   //client
   {
@@ -67,7 +68,9 @@ const routes: Routes = [
       },
       {
         path: 'orderUser/:id', component: ChangeStatusOrderComponent
-      }
+      },
+      
+      
     ],
   },
   //admin
@@ -102,7 +105,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'forgotPassword', component: SendEmailComponent },
   { path: 'resetpassword', component: ForgotPasswordComponent },
-
+  {path:'**', component: ErrorComponent}
 ];
 
 @NgModule({

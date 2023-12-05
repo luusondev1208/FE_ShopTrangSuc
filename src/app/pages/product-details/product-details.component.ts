@@ -57,7 +57,10 @@ export class ProductDetailsComponent implements OnInit {
   nextSlide() {
     this.currentIndex = (this.currentIndex + 1) % this.imgList.length;
   }
-
+  // format giá tiền
+  formatPrice(num: number | string) {
+    return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  }
   prevSlide() {
     this.currentIndex = (this.currentIndex - 1 + this.imgList.length) % this.imgList.length;
   }

@@ -71,6 +71,9 @@ export class HomepageComponent {
         console.log(this.saleproduct);
     })
   }
+  formatPrice(num: number | string) {
+    return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  }
 
   ngOnInit() {
     this.toggleSortByPrice()

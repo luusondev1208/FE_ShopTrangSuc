@@ -81,4 +81,8 @@ export class CategoryService {
   getAllCategory(): Observable<any> {
     return this.http.get<any>(`http://localhost:5000/api/blogcategory/`, this.httpOptions);
   }
+  getProductsByCategoryId(categoryId: string): Observable<any> {
+    const url = `http://localhost:5000/api/category/${categoryId}/products`;
+    return this.http.get(url);
+  }
 }

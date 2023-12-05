@@ -36,11 +36,9 @@ export class ProductDetailsComponent implements OnInit {
     private categoryService: CategoryService,
   ) {
     activatedRoute.params.subscribe((params) => {
+      this.loadProductData(params['id']);
+      this.getRoute(params['id'])
       productService.getProduct(params['id']).subscribe((data) => {
-        this.product = data.productData;
-        this.demoProduct = data.productData;
-        console.log(data.productData);
-
         this.imgList = data.productData.images;
         this.cdr.detectChanges(); // Thử loại bỏ NgZone
         this.getSizeOptions(this.demoProduct._id);
@@ -48,9 +46,16 @@ export class ProductDetailsComponent implements OnInit {
       });
     });
   }
-
+  loadProductData(productId: string): void {
+    this.productService.getProduct(productId).subscribe((data) => {
+      this.product = data.productData;
+      this.demoProduct = data.productData;
+      this.imgList = data.productData.images;
+      this.getProductsByCategory(this.demoProduct.category);
+    });
+  }
   ngOnInit(): void {
-    this.getRoute(this.activatedRoute.snapshot.params['id']);
+    
   }
 
   currentIndex = 0;
@@ -65,11 +70,10 @@ export class ProductDetailsComponent implements OnInit {
   prevSlide() {
     this.currentIndex = (this.currentIndex - 1 + this.imgList.length) % this.imgList.length;
   }
-  navigateToBookDetail(productId: string) {
-    // Sử dụng router.navigate để điều hướng đến trang chi tiết sách với ID cụ thể
+  navigateToProductDetail(productId: string) {
+    // Navigate to the product details page with the specified product ID
     this.router.navigate(['/product/', productId]);
-
-    // Cuộc trượt lên trên đầu trang
+    // Scroll to the top of the page
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   addToCart() {
@@ -114,7 +118,9 @@ export class ProductDetailsComponent implements OnInit {
   }
   getRoute(id: any): void {
     this.productService.getProduct(id).subscribe((res: any) => {
-      this.product = res.product;
+      this.product = res.productData;
+      console.log(this.product);
+      
     });
   }
 
@@ -133,6 +139,8 @@ export class ProductDetailsComponent implements OnInit {
       (response) => {
         this.productsByCategory = response.products;
         console.log(this.productsByCategory);
+        // Manually trigger change detection as the data has been updated
+        this.cdr.detectChanges();
       },
       (error) => {
         console.error('Error getting products by category', error);

@@ -5,6 +5,7 @@ import { CartItem } from 'src/app/shared/model/cart';
 import { Product } from 'src/app/shared/model/product';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,7 +15,7 @@ export class CartComponent implements OnInit {
   cartItems: any;
   cart: any;
   imgList: any;
-  constructor(private cartService: CartService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService) {
+  constructor(private cartService: CartService, private toast: NgToastService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService) {
     activatedRoute.params.subscribe((params) => {
 
       if (params['id']) {
@@ -52,15 +53,20 @@ export class CartComponent implements OnInit {
   removeFromCart(cartItem: CartItem): void {
     const local = localStorage.getItem("user");
     const user = local && JSON.parse(local);
-    // console.log(user?.cart);
-
-    this.userService.getUser(user._id).subscribe((res) => { // đây
+  
+    this.userService.getUser(user._id).subscribe((res) => {
       this.cartService.removeCartItem(cartItem.product._id, res.use.cart).subscribe(() => {
         this.loadCartItems();
-
+        
+        // Thêm thông báo ở đây
+        this.toast.success({
+          detail: 'Sản phẩm đã được xóa khỏi giỏ hàng.',
+          summary: 'Thành công',
+          duration: 5000, // Thời gian hiển thị thông báo (miligiây)
+          position: 'topRight',
+        });
       });
-    })
-
+    });
   }
 
   // getTotalItemsCount(): number {

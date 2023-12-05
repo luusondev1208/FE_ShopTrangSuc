@@ -66,7 +66,7 @@ const routes: Routes = [
         component: OrderComponent
       },
       {
-        path: 'change-status', component: ChangeStatusOrderComponent
+        path: 'orderUser/:id', component: ChangeStatusOrderComponent
       }
     ],
   },

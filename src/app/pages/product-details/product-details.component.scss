@@ -196,3 +196,30 @@ img {
   100% { opacity: 1; -webkit-transform: scale(1); transform: scale(1);}
   }
 
+  /* product.component.css */
+
+.product-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .main-image {
+    width: 300px; /* Điều chỉnh kích thước ảnh chính tại đây */
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .thumbnail-images {
+    display: flex;
+    justify-content: space-around;
+    width: 300px; /* Điều chỉnh kích thước của phần hiển thị hình ảnh phụ */
+  }
+  
+  .thumbnail-images img {
+    width: 70px; /* Kích thước hình ảnh phụ */
+    height: auto;
+    cursor: pointer;
+  }
+  
+

@@ -16,6 +16,7 @@ import { CategoryService } from 'src/app/service/category.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailsComponent implements OnInit {
+ 
   product: any = {};
   imgList: any;
   demoProduct: any = {}
@@ -149,4 +150,14 @@ export class ProductDetailsComponent implements OnInit {
       return false;
     }
   }
+
+
+  changeMainImage(event: Event, newImage: string) {
+    event.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
+    this.imgList[0] = newImage;
+  }
+
+  // changeMainImage(newImage: string) {
+  //   this.imgList[0] = newImage;
+  // }
 }

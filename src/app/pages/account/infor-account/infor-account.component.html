@@ -29,28 +29,35 @@
 
 
 
-                  
+
                     <div class="space-x-4 my-3">
-                        
-                            <button  [disabled]="userRole === 'user'" routerLink="/admin" class="btn btn-primary w-[100px]" type="button">
-                                admin
-                            </button>
-                      
-                        <button  class="btn btn-primary"  routerLink="/orderUser/{{user._id}}">Đơn Hàng</button>
-                        
+
+                        <button *ngIf="userRole === 'admin'" routerLink="/admin" class="btn btn-primary w-[100px]"
+                            type="button">
+                            admin
+                        </button>
+
+                        <button class="btn btn-primary" routerLink="/orderUser/{{user._id}}">Đơn Hàng</button>
+
                     </div>
-                      <!-- Profile picture upload button -->
-                      <button (click)="show()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                            <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                          </svg>
-                      </button>
-                  <div *ngIf="showbtn">
-                    <button class="btn btn-primary" type="button"routerLink="/account/update-account">Cập Nhật Tài Khoản</button><br>
-                    <button class="btn btn-primary my-3" type="button"routerLink="/account/update-password">Đổi Mật Khẩu</button><br>
-                    <button class="btn btn-primary" (click)="signOut()" type="button"routerLink="/account/update-account">Đăng Xuất</button>
-                  </div>
+                    <!-- Profile picture upload button -->
+                    <button (click)="show()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            <path fill-rule="evenodd"
+                                d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                    </button>
+                    <div *ngIf="showbtn">
+                        <button class="btn btn-primary" type="button" routerLink="/account/update-account">Cập Nhật Tài
+                            Khoản</button><br>
+                        <button class="btn btn-primary my-3" type="button" routerLink="/account/update-password">Đổi Mật
+                            Khẩu</button><br>
+                        <button class="btn btn-primary" (click)="signOut()" type="button"
+                            routerLink="/account/update-account">Đăng Xuất</button>
+                    </div>
 
 
                 </div>

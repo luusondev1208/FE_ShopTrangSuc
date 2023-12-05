@@ -83,8 +83,8 @@ export class HomepageComponent {
   }
 
   images = ['https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_500,w_1341/v1701436522/9_we7kcr.png',
-  'https://cdn.pnj.io/images/promo/182/TABSALE_CHUNG_THANG_09-1972x640CTA.jpg',
-   'https://cdn.pnj.io/images/promo/180/pnjfast-1972x640CTA.jpg'];
+  'https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_550,w_1500/v1701436537/5_drhdu7.png',
+   'https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_550,w_1500/v1701436513/1_muyliz.png'];
   currentIndex = 0;
 
   nextSlide() {

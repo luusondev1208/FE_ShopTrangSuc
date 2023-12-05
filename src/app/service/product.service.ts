@@ -80,5 +80,8 @@ getSizeOptions(id: string): Observable<any> {
   return this.http.get<any>(url);
 }
 
+addComent(comment: any): Observable<any> {
+  return this.http.post<any>(`${this.API_URL}/ratings/add`, comment, this.httpOptions);
+}
 }
 

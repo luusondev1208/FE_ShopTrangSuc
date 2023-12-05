@@ -45,63 +45,7 @@
               
                 </div>
                 
-               <!-- <div class="flex space-x-3 ">
-                <div class="relative  ">
-                  <p class="bg-white  pr-2 pl-2-mb-3 mb-10 ml-2 font-medium text-gray-600
-                      ">Giá gốc</p>
-                  <input  [(ngModel)]="blogs.priceroot"
-                  formControlName="priceroot"
-                    type="number"
-                    name="priceroot"
-                    id="priceroot" placeholder="priceroot" class="border placeholder-gray-400 focus:outline-none
-                      focus:border-black w-full pt-3 pr-4 pb-3 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
-                      border-gray-300 rounded-md"/>
-                      <p class="text-red-500"
-              *ngIf="
-              blogForm.get('priceroot')?.hasError('required')&&
-              (blogForm.get('priceroot')?.touched || blogForm.get('priceroot')?.dirty)
-              "
-              >
-             Vui lòng nhập priceroot sản phẩm
-              </p>
-              <p class="text-red-500"
-            *ngIf="
-            blogForm.get('priceroot')?.hasError('min')&&
-            (blogForm.get('priceroot')?.touched || blogForm.get('priceroot')?.dirty)
-            "
-            >
-            Vui lòng nhập priceroot sản phẩm lớn hơn 0
-            </p>
-                </div>
-                <div class="relative ">
-                  <p class="bg-white  pr-2 pl-2-mb-3 mb-10 ml-2 font-medium text-gray-600
-                      ">Giá</p>
-                  <input  [(ngModel)]="blogs.price"
-                  formControlName="price"
-                    type="number"
-                    name="price"
-                    id="price" placeholder="price" class="border placeholder-gray-400 focus:outline-none
-                      focus:border-black w-full pt-3 pr-4 pb-3 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
-                      border-gray-300 rounded-md"/>
-                      <p class="text-red-500"
-              *ngIf="
-              blogForm.get('price')?.hasError('required')&&
-              (blogForm.get('price')?.touched || blogForm.get('price')?.dirty)
-              "
-              >
-             Vui lòng nhập price sản phẩm
-              </p>
-              <p class="text-red-500"
-            *ngIf="
-            blogForm.get('price')?.hasError('min')&&
-            (blogForm.get('price')?.touched || blogForm.get('price')?.dirty)
-            "
-            >
-            Vui lòng nhập price sản phẩm lớn hơn 0
-            </p>
              
-                </div>
-               </div> -->
                <div class="relative">
                 <p class="bg-white  pr-2 pl-2-mb-3 mb-10 ml-2 font-medium text-gray-600">Ảnh</p>
                 <input type="file" id="images" multiple (change)="onFilesSelected($event)" />
@@ -116,7 +60,7 @@
                   formControlName="description"
                     type="text"
                     name="description"
-                    id="description" placeholder="description" class="border placeholder-gray-400 focus:outline-none
+                    id="description"  class="border placeholder-gray-400 focus:outline-none
                       focus:border-black w-full pt-3 pr-4 pb-3 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
                       border-gray-300 rounded-md"/>
                       <p class="text-red-500"

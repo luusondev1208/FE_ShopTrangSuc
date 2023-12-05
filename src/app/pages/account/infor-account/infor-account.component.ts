@@ -43,7 +43,7 @@ export class InforAccountComponent {
           console.log(user);
           this.user = user.use;
           this.userRole = user.use.role
-          
+
         },
         (error) => console.log(error.message)
       );
@@ -60,13 +60,13 @@ export class InforAccountComponent {
 
 
   }
-  
 
-  ButtonAdmin() {
+
+  ngOnInit() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.userRole = user != null && user.role != null ? user.role : '';
   }
-  show(){
+  show() {
     this.showbtn = !this.showbtn
   }
 }

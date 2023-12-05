@@ -56,6 +56,7 @@ import { AddBlogComponent } from './pages/admin/blog/add-blog/add-blog.component
 import { ListBlogComponent } from './pages/admin/blog/list-blog/list-blog.component';
 import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.component';
 import { ErrorComponent } from './pages/error/error.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -120,6 +121,7 @@ import { ErrorComponent } from './pages/error/error.component';
     NgxUploaderModule,
     FileUploadModule,
     NgToastModule,
+    MatTabsModule,
     ToastNoAnimationModule.forRoot(),
     BrowserAnimationsModule, // required animations module
     // NgbPaginationModule,

@@ -1,13 +1,12 @@
-<div class="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+<div class=" md:px-6 2xl:px-20 2xl:container 2xl:mx-auto ">
   <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-
-  <div class="flex justify-start item-start space-y-2 flex-col">
+  <div class="flex justify-start item-start space-y-2">
     <h1
       class="text-3xl dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800"
     >
       Order #13432
     </h1>
-    <p class="text-base dark:text-gray-300 font-medium leading-6 text-gray-600">
+    <p class="text-base dark:text-gray-300 text-gray-600 font-medium leading-6 ">
       21st Mart 2021 at 10:34 PM
     </p>
   </div>
@@ -18,12 +17,12 @@
       class="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8"
     >
       <div
-        class="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full"
+        class="flex flex-col justify-start items-start dark:text-gray-300 text-gray-600 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full"
       >
         <p
-          class="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800"
+          class="text-lg md:text-xl text-black font-semibold leading-6 xl:leading-5 "
         >
-          Customer’s Cart
+          Giỏ hàng của bạn
         </p>
         <div
           class="mt-6 md:mt-0 flex justify-start flex-col md:flex-row items-start md:items-center space-y-4 md:space-x-6 xl:space-x-8 w-full"
@@ -45,25 +44,25 @@
             class="flex justify-between items-start w-full flex-col md:flex-row space-y-4 md:space-y-0"
           >
             <div
-              class="w-full flex flex-col justify-start items-start space-y-8"
+              class="w-full flex flex-col justify-start items-start space-y-8 dark:text-gray-950"
             >
               <h3
-                class="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800"
+                class="text-xl  xl:text-2xl font-semibold leading-6 text-gray-800"
               >
                 {{ item.product.title }}
               </h3>
-              <div class="flex justify-start items-start flex-col space-y-2">
-                <p class="text-sm dark:text-white leading-none text-gray-800">
+              <div class="flex justify-start items-start flex-col space-y-2 dark:text-gray-950">
+                <p class="text-sm  leading-none text-gray-800">
                   <span class="dark:text-gray-400 text-gray-300">Giá: </span>
                   {{ formatPrice(item.product.price) }}
                 </p>
-                <p class="text-sm dark:text-white leading-none text-gray-800">
-                  <span class="dark:text-gray-400 text-gray-300"
+                <p class="text-sm leading-none ">
+                  <span class=""
                     >Kích thước:
                   </span>
                   {{ item.size }}
                 </p>
-                <p class="text-sm dark:text-white leading-none text-gray-800">
+                <p class="text-sm  leading-none text-gray-800">
                   <span class="dark:text-gray-400 text-gray-300"
                     >Số lượng:
                   </span>
@@ -78,33 +77,33 @@
         class="flex justify-center md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8"
       >
         <div
-          class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6"
+          class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50  space-y-6"
         >
           <h3
-            class="text-xl dark:text-white font-semibold leading-5 text-gray-800"
+            class="text-xl font-semibold leading-5 text-gray-800"
           >
-            Summary
+            Tổng kết
           </h3>
           <div
             class="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4"
           >
             <div class="flex justify-between w-full">
-              <p class="text-base dark:text-white leading-4 text-gray-800">
+              <!-- <p class="text-base dark:text-white leading-4 text-gray-800">
                 Subtotal
-              </p>
-              <p class="text-base dark:text-gray-300 leading-4 text-gray-600">
+              </p> -->
+              <!-- <p class="text-base dark:text-gray-300 leading-4 text-gray-600">
                 {{ formatPrice(getTotalPrice()) }}
-              </p>
+              </p> -->
             </div>
             <div class="flex justify-between items-center w-full">
-              <p class="text-base dark:text-white leading-4 text-gray-800">
-                Discount
+              <p class="text-base dark:text-gray-950 leading-4 text-gray-800">
+                Mã giảm giá
               </p>
               <p class="text-base dark:text-gray-300 leading-4 text-gray-600">
                 <select
                   style="width: 330px"
                   id="countries"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-100 dark:text-gray-950 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   (change)="onVoucherChange($event)"
                 >
                   <option value="" selected>Chọn mã giảm giá</option>
@@ -121,12 +120,12 @@
           </div>
           <div class="flex justify-between items-center w-full">
             <p
-              class="text-base dark:text-white font-semibold leading-4 text-gray-800"
+              class="text-base dark:text-gray-950 font-semibold leading-4 text-gray-800"
             >
-              Total
+              Tổng tiền
             </p>
             <p
-              class="text-base dark:text-gray-300 font-semibold leading-4 text-gray-600"
+              class="text-base dark:text-gray-950 font-semibold leading-4 text-gray-600"
             >
               {{ formatPrice(calculatePrice()) }}
             </p>
@@ -135,10 +134,10 @@
       </div>
     </div>
     <div
-      class="bg-gray-50 dark:bg-gray-800 w-full xl:w-96 flex justify-between items-center md:items-start px-4 py-6 md:p-6 xl:p-8 flex-col"
+      class="bg-gray-50  w-full xl:w-96 flex justify-between items-center md:items-start px-4 py-6 md:p-6 xl:p-8 flex-col"
     >
-      <h3 class="text-xl dark:text-white font-semibold leading-5 text-gray-800">
-        Customer
+      <h3 class="text-xl dark:text-gray-950 font-semibold leading-5 text-gray-800">
+        Người mua
       </h3>
       <div
         class="flex flex-col md:flex-row xl:flex-col justify-start items-stretch h-full w-full md:space-x-6 lg:space-x-8 xl:space-x-0"
@@ -159,18 +158,18 @@
             </ng-template>
             <div class="flex justify-start items-start flex-col space-y-2">
               <p
-                class="text-base dark:text-white font-semibold leading-4 text-left text-gray-800"
+                class="text-base dark:text-gray-950 font-semibold leading-4 text-left text-gray-800"
               >
                 {{ userLogin.firstname + " " + userLogin.lastname }}
               </p>
-              <p class="text-sm dark:text-gray-300 leading-5 text-gray-600">
+              <p class="text-sm dark:text-gray-950 leading-5 text-gray-600">
                 {{ userLogin.address }}
               </p>
             </div>
           </div>
 
           <div
-            class="flex justify-center text-gray-800 dark:text-white md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full"
+            class="flex justify-center text-gray-800 dark:text-gray-950 md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full"
           >
             <svg
               width="24"
@@ -207,12 +206,12 @@
               class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4 xl:mt-8"
             >
               <p
-                class="text-base dark:text-white font-semibold leading-4 text-center md:text-left text-gray-800"
+                class="text-base dark:text-gray-950 font-semibold leading-4 text-center md:text-left text-gray-800"
               >
-                Shipping Address
+                Địa chỉ giao hàng
               </p>
               <p
-                class="w-48 lg:w-full dark:text-gray-300 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600"
+                class="w-48 lg:w-full dark:text-gray-950 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600"
               >
                 {{ userLogin.address }}
               </p>
@@ -221,16 +220,16 @@
               class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4"
             >
               <p
-                class="text-base dark:text-white font-semibold leading-4 text-center md:text-left text-gray-800"
+                class="text-base dark:text-gray-950 font-semibold leading-4 text-center md:text-left text-gray-800"
               >
                 Phương thức thanh toán
               </p>
               <p
-                class="w-48 lg:w-full dark:text-gray-300 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600"
+                class=" lg:w-full dark:text-gray-300 xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600"
               >
                 <select
                   id="countries"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  class="bg-gray-50 border border-gray-300 mb-[30px] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-100 dark:text-gray-950 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   (change)="paymentMethod($event)"
                 >
                   <option value="" selected>Chọn phương thức thanh toán</option>
@@ -245,18 +244,26 @@
           <div
             class="flex w-full justify-center items-center md:justify-start md:items-start"
           >
-            <button
-              class="mt-6 md:mt-0 dark:border-white dark:hover:bg-gray-900 dark:bg-transparent dark:text-white py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 w-96 2xl:w-full text-base font-medium leading-4 text-gray-800"
+            <!-- <button
+              class="mt-6 md:mt-0 dark:border-gray-950 dark:hover:bg-gray-900 dark:bg-transparent dark:text-gray-950 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 w-96 2xl:w-full text-base font-medium leading-4 text-gray-800"
               (click)="paymentOrder()"
             >
               Thanh toán
-            </button>
-            <button
-              class="mt-6 md:mt-0 dark:border-white dark:hover:bg-gray-900 dark:bg-transparent dark:text-white py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 w-96 2xl:w-full text-base font-medium leading-4 text-gray-800"
+            </button> -->
+            <button (click)="paymentOrder()"
+                  class=" flex ml-auto text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">
+                  Thanh toán
+                </button>
+                <button routerLink="/cart" (click)="paymentOrder()"
+                class=" flex ml-auto text-white bg-red-500 border-0 py-2 px-3 focus:outline-none hover:bg-red-600 rounded">
+                Xem giỏ hàng
+              </button>
+            <!-- <button
+              class="mt-6 md:mt-0 dark:border-gray-950 dark:hover:bg-gray-900 dark:bg-transparent dark:text-gray-950 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 w-96 2xl:w-full text-base font-medium leading-4 text-gray-800"
               routerLink="/cart"
             >
               Xem giỏ hàng
-            </button>
+            </button> -->
           </div>
         </div>
       </div>

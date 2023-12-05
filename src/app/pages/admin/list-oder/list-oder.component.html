@@ -67,13 +67,13 @@
           <table *ngIf="!showloyalCustomer" class="min-w-full mt-6">
             <thead class="bg-white border-b">
               <tr>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left w-[50px] h-[50px]">
                   STT
                 </th>
-                <th *ngIf="!showText" scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                <th *ngIf="!showText" scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left w-[200px]">
                   Sản phẩm
                 </th>
-                <th *ngIf="showText" scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                <th *ngIf="showText" scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left  w-[200px]">
                   Name
                 </th>
                 
@@ -131,7 +131,7 @@
                   {{order.phone}}
                 </td>
                 <td *ngIf="!showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  {{datePart}}
+                  {{order.datePart}}
                 </td>
                 <td *ngIf="showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   {{order.address}}
@@ -142,10 +142,10 @@
                 <td *ngIf="showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                   {{order.ord}}
                 </td>
-                <td *ngIf="!showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <td *ngIf="!showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap w-[250px]">
                   {{order.paymentMethod}}
                 </td>
-                <td *ngIf="showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <td *ngIf="showText" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap w-[250px]">
                   đang nghĩ
                 </td>
 

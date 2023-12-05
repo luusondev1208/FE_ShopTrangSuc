@@ -16,7 +16,19 @@ export class ListuserComponent {
       (response:any) => {
         this.users = response.users;
         console.log(this.users);
-        
+        const dateParts: string[] = this.users.map((userItem: any) => {
+          return userItem.createdAt.split('T')[0];
+        });
+        const dates: string[] = this.users.map((userItem: any) => {
+          return userItem.updatedAt.split('T')[0];
+        });
+
+
+        this.users.forEach((userItem: any, index: number) => {
+          userItem.datePart = dateParts[index];
+          userItem.date = dates[index];
+        });
+        console.log(this.users);
       },
       (error) => {
         console.log(error);

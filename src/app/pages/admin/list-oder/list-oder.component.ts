@@ -50,7 +50,14 @@ export class ListOderComponent {
         
         this.orders = response.response;
         console.log(this.orders);
-        
+        const dateParts: string[] = this.orders.map((orderItem: any) => {
+          return orderItem.createdAt.split('T')[0];
+        });
+
+        this.orders.forEach((orderItem: any, index: number) => {
+          orderItem.datePart = dateParts[index];
+        });
+        console.log(this.orders);
         this.ordersSearch = response.response;
           
         

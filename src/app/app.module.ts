@@ -55,6 +55,7 @@ import { BlogDetailsComponent } from './pages/blog-details/blog-details.componen
 import { AddBlogComponent } from './pages/admin/blog/add-blog/add-blog.component';
 import { ListBlogComponent } from './pages/admin/blog/list-blog/list-blog.component';
 import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 
 
@@ -103,6 +104,7 @@ import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.
     AddBlogComponent,
     ListBlogComponent,
     UpdateBlogComponent,
+    ErrorComponent,
 
 
   ],

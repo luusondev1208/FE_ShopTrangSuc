@@ -1,0 +1,16 @@
+.image-container {
+    overflow: hidden;
+    position: relative;
+    width: 300px; /* Thay đổi kích thước theo ý muốn */
+    height: 200px; /* Thay đổi kích thước theo ý muốn */
+  }
+  
+  .image-container img {
+    transition: transform 0.8s ease; /* Thời gian chuyển động khi click */
+    cursor: pointer;
+  }
+  
+  .image-container:hover img {
+    transition: transform 2s ease; /* Thời gian chuyển động khi di chuột qua */
+  }
+  

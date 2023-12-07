@@ -93,13 +93,80 @@
       </div>
     </div>
 
-    <div class="p-10 bg-white rounded-xl mt-10 ml-[390px] w-[500px] ">
+    <div class="p-10 bg-white rounded-xl mt-10 ml-[390px] w-[900px] ">
       <mat-tab-group>
-        <mat-tab label="Mô tả" >
+        <mat-tab label="Mô tả">
           <ng-template matTabContent>
             <div class="mt-5">
               <p>{{ product.description }}</p>
             </div>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Bình Luận" >
+          <ng-template matTabContent>
+            <div class="mt-[50px]">
+              <h2 class="text-[20px] mb-[32px] text-[#008340]">
+                Nhận xét từ khách hàng
+              </h2>
+              <div *ngIf="user">
+                <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
+                  <textarea
+                    formControlName="content"
+                    class="border-[1px] border-[gray] outline-none p-[12px]"
+                    cols="70"
+                    rows="8"
+                    placeholder="Nhập nội dung"
+                  ></textarea>
+                  <br />
+                  <button class="px-[34px] py-[8px] text-white rounded bg-[#008340]">
+                    Gửi
+                  </button>
+      
+                </form>
+              </div>
+            </div>
+            
+            <!-- Thêm lớp để tạo thanh cuộn và giới hạn chiều cao cho phần nội dung bình luận -->
+<div class="max-h-[300px] overflow-y-auto">
+
+  <div *ngIf="feedback && feedback.length > 0">
+    <div *ngFor="let item of feedback" class="mb-[12px]">
+
+      <!-- Thêm lớp để giới hạn số dòng hiển thị của nội dung bình luận -->
+      <div class="card p-3 mb-2 overflow-hidden">
+        
+        <div class="flex flex-row">
+          <img src="https://res.cloudinary.com/dz4cezwre/image/upload/v1701921411/th_rrldpy.jpg" height="30" width="60" class="rounded-circle">
+          <div class="flex flex-col ms-2">
+            <h3 class="mb-1 text-primary font-bold text-3xl"> {{item.userName}}</h3>
+
+            <!-- Thêm lớp để giới hạn số dòng hiển thị của nội dung bình luận -->
+            <p class="comment-text line-clamp-3">{{item.content}}</p>
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <div class="flex flex-row gap-3 items-center">
+            <div class="flex items-center">
+              <!-- Nội dung khác -->
+            </div>
+            <div class="flex items-center">
+              <!-- Nội dung khác -->
+            </div>
+          </div>
+
+          <div class="flex flex-row">
+            <span class="text-muted fw-normal fs-10"> {{ item.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+            
           </ng-template>
         </mat-tab>
         <!-- <mat-tab label="Đánh giá">
@@ -159,8 +226,8 @@
 
 
   </form>
-
-
+  
+  
   <div class="mx-[150px] my-10">
     <h1 class="text-2xl font-bold mb-3 text-center">SẢN PHẨM TƯƠNG TỰ</h1>
     <div  class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-auto xl:gap-8 gap-10 " *ngIf="productsByCategory.length">

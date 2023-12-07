@@ -221,6 +221,7 @@ import { UserService } from 'src/app/service/user.service';
     
           // Kích hoạt change detection
           this.cdr.detectChanges();
+          
         },
         (error) => {
           // Xử lý lỗi nếu cần

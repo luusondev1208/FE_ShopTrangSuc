@@ -58,6 +58,7 @@ import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.
 import { ErrorComponent } from './pages/error/error.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ListNhanComponent } from './pages/list-nhan/list-nhan.component';
+import { StatisComponent } from './pages/admin/statis/statis.component';
 
 
 
@@ -108,6 +109,7 @@ import { ListNhanComponent } from './pages/list-nhan/list-nhan.component';
     UpdateBlogComponent,
     ErrorComponent,
     ListNhanComponent,
+    StatisComponent,
 
 
   ],

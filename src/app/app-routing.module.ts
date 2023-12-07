@@ -38,6 +38,7 @@ import { ListBlogComponent } from './pages/admin/blog/list-blog/list-blog.compon
 import { AddBlogComponent } from './pages/admin/blog/add-blog/add-blog.component';
 import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { ListNhanComponent } from './pages/list-nhan/list-nhan.component';
 const routes: Routes = [
   //client
   {
@@ -46,6 +47,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomepageComponent },
       { path: 'products', component: ListproductComponent },
+      { path: 'listNhan', component: ListNhanComponent },
       { path: 'slide', component: SlideshowComponent },
       { path: 'blog', component: BlogpageComponent },
       { path: 'blog/:id', component: BlogDetailsComponent },

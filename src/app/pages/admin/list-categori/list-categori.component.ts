@@ -3,6 +3,7 @@ import { Route, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-list-categori',
@@ -67,5 +68,22 @@ export class ListCategoriComponent {
     );
     this.categories = this.filteredList
     console.log(this.categories)
+  }
+
+  
+  /**Default name for excel file when download**/
+  fileName = 'ExcelSheet.xlsx';
+
+  exportexcel() {
+    /**passing table id**/
+    let data = document.getElementById('table-data');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+
+    /**Generate workbook and add the worksheet**/
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /*save to file*/
+    XLSX.writeFile(wb, this.fileName);
   }
 }

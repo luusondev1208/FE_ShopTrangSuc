@@ -64,7 +64,11 @@
             </button>
 
           </div>
-          <table *ngIf="!showloyalCustomer" class="min-w-full mt-6">
+          <button (click)="exportexcel()" class="bg-gray-300 mt-3 ml-[900px] hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+            <span>Excel </span>
+          </button>
+          <table *ngIf="!showloyalCustomer" class="min-w-full mt-6" id="table-data">
             <thead class="bg-white border-b">
               <tr>
                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left w-[50px] h-[50px]">

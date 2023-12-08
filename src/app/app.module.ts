@@ -65,6 +65,7 @@ import { UpdateBrandComponent } from './pages/admin/brand/update-brand/update-br
 import { ListCouponComponent } from './pages/admin/coupon/list-coupon/list-coupon.component';
 import { AddCouponComponent } from './pages/admin/coupon/add-coupon/add-coupon.component';
 import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update-coupon.component';
+import { BrandlistComponent } from './pages/admin/brandlist/brandlist.component';
 
 
 
@@ -122,6 +123,7 @@ import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update
     ListCouponComponent,
     AddCouponComponent,
     UpdateCouponComponent,
+    BrandlistComponent,
 
 
   ],

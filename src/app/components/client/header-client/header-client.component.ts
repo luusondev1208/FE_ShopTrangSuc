@@ -1,3 +1,4 @@
+import { BrandService } from 'src/app/service/brand.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
@@ -19,7 +20,8 @@ export class HeaderClientComponent {
   currentUrls: any
   isDarkMode: boolean = false;
   categories: any[] = []
-  constructor(private productService: ProductService,private categoryService: CategoryService, private router: Router, private authService: AuthService, private toast: NgToastService) 
+  brand: any[] = []
+  constructor(private productService: ProductService,private brandService: BrandService,private categoryService: CategoryService, private router: Router, private authService: AuthService, private toast: NgToastService) 
   {
     
   }
@@ -38,6 +40,10 @@ export class HeaderClientComponent {
     this.categoryService.getCategories().subscribe( (response: any) =>{
       console.log(response.getAllCategory);
       this.categories= response.getAllCategory
+    })
+    this.brandService.getBrands().subscribe( (response: any) =>{
+      console.log(response.getAllBrand);
+      this.brand= response.getAllBrand
     })
   }
   ngOnInit() {

@@ -87,21 +87,13 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <a href="**">Trang sức cưới</a>
-              <ul class="submenu w-[150px]">
-                <li><a href="**">Cầu hôn</a></li>
-                <li><a href="**">Kết hôn</a></li>
-                <li><a href="**">Kỷ niệm</a></li>
-              </ul>
-            </li>
+          
             <li>
               <a href="#">Thương hiệu</a>
               <ul class="submenu w-[150px]">
-                <li><a href="**"><img src="https://cdn.pnj.io/images/2023/brand-search-bar/watch.svg" alt=""></a></li>
-                <li><a href="**"><img src="https://cdn.pnj.io/images/2023/brand-search-bar/disney.svg" alt=""></a></li>
-                <li><a href="**"><img src="https://cdn.pnj.io/images/2023/brand-search-bar/pnj.svg" alt=""></a></li>
-                <li><a href="**"><img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_70,w_100/v1701499292/zyro-image_agesqp.png" class="w-[50px]" alt=""></a></li>
+                <li *ngFor="let item of brand">
+                  <a [href]="'/brand/' + item._id">{{ item.title }}</a>
+                </li>
               </ul>
             </li>
             <li>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
@@ -8,11 +9,15 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class ListNhanComponent {
   productsByCategory: any[] = [];
-  categoryId: string = '656ae52bf2cd2ead26b7ca79'; //nhẫn
+  categoryId: any
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private route: ActivatedRoute,private categoryService: CategoryService) {}
 
   ngOnInit(): void {
+    // Sử dụng paramMap để lấy giá trị của tham số 'id'
+    this.categoryId = this.route.snapshot.paramMap.get('id');
+    console.log(this.categoryId);
+
     this.getProductsByCategory(this.categoryId);
   }
 

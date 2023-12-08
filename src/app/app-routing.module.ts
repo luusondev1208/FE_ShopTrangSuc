@@ -48,7 +48,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomepageComponent },
       { path: 'products', component: ListproductComponent },
-      { path: 'listNhan', component: ListNhanComponent },
+      { path: 'category/:id', component: ListNhanComponent },
       { path: 'slide', component: SlideshowComponent },
       { path: 'blog', component: BlogpageComponent },
       { path: 'blog/:id', component: BlogDetailsComponent },

@@ -67,10 +67,10 @@
                 </svg></a>
               <ul class="submenu w-[150px]">
                 <li> <a href="/products">Trang sức</a></li>
-                <li><a href="**">Trang sức cưới</a></li>
+                <!-- <li><a href="**">Trang sức cưới</a></li> -->
                 <li><a href="**">Thương hiệu</a></li>
                 <li><a href="blog">Blog</a></li>
-                <li><a href="**">Khuyến mãi</a></li>
+            
               </ul>
             </li>
           </div>
@@ -82,10 +82,9 @@
 
               <a routerLink="products">Trang sức</a>
               <ul class="submenu w-[150px]">
-                <li><a href="/listNhan">Nhẫn</a></li>
-                <li><a href="**">Dây chuyền</a></li>
-                <li><a href="**">Đồng hồ</a></li>
-                <li><a href="**">Khuyến mãi</a></li>
+                <li *ngFor="let category of categories">
+                  <a [href]="'/category/' + category._id">{{ category.title }}</a>
+                </li>
               </ul>
             </li>
             <li>
@@ -102,6 +101,7 @@
                 <li><a href="**"><img src="https://cdn.pnj.io/images/2023/brand-search-bar/watch.svg" alt=""></a></li>
                 <li><a href="**"><img src="https://cdn.pnj.io/images/2023/brand-search-bar/disney.svg" alt=""></a></li>
                 <li><a href="**"><img src="https://cdn.pnj.io/images/2023/brand-search-bar/pnj.svg" alt=""></a></li>
+                <li><a href="**"><img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_70,w_100/v1701499292/zyro-image_agesqp.png" class="w-[50px]" alt=""></a></li>
               </ul>
             </li>
             <li>

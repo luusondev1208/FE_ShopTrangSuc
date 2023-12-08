@@ -5,7 +5,7 @@
       <div class=" inline-block min-w-full sm:px-6 lg:px-8">
         <div class="overflow-hidden ml-24">
           <!-- <h1 class="font-bold text-center my-16 text-[30px]">Quản Lý Sản Phẩm</h1> -->
-          <div class="flex items-center mb-5">
+          <div class="flex items-center">
             <a routerLink="/admin/addProduct"><button
                 class="hover:text-green-500 ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
@@ -29,33 +29,30 @@
               </button>
 
             </div>
-            <div class="flex space-x-4 items-center ml-[330px] ">
-              <button class="hover:text-blue-500"  (click)="previousPage()" [disabled]="page === 1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
-                <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
-              </svg></button>
-              <p class="pt-3">{{page}}</p>
-              <button class="hover:text-blue-500" (click)="nextPage()" [disabled]="products.length < limit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
-                <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
-              </svg></button>
-            </div>
+            <button (click)="exportexcel()" class="bg-gray-300 ml-[395px] w-[100px] h-[40px] hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+              <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+              <span>Excel </span>
+            </button>
+            
 
           </div>
-          <table class="min-w-full">
+         
+          <table class="min-w-full mt-4" id="table-data">
             <thead class="bg-white py-2">
               <tr>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2  text-left">
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-[50px]  text-left">
                   STT
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2  text-left">
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-[170px]  text-left">
                   Name 
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-900 w-[100px] px-6 py-2 text-left">
                   Price
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-900 w-[150px] px-6 py-2 text-left">
                   Image
                 </th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 text-left">
+                <th scope="col" class="text-sm font-medium text-gray-900 w-[150px] px-6 py-2 text-left">
                   action
                 </th>
               </tr>
@@ -97,6 +94,15 @@
 
             </tbody>
           </table>
+          <div class="flex space-x-4 items-center ml-[1000px] ">
+            <button class="hover:text-blue-500"  (click)="previousPage()" [disabled]="page === 1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+              <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+            </svg></button>
+            <p class="pt-3">{{page}}</p>
+            <button class="hover:text-blue-500" (click)="nextPage()" [disabled]="products.length < limit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+              <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+            </svg></button>
+          </div>
         </div>
       </div>
     </div>

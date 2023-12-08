@@ -5,6 +5,8 @@ import { ProductService } from 'src/app/service/product.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgToastService } from 'ng-angular-popup';
+import * as XLSX from 'xlsx';
+
 @Component({
   selector: 'app-list-blog',
   templateUrl: './list-blog.component.html',
@@ -102,5 +104,22 @@ export class ListBlogComponent {
         // Xử lý lỗi nếu có
       }
     );
+  }
+
+  
+  /**Default name for excel file when download**/
+  fileName = 'ExcelSheet.xlsx';
+
+  exportexcel() {
+    /**passing table id**/
+    let data = document.getElementById('table-data');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+
+    /**Generate workbook and add the worksheet**/
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /*save to file*/
+    XLSX.writeFile(wb, this.fileName);
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { UserService } from 'src/app/service/user.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-listuser',
@@ -66,4 +67,19 @@ export class ListuserComponent {
 }
   
   
+  /**Default name for excel file when download**/
+  fileName = 'ExcelSheet.xlsx';
+
+  exportexcel() {
+    /**passing table id**/
+    let data = document.getElementById('table-data');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+
+    /**Generate workbook and add the worksheet**/
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /*save to file*/
+    XLSX.writeFile(wb, this.fileName);
+  }
 }

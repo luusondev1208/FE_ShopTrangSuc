@@ -39,6 +39,7 @@ import { AddBlogComponent } from './pages/admin/blog/add-blog/add-blog.component
 import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { ListNhanComponent } from './pages/list-nhan/list-nhan.component';
+import { StatisComponent } from './pages/admin/statis/statis.component';
 const routes: Routes = [
   //client
   {
@@ -87,6 +88,7 @@ const routes: Routes = [
       { path: 'listBlog', component: ListBlogComponent },
       { path: 'listUser', component: ListuserComponent },
       { path: 'addUser', component: AddUserComponent },
+      { path: 'Statis', component: StatisComponent },
     ],
   },
   {

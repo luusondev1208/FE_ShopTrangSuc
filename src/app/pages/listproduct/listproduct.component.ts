@@ -9,6 +9,11 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./listproduct.component.scss'],
 })
 export class ListproductComponent {
+  submitted: boolean = false
+  productsByCategory: any[] = []
+  categoryId: string = '656ae52bf2cd2ead26b7ca79';
+  lactay: string = '656ae318f2cd2ead26b7ca21'
+  khuyen:string = '656ae018f2cd2ead26b7c934'
   categories: any = []
   title: any
   filteredProducts: any = [];
@@ -59,8 +64,8 @@ filterOptions = {
   }
   
 
-//lọc
 
+//Lọc dựa vào lựa chọn theo option
 filterProducts() {
   if(this.filterOptions.filterProduct === "option2"){
     this.toggleSortByPrice()
@@ -76,51 +81,46 @@ filterProducts() {
     this.filterProductsByBrandNRO()
   }  else if(this.filterOptions.filterBrand === "option4"){
     this.filterProductsByBrandTTL()
+  } else if(this.filterOptions.filterCategory === "option2"){
+    this.filterProductsByCategori(this.categoryId)
+  } else if(this.filterOptions.filterCategory === "option3"){
+    this.filterProductsBylactay(this.lactay)
+  } else if(this.filterOptions.filterCategory === "option4"){
+    this.filterProductsBykhuyen(this.khuyen)
   } 
-//   console.log('Filter Options:', this.filterOptions);
-
-//   // Xử lý lọc dữ liệu dựa trên các giá trị từ nhiều select box cùng lúc
-//   if (
-//     this.filterOptions.filterProduct === 'option2' &&
-//     this.filterOptions.filterCategory === 'option1' &&
-//     this.filterOptions.filterBrand === 'option2'
-//   ) {
-//     this.combinedFilter();
-//   } else {
-//     alert('No action for the current combination of selections.');
-//     // Thực hiện các hành động khác nếu cần thiết
-//   }
 }
 
-// combinedFilter(){
-// this.toggleSortByPrice()
-// this.filterProductsByBrandPNJ()
-// }
-// đổi ảnh sản phẩm
+
 // format giá tiền
 formatPrice(num: number | string) {
   return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 }
+
+// hover sản phẩm
   showHoverImage() {
     this.isHovering = true;
   }
 
+//ẩn hover
   hideHoverImage() {
     this.isHovering = false;
   }
   hover: Boolean = false;
-// chuyển trang
+
+// chuyển trang -
   previousPage() {
     if (this.page > 1) {
       this.page--;
       this.loadData();
     }
   }
-// chuyển trang
+
+// chuyển trang +
   nextPage() {
     this.page++;
     this.loadData();
   }
+
 
 // lọc giá từ thấp đến cao
   toggleSortByPrice() {
@@ -133,6 +133,7 @@ formatPrice(num: number | string) {
       
     }
   }
+
 // lọc giá từ cao đến thấp
   toggleSortByPriceS() {
     this.sortedByPrice = !this.sortedByPrice;
@@ -176,7 +177,7 @@ formatPrice(num: number | string) {
 
   }
 
-  // lọc theo sóo lượng người đánh giá
+  // lọc theo số lượng người đánh giá
   filterProductsByassess() {
     this.sortedByPrice = !this.sortedByPrice;
     if(this.sortedByPrice){
@@ -198,6 +199,7 @@ formatPrice(num: number | string) {
 
   }
 
+//tìm kiếm
   searchResults: any[] = [];
   searchTerm: string = '';
   filteredList: any[] = [];
@@ -210,27 +212,97 @@ formatPrice(num: number | string) {
     console.log(this.products)
   }
 
-  // lọc theo brand  PNJ
-  filterProductsByBrandPNJ() {
-    this.sortedByPrice = !this.sortedByPrice;
-    if(this.sortedByPrice){
-      this.productService
-      .getProducts(this.page, this.limit)
-      .subscribe((data: any[]) => {
-        this.products = data;
-        this.filteredProducts = this.products.productDatas.filter(
-          (product: any) => product.brand == 'PNJ'
-        );
-        console.log(this.filteredProducts);
-        this.products = this.filteredProducts;
-      });
-    } else {
-      
-    }
+  
 
+//loc theo loại nhẫn
+filterProductsByCategori(categoryId: string): void {
+  this.submitted = true
+  if (!categoryId) {
+    console.error('Invalid categoryId');
+    return;
   }
 
-  // lọc theo brand  TNJ
+  this.categoryService.getProductsByCategoryId(categoryId).subscribe(
+    (response) => {
+      if (response && response.products) {
+        this.productsByCategory = response.products;
+        console.log(this.productsByCategory);
+      } else {
+        console.error('Empty response or missing products data');
+      }
+    },
+    (error) => {
+      console.error('Error getting products by category', error);
+    }
+  );
+}
+
+//loc theo lăc tay
+filterProductsBylactay(lactay: string): void {
+  this.submitted = true
+  if (!lactay) {
+    console.error('Invalid categoryId');
+    return;
+  }
+
+  this.categoryService.getProductsByCategoryId(lactay).subscribe(
+    (response) => {
+      if (response && response.products) {
+        this.productsByCategory = response.products;
+        console.log(this.productsByCategory);
+      } else {
+        console.error('Empty response or missing products data');
+      }
+    },
+    (error) => {
+      console.error('Error getting products by category', error);
+    }
+  );
+}
+
+//loc theo khuyên tai
+filterProductsBykhuyen(khuyen: string): void {
+  this.submitted = true
+  if (!khuyen) {
+    console.error('Invalid categoryId');
+    return;
+  }
+
+  this.categoryService.getProductsByCategoryId(khuyen).subscribe(
+    (response) => {
+      if (response && response.products) {
+        this.productsByCategory = response.products;
+        console.log(this.productsByCategory);
+      } else {
+        console.error('Empty response or missing products data');
+      }
+    },
+    (error) => {
+      console.error('Error getting products by category', error);
+    }
+  );
+}
+
+// lọc theo brand  PNJ
+filterProductsByBrandPNJ() {
+  this.sortedByPrice = !this.sortedByPrice;
+  if(this.sortedByPrice){
+    this.productService
+    .getProducts(this.page, this.limit)
+    .subscribe((data: any[]) => {
+      this.products = data;
+      this.filteredProducts = this.products.productDatas.filter(
+        (product: any) => product.brand == 'PNJ'
+      );
+      console.log(this.filteredProducts);
+      this.products = this.filteredProducts;
+    });
+  } else {
+    
+  }
+
+}
+  // lọc theo brand  NRO
   filterProductsByBrandNRO() {
     this.sortedByPrice = !this.sortedByPrice;
     if(this.sortedByPrice){
@@ -250,19 +322,7 @@ formatPrice(num: number | string) {
 
   }
 
-  images = ['https://cdn.pnj.io/images/promo/184/CT_LOVE_WEDDING_1972x640CTA.jpg',
-  'https://cdn.pnj.io/images/promo/182/TABSALE_CHUNG_THANG_09-1972x640CTA.jpg',
-   'https://cdn.pnj.io/images/promo/180/pnjfast-1972x640CTA.jpg'];
-  currentIndex = 0;
-
-  nextSlide() {
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
-  }
-  prevSlide() {
-    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
-  }
-
-  // lọc theo brand  TNJ
+  // lọc theo brand TTl
   filterProductsByBrandTTL() {
     this.sortedByPrice = !this.sortedByPrice;
     if(this.sortedByPrice){
@@ -285,5 +345,16 @@ formatPrice(num: number | string) {
     console.log(id);
 
   this.router.navigate(['/product', id]).then();
+  }
+  images = ['https://cdn.pnj.io/images/promo/184/CT_LOVE_WEDDING_1972x640CTA.jpg',
+  'https://cdn.pnj.io/images/promo/182/TABSALE_CHUNG_THANG_09-1972x640CTA.jpg',
+   'https://cdn.pnj.io/images/promo/180/pnjfast-1972x640CTA.jpg'];
+  currentIndex = 0;
+
+  nextSlide() {
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
+  prevSlide() {
+    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
   }
 }

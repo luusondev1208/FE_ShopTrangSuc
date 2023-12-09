@@ -18,7 +18,7 @@ constructor( private activatedRoute: ActivatedRoute,
     activatedRoute.params.subscribe((params)=>{
    blogService.getBlogid(params['id']).subscribe((data)=>{
     console.log(data);
-  this.blog= data.rs;
+  this.blog= data.getBlog;
 
    })
     })

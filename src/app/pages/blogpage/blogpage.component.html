@@ -158,7 +158,7 @@ trang sức người thân mùa trung thu đoàn viên
             src={{item.images[0]}}
             alt="">
         <div>
-            <p class="text-[20px] hover:text-gray-500">{{item.title}}</p>
+            <p class="text-[20px] hover:text-gray-500"><a [routerLink]="['/blog',item._id]">{{item.title}}</a></p>
             <div class="flex space-x-4 py-5">
                 <p>Trang Sức Cung - Mệnh</p>
                 <p>22/09/2023</p>

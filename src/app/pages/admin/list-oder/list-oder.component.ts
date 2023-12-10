@@ -5,6 +5,8 @@ import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { OrderService } from 'src/app/service/order.service';
 import { UserService } from 'src/app/service/user.service';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -13,6 +15,7 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./list-oder.component.scss']
 })
 export class ListOderComponent {
+  row:any
   previousStatus: string = "";
   showText: boolean = false
   showloyalCustomer: boolean = false
@@ -156,6 +159,7 @@ changeStatus(order: any, newStatus:string) {
       // Xử lý lỗi nếu có
     }
   );
+  
 }
 
 
@@ -207,5 +211,58 @@ changeStatus(order: any, newStatus:string) {
 
     /*save to file*/
     XLSX.writeFile(wb, this.fileName);
+  }
+  exportRowToPDF(order:any): void {
+    const doc = new jsPDF();
+    const columns = ['ID', 'Name', 'Address', 'SDT'];
+    const rows = [];
+  
+    // Thêm dữ liệu từ hàng được chọn vào mảng rows
+    rows.push([ order._id, order.name, order.address, order.phone]);
+  
+    // Tính kích thước của bảng và ô
+    const cellWidth = 40;
+    const cellHeight = 10;
+    const startY = 20; // Vị trí bắt đầu vẽ bảng
+    const margin = 20;
+    const pageWidth = doc.internal.pageSize.width - 2 * margin;
+  
+    // Vẽ tiêu đề cột
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.text('HÓA ĐƠN BÁN HÀNG SHOP NRO', margin, margin);
+    doc.setLineWidth(0.1);
+    doc.line(margin, margin + 5, margin + pageWidth, margin + 5);
+  
+    // Vẽ từng ô trong bảng
+    for (let i = 0; i < columns.length; i++) {
+      doc.text(columns[i], margin + i * cellWidth, startY + cellHeight);
+    }
+  
+    // Vẽ dữ liệu từ hàng được chọn
+    for (let i = 0; i < rows.length; i++) {
+      const rowData = rows[i];
+      for (let j = 0; j < rowData.length; j++) {
+        doc.text(String(rowData[j]), margin + j * cellWidth, startY + (i + 2) * cellHeight);
+      }
+    }
+  
+    // Tính vị trí của các thông tin khác
+    let additionalInfoY = startY + rows.length * (cellHeight + 25);
+  
+    // Khởi tạo biến additionalInfo
+  const additionalInfo:any = {
+    'Tổng tiền': order.totalPrice,
+    'Ngày bán hàng': new Date().toLocaleDateString(),
+    'Người bán hàng': 'Shop Trang Sức NRO',
+  };
+    // Vẽ các thông tin khác
+    for (const key in additionalInfo) {
+      doc.text(key + ': ' + additionalInfo[key], margin, additionalInfoY);
+      additionalInfoY += cellHeight;
+    }
+  
+    // Xuất file PDF
+    doc.save('hoadonbanhang.pdf');
   }
 }

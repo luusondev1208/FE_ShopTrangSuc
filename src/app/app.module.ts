@@ -59,6 +59,14 @@ import { ErrorComponent } from './pages/error/error.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ListNhanComponent } from './pages/list-nhan/list-nhan.component';
 import { StatisComponent } from './pages/admin/statis/statis.component';
+import { ListBrandComponent } from './pages/admin/brand/list-brand/list-brand.component';
+import { AddBrandComponent } from './pages/admin/brand/add-brand/add-brand.component';
+import { UpdateBrandComponent } from './pages/admin/brand/update-brand/update-brand.component';
+import { ListCouponComponent } from './pages/admin/coupon/list-coupon/list-coupon.component';
+import { AddCouponComponent } from './pages/admin/coupon/add-coupon/add-coupon.component';
+import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update-coupon.component';
+import { BrandlistComponent } from './pages/brandlist/brandlist.component';
+
 
 
 
@@ -110,7 +118,13 @@ import { StatisComponent } from './pages/admin/statis/statis.component';
     ErrorComponent,
     ListNhanComponent,
     StatisComponent,
-
+    ListBrandComponent,
+    AddBrandComponent,
+    UpdateBrandComponent,
+    ListCouponComponent,
+    AddCouponComponent,
+    UpdateCouponComponent,
+    BrandlistComponent
 
   ],
   imports: [

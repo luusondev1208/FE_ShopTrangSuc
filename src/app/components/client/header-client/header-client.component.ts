@@ -1,8 +1,10 @@
+import { BrandService } from 'src/app/service/brand.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { ProductService } from 'src/app/service/product.service';
 import { NgToastService } from 'ng-angular-popup';
+import { CategoryService } from 'src/app/service/category.service';
 
 
 @Component({
@@ -17,7 +19,9 @@ export class HeaderClientComponent {
   currentUrl: any
   currentUrls: any
   isDarkMode: boolean = false;
-  constructor(private productService: ProductService, private router: Router, private authService: AuthService, private toast: NgToastService) 
+  categories: any[] = []
+  brand: any[] = []
+  constructor(private productService: ProductService,private brandService: BrandService,private categoryService: CategoryService, private router: Router, private authService: AuthService, private toast: NgToastService) 
   {
     
   }
@@ -33,6 +37,14 @@ export class HeaderClientComponent {
         console.log(error);
       }
     );
+    this.categoryService.getCategories().subscribe( (response: any) =>{
+      console.log(response.getAllCategory);
+      this.categories= response.getAllCategory
+    })
+    this.brandService.getBrands().subscribe( (response: any) =>{
+      console.log(response.getAllBrand);
+      this.brand= response.getAllBrand
+    })
   }
   ngOnInit() {
     this.loadData();

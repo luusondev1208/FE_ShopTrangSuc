@@ -1,5 +1,5 @@
-<div class=" md:px-6 2xl:px-20 2xl:container 2xl:mx-auto ">
-  <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+<!-- <div class=" md:px-6 2xl:px-20 2xl:container 2xl:mx-auto ">
+
   <div class="flex justify-start item-start space-y-2">
     <h1
       class="text-3xl dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800"
@@ -88,12 +88,7 @@
             class="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4"
           >
             <div class="flex justify-between w-full">
-              <!-- <p class="text-base dark:text-white leading-4 text-gray-800">
-                Subtotal
-              </p> -->
-              <!-- <p class="text-base dark:text-gray-300 leading-4 text-gray-600">
-                {{ formatPrice(getTotalPrice()) }}
-              </p> -->
+
             </div>
             <div class="flex justify-between items-center w-full">
               <p class="text-base dark:text-gray-950 leading-4 text-gray-800">
@@ -244,12 +239,7 @@
           <div
             class="flex w-full justify-center items-center md:justify-start md:items-start"
           >
-            <!-- <button
-              class="mt-6 md:mt-0 dark:border-gray-950 dark:hover:bg-gray-900 dark:bg-transparent dark:text-gray-950 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 w-96 2xl:w-full text-base font-medium leading-4 text-gray-800"
-              (click)="paymentOrder()"
-            >
-              Thanh toán
-            </button> -->
+
             <button (click)="paymentOrder()"
                   class=" flex ml-auto text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">
                   Thanh toán
@@ -258,15 +248,163 @@
                 class=" flex ml-auto text-white bg-red-500 border-0 py-2 px-3 focus:outline-none hover:bg-red-600 rounded">
                 Xem giỏ hàng
               </button>
-            <!-- <button
-              class="mt-6 md:mt-0 dark:border-gray-950 dark:hover:bg-gray-900 dark:bg-transparent dark:text-gray-950 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 w-96 2xl:w-full text-base font-medium leading-4 text-gray-800"
-              routerLink="/cart"
-            >
-              Xem giỏ hàng
-            </button> -->
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+---------------------------------------------- -->
+<main role="main">
+
+  <div class="container mt-4">
+      <form class="needs-validation" name="frmthanhtoan" method="post"
+          action="#" (ngSubmit)="paymentOrder()">
+          <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
+
+          <div class="py-5 text-center">
+              <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
+              <h2>Thanh toán</h2>
+              <p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi Đặt hàng.</p>
+          </div>
+
+          <div class="row">
+              <div class="col-md-4 order-md-2 mb-4">
+                  <h4 class="d-flex justify-content-between align-items-center mb-3">
+                      <span class="text-muted">Giỏ hàng</span>
+                      <span class="badge badge-secondary badge-pill">2</span>
+                  </h4>
+                  <ul class="list-group mb-3">
+                      <input type="hidden" name="sanphamgiohang[1][sp_ma]" value="2">
+                      <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
+                      <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
+
+                      <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let item of cartItems.products">
+                        <div class="w-full md:w-40">
+                          <img
+                            class="w-full hidden md:block"
+                            src="{{ item.product.images[0] }}"
+                            alt="dress"
+                          />
+                        </div>
+                          <div>
+                              <h4 class="my-0">{{ item.product.title }}</h4><br>
+                              <h3 class="text-muted"> {{ formatPrice(item.product.price) }} x {{ item.quantity }}</h3>
+                              <h3 class="text-muted"> Size: {{ item.size }}</h3>
+                          </div>
+                          <span class="text-muted">{{ formatPrice(item.product.price) }}</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between">
+                        <span>Tạm tính</span>
+                        <strong>{{ formatPrice(getTotalPrice()) }}</strong>
+
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                       <div class="flex justify-between items-center w-full">
+                      <p class="text-base dark:text-gray-950 leading-4 text-gray-800">
+                        Mã giảm giá
+                      </p>
+                      <p class="text-base dark:text-gray-300 leading-4 text-gray-600">
+                        <select
+                          style="width: 220px"
+                          id="countries"
+                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-100 dark:text-gray-950 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          (change)="onVoucherChange($event)"
+                        >
+                          <option value="" selected>Chọn mã giảm giá</option>
+                          <option
+                            *ngFor="let item of discountList"
+                            [value]="item._id"
+                            [disabled]="isOptionDisabled(item.fromPrice)"
+                          >
+                            {{ item.name }}
+                          </option>
+                        </select>
+                      </p>
+                    </div>
+                    </li>
+
+                      <li class="list-group-item d-flex justify-content-between">
+                          <span>Tổng thành tiền</span>
+                          <strong>{{ formatPrice(calculatePrice()) }}</strong>
+                      </li>
+                  </ul>
+              </div>
+              <div class="col-md-8 order-md-1">
+                  <h4 class="mb-3">Thông tin khách hàng</h4>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="kh_ten">Họ tên</label>
+                          <input type="text" class="form-control" name="name" id="name" [(ngModel)]="orderData.name" required
+                              value="" >
+                      </div>
+                      <div class="col-md-12">
+                          <label for="kh_diachi">Địa chỉ</label>
+                          <input type="text" class="form-control" name="address" id="address" [(ngModel)]="orderData.address" required
+                              value="" >
+                      </div>
+                      <div class="col-md-12">
+                          <label for="kh_dienthoai">Điện thoại</label>
+                          <input type="text" class="form-control" name="mobile" id="mobile" [(ngModel)]="orderData.mobile" required
+                              value="" >
+                      </div>
+                      <div class="col-md-12">
+                          <label for="kh_email">Email</label>
+                          <input type="text" class="form-control" name="email" id="email" [(ngModel)]="orderData.email" required
+                              value="" >
+                      </div>
+                      <div class="col-md-12">
+                          <label for="kh_cmnd">Ghi chú</label>
+                          <input type="text" class="form-control" name="note" id="note" value="" [(ngModel)]="orderData.note" required
+                              >
+                      </div>
+                  </div>
+
+                  <h4 class="mb-3">Hình thức thanh toán</h4>
+
+                  <div class="d-block my-3" (change)="paymentMethod($event)">
+                      <div class="custom-control custom-radio">
+                        <div class="flex items-center">
+                          <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#e6770f" d="M5.385 18q-1.672 0-2.836-1.164Q1.385 15.67 1.385 14t1.164-2.836Q3.713 10 5.385 10h11.83l-2.827-2.827q-.096-.096-.201-.135Q14.08 7 13.965 7h-2.08q-.214 0-.357-.143q-.143-.144-.143-.357t.143-.357Q11.67 6 11.885 6h2.075q.323 0 .627.13q.305.132.523.349l3.532 3.533q1.662-.004 2.818 1.161q1.155 1.165 1.155 2.827q0 1.671-1.164 2.836T18.615 18q-1.67 0-2.835-1.164T14.615 14q0-.777.351-1.474t.91-1.238h-1.691l-2.97 2.97q-.13.13-.27.186q-.14.056-.3.056H9.322Q9.165 16 8.04 17t-2.655 1Zm13.23-1q1.25 0 2.125-.875T21.615 14q0-1.25-.875-2.125T18.615 11q-1.25 0-2.125.875T15.615 14q0 1.25.875 2.125t2.125.875Zm-13.23 0q1.103 0 1.933-.713q.83-.714 1.02-1.787H5.885q-.214 0-.357-.143q-.143-.144-.143-.357t.143-.357q.143-.143.357-.143h2.453q-.19-1.073-1.02-1.787Q6.488 11 5.385 11q-1.25 0-2.125.875T2.385 14q0 1.25.875 2.125T5.385 17Z"/>
+                        </svg>&nbsp;
+                          <input id="httt-3" name="httt_ma" type="radio" class="custom-control-input" required=""
+                          value="Thanh toán khi nhận hàng">&nbsp;
+
+                      <label class="custom-control-label" for="httt-3">
+
+                        Thanh toán khi nhận hàng</label>
+                        </div>
+                      </div>
+
+                      <div class="  custom-control custom-radio">
+                          <div class="flex items-center">
+                            <svg width="30" height="30" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="none" stroke="#06b6d4" stroke-linejoin="round" d="m28.622 37.722l14.445-14.444c.577-.578.577-1.733 0-2.311L34.4 12.3c-.578-.578-1.733-.578-2.311 0l-6.356 6.356L16.49 9.41c-.578-.578-1.734-.578-2.311 0l-9.245 9.245c-.578.577-.578 1.733 0 2.31L21.69 37.723c1.733 1.734 5.2 1.734 6.933 0Z"/>
+                              <path fill="none" stroke="#06b6d4" stroke-linecap="round" stroke-linejoin="round" d="m25.733 18.656l-8.089 8.089c-2.31 2.31-4.622 2.31-6.933 0"/>
+                              <g fill="none" stroke="#06b6d4" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M18.222 30.789c-1.155 1.156-2.31 1.156-3.467 0m22.534-15.6c-1.262-1.156-2.89-.578-4.045.578L18.222 30.789m0-15.022c-4.622-4.622-10.4 1.155-5.778 5.778l5.2 5.2l-5.2-5.2m10.978-.578l-4.044-4.045"/>
+                                  <path d="m21.689 22.7l-4.622-4.622c-.578-.578-1.445-1.445-2.311-1.156m0 3.467c-.578-.578-1.445-1.444-1.156-2.311m5.778 6.933l-4.622-4.622"/>
+                              </g>
+                          </svg>&nbsp;
+                            <input id="httt-3" name="httt_ma" type="radio" class="custom-control-input" required=""
+                            value="VN Pay">&nbsp;
+
+                        <label class="custom-control-label" for="httt-3">
+
+                          Thanh toán bằng ví VN Pay</label>
+                          </div>
+                      </div>
+                  </div>
+                  <hr class="mb-4">
+                  <button class=" relative ml-auto text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded" type="submit" name="btnDatHang">Đặt
+                      hàng</button>
+              </div>
+          </div>
+      </form>
+
+  </div>
+  <!-- End block content -->
+</main>

@@ -1,38 +1,38 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from 'src/app/service/category.service';
+import { BrandService } from 'src/app/service/brand.service';
 
 @Component({
-  selector: 'app-list-nhan',
-  templateUrl: './list-nhan.component.html',
-  styleUrls: ['./list-nhan.component.scss']
+  selector: 'app-brandlist',
+  templateUrl: './brandlist.component.html',
+  styleUrls: ['./brandlist.component.scss']
 })
-export class ListNhanComponent {
-  productsByCategory: any[] = [];
-  categoryId: any
+export class BrandlistComponent {
+  productsByBrand: any[] = [];
+  brandId: any
 
-  constructor(private route: ActivatedRoute,private categoryService: CategoryService) {}
+  constructor(private route: ActivatedRoute,private brandService: BrandService) {}
 
   ngOnInit(): void {
     // Sử dụng paramMap để lấy giá trị của tham số 'id'
-    this.categoryId = this.route.snapshot.paramMap.get('id');
-    console.log(this.categoryId);
+    this.brandId = this.route.snapshot.paramMap.get('id');
+    console.log(this.brandId);
 
-    this.getProductsByCategory(this.categoryId);
+    this.getProductsByCategory(this.brandId);
   }
 
-  getProductsByCategory(categoryId: string): void {
-    if (!categoryId) {
-      console.error('Invalid categoryId');
+  getProductsByCategory(brandId: string): void {
+    if (!brandId) {
+      console.error('Invalid brandId');
       return;
     }
 
-    this.categoryService.getProductsByCategoryId(categoryId).subscribe(
+    this.brandService.getProductsByBrandId(brandId).subscribe(
       (response) => {
         // Kiểm tra xem response có chứa dữ liệu không trước khi gán cho productsByCategory
         if (response && response.products) {
-          this.productsByCategory = response.products;
-          console.log(this.productsByCategory);
+          this.productsByBrand = response.products;
+          console.log(this.productsByBrand);
         } else {
           console.error('Empty response or missing products data');
         }

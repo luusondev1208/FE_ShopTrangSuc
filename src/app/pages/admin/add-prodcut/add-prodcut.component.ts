@@ -8,6 +8,7 @@ import { NgxUploaderModule,UploaderOptions  } from 'ngx-uploader';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/service/category.service';
 import { NgToastService } from 'ng-angular-popup';
+import { BrandService } from 'src/app/service/brand.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AddProdcutComponent {
   // public files: File[] = [];
   // public images: File[] = [];
   categories: any = []
+  brands: any = []
   productForm: FormGroup;
   selectedImages: FileList | null = null;
   
@@ -59,11 +61,22 @@ export class AddProdcutComponent {
   //   ],
     
   // })
-  constructor(private productService: ProductService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService) {
+  constructor(private productService: ProductService,private brandService: BrandService , private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService) {
     this.categoryService.getCategories().subscribe(
       (response:any) => {
         this.categories = response.getAllCategory;
-        console.log(this.categories);
+        // console.log(this.categories);
+        
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this.brandService.getBrands().subscribe(
+      (response:any) => {
+    
+        this.brands = response.getAllBrand;
+        console.log(this.brands);
         
       },
       (error) => {
@@ -88,7 +101,7 @@ export class AddProdcutComponent {
       priceroot: ['', [Validators.required, Validators.min(0)]],
       price: ['', [Validators.required, Validators.min(0)]],
       images: ['', [Validators.required]], // Add the required validator for images
-      brand: ['TTL'], // Set a default value or remove it if not needed
+      brand: [''], // Set a default value or remove it if not needed
       description: ['', [Validators.required, Validators.minLength(6)]],
       category: ['', [Validators.required]],
     });

@@ -1,3 +1,4 @@
+import { BrandService } from 'src/app/service/brand.service';
 import { UserService } from 'src/app/service/user.service';
   import { FeedbackService } from './../../service/feedback.service';
   import { Component, OnInit } from '@angular/core';
@@ -28,6 +29,8 @@ import { UserService } from 'src/app/service/user.service';
     feedback: any ={};
     feedbackList: any[] = []; 
     demoProduct: any = {}
+    brandId: any
+    brand: any = {};
     sizeOption: any[] = Object.values(sizeOptions).filter(value => typeof value === 'number')
     selectedSize: number | null = null;
     productsByCategory: any[] = []; // Thêm mảng để lưu trữ sản phẩm của category
@@ -35,6 +38,7 @@ import { UserService } from 'src/app/service/user.service';
     constructor(
       private activatedRoute: ActivatedRoute,
       private productService: ProductService,
+      private brandService: BrandService,
       private router: Router,
       private cartService: CartService,
       private cdr: ChangeDetectorRef,
@@ -53,8 +57,9 @@ import { UserService } from 'src/app/service/user.service';
         productService.getProduct(params['id']).subscribe((data) => {
           this.imgList = data.productData.images;
           this.getFeedbackDetails(data.productData.feedbacks)
-      
-          
+          this.getBrandDetails(data.productData.brand)
+console.log(data.productData.brand);
+
           this.cdr.detectChanges(); // Thử loại bỏ NgZone
           this.getSizeOptions(this.demoProduct._id);
           this.getProductsByCategory(this.demoProduct.category); // Thêm dòng này để lấy sản phẩm của category
@@ -250,7 +255,20 @@ import { UserService } from 'src/app/service/user.service';
         }
       );
     }
-    
+    getBrandDetails(brandId: string): void {
+      // Fetch brand details based on brandId
+      this.brandService.get(brandId).subscribe(
+        (brand: any) => {
+          console.log(brand);
+          
+          this.brand = brand.getBrand
+          console.log(brand.getBrand);
+        },
+        (error) => {
+          console.error('Error fetching brand details:', error);
+        }
+      );
+    }
     
     
     changeMainImage(event: Event, newImage: string) {

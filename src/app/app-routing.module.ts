@@ -40,6 +40,13 @@ import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.
 import { ErrorComponent } from './pages/error/error.component';
 import { ListNhanComponent } from './pages/list-nhan/list-nhan.component';
 import { StatisComponent } from './pages/admin/statis/statis.component';
+import { AddBrandComponent } from './pages/admin/brand/add-brand/add-brand.component';
+import { ListBrandComponent } from './pages/admin/brand/list-brand/list-brand.component';
+import { UpdateBrandComponent } from './pages/admin/brand/update-brand/update-brand.component';
+import { BrandlistComponent } from './pages/brandlist/brandlist.component';
+import { ListCouponComponent } from './pages/admin/coupon/list-coupon/list-coupon.component';
+import { AddCouponComponent } from './pages/admin/coupon/add-coupon/add-coupon.component';
+import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update-coupon.component';
 const routes: Routes = [
   //client
   {
@@ -48,7 +55,8 @@ const routes: Routes = [
     children: [
       { path: '', component: HomepageComponent },
       { path: 'products', component: ListproductComponent },
-      { path: 'listNhan', component: ListNhanComponent },
+      { path: 'category/:id', component: ListNhanComponent },
+      { path: 'brand/:id', component: BrandlistComponent },
       { path: 'slide', component: SlideshowComponent },
       { path: 'blog', component: BlogpageComponent },
       { path: 'blog/:id', component: BlogDetailsComponent },
@@ -87,6 +95,8 @@ const routes: Routes = [
       { path: 'listOrder', component: ListOderComponent },
       { path: 'listBlog', component: ListBlogComponent },
       { path: 'listUser', component: ListuserComponent },
+      { path: 'listCoupon', component: ListCouponComponent },
+      { path: 'listBrand', component: ListBrandComponent },
       { path: 'addUser', component: AddUserComponent },
       { path: 'Statis', component: StatisComponent },
     ],
@@ -98,10 +108,15 @@ const routes: Routes = [
       { path: 'addProduct', component: AddProdcutComponent },
       { path: 'addCategori', component: AddCategoriComponent },
       { path: 'addBlog', component: AddBlogComponent },
+      { path: 'addCoupon', component: AddCouponComponent },
+      { path: 'addbrand', component: AddBrandComponent },
       { path: 'update/:id', component: UpdateProductComponent },
       { path: 'updateCategori/:id', component: UpdateCategoriComponent },
       { path: 'updateUser/:id', component: UpdateUserComponent },
+      { path: 'updateBrand/:id', component: UpdateBrandComponent },
       { path: 'updateBlog/:id', component: UpdateBlogComponent },
+      { path: 'updatecoupon/:id', component: UpdateCouponComponent },
+
     ],
   },
 

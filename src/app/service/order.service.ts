@@ -63,5 +63,8 @@ export class OrderService {
 
     return this.http.put(updateUrl, body);
   }
-
+  deleteProduct(orderId: string, productId: string): Observable<any> {
+    const url = `${this.apiUrl}/${orderId}/products/${productId}`;
+    return this.http.delete(url);
+}
 }

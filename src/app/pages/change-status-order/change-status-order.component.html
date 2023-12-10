@@ -13,11 +13,12 @@
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Số điện thoại</th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Email</th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Ghi chú</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Trạng Thái</th>
+                    <th class="p-3 px-5 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Trạng Thái</th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Tên Sản Phẩm</th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Tổng tiền</th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Số lượng</th>
                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Ảnh</th>
+                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Thay Đổi</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,41 +26,42 @@
                     <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                         <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                             <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                            {{ order._id }}
+                            {{ "*********" +order._id.slice(-4) }}
                         </td>
                         <td class="w-full lg:w-auto     p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                             <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
                             {{ order.updatedAt }}
                         </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <td class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                           <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
                           {{ order.name }}
                       </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <td class="w-full lg:w-auto p-3 text-gray-800 selection:border border-b text-center block lg:table-cell relative lg:static">
                             <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
                             {{ order.address }}
                         </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                           <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
                           {{ order.mobile }}
                       </td>
-                      <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <td class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
                         {{ order.email }}
                     </td>
-                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                    <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                       <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
                       {{ order.note }}
                   </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                             <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-                            <span [ngClass]="{'rounded bg-red-400 py-1 px-3 text-xs font-bold': order.status === 'Chờ thanh toán',
-                                              'rounded bg-green-400 py-1 px-3 text-xs font-bold': order.status === 'Đã xác nhận',
-                                              'rounded bg-yellow-400 py-1 px-3 text-xs font-bold': order.status === 'Đang xử lý'}">
+                            <span [ngClass]="{ 'rounded bg-green-400 text-white py-1 px-3 text-xs font-bold': order.status === 'Đã xác nhận',
+                                              'rounded bg-[#2196F3] py-1 text-white px-3 text-xs font-bold': order.status === 'Đã giao hàng',
+                                              'rounded bg-yellow-400 py-1 px-3 text-xs font-bold': order.status === 'Đang xử lý',
+                                              'rounded bg-red-500 py-1 px-3 text-xs font-bold': order.status === 'Đã hủy'}">
                                 {{ order.status }}
                             </span>
                         </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <td class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                             <ul class="space-y-2">
                                 <li *ngFor="let product of order.products">
 
@@ -69,11 +71,11 @@
                                 </li>
                               </ul>
                         </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                           <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
                           {{ order.totalPrice }}
                       </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <td class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                             <ul class="space-y-2">
                                 <li *ngFor="let product of order.products">
 
@@ -84,7 +86,7 @@
                                 </li>
                               </ul>
                         </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static">
                             <ul>
                                 <li *ngFor="let product of order.products">
                                   <!-- Kiểm tra xem product có tồn tại và có trường images không -->
@@ -94,6 +96,24 @@
                                 </li>
                               </ul>
                         </td>
+                        <!-- change-status-order.component.html -->
+
+                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                            <button *ngIf="canChangeStatus(order)" (click)="order.showConfirm = true" class="btn btn-primary">Thay đổi</button>
+                            <div
+                              *ngIf="order.showConfirm"
+                              class="fixed top-0 right-0 w-1/4 mt-5 card confirmation-dialog"
+                              [style.transform]="'translateY(' + scrollY + 'px)'"
+                            >
+                              <div class="card-body p-2">
+                                <p class="card-text text-sm">Bạn có chắc muốn hủy đơn không?</p>
+                                <button (click)="updateOrderStatus(order._id, 'Đã hủy')" class="btn btn-danger mr-2 text-sm">Xác nhận</button>
+                                <button (click)="cancelConfirmDialog(order)" class="btn btn-secondary text-sm">Hủy</button>
+                              </div>
+                            </div>
+                          </td>
+                          
+
                     </tr>
                 </ng-container>
             </tbody>

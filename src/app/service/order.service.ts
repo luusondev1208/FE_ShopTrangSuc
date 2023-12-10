@@ -57,4 +57,11 @@ export class OrderService {
     }
     return this.http.post(`${this.apiUrl}/changeStatusPayment`, data);
   }
+  updateOrderStatusUser(orderId: string, status: string): Observable<any> {
+    const updateUrl = `${this.apiUrl}/updateStatusForuser/${orderId}`;
+    const body = { status };
+
+    return this.http.put(updateUrl, body);
+  }
+
 }

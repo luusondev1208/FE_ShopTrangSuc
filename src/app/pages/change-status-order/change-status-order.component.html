@@ -99,21 +99,31 @@
                         </td>
                         <!-- Đối với trạng thái "Đã hủy" -->
                         <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                          <button *ngIf="canChangeStatus(order)" (click)="order.showConfirm = true" class="btn btn-primary">Thay đổi</button>
-                          <div *ngIf="order.showConfirm" class="fixed top-0 right-0 w-1/4 mt-5 card confirmation-dialog">
+                            <ng-container *ngIf="order.status === 'Đang giao hàng' || order.status === 'Đã giao hàng'">
+                              <button *ngIf="canChangeStatusXacNhanHang(order)" (click)="order.showConfirm = true" class="btn btn-primary">
+                                Xác nhận
+                              </button>
+                            </ng-container>
+                            <ng-container *ngIf="order.status !== 'Đã giao hàng' && order.status !== 'Đang giao hàng'">
+                              <button *ngIf="canChangeStatus(order)" (click)="order.showConfirm = true" class="btn btn-primary">
+                                Hủy
+                              </button>
+                            </ng-container>
+                            <div *ngIf="order.showConfirm" class="fixed top-0 right-0 w-1/4 mt-5 card confirmation-dialog">
                               <div class="card-body p-2">
-                                  <ng-container *ngIf="order.status !== 'Đang giao hàng' && order.status !== 'Đã giao hàng'">
-                                      <p class="card-text text-sm">Bạn có chắc muốn hủy đơn không?</p>
-                                      <button (click)="updateOrderStatus(order._id, 'Đã hủy')" class="btn btn-danger mr-2 text-sm">Xác nhận</button>
-                                  </ng-container>
-                                  <ng-container *ngIf="order.status === 'Đang giao hàng' || order.status === 'Đã giao hàng'">
-                                      <p class="card-text text-sm">Xác nhận đã giao hàng</p>
-                                      <button (click)="updateXacNhanHang(order._id, 'Đã nhận hàng')" class="btn btn-danger mr-2 text-sm">Xác nhận</button>
-                                  </ng-container>
-                                  <button (click)="cancelConfirmDialog(order)" class="btn btn-secondary text-sm">Hủy</button>
+                                <ng-container *ngIf="order.status !== 'Đang giao hàng' && order.status !== 'Đã giao hàng'">
+                                  <p class="card-text text-sm">Bạn có chắc muốn hủy đơn không?</p>
+                                  <button (click)="updateOrderStatus(order._id, 'Đã hủy')" class="btn btn-danger mr-2 text-sm">Hủy</button>
+                                </ng-container>
+                                <ng-container *ngIf="order.status === 'Đang giao hàng' || order.status === 'Đã giao hàng'">
+                                  <p class="card-text text-sm">Xác nhận đã giao hàng</p>
+                                  <button *ngIf="canChangeStatusXacNhanHang(order)" (click)="updateXacNhanHang(order._id, 'Đã nhận hàng')" class="btn btn-danger mr-2 text-sm">Xác nhận</button>
+                                </ng-container>
+                                <button (click)="cancelConfirmDialog(order)" class="btn btn-secondary text-sm">Hủy</button>
                               </div>
-                          </div>
-                      </td>
+                            </div>
+                          </td>
+                          
                       
 
                     </tr>

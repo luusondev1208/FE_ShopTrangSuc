@@ -13,6 +13,7 @@ import { UserService } from 'src/app/service/user.service';
   import { CategoryService } from 'src/app/service/category.service';
   import { FormBuilder } from '@angular/forms';
   import { ToastrService } from 'ngx-toastr';
+import { NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
   @Component({
     selector: 'app-product-details',
@@ -36,6 +37,7 @@ import { UserService } from 'src/app/service/user.service';
     productsByCategory: any[] = []; // Thêm mảng để lưu trữ sản phẩm của category
 
     constructor(
+      config: NgbRatingConfig,
       private activatedRoute: ActivatedRoute,
       private productService: ProductService,
       private brandService: BrandService,
@@ -49,8 +51,10 @@ import { UserService } from 'src/app/service/user.service';
       private formBuilder: FormBuilder,
       private toastr: ToastrService,
       private feedbackService: FeedbackService,
-      private userService: UserService
+      private userService: UserService,
+      private modalService: NgbModal
     ) {
+      config.max = 5;
       activatedRoute.params.subscribe((params) => {
         this.loadProductData(params['id']);
         this.getRoute(params['id'])
@@ -276,7 +280,64 @@ console.log(data.productData.brand);
       this.imgList[0] = newImage;
     }
 
-    // changeMainImage(newImage: string) {
-    //   this.imgList[0] = newImage;
-    // }
+    sizeVong: boolean = false;
+    openShowSize(modal: any) {
+      this.modalService.open(modal, {
+        centered: true,
+        size: 'md',
+        backdrop: 'static',
+      });
+    }
+    closeInferClusterModal() {
+      this.modalService.dismissAll();
+    }
+   
+    showSizevong() {
+      this.sizeVong = !this.sizeVong;
+    }
+    //do size nhan
+    selectedRingSize: string = '0';
+  
+    determineRingSize(value: string): string {
+      switch (value) {
+        case '4.6':
+        case '4.7':
+          return '6';
+        case '4.8':
+        case '4.9':
+          return '7';
+        case '5':
+        case '5.1':
+          return '8';
+        case '5.2':
+        case '5.3':
+          return '9';
+        case '5.4':
+        case '5.5':
+          return '10';
+        case '5.6':
+        case '5.7':
+          return '11';
+        case '14':
+        case '15':
+          return '6';
+        case '16':
+        case '17':
+          return '7';
+        case '18':
+        case '19':
+          return '8';
+        case '20':
+        case '21':
+          return '9';
+        case '22':
+        case '23':
+          return '10';
+        case '24':
+        case '25':
+          return '11';
+        default:
+          return '';
+      }
+    }
   }

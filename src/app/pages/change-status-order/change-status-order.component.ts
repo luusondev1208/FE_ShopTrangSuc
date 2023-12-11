@@ -22,8 +22,15 @@ export class ChangeStatusOrderComponent implements OnInit {
   ) {}
   scrollY = 0;
   canChangeStatus(order: any): boolean {
-    return order.status !== 'Đã giao hàng' && order.status !== 'Đã hủy';
-  }
+    return order.status !== 'Đã giao hàng' && order.status !== 'Đã hủy' && order.status !== 'Đã nhận hàng';
+}
+
+canChangeStatusXacNhanHang(order: any): boolean {
+    return (order.status === 'Đã giao hàng') && order.status !== 'Đã hủy';
+}
+
+
+
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
     this.scrollY = window.scrollY;
@@ -35,6 +42,17 @@ export class ChangeStatusOrderComponent implements OnInit {
 
   cancelConfirmDialog(item: any) {
     item.showConfirm = false;
+  }
+  updateXacNhan(item: any) {
+    this.updateXacNhanHang(item._id, 'Đã nhận hàng');
+    item.showConfirm = true;
+  }
+
+  cancelConfirm(item: any) {
+    item.showConfirm = false;
+  }
+  formatPrice(num: number | string) {
+    return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -78,7 +96,7 @@ export class ChangeStatusOrderComponent implements OnInit {
   
             // Nếu đã qua 5 ngày, trạng thái không phải 'Đã hủy', và không phải 'Đã giao hàng', cập nhật trạng thái thành 'Đã giao hàng'
             if (timeDifference >= 5 * 24 * 60 * 60 * 1000 && order.status !== 'Đã hủy' && order.status !== 'Đã giao hàng' && order.status !== 'Đang giao hàng') {
-              this.updateOrderStatus(order._id, 'Đã giao hàng');
+              this.updateOrderStatus(order._id, 'Đã nhận hàng');
             }
           });
         } else {  
@@ -103,6 +121,22 @@ export class ChangeStatusOrderComponent implements OnInit {
         this.getOrderDetails(this.user.orders);
         // Hiển thị thông báo toast
         this.toastService.show('Đã hủy đơn hàng thành công');
+      },
+      (error) => {
+        console.error('Lỗi khi cập nhật trạng thái đơn hàng:', error);
+        // Hiển thị thông báo toast lỗi
+        this.toastService.show('Lỗi khi cập nhật trạng thái đơn hàng');
+      }
+    );
+  }
+  updateXacNhanHang(orderId: string, newStatus: string) {
+    this.orderService.updateOrderStatus(orderId, newStatus).subscribe(
+      (response) => {
+        console.log('Xác nhận hàng thành công:', response);
+        // Gọi lại hàm lấy thông tin đơn hàng để cập nhật dữ liệu mới
+        this.getOrderDetails(this.user.orders);
+        // Hiển thị thông báo toast
+        this.toastService.show('Đã nhận hàng thành công');
       },
       (error) => {
         console.error('Lỗi khi cập nhật trạng thái đơn hàng:', error);

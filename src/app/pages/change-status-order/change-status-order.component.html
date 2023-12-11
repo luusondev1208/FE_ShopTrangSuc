@@ -1,107 +1,209 @@
 <!-- change-status-order.component.html -->
 
 <div *ngIf="orderDetails.length > 0; else noData">
-    <h2 class="text-2xl font-bold mb-4">Danh sách đơn hàng</h2>
-    <div class="overflow-x-auto">
-        <table class="border-collapse w-full">
-            <thead class="text-center">
-                <tr>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Mã đơn hàng</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Ngày Mua</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Người đặt hàng</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Địa chỉ nhận hàng</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Số điện thoại</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Email</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Ghi chú</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Trạng Thái</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Tên Sản Phẩm</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Tổng tiền</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Số lượng</th>
-                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Ảnh</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngFor="let order of orderDetails">
-                    <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                            {{ order._id }}
-                        </td>
-                        <td class="w-full lg:w-auto     p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                            {{ order.updatedAt }}
-                        </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                          <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
-                          {{ order.name }}
+  <h2 class="text-2xl font-bold mb-4"style="margin-left:195px">Danh sách đơn hàng</h2>
+  <div class="overflow-x-auto ">
+      <table class="border-red-800  table table-hover"style="width:1380px;margin-left:85px">
+          <thead class="text-center">
+              <tr >
+                  <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell whitespace-nowrap">Mã đơn hàng</th>
+                  <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Ngày Mua</th>
+                  <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Thông tin người đặt</th>
+                  <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell  whitespace-nowrap">Thông tin Sản Phẩm</th>
+                  <!-- <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Địa chỉ nhận hàng</th> -->
+                  <!-- <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Số điện thoại</th> -->
+                  <!-- <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Email</th> -->
+                  <!-- <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell  whitespace-nowrap">Tổng tiền</th> -->
+                  <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Ghi chú</th>
+                  <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Trạng Thái</th>
+                  <!--<th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell  whitespace-nowrap">Số lượng</th>
+                  <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Ảnh</th> -->
+              </tr>
+          </thead>
+          <tbody>
+              <ng-container *ngFor="let order of orderDetails">
+                  <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                      <td class=" lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static whitespace-nowrap">
+                          <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                          {{"*********"+ order._id.slice(-4) }}
                       </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
-                            {{ order.address }}
-                        </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                          <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
-                          {{ order.mobile }}
+                      <td class=" lg:w-auto     p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static whitespace-nowrap">
+                          <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                          {{ order.updatedAt|date:'dd/MM/yyyy |HH:mm' }}
                       </td>
-                      <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
-                        {{ order.email }}
+                      <td class="p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap">
+                        <!-- <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span> -->
+                        
+                      <ul>
+                        <li>
+                          <p>Tên Người Nhận: {{ order.name }}</p>
+                          <p>Địa Chỉ: {{ order.address }}</p>
+                          <p>Số Điện Thoại: {{ order.mobile }}</p>
+                        </li>
+                      </ul>
+                        
+                        
                     </td>
-                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
-                      {{ order.note }}
+                      <!-- <td class=" lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap">
+                          <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                          {{ order.address }}
+                      </td> -->
+                      <!-- <td class=" lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                        {{ order.mobile }}
+                    </td> -->
+                    <td class=" lg:w-auto p-3 text-gray-800  border border-b  block lg:table-cell relative lg:static whitespace-nowrap"style="700px">
+                      <ul class="space-y-2">
+                          <ul *ngFor="let product of order.products" style="display: grid;grid-template-columns:1fr 1fr;grid-gap:1px">
+                            <div class="image-container">
+                              <li >
+                                <!-- Kiểm tra xem product có tồn tại và có trường images không -->
+                                <ng-container *ngIf="product.product && product.product.images"style="margin-right:3px">
+                                  <div class="image-container">Ảnh Sản Phẩm <img [src]="product.product.images[0]" alt="Product Image" class="w-16 h-16 object-cover rotating-image"> </div>
+                                </ng-container>
+                              </li>
+                            </div>
+                         <div>
+                          
+                   
+                          <li >
+
+                            <ng-container *ngIf="product.product && product.product.title">
+                                <p style="font-weight: initial;">Tên sản phẩm: {{ product.product.title }}</p>
+                                <p style="color:lightslategrey;font-weight: bold;">SL x {{ product.quantity }}</p>
+                                 </ng-container>
+                        </li>
+                        <li >
+
+                            <ng-container *ngIf="product.product && product.product.price">
+                              <p style="color:lightslategrey;font-weight: bold;">Giá Tiền: {{ formatPrice(product.product.price) }}</p>
+                                
+
+                            </ng-container>
+                          </li>
+                          
+                         
+                          
+
+                          
+                         </div>
+                          
+                          </ul>
+                          <hr style="width:150px;color:blueviolet">
+                          <p style="color: red;font-weight: bold;">Tổng tiền: {{formatPrice(order.totalPrice)}}</p>
+                        </ul>
+                         <!-- <button *ngIf="canChangeStatus(order)" (click)="order.showConfirm = true" class="btn btn-primary"style="margin-left:280px">Hủy Đơn</button>
+                          <div
+                          *ngIf="order.showConfirm"
+                          class="fixed top-0 right-0 w-1/4 mt-5 card confirmation-dialog"
+                          [style.transform]="'translateY(' + scrollY + 'px)'"
+                        >
+                          <div class="card-body p-2">
+                            <p class="card-text text-sm">Bạn có chắc muốn hủy đơn không?</p>
+                            <button (click)="updateOrderStatus(order._id, 'Đã hủy')" class="btn btn-danger mr-2 text-sm">Xác nhận</button>
+                            <button (click)="cancelConfirmDialog(order)" class="btn btn-secondary text-sm">Hủy</button>
+                          </div>
+                        </div> -->
+                       
+                        <ng-container *ngIf="order.status === 'Đang giao hàng' || order.status === 'Đã giao hàng'">
+                          <button *ngIf="canChangeStatusXacNhanHang(order)" (click)="order.showConfirm = true" class="btn btn-light">
+                             Đã nhận hàng
+                          </button>
+                         
+                        </ng-container>
+                        <ng-container *ngIf="order.status !== 'Đã giao hàng' && order.status !== 'Đang giao hàng'">
+                          <button *ngIf="canChangeStatus(order)" (click)="order.showConfirm = true" class="btn btn-primary">
+                            Hủy Đơn
+                          </button>
+                        </ng-container> 
+                        <div *ngIf="order.showConfirm" class="fixed top-0 right-0 w-1/4 mt-5 card confirmation-dialog">
+                          <div class="card-body p-2">
+                            <ng-container *ngIf="order.status !== 'Đang giao hàng' && order.status !== 'Đã giao hàng'">
+
+                              <p class="card-text text-sm">Bạn có chắc muốn hủy đơn không?</p>
+                              <button (click)="updateOrderStatus(order._id, 'Đã hủy')" class="btn btn-danger mr-2 text-sm ">Xác Nhận </button>
+                            </ng-container>
+                            <ng-container *ngIf="order.status === 'Đã giao hàng'">
+                              <p class="card-text text-sm">Xác nhận bạn đã nhận hàng</p>
+                              <button *ngIf="canChangeStatusXacNhanHang(order)" (click)="updateXacNhanHang(order._id, 'Đã nhận hàng')" class="btn btn-danger mr-2 text-sm">Xác nhận</button>
+                            </ng-container>
+                            <button (click)="cancelConfirmDialog(order)" class="btn btn-secondary text-sm">Hủy</button>
+                          </div>
+                        </div>
+                       
                   </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-                            <span [ngClass]="{'rounded bg-red-400 py-1 px-3 text-xs font-bold': order.status === 'Chờ thanh toán',
-                                              'rounded bg-green-400 py-1 px-3 text-xs font-bold': order.status === 'Đã xác nhận',
-                                              'rounded bg-yellow-400 py-1 px-3 text-xs font-bold': order.status === 'Đang xử lý'}">
-                                {{ order.status }}
+                    <!-- <td class=" lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                      {{ order.email }}
+                  </td> -->
+                  <!-- <td class=" lg:w-auto p-3 text-gray-800 r border border-b text-center block lg:table-cell relative lg:static ">
+                    <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                    {{  formatPrice(order.totalPrice)}}
+                </td> -->
+                  <td class=" lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap">
+                    <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                    {{ order.note }}
+                </td>
+                
+                 
+                
+                      <td class=" lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap">
+                          <!-- <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase ">Status</span> -->
+                          <!-- <span [ngClass]="{
+                                            'rounded bg-green-400 py-1 px-3 text-xs font-bold': order.status === 'Đã xác nhận',
+                                            'rounded bg-blue-700 py-1 px-3 text-xs font-bold': order.status === 'Đợi xác nhận',
+                                            'rounded bg-yellow-400 py-1 px-3 text-xs font-bold': order.status === 'Đang xử lý',
+                                            'rounded bg-red-400 py-1 px-3 text-xs font-bold': order.status === 'Đã hủy',
+                                            }">
+                              {{ order.status }}
+                          </span> -->
+                          <ng-container >
+
+                            <span [ngClass]="{
+                              'status-container': true,
+                              'confirmed': order.status === 'Đã xác nhận',
+                              'cancelled': order.status === 'Đã hủy',
+                              'pending': order.status === 'Đợi xác nhận',
+                              'end': order.status === 'Đã giao hàng',
+                              'success': order.status === 'Đã nhận hàng',
+                              'danggiao': order.status === 'Đang giao hàng',
+
+
+
+
+                              'rounded': true
+                            }">
+                              {{ order.status }}
                             </span>
-                        </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                            <ul class="space-y-2">
-                                <li *ngFor="let product of order.products">
-
-                                    <ng-container *ngIf="product.product && product.product.title">
-                                        <p class="my-[300px]">{{ product.product.title }}</p>
-                                         </ng-container>
-                                </li>
-                              </ul>
-                        </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                          <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
-                          {{ order.totalPrice }}
+                          </ng-container>
                       </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                            <ul class="space-y-2">
-                                <li *ngFor="let product of order.products">
+                      
+                     
+                      <!-- <td class=" lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static ">
+                        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
+                        {{ order.totalPrice }}
+                    </td>
+                      <td class=" lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                          <ul class="space-y-2">
+                              
+                              <li *ngFor="let product of order.products">
 
-                                  <ng-container *ngIf="product.product && product.product.title">
-                                      <p class="my-[00px]">      {{ product.quantity }}</p>
+                                <ng-container *ngIf="product.product && product.product.title">
+                                    <p class="my-[00px]"> {{ product.quantity }}</p>
 
-                                  </ng-container>
-                                </li>
-                              </ul>
-                        </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                            <ul>
-                                <li *ngFor="let product of order.products">
-                                  <!-- Kiểm tra xem product có tồn tại và có trường images không -->
-                                  <ng-container *ngIf="product.product && product.product.images">
-                                    <img [src]="product.product.images[0]" alt="Product Image" class="w-16 h-16 object-cover">
-                                  </ng-container>
-                                </li>
-                              </ul>
-                        </td>
-                    </tr>
-                </ng-container>
-            </tbody>
-        </table>
-    </div>
+                                </ng-container>
+                              </li>
+                            </ul>
+                      </td> -->
+                      
+                  </tr>
+              </ng-container>
+          </tbody>
+      </table>
+  </div>
 </div>
 
 <ng-template #noData>
-    <p class="text-gray-500">Không có dữ liệu đơn hàng.</p>
+  <p class="text-gray-500">Không có dữ liệu đơn hàng.</p>
 </ng-template>
 

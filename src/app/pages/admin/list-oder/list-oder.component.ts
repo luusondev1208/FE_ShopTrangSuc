@@ -8,195 +8,118 @@ import { UserService } from 'src/app/service/user.service';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
-
 @Component({
   selector: 'app-list-oder',
   templateUrl: './list-oder.component.html',
   styleUrls: ['./list-oder.component.scss']
 })
 export class ListOderComponent {
-  row:any
-  previousStatus: string = "";
-  showText: boolean = false
+  orders: any[] = [];
+  selectedStatus: string = '';
+  selectedNewStatus: string = '';
+  sortOrder: string = 'asc';
+  sortColumn: string = 'createdAt';
+  sortPriceOrder: string = 'asc';
+  sortBy: string = '';
   showloyalCustomer: boolean = false
-  users: any = []
-  firstname: any
-  keyWord:string = '';
-  lastname: any
-  ordersSearch:any = []
-  orders: any = [];
-  loyalCustomers: any = []
-  order: any = [];
-  newStatus: string = ''
-  quantity: any = [];
-  datePart:any;
-  size: any;
-  page: number = 1;
-  limit: number = 10;
   title: any
-  constructor(
-    private orderService: OrderService,
-    private router: Router, 
-    private toast:NgToastService,
-    private userService: UserService,
-    private authService: AuthService,
-    private route: ActivatedRoute
-    ) {
-      this.route.paramMap.subscribe((param) => {
-        const users = JSON.parse(localStorage.getItem("user") as string);
-        const id = users._id    
+  user: any
+  searchTerm: string = '';
+  constructor(private orderService: OrderService,private userService: UserService, private toast: NgToastService, private route: ActivatedRoute) {
+  
+  }
+
+  ngOnInit() {
+    this.getOrders();
+  }
+  sortTable(column: string): void {
+    if (this.sortColumn === column) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+      
+    } else {
+      this.sortBy = column;
+      this.sortOrder = 'asc';
+      this.sortColumn = column;
+    }
+
+    this.orders = this.sortArray([...this.orders]);
+  }
+  sortTableByPrice(): void {
+    this.sortPriceOrder = this.sortPriceOrder === 'asc' ? 'desc' : 'asc';
+    this.orders = this.sortArrayByPrice([...this.orders]);
+  }
+
+
+  sortArrayByPrice(array: any[]): any[] {
+    return array.sort((a, b) => {
+      const order = this.sortPriceOrder === 'asc' ? 1 : -1;
+
+      if (a.totalPrice > b.totalPrice) {
+        return 1 * order;
+      } else if (a.totalPrice < b.totalPrice) {
+        return -1 * order;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  sortArray(array: any[]): any[] {
+    return array.sort((a, b) => {
+      const order = this.sortOrder === 'asc' ? 1 : -1;
+
+      if (a[this.sortColumn] > b[this.sortColumn]) {
+        return 1 * order;
+      } else if (a[this.sortColumn] < b[this.sortColumn]) {
+        return -1 * order;
+      } else {
+        return 0;
+      }
+    });
+  }
+  getOrders() {
+    this.orderService.getAllOrders()
+      .subscribe(data => {
+        console.log(data);
+        this.orders = data.response;
+        console.log(this.orders);
       });
   }
-  loadData(){
-    this.orderService.getAllOrders().subscribe(
-      (response:any) => {
-        console.log(response);
-        
-        this.orders = response.response;
-        console.log(this.orders);
-        const dateParts: string[] = this.orders.map((orderItem: any) => {
-          return orderItem.createdAt.split('T')[0];
-        });
 
-        this.orders.forEach((orderItem: any, index: number) => {
-          orderItem.datePart = dateParts[index];
-        });
-        console.log(this.orders);
-        this.ordersSearch = response.response;
-          
-        
-        const updatedOrdersObservables = this.orders.map((item: any) => {
-          console.log(item);
-          // console.log(item.user);
-          
-          
-          
-          console.log(this.title);
-          
-          const createdAtDate = new Date(item.createdAt);
-          //   // console.log(item.createdAt);
-            this.datePart = item.createdAt.split("T")[0];
-            
-          return this.userService.getUser(item.user);
-        });
-        // console.log(updatedOrdersObservables);
-        
-    
-        forkJoin(updatedOrdersObservables).subscribe((responses: any) => {
-          console.log(responses);
-          
-          responses.forEach((response:any, index:any) => {
-            // console.log(response.use.orders.length);
-            console.log(response);
-            
-            
-            
-            this.orders[index].name = response.use.firstname +" "+ response.use.lastname;
-            this.orders[index].phone = response.use.mobile;
-            this.orders[index].address = response.use.address;
-            this.orders[index].email = response.use.email;
-            console.log(response.use.address);
-            
-            this.orders[index].ord = response.use.orders?.length;
-            this.ordersSearch[index].name = response.use.firstname +" "+ response.use.lastname;
-            this.ordersSearch[index].phone = response.use.mobile;
-            
-          });
-          this.loyalCustomers = this.orders.filter((orders:any) => orders.ord >= 5);
-          console.log(this.loyalCustomers);
-          // console.log(this.orders); // Orders đã được cập nhật với trường name
-        });
-        
-        this.quantity = response.response
-        // console.log(this.quantity);
-         console.log(this.orders); 
-        
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    
-  }
-  
-  showTranLuong() {
-    this.showText = !this.showText;
-  }
-  
-  
-
-changeStatus(order: any, newStatus:string) {
- console.log(newStatus);
- 
-  switch (order.status) {
-    case "Chờ thanh toán":
-      this.previousStatus = order.status;
-      order.status = "Đã xác nhận";
-      break;
-    case "Đã xác nhận":
-      if (this.previousStatus === "Chờ thanh toán" || this.previousStatus === "Đang xử lý") {
-        order.status = this.previousStatus;
-      }
-      break;
-    case "Đang xử lý":
-      this.previousStatus = order.status;
-      order.status = "Đã xác nhận";
-      break;
-    default:
-      
-      break;
-  }
-  console.log(order.status);
-  
-  
-  this.orderService.updateOrderStatus(order._id, String(order.status)).subscribe(
-    response => {
-      console.log('Trạng thái đã được cập nhật thành công!', response);
-      this.order.status = newStatus; // Cập nhật trạng thái trong giao diện sau khi thành công
-    },
-    error => {
-      console.error('Lỗi khi cập nhật trạng thái:', error);
-      // Xử lý lỗi nếu có
+  confirmUpdateStatus(orderId: string): void {
+    const isConfirmed = confirm('Bạn có chắc chắn muốn cập nhật trạng thái?');
+    if (isConfirmed) {
+      this.updateStatus(orderId, this.selectedNewStatus);
     }
-  );
-  
-}
-
-
-
-  
-  search(){
-  const filtered =  this.ordersSearch.filter((item:any) => {
-    return (
-      item.name.toLowerCase().includes(this.keyWord.toLowerCase()) ||
-      (item.phone && item.phone.includes(this.keyWord)) //
-    )
-  })
-  this.orders = filtered
-}
-  ngOnInit() {
-    this.loadData();
   }
 
+  filterOrders() {
+    if (this.selectedStatus) {
+      this.orderService.getOrdersByStatus(this.selectedStatus)
+        .subscribe(data => {
+          this.orders = data.orders;
+        });
+    } else {
+      
+      this.getOrders();
+    }
+  }
+
+
+  updateStatus(orderId: string, newStatus: string): void {
+    this.orderService.updateOrderStatus(orderId, newStatus)
+      .subscribe((data: any) => {
+        console.log(data);
+        this.getOrders();
+        this.title = data.response.status;
+        this.toast.success({ detail: "Thông báo", summary: `Cập nhật thành công trạng thái đơn hàng: ${this.title}`, duration: 5000, position: "topRight" });
+      });
+  }
+  
   showloyalCustomers(){
     this.showloyalCustomer = !this.showloyalCustomer;
   }
 
-  
-
-  previousPage() {
-    if (this.page > 1) {
-      this.page--;
-      this.loadData();
-    }
-  }
-
-  nextPage() {
-    this.page++;
-    this.loadData();
-  }
-
-  
   /**Default name for excel file when download**/
   fileName = 'ExcelSheet.xlsx';
 

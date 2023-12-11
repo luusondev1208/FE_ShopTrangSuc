@@ -14,6 +14,7 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent {
+  
   cartItems: any;
   imgList: any;
   discountForm: FormGroup;
@@ -31,7 +32,8 @@ export class OrderComponent {
     email: '',
   };
   userID: any;
-
+  userList: any = {}; 
+  
   constructor(private cartService: CartService,
     private toast: NgToastService,
     private activatedRoute: ActivatedRoute,
@@ -52,8 +54,11 @@ export class OrderComponent {
     });
 
     this.discountForm = this.fb.group({
+
       code: ['', [Validators.required, Validators.minLength(3)]]
     });
+    this.userLogin = this.orderData.email;
+    this.userID = this.orderData.user;
   }
 
   formatPrice(price: number): string {
@@ -180,23 +185,29 @@ export class OrderComponent {
 
   }
 
-  loadCartItems(): void {
-    const local = localStorage.getItem("user");
-    const user: any = local && JSON.parse(local);
-    this.userLogin = user;
-    console.log(this.userLogin);
-    this.userID = this.userLogin._id
-    console.log(this.userID);
+ // Trong component
+ loadCartItems(): void {
+  const local = localStorage.getItem("user");
+  const user: any = local && JSON.parse(local);
+  this.userLogin = user;
 
-    this.userService.getUser(user._id).subscribe((res) => {
+  this.userService.getUser(user._id).subscribe((res: any) => {
+    this.userList = res.use;
+    console.log(this.userList);
+    
+    this.orderData.name = this.userList.firstname + ' ' + this.userList.lastname;
+    this.orderData.address = this.userList.address;
+    this.orderData.mobile = this.userList.mobile;
+    this.orderData.email = this.userList.email;
+    this.orderData.note = ''; 
+    console.log('Name:', this.orderData.name);
+    console.log('Address:', this.orderData.address);
+
+console.log('Address:', this.orderData.address);
       this.cartService.getCart(res.use.cart).subscribe((items: any) => {
         this.cartItems = items?.cart;
-        this.onSubmit()
+        this.onSubmit();
       });
     })
-
-
-  }
-
-
+  };
 }

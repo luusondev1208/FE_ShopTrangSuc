@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -57,4 +57,19 @@ export class OrderService {
     }
     return this.http.post(`${this.apiUrl}/changeStatusPayment`, data);
   }
+  updateOrderStatusUser(orderId: string, status: string): Observable<any> {
+    const updateUrl = `${this.apiUrl}/updateStatusForuser/${orderId}`;
+    const body = { status };
+
+    return this.http.put(updateUrl, body);
+  }
+  deleteProduct(orderId: string, productId: string): Observable<any> {
+    const url = `${this.apiUrl}/${orderId}/products/${productId}`;
+    return this.http.delete(url);
+  }
+  getOrdersByStatus(status: string): Observable<any> {
+    const params = new HttpParams().set('status', status);
+    return this.http.get(`${this.apiUrl}/filterByStatus`, { params });
+  }
+
 }

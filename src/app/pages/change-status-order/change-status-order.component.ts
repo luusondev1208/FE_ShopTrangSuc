@@ -26,7 +26,7 @@ export class ChangeStatusOrderComponent implements OnInit {
 }
 
 canChangeStatusXacNhanHang(order: any): boolean {
-    return (order.status === 'Đang giao hàng' || order.status === 'Đã giao hàng') && order.status !== 'Đã hủy';
+    return (order.status === 'Đã giao hàng') && order.status !== 'Đã hủy';
 }
 
 
@@ -50,6 +50,9 @@ canChangeStatusXacNhanHang(order: any): boolean {
 
   cancelConfirm(item: any) {
     item.showConfirm = false;
+  }
+  formatPrice(num: number | string) {
+    return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -93,7 +96,7 @@ canChangeStatusXacNhanHang(order: any): boolean {
   
             // Nếu đã qua 5 ngày, trạng thái không phải 'Đã hủy', và không phải 'Đã giao hàng', cập nhật trạng thái thành 'Đã giao hàng'
             if (timeDifference >= 5 * 24 * 60 * 60 * 1000 && order.status !== 'Đã hủy' && order.status !== 'Đã giao hàng' && order.status !== 'Đang giao hàng') {
-              this.updateOrderStatus(order._id, 'Đã giao hàng');
+              this.updateOrderStatus(order._id, 'Đã nhận hàng');
             }
           });
         } else {  

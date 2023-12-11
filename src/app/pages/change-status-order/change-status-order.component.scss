@@ -1,15 +1,139 @@
 /* your.component.scss */
-@keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateX(100px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+// @keyframes slideIn {
+//     from {
+//       opacity: 0;
+//       transform: translateX(100px);
+//     }
+//     to{
+//       opacity: 1;
+//       transform: translateX(0);
+//     }
+//   }
   
-  .confirmation-dialog {
-    animation: slideIn 0.3s ease-in-out;
+//   .confirmation-dialog {
+//     animation: slideIn 0.3s ease-in-out;
+//   }
+
+// .confirmation-dialog {
+//   position: fixed;
+//   top: 50%;
+//   left: 40%;
+//   transform: translate(-50%, -50%);
+//   background-color: white;
+//   border: 1px solid #ddd;
+//   padding: 20px;
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+//   z-index: 1000;
+// }
+.confirmation-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
   }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+  ul li p {
+    margin-left: 2px;
+  }
+  /* Normal state */
+.btn-primary {
+  background-color: white;
+  border: 1px solid red;
+  color: black; /* Text color */
+  margin-left: 280px;
+}
+
+/* Hover state */
+.btn-primary:hover {
+  background-color: red;
+  border: 1px solid red;
+  color: white; /* Text color */
+}
+.btn-light{
+  margin-left: 280px;
+  background-color: rgb(233, 89, 36);
+  color:white
+  
+}
+.btn-light:hover{
+  
+  background-color: rgb(209, 62, 9);
+  color:whit
+  
+}
+@keyframes rotate360 {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// .rotating-image {
+//   animation: rotate360 5s linear infinite; /* Thời gian mỗi chu kỳ xoay và tốc độ xoay */
+// }
+
+
+// @keyframes snowfall {
+//   0%, 100% {
+//     background-position: 0 0;
+//   }
+//   50% {
+//     background-position: 100% 100%;
+//   }
+// }
+
+.image-container {
+  position: relative;
+  perspective: 1000px; /* Đặt điểm nhìn của ảnh */
+  display: inline-block;
+}
+
+.rotating-image {
+  width: 30%;
+  height: auto;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+}
+
+.image-container:hover .rotating-image {
+  transform: rotateY(180deg); /* Xoay ảnh khi di chuột qua */
+}
+
+.status-container.confirmed { background-color: #00ff00; } /* Màu xanh lá cây */
+.status-container.processing { background-color: #ffcc00; } /* Màu vàng */
+.status-container.cancelled { background-color: #ff0000; } /* Màu đỏ */
+.status-container.end { background-color: #5c0665; } /* Màu xanh dương */
+.status-container.pending { background-color:cyan; } /* Màu xanh dương */
+.status-container.success { background-color:cornflowerblue; } /* Màu xanh dương */
+.status-container.danggiao { background-color:cadetblue; } /* Màu xanh dương */
+
+
+
+
+/* Độ cong góc cho tất cả trạng thái */
+.status-container.rounded { border-radius: 8px; }
+
+/* Các thuộc tính chung cho status-container */
+.status-container {
+  display: inline-block;
+  padding: 5px 10px;
+  color: #ffffff; /* Màu chữ trắng hoặc tùy chỉnh màu chữ theo ý muốn */
+}

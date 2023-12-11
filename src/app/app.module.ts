@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 // import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -128,7 +129,7 @@ import { BrandlistComponent } from './pages/brandlist/brandlist.component';
 
   ],
   imports: [
-
+    NgbRatingModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -144,6 +145,7 @@ import { BrandlistComponent } from './pages/brandlist/brandlist.component';
     BrowserAnimationsModule, // required animations module
     // NgbPaginationModule,
     // NgbAlertModule,
+    
     ToastrModule.forRoot(
 
       {

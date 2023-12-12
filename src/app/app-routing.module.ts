@@ -47,6 +47,7 @@ import { BrandlistComponent } from './pages/brandlist/brandlist.component';
 import { ListCouponComponent } from './pages/admin/coupon/list-coupon/list-coupon.component';
 import { AddCouponComponent } from './pages/admin/coupon/add-coupon/add-coupon.component';
 import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update-coupon.component';
+import { BoxChatComponent } from './pages/box-chat/box-chat.component';
 const routes: Routes = [
   //client
   {
@@ -60,6 +61,7 @@ const routes: Routes = [
       { path: 'slide', component: SlideshowComponent },
       { path: 'blog', component: BlogpageComponent },
       { path: 'blog/:id', component: BlogDetailsComponent },
+      { path: 'box', component: BoxChatComponent },
 
       { path: 'invoice', component: InvoiceComponent },
       { path: 'user-payment', component: UserPaymentComponent },

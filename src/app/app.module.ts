@@ -67,6 +67,7 @@ import { ListCouponComponent } from './pages/admin/coupon/list-coupon/list-coupo
 import { AddCouponComponent } from './pages/admin/coupon/add-coupon/add-coupon.component';
 import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update-coupon.component';
 import { BrandlistComponent } from './pages/brandlist/brandlist.component';
+import { BoxChatComponent } from './pages/box-chat/box-chat.component';
 
 
 
@@ -125,7 +126,8 @@ import { BrandlistComponent } from './pages/brandlist/brandlist.component';
     ListCouponComponent,
     AddCouponComponent,
     UpdateCouponComponent,
-    BrandlistComponent
+    BrandlistComponent,
+    BoxChatComponent
 
   ],
   imports: [

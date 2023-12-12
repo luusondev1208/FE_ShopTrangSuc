@@ -4,6 +4,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-update-password',
   templateUrl: './update-password.component.html',
@@ -34,7 +35,9 @@ constructor(
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private location:Location
+
 )
 {
   this.route.paramMap.subscribe((param)=>{
@@ -59,6 +62,10 @@ onChange(e:any){
  
   
 }
+goBack():void{
+  this.location.back();
+}
+
 
 private checkPassword(group: FormGroup) {
   const password = group.get('newPassword')?.value;

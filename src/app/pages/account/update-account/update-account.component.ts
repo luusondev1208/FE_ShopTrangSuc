@@ -4,6 +4,8 @@ import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-update-account',
   templateUrl: './update-account.component.html',
@@ -46,7 +48,9 @@ export class UpdateAccountComponent {
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private location:Location
+
   ) {
     this.route.paramMap.subscribe((param) => {
       const users = JSON.parse(localStorage.getItem("user") as string);
@@ -70,6 +74,7 @@ export class UpdateAccountComponent {
         (error) => console.log(error.message)
       );
     });
+
   }
   onChange(e: any) {
     this.user[e.target.name] = e.target.value;
@@ -77,6 +82,10 @@ export class UpdateAccountComponent {
 
 
   }
+  goBack():void{
+    this.location.back();
+  }
+  
   onSubmit() {
 
     if (this.userForm.valid) {

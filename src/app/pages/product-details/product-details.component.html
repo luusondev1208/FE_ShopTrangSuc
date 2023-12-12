@@ -54,9 +54,30 @@
            
             <p>Số lượng còn trong kho: {{ product.quantity }}</p>
             <p class="leading-relaxed ml-1">{{ product?.description }}</p>
+            <div class="uudai">
+               <div class="noidunguudai"style="width:450px;border: 1px solid #808080; border-radius: 5px;">
+                <!-- Nội dung của div -->
+                
+                     <div style="background-color: rgb(233, 233, 233);">
+                      <p style="margin-left:5px;">Ưu đãi:</p>
+                     </div>
+                           <div class="item1"style="display:flex">
+                            <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px "alt="">
+                            <span style="color:#4c4c4c; font-weight: 400;margin-left:8px ;">Độc quyền Ngày đôi 12/12: Ưu đãi đa tầng trang sức Vàng đến 9%. </span>
+                           </div>
+                           <div class="item2"style="display:flex">
+                            <img src="https://i.gyazo.com/4914b35ab9381a3b5a1e7e998ee9550c.png"style="width:23px;height:20px;margin-top:3px;margin-left:8px " alt="">
+                            <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Mã VNPAYPNJQ4 tự động hiển thị 50k cho đơn từ 2 triệu khi quét  <a class="popup-option-item" href="javascript:void();" id="promo-6" style="color:#0000FF;"> VNPAY-QR</a></span>
+                           </div>
+                           <div class="item3"style="display:flex">
+                            <img src="https://fintechnews.sg/wp-content/uploads/2015/09/momo-logo-150x150.jpg"style="width:23px;height:20px;margin-top:5px;margin-left:8px " alt="">
+                            <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Nhập mã MMQUYPHAI giảm 2% tối đa 200K khi thanh toán qua   <a class="popup-option-item" href="javascript:void();" id="promo-6" style="color:#0000FF;">MOMO</a></span>
+                           </div>
+               </div>
+            </div>
             
 <!-- chọn size -->
-<button class="btn btn-sm btn-outline-primary" (click)="openShowSize(showSize)">Cách chọn size</button>
+
 <ng-template let-modal #showSize>
     <div class="modal-header">
         <button class="flex items-center space-x-2" *ngIf="!sizeVong" (click)="showSizevong()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle-fill mr-2" viewBox="0 0 16 16">
@@ -148,6 +169,9 @@
                     </svg>
                   </span>
                 </div>
+                <div><button class="btn btn-white" (click)="openShowSize(showSize)"style="margin:5px;font-style:italic;font-size: 13px;color:goldenrod;">Cách đo size</button>
+                  <hr style="width:80px;margin-left:18px">
+                </div>
               </div>
             </div>
             <div class="flex -mt-10 mb-4">
@@ -171,6 +195,26 @@
               </svg>
             </button>
             </div>
+            <!-- ghichu -->
+            <div class="ghichu"style="margin-top:30px;width:500px;margin-left:0px">
+              <div class="item1"style="display:flex">
+                <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px "alt="">
+                <span style="color:#4c4c4c; font-weight: 400;margin-left:8px ;">Giá sản phẩm thay đổi tuỳ trọng lượng vàng và đá</span>
+               </div>
+               <div class="item2"style="display:flex">
+                <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px  " alt="">
+                <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Đổi sản phẩm trong 48h tại hệ thống cửa hàng NRO </span>
+               </div>
+               <div class="item3"style="display:flex">
+                <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px  " alt="">
+                <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Cầm đồ và Thu mua.  </span>
+               </div>
+               <div class="item4"style="display:flex">
+                <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px  " alt="">
+                <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;">Miễn phí giao nhanh Toàn Quốc 1-7 ngày, xem thêm Chính sách giao hàng  </span>
+               </div>
+            </div>
+            <!-- end ghi chu -->
           </div>
         </div>
       </div>

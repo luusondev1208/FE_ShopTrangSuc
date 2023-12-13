@@ -111,8 +111,15 @@ export class ListOderComponent {
       .subscribe((data: any) => {
         console.log(data);
         this.getOrders();
-        this.title = data.response.status;
-        this.toast.success({ detail: "Thông báo", summary: `Cập nhật thành công trạng thái đơn hàng: ${this.title}`, duration: 5000, position: "topRight" });
+        // this.title = data.response.status;
+        this.toast.success({
+          detail: 'Thông báo',
+          summary: 'Cập nhật thành công trạng thái đơn hàng.Email thông báo sẽ được gửi cho khách hàng.',
+          duration: 5000,
+          position: 'topRight',
+          // escape: false, // Cho phép sử dụng HTML trong summary
+      });
+      
       });
   }
   

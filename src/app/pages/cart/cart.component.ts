@@ -100,5 +100,25 @@ export class CartComponent implements OnInit {
   proceedOrder(): void {
     this.router.navigateByUrl('/order');
   }
+  decreaseQuantity(cartItem: CartItem, quantity: any): void {
+    if (cartItem.quantity > 1) {
+      cartItem.quantity--;
+      this.updateCartItem(cartItem, quantity);
+    }
+    
+  }
 
+  increaseQuantity(cartItem: CartItem, quantity: any): void {
+    if (cartItem.quantity < cartItem.product.quantity) {
+      cartItem.quantity++;
+      this.updateCartItem(cartItem, quantity);
+    } else {
+      this.toast.warning({
+        detail: 'Số lượng vượt quá số lượng còn lại trong kho.',
+        summary: 'Cảnh báo',
+        duration: 5000,
+        position: 'topRight',
+      });
+    }
+  }
 }

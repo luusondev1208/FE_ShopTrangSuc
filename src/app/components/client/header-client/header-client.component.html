@@ -38,12 +38,15 @@
           </a>
           <a href="#"
             class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-            <div class="flex space-x-2 hover:text-red-500 mt-[25px]">
-              <button><img class="-mt-[1px] " src="https://cdn.pnj.io/images/image-update/layout/icon-cart-new.svg"
-                  alt=""></button>
-              <button> <a routerLink="/cart">Giỏ hàng</a></button>
+            <div class="flex  hover:text-red-500 mt-[25px]">
+            
+              <button><img class="-mt-[1px] " src="https://cdn.pnj.io/images/image-update/layout/icon-cart-new.svg" alt=""></button>
+              <span id="cart-count" class=" text-red-500">{{ productCount }}</span>
+              <button><a routerLink="/cart">Giỏ hàng</a></button>
+          
             </div>
           </a>
+
 
           <button *ngIf="isMenuOpen" (mouseenter)="toggleMenu()" data-collapse-toggle="mobile-menu-2" type="button"
             class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -113,3 +116,25 @@
 
   <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </div>
+<script>
+  // Số lượng ban đầu
+  let cartCount = 0;
+
+  // Hàm cập nhật số lượng trên icon giỏ hàng
+  function updateCartCount() {
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+      cartCountElement.textContent = cartCount.toString();
+    }
+  }
+
+  // Xử lý sự kiện thêm sản phẩm vào giỏ hàng
+  function addToCart() {
+    // Thực hiện logic thêm sản phẩm vào giỏ hàng ở đây
+    // ...
+
+    // Sau khi thêm sản phẩm, cập nhật số lượng và gọi hàm cập nhật
+    cartCount++;
+    updateCartCount();
+  }
+</script>

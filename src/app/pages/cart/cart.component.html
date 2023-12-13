@@ -16,33 +16,21 @@
         Số lượng còn lại: {{ item.product.quantity }}
       </div>
       <div>
-        <form class="max-w-sm mx-auto">
+        <div class="input-group">
+          <button class="btn btn-outline-secondary" type="button" (click)="decreaseQuantity(item, item.quantity - 1)">-</button>
+          <input type="text" class="form-control text-center" [value]="item.quantity" disabled>
+          <button class="btn btn-outline-secondary" type="button" (click)="increaseQuantity(item, item.quantity +1  )">+</button>
+        </div>
+        
+        <!-- <div *ngIf="quantitySelect.value >= item.product.quantity" class="text-red-500">Số lượng tối đa!</div> -->
+        <div class="flex">
           <label
-            for="number-input"
-            class="block mb-2 text-sm font-medium dark:text-white "
-            >Số lượng:</label
-          >
-          <input
-            #quantitySelect
-            [value]="item.quantity"
-            (input)="updateCartItem(item, quantitySelect.value)"
-            type="number"
-            min="1"
-            [max]="item.product.quantity"
-            id="number-input"
-            aria-describedby="helper-text-explanation"
-            class="bg-gray-50 border  w-[150px] border-gray-300 text-center  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  py-[1px] dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="90210"
-            required
-          />
-        </form>
-        <div *ngIf="quantitySelect.value >= item.product.quantity" class="text-red-500">Số lượng tối đa!</div>
-        <form class="max-w-xs mx-auto">
-          <label
-            for="number-input"
-            class="block mb-2 text-sm font-medium  dark:text-white"
-            >Kích thước:</label
-          >
+          for="number-input"
+          class="block mb-2 text-sm font-medium  text-black"
+          >Kích thước:</label
+        >
+          <form class="max-w-xs mx-auto">
+         
           <input
             disabled
             type="text"
@@ -54,7 +42,7 @@
             required
             [value]="item.size"
           />
-        </form>
+        </form></div>
       </div>
 
       <div>

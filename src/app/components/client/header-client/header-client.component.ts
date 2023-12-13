@@ -5,7 +5,14 @@ import { AuthService } from 'src/app/service/auth.service';
 import { ProductService } from 'src/app/service/product.service';
 import { NgToastService } from 'ng-angular-popup';
 import { CategoryService } from 'src/app/service/category.service';
-
+import { CartService } from 'src/app/service/cart.service';
+import { interval, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+interface User {
+  cart?: any; // hoặc kiểu dữ liệu chính xác của cart nếu có
+  // Các thuộc tính khác của user
+  
+}
 
 @Component({
   selector: 'app-header-client',
@@ -13,6 +20,8 @@ import { CategoryService } from 'src/app/service/category.service';
   styleUrls: ['./header-client.component.scss']
 })
 export class HeaderClientComponent {
+  private updateIntervalInSeconds = 1; // Update every 1 second
+  private destroy$ = new Subject<void>();
   isMenuOpen: boolean = true;
   page: number = 1;
   limit: number = 10;
@@ -21,8 +30,12 @@ export class HeaderClientComponent {
   isDarkMode: boolean = false;
   categories: any[] = []
   brand: any[] = []
-  constructor(private productService: ProductService,private brandService: BrandService,private categoryService: CategoryService, private router: Router, private authService: AuthService, private toast: NgToastService) 
+  idcart: any = {}
+  productCount: number = 0;
+  userData: User = {};
+  constructor(private productService: ProductService, private cartService: CartService,private brandService: BrandService,private categoryService: CategoryService, private router: Router, private authService: AuthService, private toast: NgToastService) 
   {
+    
     
   }
   loadData() {
@@ -49,7 +62,37 @@ export class HeaderClientComponent {
   ngOnInit() {
     this.loadData();
     this.ButtonAdmin();
+    this.userData = JSON.parse(localStorage.getItem('user') || '{}');
+    this.idcart = this.userData.cart
+    console.log(this.idcart);
+    this.refreshCartData();
 
+    // Set up an interval to refresh the cart data every second until the component is destroyed
+    interval(this.updateIntervalInSeconds * 1000)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.refreshCartData();
+      });
+  }
+  ngOnDestroy() {
+    // Emit a value to notify the interval to complete when the component is destroyed
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  refreshCartData() {
+    this.cartService.getCart(this.idcart).subscribe(
+      (data: any) => {
+        if (data && data.cart && data.cart.products) {
+          this.productCount = data.cart.products.length;
+        } else {
+          console.error('Dữ liệu không đúng định dạng:', data);
+        }
+      },
+      (error) => {
+        console.error('Lỗi khi gọi API:', error);
+      }
+    );
   }
   products: any = []
   searchResults: any[] = [];
@@ -95,6 +138,7 @@ export class HeaderClientComponent {
 
 
   }
+  
   userRole!: string;
 
   ButtonAdmin() {

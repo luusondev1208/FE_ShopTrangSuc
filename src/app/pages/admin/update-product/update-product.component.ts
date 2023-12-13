@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
+import { BrandService } from 'src/app/service/brand.service';
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
@@ -13,7 +14,7 @@ export class UpdateProductComponent {
   categories: any = []
   productForm: FormGroup;
   selectedImages: FileList | null = null;
-  
+  brands: any = []
 product:any
   products: any = {};
   // productForm = this.formBuider.group({
@@ -51,7 +52,7 @@ product:any
   //   ],
     
   // })
-  constructor(private productService: ProductService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService, private route:ActivatedRoute) {
+  constructor(private productService: ProductService, private categoryService: CategoryService,private brandService: BrandService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService, private route:ActivatedRoute) {
     this.route.paramMap.subscribe((param)=> {
       const id = String(param.get('id'))
       this.productService.getProduct(id).subscribe(
@@ -87,6 +88,17 @@ product:any
         console.log(error);
       }
     );
+    this.brandService.getBrands().subscribe(
+      (response:any) => {
+    
+        this.brands = response.getAllBrand;
+        console.log(this.brands);
+        
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     this.productForm = this.formBuider.group({
       title: [''],
       description: [''],
@@ -103,7 +115,7 @@ product:any
       price: ['', [Validators.required, Validators.min(0)]],
       assess: ['', [Validators.required, Validators.min(0)]],
       images: ['', [Validators.required]], // Add the required validator for images
-      brand: ['TTL'], // Set a default value or remove it if not needed
+      brand: [''], // Set a default value or remove it if not needed
       description: ['', [Validators.required, Validators.minLength(6)]],
       category: ['', [Validators.required]],
     });
@@ -149,7 +161,7 @@ product:any
           duration: 5000,
           position: 'topRight'
         });
-        // this.router.navigate(['/admin/list']);
+        this.router.navigate(['/admin/list']);
       },
       (error) => {
         this.toast.error({

@@ -65,14 +65,14 @@ export class HeaderClientComponent {
     this.userData = JSON.parse(localStorage.getItem('user') || '{}');
     this.idcart = this.userData.cart
     console.log(this.idcart);
-    this.refreshCartData();
+    // this.refreshCartData();
 
-    // Set up an interval to refresh the cart data every second until the component is destroyed
-    interval(this.updateIntervalInSeconds * 1000)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
-        this.refreshCartData();
-      });
+    // // Set up an interval to refresh the cart data every second until the component is destroyed
+    // interval(this.updateIntervalInSeconds * 1000)
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe(() => {
+    //     this.refreshCartData();
+    //   });
   }
   ngOnDestroy() {
     // Emit a value to notify the interval to complete when the component is destroyed
@@ -80,20 +80,20 @@ export class HeaderClientComponent {
     this.destroy$.complete();
   }
 
-  refreshCartData() {
-    this.cartService.getCart(this.idcart).subscribe(
-      (data: any) => {
-        if (data && data.cart && data.cart.products) {
-          this.productCount = data.cart.products.length;
-        } else {
-          console.error('Dữ liệu không đúng định dạng:', data);
-        }
-      },
-      (error) => {
-        console.error('Lỗi khi gọi API:', error);
-      }
-    );
-  }
+  // refreshCartData() {
+  //   this.cartService.getCart(this.idcart).subscribe(
+  //     (data: any) => {
+  //       if (data && data.cart && data.cart.products) {
+  //         this.productCount = data.cart.products.length;
+  //       } else {
+  //         console.error('Dữ liệu không đúng định dạng:', data);
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Lỗi khi gọi API:', error);
+  //     }
+  //   );
+  // }
   products: any = []
   searchResults: any[] = [];
   searchTerm: string = '';

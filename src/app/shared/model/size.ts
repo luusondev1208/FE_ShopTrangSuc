@@ -1,8 +1,8 @@
 export enum sizeOptions {
-  a = 38,
-  b = 39,
-  c = 40,
-  d = 41,
-  e = 42,
-  f = 43,
+  a = 6,
+  b = 7,
+  c = 8,
+  d = 9,
+  e = 10,
+  f = 11,
 }

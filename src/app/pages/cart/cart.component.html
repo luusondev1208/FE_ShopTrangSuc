@@ -16,21 +16,27 @@
         Số lượng còn lại: {{ item.product.quantity }}
       </div>
       <div>
-        <div class="input-group">
-          <button class="btn btn-outline-secondary" type="button" (click)="decreaseQuantity(item, item.quantity - 1)">-</button>
-          <input type="text" class="form-control text-center" [value]="item.quantity" disabled>
-          <button class="btn btn-outline-secondary" type="button" (click)="increaseQuantity(item, item.quantity +1  )">+</button>
-        </div>
-        
-        <!-- <div *ngIf="quantitySelect.value >= item.product.quantity" class="text-red-500">Số lượng tối đa!</div> -->
-        <div class="flex">
-          <label
+        <label
           for="number-input"
           class="block mb-2 text-sm font-medium  text-black"
-          >Kích thước:</label
+          >Số lượng:</label
         >
+        <div class="input-group" style="width: 170px;" >
+
+          <button class="btn btn-outline-secondary" type="button" (click)="decreaseQuantity(item, item.quantity - 1)">-</button>
+          <input  [max]="item.product.quantity" type="text" class="form-control text-center" [value]="item.quantity" disabled>
+          <button class="btn btn-outline-secondary" type="button" (click)="increaseQuantity(item, item.quantity +1  )">+</button>
+        </div>
+        <label
+        for="number-input"
+        class="block mb-2 text-sm font-medium  text-black"
+        >Kích thước:</label
+      >
+        <!-- <div *ngIf="quantitySelect.value >= item.product.quantity" class="text-red-500">Số lượng tối đa!</div> -->
+        <div class="flex">
+
           <form class="max-w-xs mx-auto">
-         
+
           <input
             disabled
             type="text"

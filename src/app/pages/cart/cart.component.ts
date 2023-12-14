@@ -53,16 +53,16 @@ export class CartComponent implements OnInit {
   removeFromCart(cartItem: CartItem): void {
     const local = localStorage.getItem("user");
     const user = local && JSON.parse(local);
-  
+
     this.userService.getUser(user._id).subscribe((res) => {
       this.cartService.removeCartItem(cartItem.product._id, res.use.cart).subscribe(() => {
         this.loadCartItems();
-        
-        // Thêm thông báo ở đây
+
+
         this.toast.success({
           detail: 'Sản phẩm đã được xóa khỏi giỏ hàng.',
           summary: 'Thành công',
-          duration: 5000, // Thời gian hiển thị thông báo (miligiây)
+          duration: 5000,
           position: 'topRight',
         });
       });
@@ -76,7 +76,7 @@ export class CartComponent implements OnInit {
   getTotalPrice(): number {
     return this.cartItems.products.reduce((total: any, product: any) => {
 
-      const productTotal = product?.product.price * product.quantity;
+      const productTotal = product?.product.price *  product.quantity;
       return total + productTotal;
     }, 0);
   }
@@ -86,12 +86,17 @@ export class CartComponent implements OnInit {
   updateCartItem(cartItem: CartItem, quantity: any): void {
     const local = localStorage.getItem("user");
     const user = local && JSON.parse(local);
+// console.log(cartItem);
 
     const data: any = {
       productId: cartItem.product._id,
+      size: cartItem.size,
       quantity: quantity,
       userId: user?._id
     }
+    // console.log("data chekc",data);
+
+
     this.cartService.updateCartItem(data).subscribe(() => {
       this.loadCartItems();
     });
@@ -105,7 +110,7 @@ export class CartComponent implements OnInit {
       cartItem.quantity--;
       this.updateCartItem(cartItem, quantity);
     }
-    
+
   }
 
   increaseQuantity(cartItem: CartItem, quantity: any): void {

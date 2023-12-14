@@ -15,7 +15,7 @@ export class UpdateProductComponent {
   productForm: FormGroup;
   selectedImages: FileList | null = null;
   brands: any = []
-product:any
+  product: any
   products: any = {};
   // productForm = this.formBuider.group({
   //   title:[
@@ -50,17 +50,17 @@ product:any
   //     '',
   //     [Validators.required]
   //   ],
-    
+
   // })
-  constructor(private productService: ProductService, private categoryService: CategoryService,private brandService: BrandService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService, private route:ActivatedRoute) {
-    this.route.paramMap.subscribe((param)=> {
+  constructor(private productService: ProductService, private categoryService: CategoryService, private brandService: BrandService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService, private route: ActivatedRoute) {
+    this.route.paramMap.subscribe((param) => {
       const id = String(param.get('id'))
       this.productService.getProduct(id).subscribe(
-        (product:any) => {
+        (product: any) => {
           console.log(product);
           this.product = product.productData;
-          
-          
+
+
           this.productForm.patchValue({
             title: product.productData.title,
             price: product.productData.price,
@@ -71,29 +71,30 @@ product:any
             brand: product.productData.brand,
             description: product.productData.description,
             slug: product.productData.slug,
-            category: product.productData.category
+            category: product.productData.category,
+            quantity: product.productData.quantity
           })
-          
+
         },
         (error) => console.log(error.message)
       );
     });
     this.categoryService.getCategories().subscribe(
-      (response:any) => {
+      (response: any) => {
         this.categories = response.getAllCategory;
         console.log(this.categories);
-        
+
       },
       (error) => {
         console.log(error);
       }
     );
     this.brandService.getBrands().subscribe(
-      (response:any) => {
-    
+      (response: any) => {
+
         this.brands = response.getAllBrand;
         console.log(this.brands);
-        
+
       },
       (error) => {
         console.log(error);
@@ -104,6 +105,7 @@ product:any
       description: [''],
       brand: [''],
       price: [0],
+      quantity: [0],
       // ... other form fields ...
     });
 
@@ -118,41 +120,43 @@ product:any
       brand: [''], // Set a default value or remove it if not needed
       description: ['', [Validators.required, Validators.minLength(6)]],
       category: ['', [Validators.required]],
+      quantity: ['', [Validators.required, Validators.min(0)]],
     });
   }
   onFilesSelected(event: any) {
     this.selectedImages = event.target.files;
     console.log(event.target.files);
-    
+
   }
 
   onHandleSubmit() {
-    
-      const formData:any = {};
-      formData.id =  this.product._id;
-      console.log(this.product);
-      
-      formData.title = this.productForm.value.title || '',
+
+    const formData: any = {};
+    formData.id = this.product._id;
+    console.log(this.product);
+
+    formData.title = this.productForm.value.title || '',
       formData.description = this.productForm.value.description || '',
       formData.brand = this.productForm.value.brand || '',
       formData.priceroot = this.productForm.value.priceroot || 0,
-      formData.price =  this.productForm.value.price || 0,
-      formData.assess =  this.productForm.value.assess || 0,
+      formData.price = this.productForm.value.price || 0,
+      formData.assess = this.productForm.value.assess || 0,
       formData.category = this.productForm.value.category || '',
+      formData.quantity = this.productForm.value.quantity || 0,
       // ... id other form fields ...
-  console.log(formData);
- 
-  
-      if (this.selectedImages?.length != 0 && this.selectedImages) {
+      console.log(formData);
 
-        for (let i = 0; i < this.selectedImages.length; i++) {
-          console.log(this.selectedImages[i]);
-          formData.image = this.selectedImages[i];
-        }
+
+    if (this.selectedImages?.length != 0 && this.selectedImages) {
+
+      for (let i = 0; i < this.selectedImages.length; i++) {
+        console.log(this.selectedImages[i]);
+        formData.image = this.selectedImages[i];
       }
-  
-  
-      
+    }
+
+
+
     this.productService.updateProduct(formData).subscribe(
       (response) => {
         this.toast.success({
@@ -173,8 +177,8 @@ product:any
         console.error('Lỗi khi thêm sản phẩm: ', error);
       }
     );
-    
-   
+
+
   }
-  
+
 }

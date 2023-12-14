@@ -4,7 +4,7 @@ import { ProductService } from 'src/app/service/product.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
-import { NgxUploaderModule,UploaderOptions  } from 'ngx-uploader';
+import { NgxUploaderModule, UploaderOptions } from 'ngx-uploader';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/service/category.service';
 import { NgToastService } from 'ng-angular-popup';
@@ -23,7 +23,7 @@ export class AddProdcutComponent {
   brands: any = []
   productForm: FormGroup;
   selectedImages: FileList | null = null;
-  
+
 
   products: any = {};
   // productForm = this.formBuider.group({
@@ -59,25 +59,25 @@ export class AddProdcutComponent {
   //     '',
   //     [Validators.required]
   //   ],
-    
+
   // })
-  constructor(private productService: ProductService,private brandService: BrandService , private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService) {
+  constructor(private productService: ProductService, private brandService: BrandService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService) {
     this.categoryService.getCategories().subscribe(
-      (response:any) => {
+      (response: any) => {
         this.categories = response.getAllCategory;
         // console.log(this.categories);
-        
+
       },
       (error) => {
         console.log(error);
       }
     );
     this.brandService.getBrands().subscribe(
-      (response:any) => {
-    
+      (response: any) => {
+
         this.brands = response.getAllBrand;
         console.log(this.brands);
-        
+
       },
       (error) => {
         console.log(error);
@@ -90,6 +90,7 @@ export class AddProdcutComponent {
       price: [0],
       priceroot: [0],
       assess: [0],
+      quantity: [''],
       // ... other form fields ...
     });
 
@@ -104,6 +105,7 @@ export class AddProdcutComponent {
       brand: [''], // Set a default value or remove it if not needed
       description: ['', [Validators.required, Validators.minLength(6)]],
       category: ['', [Validators.required]],
+      quantity: ['', [Validators.required, Validators.min(0)]],
     });
   }
   onFilesSelected(event: any) {
@@ -119,6 +121,7 @@ export class AddProdcutComponent {
     formData.append('assess', this.productForm.value.assess);
     formData.append('priceroot', this.productForm.value.priceroot);
     formData.append('category', this.productForm.value.category);
+    formData.append('quantity', this.productForm.value.quantity);
     // ... append other form fields ...
 
     if (this.selectedImages) {
@@ -128,26 +131,26 @@ export class AddProdcutComponent {
     }
 
 
-    
-  this.productService.addProduct(formData).subscribe(
-    (response) => {
-      this.toast.success({
-        detail: 'Thông báo',
-        summary: `Thêm sản phẩm thành công: ${response.createdProduct.title}`,
-        duration: 5000,
-        position: 'topRight'
-      });
-      this.router.navigate(['/admin/list']);
-    },
-    (error) => {
-      this.toast.error({
-        detail: 'Thông báo',
-        summary: 'Lỗi khi thêm sản phẩm!',
-        duration: 5000,
-        position: 'topRight'
-      });
-      console.error('Lỗi khi thêm sản phẩm: ', error);
-    }
-  );
+
+    this.productService.addProduct(formData).subscribe(
+      (response) => {
+        this.toast.success({
+          detail: 'Thông báo',
+          summary: `Thêm sản phẩm thành công: ${response.createdProduct.title}`,
+          duration: 5000,
+          position: 'topRight'
+        });
+        this.router.navigate(['/admin/list']);
+      },
+      (error) => {
+        this.toast.error({
+          detail: 'Thông báo',
+          summary: 'Lỗi khi thêm sản phẩm!',
+          duration: 5000,
+          position: 'topRight'
+        });
+        console.error('Lỗi khi thêm sản phẩm: ', error);
+      }
+    );
   }
 }

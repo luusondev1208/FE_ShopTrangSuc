@@ -1,11 +1,11 @@
 <section class="text-gray-700 body-font overflow-hidden bg-white">
-  <form action="" method="post">
-    <div class="container px-5 py-12 mx-auto"  *ngIf="product">
+  <form action="" method="post" class="mb-3">
+    <div class="container px-5 py-12 mr-[170px]" *ngIf="product">
       <div class="lg:w-4/5 mx-auto flex flex-wrap">
 
         <div *ngIf="imgList && imgList.length > 0" class="flex space-x-4">
           <div class="w-[150px]">
-            <button  *ngFor="let img of imgList.slice(1)" (click)="changeMainImage($event, img)">
+            <button *ngFor="let img of imgList.slice(1)" (click)="changeMainImage($event, img)">
               <img class="w-[150px] border border-gray-200 hover:bg-slate-100" [src]="img" alt="">
             </button>
 
@@ -18,140 +18,107 @@
             <h1 class=" text-gray-500  title-font font-medium mb-1">
               Thương hiệu: {{ brand.title }}
             </h1>
-            <div class="flex mb-4">
-              <span class="flex items-center">
-                <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" class="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-                  <!-- Mã SVG -->
-                </svg>
-                <!-- Copy các đoạn mã SVG tương ứng -->
-                <span class="text-gray-600 -ml-3 w-[100px]">{{ product.assess }} đánh giá</span>
-              </span>
-              
-              <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-                <ngb-rating class="" [rate]="5" />
-                <a class="text-gray-500">
-                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    class="w-5 h-5" viewBox="0 0 24 24">
-                    <!-- Mã SVG -->
-                  </svg>
-                </a>
-                <a class="ml-2 text-gray-500">
-                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    class="w-5 h-5" viewBox="0 0 24 24">
-                    <!-- Mã SVG -->
-                  </svg>
-                </a>
-                <a class="ml-2 text-gray-500">
-                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    class="w-5 h-5" viewBox="0 0 24 24">
-                    <!-- Mã SVG -->
-                  </svg>
-                </a>
-                
-              </span>
+            <div class="flex items-center justify-between my-3">
+              <span class="text-gray-600">{{ product.assess }} đánh giá</span>
+              <ngb-rating class="" [rate]="5" />
+              <span>{{product.sold}} đã bán</span>
             </div>
-           
-            <p>Số lượng còn trong kho: {{ product.quantity }}</p>
-            <p class="leading-relaxed ml-1">{{ product?.description }}</p>
-            <div class="uudai">
-               <div class="noidunguudai"style="width:450px;border: 1px solid #808080; border-radius: 5px;">
-                <!-- Nội dung của div -->
-                
-                     <div style="background-color: rgb(233, 233, 233);">
-                      <p style="margin-left:5px;">Ưu đãi:</p>
-                     </div>
-                           <div class="item1"style="display:flex">
-                            <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px "alt="">
-                            <span style="color:#4c4c4c; font-weight: 400;margin-left:8px ;">Độc quyền Ngày đôi 12/12: Ưu đãi đa tầng trang sức Vàng đến 9%. </span>
-                           </div>
-                           <div class="item2"style="display:flex">
-                            <img src="https://i.gyazo.com/4914b35ab9381a3b5a1e7e998ee9550c.png"style="width:23px;height:20px;margin-top:3px;margin-left:8px " alt="">
-                            <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Mã VNPAYPNJQ4 tự động hiển thị 50k cho đơn từ 2 triệu khi quét  <a class="popup-option-item" href="javascript:void();" id="promo-6" style="color:#0000FF;"> VNPAY-QR</a></span>
-                           </div>
-                           <div class="item3"style="display:flex">
-                            <img src="https://fintechnews.sg/wp-content/uploads/2015/09/momo-logo-150x150.jpg"style="width:23px;height:20px;margin-top:5px;margin-left:8px " alt="">
-                            <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Nhập mã MMQUYPHAI giảm 2% tối đa 200K khi thanh toán qua   <a class="popup-option-item" href="javascript:void();" id="promo-6" style="color:#0000FF;">MOMO</a></span>
-                           </div>
-               </div>
-            </div>
-            
-<!-- chọn size -->
 
-<ng-template let-modal #showSize>
-    <div class="modal-header">
-        <button class="flex items-center space-x-2" *ngIf="!sizeVong" (click)="showSizevong()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle-fill mr-2" viewBox="0 0 16 16">
-          <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-        </svg>Đo size lắc</button>
-        <button class="flex items-center space-x-2" *ngIf="sizeVong" (click)="showSizevong()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle-fill mr-2" viewBox="0 0 16 16">
-          <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-        </svg>Đo size nhẫn</button>
-        <button type="button" class="btn-close" aria-label="Close" (click)="closeInferClusterModal()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-</svg></button>
-    </div>
-    <!-- đo size nhẫn -->
-    <div *ngIf="!sizeVong">
-        <div class="modal-body text-sky-800">
-            <h4 class="text-center">Cách đo size nhẫn</h4>
-            <p>1. Dùng chỉ hoặc giấy bản nhỏ đo quấn quanh khớp tay, đánh dấu vị trí cắt nhau</p>
-            <img class="ml-[140px]" src="https://cdn.pnj.io/images/image-update/2022/guide-size/size-nhan.svg" alt="">
-            <p>2. Dùng thước đo chiều dài đoạn dây vừa đo được (đơn vị cm)</p>
-            <img class="ml-[140px]" src="https://cdn.pnj.io/images/image-update/2022/guide-size/thuoc-do.svg" alt="">
-        </div>
-        <div class="flex justify-center bg-zinc-300 px-3 py-2">
-            <div>
-              <p>Kết quả bạn đo được là:</p>
-              <div class="overflow-auto ... w-[200px] h-[100px] bg-white -py-2 rounded-md">
-                <div class="flex ml-2 -mt-4" *ngFor="let size of ['4.6', '4.7', '4.8', '4.9', '5', '5.1', '5.2', '5.3', '5.4', '5,5', '5.6', '5.7']">
-                  <input type="radio" name="age" (change)="selectedRingSize = determineRingSize(size)">
-                  <p class="mt-3 pl-1">{{ size }} cm</p>
+            <p>Số lượng còn trong kho: {{ product.quantity }}</p>
+
+
+            <!-- chọn size -->
+
+            <ng-template let-modal #showSize>
+              <div class="modal-header">
+                <button class="flex items-center space-x-2" *ngIf="!sizeVong" (click)="showSizevong()"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-left-circle-fill mr-2" viewBox="0 0 16 16">
+                    <path
+                      d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+                  </svg>Đo size lắc</button>
+                <button class="flex items-center space-x-2" *ngIf="sizeVong" (click)="showSizevong()"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-left-circle-fill mr-2" viewBox="0 0 16 16">
+                    <path
+                      d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+                  </svg>Đo size nhẫn</button>
+                <button type="button" class="btn-close" aria-label="Close" (click)="closeInferClusterModal()"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                  </svg></button>
+              </div>
+              <!-- đo size nhẫn -->
+              <div *ngIf="!sizeVong">
+                <div class="modal-body text-sky-800">
+                  <h4 class="text-center">Cách đo size nhẫn</h4>
+                  <p>1. Dùng chỉ hoặc giấy bản nhỏ đo quấn quanh khớp tay, đánh dấu vị trí cắt nhau</p>
+                  <img class="ml-[140px]" src="https://cdn.PNJ.io/images/image-update/2022/guide-size/size-nhan.svg"
+                    alt="">
+                  <p>2. Dùng thước đo chiều dài đoạn dây vừa đo được (đơn vị cm)</p>
+                  <img class="ml-[140px]" src="https://cdn.PNJ.io/images/image-update/2022/guide-size/thuoc-do.svg"
+                    alt="">
+                </div>
+                <div class="flex justify-center bg-zinc-300 px-3 py-2">
+                  <div>
+                    <p>Kết quả bạn đo được là:</p>
+                    <div class="overflow-auto ... w-[200px] h-[100px] bg-white -py-2 rounded-md">
+                      <div class="flex ml-2 -mt-4"
+                        *ngFor="let size of ['4.6', '4.7', '4.8', '4.9', '5', '5.1', '5.2', '5.3', '5.4', '5,5', '5.6', '5.7']">
+                        <input type="radio" name="age" (change)="selectedRingSize = determineRingSize(size)">
+                        <p class="mt-3 pl-1">{{ size }} cm</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ml-10">
+                    <p>Bảng size phổ biến</p>
+                    <img src="https://cdn.NRO.io/images/image-update/2022/guide-size/nhan_v2.svg" alt="">
+                    <div class="flex mt-4">
+                      <p class="mr-4">Size nhẫn của bạn là: </p>
+                      <p class="bg-white ml-4 w-[25px] pl-2">{{ selectedRingSize }}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ml-10">
-              <p>Bảng size phổ biến</p>
-              <img src="https://cdn.pnj.io/images/image-update/2022/guide-size/nhan_v2.svg" alt="">
-              <div class="flex mt-4">
-                <p class="mr-4">Size nhẫn của bạn là: </p>
-                <p class="bg-white ml-4 w-[25px] pl-2">{{ selectedRingSize }}</p>
-              </div>
-            </div>
-          </div>
-    </div>
-<!-- đo size lắc -->
-    <div *ngIf="sizeVong">
-        <div class="modal-body text-sky-800">
-            <h4 class="text-center">Cách đo size lắc</h4>
-            <p>1. Dùng chỉ hoặc giấy bản nhỏ quấn quanh cổ tay, bạn lưu ý quấn trừ hao sao cho kích cỡ thoải mái một chút, đánh dấu vị trí cắt nhau</p>
-            <img class="ml-[140px]" src="https://cdn.pnj.io/images/image-update/2022/guide-size/size-vong-lac.svg" alt="">
-            <p>2. Dùng thước đo chiều dài đoạn dây vừa đo được (đơn vị cm)</p>
-            <img class="ml-[140px]" src="https://cdn.pnj.io/images/image-update/2022/guide-size/thuoc-do.svg" alt="">
-        </div>
-        <div class="flex justify-center bg-zinc-300 px-3 py-2">
-            <div>
-              <p>Kết quả bạn đo được là:</p>
-              <div class="overflow-auto ... w-[200px] h-[100px] bg-white -py-2 rounded-md">
-                <div class="flex ml-2 -mt-4" *ngFor="let size of ['14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']">
-                  <input type="radio" name="age" (change)="selectedRingSize = determineRingSize(size)">
-                  <p class="mt-3 pl-1">{{ size }} cm</p>
+              <!-- đo size lắc -->
+              <div *ngIf="sizeVong">
+                <div class="modal-body text-sky-800">
+                  <h4 class="text-center">Cách đo size lắc</h4>
+                  <p>1. Dùng chỉ hoặc giấy bản nhỏ quấn quanh cổ tay, bạn lưu ý quấn trừ hao sao cho kích cỡ thoải mái
+                    một chút, đánh dấu vị trí cắt nhau</p>
+                  <img class="ml-[140px]" src="https://cdn.PNJ.io/images/image-update/2022/guide-size/size-vong-lac.svg"
+                    alt="">
+                  <p>2. Dùng thước đo chiều dài đoạn dây vừa đo được (đơn vị cm)</p>
+                  <img class="ml-[140px]" src="https://cdn.PNJ.io/images/image-update/2022/guide-size/thuoc-do.svg"
+                    alt="">
+                </div>
+                <div class="flex justify-center bg-zinc-300 px-3 py-2">
+                  <div>
+                    <p>Kết quả bạn đo được là:</p>
+                    <div class="overflow-auto ... w-[200px] h-[100px] bg-white -py-2 rounded-md">
+                      <div class="flex ml-2 -mt-4"
+                        *ngFor="let size of ['14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']">
+                        <input type="radio" name="age" (change)="selectedRingSize = determineRingSize(size)">
+                        <p class="mt-3 pl-1">{{ size }} cm</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ml-10">
+                    <p>Bảng size phổ biến</p>
+                    <img src="https://cdn.NRO.io/images/image-update/2022/guide-size/lactay_lacchan_v2.svg" alt="">
+                    <div class="flex mt-4">
+                      <p class="mr-4">Size lắc của bạn là: </p>
+                      <p class="bg-white ml-4 w-[25px] pl-2">{{ selectedRingSize }}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ml-10">
-              <p>Bảng size phổ biến</p>
-              <img src="https://cdn.pnj.io/images/image-update/2022/guide-size/lactay_lacchan_v2.svg" alt="">
-              <div class="flex mt-4">
-                <p class="mr-4">Size lắc của bạn là: </p>
-                <p class="bg-white ml-4 w-[25px] pl-2">{{ selectedRingSize }}</p>
-              </div>
-            </div>
-          </div>
-    </div>
-      
-    
-</ng-template>
-            <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
+
+
+            </ng-template>
+            <div class="flex mt-6 items-center">
               <div *ngIf="sizeOption.length > 0" class="flex items-center">
                 <span class="mr-3">Kích thước</span>
                 <div class="relative">
@@ -169,67 +136,108 @@
                     </svg>
                   </span>
                 </div>
-                <div><button class="btn btn-white" (click)="openShowSize(showSize)"style="margin:5px;font-style:italic;font-size: 13px;color:goldenrod;">Cách đo size</button>
-                  <hr style="width:80px;margin-left:18px">
+                <div>
+                  <button class="btn btn-white" (click)="openShowSize(showSize)"
+                    style="margin:5px;font-style:italic;font-size: 13px;color:goldenrod;">Cách đo size</button>
+
                 </div>
               </div>
             </div>
-            <div class="flex -mt-10 mb-4">
-              <span style="margin-right: 30px" class="font-medium text-xl text-orange-600">{{ formatPrice(product.price)}}đ</span>
-              <span  class="text-gray-400 font-medium text-xl line-through">{{ formatPrice(product.priceroot)}}đ</span>
+            <div class="flex mb-4 mt-3">
+              <span style="margin-right: 30px" class="font-medium text-xl text-orange-600">{{
+                formatPrice(product.price)}}đ</span>
+              <span class="text-gray-400 font-medium text-xl line-through mr-2">{{
+                formatPrice(product.priceroot)}}đ</span>
+              <button
+                class="rounded-full w-7 h-7 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z">
+                  </path>
+                </svg>
+              </button>
             </div>
+            <div class="uudai ">
+              <div class="noidunguudai" style="width:380px;border: 1px solid #808080; border-radius: 5px;">
+                <!-- Nội dung của div -->
+
+                <div style="background-color: rgb(233, 233, 233);">
+                  <p style="margin-left:5px;">Ưu đãi:</p>
+                </div>
+                <div class="item1" style="display:flex">
+                  <img
+                    src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
+                    style="width:13px;height:15px;margin-top:3px;margin-left:8px " alt="">
+                  <span style="color:#4c4c4c; font-weight: 400;margin-left:8px ;">Độc quyền Ngày đôi 12/12: Ưu đãi đa
+                    tầng trang sức Vàng đến 9%. </span>
+                </div>
+                <div class="item2" style="display:flex">
+                  <img src="https://i.gyazo.com/4914b35ab9381a3b5a1e7e998ee9550c.png"
+                    style="width:23px;height:20px;margin-top:3px;margin-left:8px " alt="">
+                  <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Mã VNPAYNROQ4 tự động hiển thị 50k
+                    cho đơn từ 2 triệu khi quét <a class="popup-option-item" href="javascript:void();" id="promo-6"
+                      style="color:#0000FF;"> VNPAY-QR</a></span>
+                </div>
+                <div class="item3" style="display:flex">
+                  <img src="https://fintechnews.sg/wp-content/uploads/2015/09/momo-logo-150x150.jpg"
+                    style="width:23px;height:20px;margin-top:5px;margin-left:8px " alt="">
+                  <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Nhập mã MMQUYPHAI giảm 2% tối đa 200K
+                    khi thanh toán qua <a class="popup-option-item" href="javascript:void();" id="promo-6"
+                      style="color:#0000FF;">MOMO</a></span>
+                </div>
+              </div>
+            </div>
+
             <div class="flex">
               <a href="/cart">
                 <button (click)="addToCart()"
-                  class="w-[150px] flex ml-auto text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded">
+                  class="w-[380px] text-[20px] font-medium text-white my-3 bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded text-center">
                   Thêm giỏ hàng
                 </button>
               </a>
-              <button
-              class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
-                viewBox="0 0 24 24">
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z">
-                </path>
-              </svg>
-            </button>
+
             </div>
             <!-- ghichu -->
-            <div class="ghichu"style="margin-top:30px;width:500px;margin-left:0px">
-              <div class="item1"style="display:flex">
-                <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px "alt="">
-                <span style="color:#4c4c4c; font-weight: 400;margin-left:8px ;">Giá sản phẩm thay đổi tuỳ trọng lượng vàng và đá</span>
-               </div>
-               <div class="item2"style="display:flex">
-                <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px  " alt="">
-                <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Đổi sản phẩm trong 48h tại hệ thống cửa hàng NRO </span>
-               </div>
-               <div class="item3"style="display:flex">
-                <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px  " alt="">
-                <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Cầm đồ và Thu mua.  </span>
-               </div>
-               <div class="item4"style="display:flex">
-                <img src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"style="width:13px;height:15px;margin-top:3px;margin-left:8px  " alt="">
-                <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;">Miễn phí giao nhanh Toàn Quốc 1-7 ngày, xem thêm Chính sách giao hàng  </span>
-               </div>
+            <div class="ghichu" style="margin-top:5px;width:500px;margin-left:0px">
+              <div class="item2" style="display:flex">
+                <img
+                  src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
+                  style="width:13px;height:15px;margin-top:3px;margin-left:8px  " alt="">
+                <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Đổi sản phẩm trong 48h tại hệ thống cửa
+                  hàng NRO </span>
+              </div>
+              <div class="item3" style="display:flex">
+                <img
+                  src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
+                  style="width:13px;height:15px;margin-top:3px;margin-left:8px  " alt="">
+                <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;"> Cầm đồ và Thu mua. </span>
+              </div>
+              <div class="item4" style="display:flex">
+                <img
+                  src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
+                  style="width:13px;height:15px;margin-top:3px;margin-left:8px  " alt="">
+                <span style="color:#4c4c4c; font-weight: 400;margin-left:4px ;">Miễn phí giao nhanh Toàn Quốc 1-7
+                  ngày</span>
+              </div>
             </div>
-            <!-- end ghi chu -->
+
           </div>
         </div>
       </div>
     </div>
 
-    <div class="p-10 bg-white rounded-xl mt-10 ml-[390px] w-[900px] ">
+    <!-- <div class="p-10 bg-white rounded-xl mt-10 mx-[150px] ">
       <mat-tab-group>
         <mat-tab label="Mô tả">
           <ng-template matTabContent>
             <div class="mt-5">
               <p>{{ product.description }}</p>
+
             </div>
           </ng-template>
         </mat-tab>
-        <mat-tab label="Bình Luận" >
+        <mat-tab label="Bình Luận">
           <ng-template matTabContent>
             <div class="mt-[50px]">
               <h2 class="text-[20px] mb-[32px] text-[#008340]">
@@ -237,66 +245,75 @@
               </h2>
               <div *ngIf="user">
                 <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
-                  <textarea
-                    formControlName="content"
-                    class="border-[1px] border-[gray] outline-none p-[12px]"
-                    cols="70"
-                    rows="8"
-                    placeholder="Nhập nội dung"
-                  ></textarea>
+                  <textarea formControlName="content" class="border-[1px] border-[gray] outline-none p-[12px]" cols="70"
+                    rows="8" placeholder="Nhập nội dung"></textarea>
                   <br />
                   <button class="px-[34px] py-[8px] text-white rounded bg-[#008340]">
                     Gửi
                   </button>
-      
+
                 </form>
               </div>
             </div>
-            
-            <!-- Thêm lớp để tạo thanh cuộn và giới hạn chiều cao cho phần nội dung bình luận -->
-<div class="max-h-[300px] overflow-y-auto">
 
-  <div *ngIf="feedback && feedback.length > 0">
-    <div *ngFor="let item of feedback" class="mb-[12px]">
+           
+            <div class="max-h-[300px] overflow-y-auto">
 
-      <!-- Thêm lớp để giới hạn số dòng hiển thị của nội dung bình luận -->
-      <div class="card p-3 mb-2 overflow-hidden">
+              <div  class="flex items-center space-x-2" >
+                <div >
+                  
+          
+                  <div class="">
+                    <div  *ngFor="let item of feedback" class="block mt-3">
+                      <div  class="flex items-center bg-gray-100 w-[550px] rounded-xl px-2 pb-2">
+                        <img src="https://images.unsplash.com/photo-1551122089-4e3e72477432?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8cnVieXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" class="h-8 w-8 object-fill rounded-full">
+                        <div class="font-medium ml-3">
+                          <a href="#" class="hover:underline text-sm font-bold">
+                            <small>{{item.userName}}</small>
+                          </a>
+                          <div class="text-xs">
+                            {{item.content}}
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div class="flex justify-start items-center text-xs w-full">
+                        <div class="font-semibold text-gray-700 px-2 flex items-center justify-center space-x-1">
+                          <a href="#" class="hover:underline">
+                            <small>Like</small>
+                          </a>
+                         <small class="self-center">.</small>
+                          <a href="#" class="hover:underline">
+                            <small>Reply</small>
+                          </a>
+                         <small class="self-center">.</small>
+                          <a href="#" class="hover:underline">
+                            <small>{{ item.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
+                          </a>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="self-stretch flex justify-center items-center transform transition-opacity duration-200 opacity-0 translate -translate-y-2 hover:opacity-100">
+                  <a href="#" class="">
+                    <div class="text-xs cursor-pointer flex h-6 w-6 transform transition-colors duration-200 hover:bg-gray-100 rounded-full items-center justify-center">
+                      <svg class="w-4 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                    </div>
         
-        <div class="flex flex-row">
-          <img src="https://res.cloudinary.com/dz4cezwre/image/upload/v1701921411/th_rrldpy.jpg" height="30" width="60" class="rounded-circle">
-          <div class="flex flex-col ms-2">
-            <h3 class="mb-1 text-primary font-bold text-3xl"> {{item.userName}}</h3>
+                  </a>
+                </div>
+        
+              </div>
 
-            <!-- Thêm lớp để giới hạn số dòng hiển thị của nội dung bình luận -->
-            <p class="comment-text line-clamp-3">{{item.content}}</p>
-          </div>
-        </div>
-
-        <div class="flex justify-between">
-          <div class="flex flex-row gap-3 items-center">
-            <div class="flex items-center">
-              <!-- Nội dung khác -->
             </div>
-            <div class="flex items-center">
-              <!-- Nội dung khác -->
-            </div>
-          </div>
 
-          <div class="flex flex-row">
-            <span class="text-muted fw-normal fs-10"> {{ item.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
-          </div>
-        </div>
-      </div>
 
-    </div>
-  </div>
-
-</div>
-
-            
           </ng-template>
         </mat-tab>
-        <!-- <mat-tab label="Đánh giá">
+        <mat-tab label="Đánh giá">
           <ng-template matTabContent>
             <div class="mt-10">
              
@@ -347,73 +364,284 @@
               </button>
             </form>
           </ng-template>
-        </mat-tab> -->
+        </mat-tab>
       </mat-tab-group>
-    </div>
+    </div> -->
 
 
   </form>
-  
-  
+  <div class="mx-[230px]">
+    <mat-accordion>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="font-medium text-[17px]">
+            Thông số và mô tả
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <div>
+          <hr>
+          <div class="mt-10">
+            <p>Trọng lượng tham khảo: 20.66574phân</p>
+            <p class="bg-gray-100  py-2 ">Hàm lượng chất liệu: 4160</p>
+            <p>Loại đá chính: Xoàn mỹ</p>
+            <p class="bg-gray-100  py-2 ">Hình dạng đá: Tròn</p>
+            <p>Loại đá phụ: Xoàn mỹ</p>
+            <p class="bg-gray-100  py-2 ">Số viên đá chính: 1viên</p>
+            <p>Số viên đá phụ: 40viên</p>
+            <p class="bg-gray-100  py-2 mb-3">Thương hiệu: {{product.brand}}</p>
+          </div>
+          <p>{{product.description}}</p>
+          <p>Dù ở lứa tuổi nào, theo phong cách cổ điển hay hiện đại thì sắc màu của những viên đá ECZ màu trắng vẫn
+            luôn biết "chiều lòng" các tín đồ thời trang. Mô phỏng nét nam tính của quý ông, chiếc nhẫn vàng mới của NRO
+            nhẹ nhàng kết đính những viên đá trắng tròn trịa trên chất vàng 10K, mang đến sản phẩm đầy tinh tế, tôn lên
+            nhan sắc của phái mạnh.
+
+            Có thể nói, sản phẩm này như là lời quà tặng mà NRO gửi tặng đến các quý ông. </p>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="mx-[230px] my-3">
+    <mat-accordion>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="font-medium text-[17px]">
+            Bình Luận
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <hr>
+        <div class="mt-[10px]">
+          <h2 class="text-[18px] mb-[32px] text-blue-500">
+            Nhận xét của khách hàng
+          </h2>
+          <div *ngIf="user">
+            <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
+              <textarea formControlName="content" class="border-[1px] border-[gray] outline-none p-[12px]" cols="133"
+                rows="4" placeholder="Nhập nội dung"></textarea>
+              <br />
+              <div class="absolute -mt-10 flex justify-between items-center">
+                <ngb-rating class="absolute my-3 text-[25px] ml-2" [rate]="5" />
+
+                <button class="px-[25px] py-[6px] ml-[920px] text-white rounded bg-blue-500 hover:bg-blue-600 justify-end">
+                  Gửi
+                </button>
+              </div>
+
+
+            </form>
+            <div class="max-h-[300px] overflow-y-auto">
+
+              <div class="flex items-center space-x-2">
+                <div>
+
+
+                  <div class="">
+                    <div *ngFor="let item of feedback" class="block mt-4">
+                      <div class="flex items-center bg-gray-100 w-[1000px] rounded-xl px-2 pb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                          class="bi bi-person-square" viewBox="0 0 16 16">
+                          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                          <path
+                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                        </svg>
+                        <div class="font-medium ml-3">
+                          <a href="#" class="hover:underline text-xl font-bold">
+                            <small>{{item.userName}}</small>
+                          </a>
+                          <div class="text-xs">
+                            {{item.content}}
+                          </div>
+                          <ngb-rating class="" [rate]="5" />
+                        </div>
+
+                      </div>
+                      <div class="flex justify-start items-center text-xs w-full">
+                        <div class="font-semibold text-gray-700 px-2 flex items-center justify-center space-x-1">
+                          <a href="#" class="hover:underline">
+                            <small>Like</small>
+                          </a>
+                          <small class="self-center">.</small>
+                          <a href="#" class="hover:underline">
+                            <small>Reply</small>
+                          </a>
+                          <small class="self-center">.</small>
+                          <a href="#" class="hover:underline">
+                            <small>{{ item.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
+                          </a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="self-stretch flex justify-center items-center transform transition-opacity duration-200 opacity-0 translate -translate-y-2 hover:opacity-100">
+                  <a href="#" class="">
+                    <div
+                      class="text-xs cursor-pointer flex h-6 w-6 transform transition-colors duration-200 hover:bg-gray-100 rounded-full items-center justify-center">
+                      <svg class="w-4 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z">
+                        </path>
+                      </svg>
+                    </div>
+
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="mx-[230px]">
+    <mat-accordion>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="font-medium text-[17px]">
+            Dịch vụ sau mua
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <div>
+          <h4 class="text-blue-400 font-medium">Bảo hành miễn phí 6 tháng</h4>
+          <p>Bảo hành 6 tháng lỗi kỹ thuật, nước xi.​</p>
+
+          <h4 class="text-blue-400 font-medium mt-3">Miễn phí siêu âm và đánh bóng bằng máy chuyên dụng trọn đời</h4>
+          <p>Đối với sản phẩm bị oxy hóa, xuống màu, sẽ được siêu âm làm sạch bằng máy chuyên dụng (siêu âm, không xi)
+            miễn phí trọn đời tại cửa hàng.​​</p>
+          <p>Miễn phí đánh bóng trọn đời . Nhẫn cưới sẽ được bảo hành, làm mới, đánh bóng, xi miễn phí trọn đờ.​</p>
+
+          <h4 class="text-blue-400 font-medium mt-3">Miễn phí thay đá CZ và đá tổng hợp</h4>
+          <p>Miễn phí thay đá CZ và đá tổng hợp trong suốt thời gian bảo hành.​​​​</p>
+          <p>Không áp dụng bảo hành cho các trường hợp sau:​​</p>
+          <p>- Dây chuyền, lắc chế tác bị đứt gãy; bị biến dạng hoặc hư hỏng nặng.​</p>
+          <p>- Khách hàng cung cấp thông tin truy lục hóa đơn không chính xác​</p>
+
+          <h4 class="text-blue-400 font-medium mt-3">Lưu ý</h4>
+          <p>NRO bảo hành các sản phẩm thuộc hệ thống cửa hàng kênh lẻ và online của NRO. ​​​​</p>
+          <p>Chế độ bảo hành sản phẩm có thể thay đổi theo chính sách của NRO đối với các dòng hàng và chương trình khuyến mãi vào từng thời điểm.​</p>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="mx-[230px] my-3">
+    <mat-accordion>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="font-medium text-[17px]">
+            Câu hỏi thường gặp
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <div>
+          <h4 class="text-blue-400 font-medium">Mua Online có ưu đãi gì đặc biệt cho tôi?</h4>
+          <p>- Ưu đãi độc quyền Online với hình thức thanh toán đa dạng.</p>
+          <p>- Đặt giữ hàng Online, nhận tại cửa hàng.</p>
+          <p>- Trả góp 0% lãi suất với đơn hàng từ 3 triệu.</p>
+          <p>- Làm sạch trang sức trọn đời, khắc tên miễn phí theo yêu cầu (tùy kết cấu sản phẩm) và chính sách bảo hành, đổi trả dễ dàng tại hệ thống NRO trên toàn quốc.</p>
+
+          <h4 class="text-blue-400 font-medium mt-3">NRO có thu mua lại trang sức không?</h4>
+          <p>NRO có dịch vụ thu đổi trang sức NRO tại hệ thống cửa hàng trên toàn quốc. Chi tiết xem tại: https://www.NRO.com.vn/chinh-sach-bao-hanh-va-thu-doi.html​</p>
+          
+
+          <h4 class="text-blue-400 font-medium mt-3">Nếu đặt mua Online mà sản phẩm không đeo vừa thì có được đổi không?</h4>
+          <p>NRO có chính sách thu đổi trang sức vàng trong vòng 48 giờ, đổi ni/ size trang sức bạc trong vòng 72 giờ. Quý khách sẽ được áp dụng đổi trên hệ thống NRO toàn quốc.​​​​</p>
+         
+
+          <h4 class="text-blue-400 font-medium mt-3">Sản phẩm đeo lâu có xỉn màu không, bảo hành như thế nào?</h4>
+          <p>Do tính chất hóa học, sản phẩm có khả năng oxy hóa, xuống màu. NRO có chính sách bảo hành miễn phí về lỗi kỹ thuật, nước xi:​​​​</p>
+          <p>- Trang sức vàng: 6 tháng.​</p>
+          <p>- Trang sức bạc: 3 tháng.​</p>
+
+          <button
+          class="w-[350px] text-[15px] font-medium text-white my-3 bg-blue-500 border-0 py-2 px-4 focus:outline-none hover:bg-blue-600 rounded text-center">
+          Hotline: 0347617094 (Miễn phí)
+        </button>
+          
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+
+
   <div class="mx-[150px] my-10">
     <h1 class="text-2xl font-bold mb-3 text-center">SẢN PHẨM TƯƠNG TỰ</h1>
-    <div  class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-auto xl:gap-8 gap-10 " *ngIf="productsByCategory.length">
-     
-        <div *ngFor="let product of productsByCategory.slice(0, 4)" tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
-            <div class="product">
-                <div class="image-container">
-                   <a (click)="navigateToProductDetail(product._id)"> <img src={{product.images[0]}} alt="Product Image " width="250px" height="250px" class="product-image"></a>
-                    <div class="button-container flex space-x-10 ">
-                        <button class="custom-button ">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                              </svg>
-                        </button>
-                        <a href="/cart">
-                            <button  class="custom-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
-                                  </svg>
-                            </button>
-                        </a>
-                    </div>
-                </div>
+    <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-auto xl:gap-8 gap-10 "
+      *ngIf="productsByCategory.length">
+
+      <div *ngFor="let product of productsByCategory.slice(0, 4)" tabindex="0"
+        class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
+        <div class="product">
+          <div class="image-container">
+            <a (click)="navigateToProductDetail(product._id)"> <img src={{product.images[0]}} alt="Product Image "
+                width="250px" height="250px" class="product-image"></a>
+            <div class="button-container flex space-x-10 ">
+              <button class="custom-button ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                </svg>
+              </button>
+              <a href="/cart">
+                <button class="custom-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-bag-heart" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
+                  </svg>
+                </button>
+              </a>
             </div>
-            <div class="bg-white">
-                    <p class="text-[13px] text-center font-medium mt-2">{{product.title}}</p>
-                    <div class="flex justify-center space-x-6">
-                        <p class="text-amber-600 font-medium my-2">{{formatPrice(product.price)}}đ</p>
-                        <p class="text-gray-400 font-medium my-2 line-through">{{formatPrice(product.priceroot)}}đ</p>
-                    </div>
-                    <div class="flex justify-between mx-10 my-2">
-                        <p>5⭐️({{product.assess}})</p>
-                        <p>{{product.sold}}+ đã bán</p>
-                    </div>
-                    
-            </div>
+          </div>
         </div>
-        
+        <div class="bg-white">
+          <p class="text-[13px] text-center font-medium mt-2">{{product.title}}</p>
+          <div class="flex justify-center space-x-6">
+            <p class="text-amber-600 font-medium my-2">{{formatPrice(product.price)}}đ</p>
+            <p class="text-gray-400 font-medium my-2 line-through">{{formatPrice(product.priceroot)}}đ</p>
+          </div>
+          <div class="flex justify-between mx-10 my-2">
+            <p>5⭐️({{product.assess}})</p>
+            <p>{{product.sold}}+ đã bán</p>
+          </div>
+
+        </div>
+      </div>
+
     </div>
 
-    
-</div>
-  
+
+  </div>
+
 </section>
 <script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/651d544310c0b25724887abf/1hbt92aia';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
+  var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+  (function () {
+    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/651d544310c0b25724887abf/1hbt92aia';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode.insertBefore(s1, s0);
   })();
-  </script>
-  <!--End of Tawk.to Script-->
+</script>
+<!--End of Tawk.to Script-->
 
-  <script src="chrome-extension://kgejglhpjiefppelpmljglcjbhoiplfn/shadydom.js"></script>
-  <script>
-      if (!window.ShadyDOM) window.ShadyDOM = { force: true, noPatch: true };
-  </script>
-  
+<script src="chrome-extension://kgejglhpjiefppelpmljglcjbhoiplfn/shadydom.js"></script>
+<script>
+  if (!window.ShadyDOM) window.ShadyDOM = { force: true, noPatch: true };
+</script>

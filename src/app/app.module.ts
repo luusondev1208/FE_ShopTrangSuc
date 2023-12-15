@@ -68,7 +68,7 @@ import { AddCouponComponent } from './pages/admin/coupon/add-coupon/add-coupon.c
 import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update-coupon.component';
 import { BrandlistComponent } from './pages/brandlist/brandlist.component';
 import { BoxChatComponent } from './pages/box-chat/box-chat.component';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -144,7 +144,9 @@ import { BoxChatComponent } from './pages/box-chat/box-chat.component';
     NgToastModule,
     MatTabsModule,
     ToastNoAnimationModule.forRoot(),
-    BrowserAnimationsModule, // required animations module
+    BrowserAnimationsModule, 
+    MatExpansionModule,
+    // required animations module
     // NgbPaginationModule,
     // NgbAlertModule,
     

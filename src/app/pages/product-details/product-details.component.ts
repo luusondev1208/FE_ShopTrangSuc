@@ -14,7 +14,7 @@ import { UserService } from 'src/app/service/user.service';
   import { FormBuilder } from '@angular/forms';
   import { ToastrService } from 'ngx-toastr';
 import { NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-
+import {MatExpansionModule} from '@angular/material/expansion';
   @Component({
     selector: 'app-product-details',
     templateUrl: './product-details.component.html',
@@ -22,7 +22,7 @@ import { NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
     changeDetection: ChangeDetectionStrategy.OnPush,
   })
   export class ProductDetailsComponent implements OnInit {
-  
+    panelOpenState = false;
     product: any = {};
     imgList: any;
     user: any = null

@@ -17,10 +17,12 @@ import { NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import {MatExpansionModule} from '@angular/material/expansion';
   @Component({
     selector: 'app-product-details',
-    templateUrl: './product-details.component.html',
+    templateUrl: './product-details.component.html',  
     styleUrls: ['./product-details.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    
   })
+  
   export class ProductDetailsComponent implements OnInit {
     panelOpenState = false;
     product: any = {};
@@ -32,6 +34,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     demoProduct: any = {}
     brandId: any
     brand: any = {};
+    checkorder: any = {};
     sizeOption: any[] = Object.values(sizeOptions).filter(value => typeof value === 'number')
     selectedSize: number | null = null;
     productsByCategory: any[] = []; // Thêm mảng để lưu trữ sản phẩm của category
@@ -82,12 +85,14 @@ console.log(data.productData.brand);
     }
     ngOnInit(): void {
       this.user = JSON.parse(localStorage.getItem("user") as string)
+      console.log(this.user);
+      
       this.activatedRoute.params.subscribe((params) => {
         this.loadProductData(params['id']);
         this.getRoute(params['id']);
         this.productService.getProduct(params['id']).subscribe((data) => {
+          
           this.imgList = data.productData.images;
-  
           // Fetch feedback details immediately
           this.getFeedbackDetails(data.productData.feedbacks);
   
@@ -208,6 +213,17 @@ console.log(data.productData.brand);
         this.toastr.info("Bạn cần đăng nhập để thực hiện hàng động này", "Nhắc nhở");
         return;
       }
+      if (!this.user.orders || this.user.orders.length === 0) {
+        this.toast.error({
+          detail: 'Bạn cần mua hàng trước. Vui lòng thử lại sau.',
+          summary: 'Lỗi',
+          duration: 5000, // Display duration in milliseconds
+          position: 'topRight',
+        });
+    
+        return;
+      }
+    
       if (this.formValueFeedback.value.content == "") {
         this.toastr.info("Bạn cần nhập nội dung phản hồi", "Cảnh báo");
         return;

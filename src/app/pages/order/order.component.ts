@@ -125,6 +125,13 @@ export class OrderComponent {
 
     if (this.paymentMethodChecked === "Thanh toán khi nhận hàng") {
       this.orderSevice.createOrder(this.orderData).subscribe((response) => {
+        let userData = JSON.parse(localStorage.getItem("user") as string) || {};
+
+    // Thêm dữ liệu đơn hàng mới vào mảng orders
+    userData.orders = [...userData.orders, response.order];
+
+    // Lưu dữ liệu đã cập nhật trở lại localStorage
+    localStorage.setItem("user", JSON.stringify(userData));
         console.log('Đặt hàng thành công', response);
             this.toast.success({
               detail: 'Đặt hàng thành công',

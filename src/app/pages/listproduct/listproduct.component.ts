@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BrandService } from 'src/app/service/brand.service';
 import { CategoryService } from 'src/app/service/category.service';
@@ -19,7 +20,10 @@ export class ListproductComponent {
   brand: any;
   categorories: any[] = []
   brands: any[] = []
-  constructor(private productService: ProductService, private categoryService: CategoryService, private brandService: BrandService) {
+  @ViewChild('searchInput') searchInput!: ElementRef;
+
+  productList: any = null
+  constructor(private productService: ProductService, private categoryService: CategoryService,private formBuilder: FormBuilder, private brandService: BrandService) {
     this.categoryService.getCategories().subscribe((data) => {
    
       this.categorories = data.getAllCategory
@@ -32,6 +36,12 @@ export class ListproductComponent {
       console.log(this.brands);
     })
    }
+   formValueSearch = this.formBuilder.group({
+    search: [""],
+  })
+  formatPrice(num: number | string) {
+    return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  }
    ngOnInit(): void {
     // Gọi hàm getFilteredProducts() một lần để hiển thị tất cả sản phẩm ban đầu
     this.getFilteredProducts();
@@ -80,5 +90,20 @@ export class ListproductComponent {
   filterProducts(): void {
     // Gọi hàm getFilteredProducts() khi người dùng thực hiện lọc
     this.getFilteredProducts();
+  }
+  handleSearch() {
+    this.productService.search(this.formValueSearch.value).subscribe((resp) => {
+      this.productList = resp.data
+    })
+  }
+  handleModalSearch () {
+    this.productList = null
+    
+  }
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: Event) {
+    if (!this.searchInput.nativeElement.contains(event.target)) {
+      this.handleModalSearch();
+    }
   }
 }

@@ -54,6 +54,7 @@ export class ProductService {
     return this.http.get<any>(`http://localhost:5000/api/product?page=${page}&limit=${limit}`);
 
   }
+ 
   getProduct(id: string): Observable<any> {
     const url = `${this.API_URL}/${id}`;
     return this.http.get<any>(url);
@@ -83,6 +84,9 @@ getSizeOptions(id: string): Observable<any> {
 addComent(comment: any): Observable<any> {
   return this.http.post<any>(`${this.API_URL}/ratings/add`, comment, this.httpOptions);
 }
-
+getFilteredProducts(sort: string, limit: number, category: string, brand: string): Observable<any> {
+  const url = `${this.API_URL}/?sort=${sort}&limit=${limit}&category=${category}&brand=${brand}`;
+  return this.http.get<any>(url);
+}
 }
 

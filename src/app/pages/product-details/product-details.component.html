@@ -420,13 +420,14 @@
           </h2>
           <div *ngIf="user">
             <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
-              <textarea formControlName="content" class="border-[1px] border-[gray] outline-none p-[12px]" cols="133"
+              <textarea formControlName="content" class="border-[1px] w-full border-[gray] outline-none p-[12px]" cols="133"
                 rows="4" placeholder="Nhập nội dung"></textarea>
               <br />
-              <div class="absolute -mt-10 flex justify-between items-center">
-                <ngb-rating class="absolute my-3 text-[25px] ml-2" [rate]="5" />
+              <div class=" -mt-15 flex justify-between items-center ">
+                
+               <div> Đánh giá: <ngb-rating class="   my-3 text-[25px] ml-2" [rate]="5" /></div>
 
-                <button class="px-[25px] py-[6px] ml-[920px] text-white rounded bg-blue-500 hover:bg-blue-600 justify-end">
+                <button class="px-[25px]  py-[6px] items-end  text-white rounded bg-blue-500 hover:bg-blue-600 ">
                   Gửi
                 </button>
               </div>

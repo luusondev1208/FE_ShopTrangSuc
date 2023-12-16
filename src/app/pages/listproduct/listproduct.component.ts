@@ -13,11 +13,11 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ListproductComponent {
   products: any[] = [];
-  sort: any;
+  sort: string = "";  
   page = 1;
   limit = 10;
-  category: any;
-  brand: any;
+  category: string = ""; 
+  brand: string = ""; 
   categorories: any[] = []
   brands: any[] = []
   @ViewChild('searchInput') searchInput!: ElementRef;

@@ -28,7 +28,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     product: any = {};
     imgList: any;
     user: any = null
-    feedbackId: any;
+    feedbackId: string[] = [];
     feedback: any ={};
     feedbackList: any[] = []; 
     demoProduct: any = {}
@@ -238,16 +238,49 @@ console.log(data.productData.brand);
       this.feedbackService.create(newValue).subscribe(
         (resp) => {
           // Cập nhật form và hiển thị thông báo khi phản hồi đã được xử lý thành công
-          this.formValueFeedback.reset();
-          this.toastr.success(resp.message, "Chúc mừng");
-    
-          // Sau khi tạo phản hồi, cập nhật lại chi tiết phản hồi
-          this.getFeedbackDetails([...this.feedbackId, resp.feedback._id]);
-    
-          // Kích hoạt change detection
+      this.formValueFeedback.reset();
+      this.toastr.success(resp.message, 'Chúc mừng');
+      console.log(resp);
+
+      // Kiểm tra và khởi tạo this.feedback nếu nó không phải là mảng
+      if (!Array.isArray(this.feedback)) {
+        this.feedback = [];
+      }
+
+       // Gọi API hoặc sử dụng dữ liệu hiện có để lấy thông tin người dùng từ userID
+       this.userService.getUser(resp.data.userId).subscribe(
+        (userResp) => {
+          // Thêm bình luận mới vào mảng hiện tại
+          const newFeedback = {
+            _id: resp.data._id,
+            userId: resp.data.userId,
+            userName: userResp.use.firstname + ' ' + userResp.use.lastname, // Thay đổi cách lấy tên người dùng tùy thuộc vào dữ liệu trả về
+            productId: resp.data.productId,
+            content: resp.data.content,
+            createdAt: resp.data.createdAt,  // Thêm trường createdAt
+            // ... (thêm các trường khác cần thiết)
+          };
+
+          // Thêm mới vào mảng feedback để hiển thị
+          this.feedback.push(newFeedback);
+
+          // Gán mảng bình luận mới vào biến feedback để hiển thị
+          this.feedback = [...this.feedback];
+
+          // Cập nhật giao diện người dùng
           this.cdr.detectChanges();
-          
+
+          // (Tùy chọn) Scroll đến bình luận mới
+          const element = document.getElementById('scroll-to-comment');
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          }
         },
+        (userError) => {
+          console.error('Error getting user information:', userError);
+        }
+      );
+    },
         (error) => {
           // Xử lý lỗi nếu cần
           console.error('Error creating feedback:', error);

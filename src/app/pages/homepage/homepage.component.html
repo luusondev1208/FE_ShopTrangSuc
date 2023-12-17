@@ -1,6 +1,6 @@
 <!-- slideshow -->
-<div class="xl:slideshow">
-    <div class="slide" *ngFor="let image of images; let i = index" [ngClass]="{'active': i === currentIndex}">
+<div class="w-full md:pl-0">
+    <div class="slide md:w-full" *ngFor="let image of images; let i = index" [ngClass]="{'active': i === currentIndex}">
       <img class="" [src]="image" alt="Slide">
 
     </div>
@@ -11,35 +11,15 @@
     <button class="font-bold text-3xl -mt-[50px]" (click)="nextSlide()">➤</button>
 
  </div>
-<div class="grid grid-cols-3 gap-4 my-4">
+<div class="hidden md:grid md:grid-cols-3 md:gap-4 my-4">
     <img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_238,w_476/v1701497152/088492502043339_mjyqfb.jpg" alt="">
     <img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,w_476/v1701436528/3_ssghru.png" alt="">
     <img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,w_476/v1701436438/7_qnnojg.png" alt="">
 </div>
-
-<!-- thuong hieu noi bat -->
-<!-- <div class="mx-[150px] my-10 hidden lg:block">
-    <p class="text-[18px] font-bold text-cyan-600 my-10">Thương hiệu nổi bật</p>
-    <div class="grid grid-cols-3 gap-4">
-        <div>
-            <img class="" src="https://cdn.pnj.io/images/promo/148/block-brands-disney.png" alt="">
-            <img class="-mt-10 rounded-xl ml-[70px] w-[250px]" src="https://cdn.pnj.io/images/image-update/2021/tab-sale-v2/pnj%20disney-01.png" alt="">
-        </div>
-        <div>
-            <img src="https://cdn.pnj.io/images/promo/166/style-t5-1200x1200.png" alt="">
-            <img class="-mt-10 rounded-xl ml-[70px] w-[250px]" src="https://cdn.pnj.io/images/2023/04/hello-kitty/sanrio1.svg" alt="">
-        </div>
-        <div>
-            <img src="https://cdn.pnj.io/images/promo/148/block-brands-watch.png" alt="">
-            <img class="-mt-10 rounded-xl ml-[70px] w-[250px]" src="https://cdn.pnj.io/images/image-update/2021/tab-sale-v2/pnj-watch_1.svg" alt="">
-        </div>
-    </div>
-</div> -->
 <!-- san pham ban chay -->
-<p class="pl-[150px] text-[18px] font-bold text-cyan-600 pt-3 -pb-5" >Sản phẩm bán chạy</p>
-<div class="mx-[150px] my-10">
-
-    <div  class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-auto xl:gap-8 gap-10 ">
+<div class="md:mx-[150px] my-10">
+    <p class="pl-4 md:pl-0 text-[18px] font-bold text-cyan-600 pt-3 -pb-5">Sản phẩm bán chạy</p>
+    <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10 pl-[40px] md:pl-0">
         <!-- san pham 1 -->
         <!-- <div *ngFor="let product of filteredProducts.slice(0,4)">
           <a href="/product/{{product._id}}"><div class="text-center w-[290px] bg-gray-100 rounded-xl pb-3">
@@ -100,9 +80,9 @@
     
 </div>
 <!-- san pham moi -->
-<div class="mx-[150px] my-10">
-    <p class="text-[18px] font-bold text-cyan-600 my-10">Sản phẩm đánh giá cao</p>
-    <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10 ">
+<div class="md:mx-[150px] my-10">
+    <p class="pl-4 md:pl-0 text-[18px] font-bold text-cyan-600 pt-3 -pb-5">Sản phẩm đánh giá cao</p>
+    <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10 pl-[40px] md:pl-0">
          <!-- san pham 1 -->
          <!-- <div *ngFor="let product of topProducts.slice(0,4)">
           <a href="/product/{{product._id}}"><div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">
@@ -167,10 +147,10 @@
     
 </div>
 <!-- trang suc cuoi -->
-<div class="my-10">
-    <img  class="ml-[160px] lg:block hidden" src="https://res.cloudinary.com/dmkh3w0of/image/upload/v1701497152/banner_Lac_hqyvad.webp" alt="">
-    <p class="pl-[160px] text-[18px] font-bold text-cyan-600 pt-10">Sản phẩm mới nhất</p>
-    <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10  mx-[150px]">
+<img  class="md:ml-[160px] lg:block hidden" src="https://res.cloudinary.com/dmkh3w0of/image/upload/v1701497152/banner_Lac_hqyvad.webp" alt="">
+<div class="md:mx-[150px] my-10">
+    <p class="pl-4 md:pl-0 text-[18px] font-bold text-cyan-600 pt-3 -pb-5">Sản phẩm mới nhất</p>
+    <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10 pl-[40px] md:pl-0">
          <!-- san pham 1 -->
          <!-- <div *ngFor="let product of topcreatedAt.slice(0,4)">
 
@@ -234,10 +214,10 @@
     </div>
 </div>
 <!-- trang suc phong thuy -->
-<div class=" my-10">
-    <img  class="ml-[160px] lg:block hidden" src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_450,w_1200/v1701436474/10_pqn86b.png" alt="">
-    <p class="pl-[160px] text-[18px] font-bold text-cyan-600 pt-10">Sản phẩm Sale Sock</p>
-    <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10  mx-[150px]">
+<img  class="md:ml-[160px] lg:block hidden" src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_450,w_1200/v1701436474/10_pqn86b.png" alt="">
+<div class="md:mx-[150px] my-10">
+    <p class="pl-4 text-[18px] font-bold text-cyan-600 pt-10">Sản phẩm Sale Sock</p>
+    <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10 pl-[40px] md:pl-0">
        <!-- san pham 1 -->
        <!-- <div *ngFor="let product of saleproduct.slice(0,4)">
         <a href="/product/{{product._id}}"><div class="text-center w-[290px] bg-gray-100 rounded-xl py-3">

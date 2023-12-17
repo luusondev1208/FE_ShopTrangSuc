@@ -249,7 +249,10 @@
                   <select
                     id="sizeSelect"
                     class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10"
-                  >
+                    [(ngModel)]="selectedSize" (change)="updatePriceAndQuantity()"
+                  > <option value="">
+                    Chọn size
+                  </option>
                     <option
                       *ngFor="let size of product.list_size.list_size"
                       [value]="size.quantity"
@@ -293,7 +296,7 @@
             <!-- size new -->
             <!-- end size new -->
 
-            <div class="flex mb-4 mt-3">
+            <div class="flex mb-4 mt-3" >
               <span
                 style="margin-right: 30px"
                 class="font-medium text-xl text-orange-600"
@@ -995,4 +998,3 @@
 <script>
   if (!window.ShadyDOM) window.ShadyDOM = { force: true, noPatch: true };
 </script>
-Đang hiển thị 2254290080877134134.

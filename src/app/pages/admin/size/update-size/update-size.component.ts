@@ -68,7 +68,8 @@ export class UpdateSizeComponent {
   addSize(sizeItem?: any): void {
     const sizeGroup = this.formBuilder.group({
       name: [sizeItem?.name || '', [Validators.required, Validators.minLength(1)]],
-      quantity: [sizeItem?.quantity || null, [Validators.required, Validators.min(1)]]
+      quantity: [sizeItem?.quantity || null, [Validators.required, Validators.min(1)]],
+      price: [sizeItem?.price || null, [Validators.required, Validators.min(1)]]
     });
 
     this.listSizeFormArray.push(sizeGroup);

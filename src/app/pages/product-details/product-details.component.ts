@@ -16,6 +16,14 @@ import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { SizeService } from 'src/app/service/size.service';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
+
+interface SizeResponse {
+  getAllSize: {
+    list_size: any[]; 
+  };
+}
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -36,7 +44,7 @@ export class ProductDetailsComponent implements OnInit {
   sizeOption: any[] = Object.values(sizeOptions).filter(value => typeof value === 'number')
   selectedSize: number | null = null;
   productsByCategory: any[] = []; // Thêm mảng để lưu trữ sản phẩm của category
-
+  sizes: any
 
   constructor(
     config: NgbRatingConfig,
@@ -54,7 +62,8 @@ export class ProductDetailsComponent implements OnInit {
     private toastr: ToastrService,
     private feedbackService: FeedbackService,
     private userService: UserService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private sizeService: SizeService,
   ) {
     config.max = 5;
     activatedRoute.params.subscribe((params) => {
@@ -131,11 +140,11 @@ export class ProductDetailsComponent implements OnInit {
     if (this.authService.checklogin()) {
       this.cartService.addToCart(productId, size, quantity, user?._id).subscribe(
         (response) => {
-          // console.log('Add to cart successful', response);
+          
           this.toast.success({
             detail: 'Sản phẩm đã được thêm vào giỏ hàng.',
             summary: 'Thành công',
-            duration: 5000, // Display duration in milliseconds
+            duration: 5000, 
             position: 'topRight',
           });
         },
@@ -144,14 +153,13 @@ export class ProductDetailsComponent implements OnInit {
           this.toast.error({
             detail: 'Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại sau.',
             summary: 'Lỗi',
-            duration: 5000, // Display duration in milliseconds
+            duration: 5000, 
             position: 'topRight',
           });
         }
       );
     } else {
       this.router.navigate(['/login']);
-      // console.log('Vui lòng đăng nhập trước khi thêm giỏ hàng.');
       this.toast.info({
         detail: 'Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.',
         summary: 'Thông báo',
@@ -273,7 +281,52 @@ export class ProductDetailsComponent implements OnInit {
       }
     );
   }
+  updatePriceAndQuantity() {
+    const selectedSize = this.selectedSize !== null ? Number(this.selectedSize) : null;
 
+    const price = this.getProductPrice(selectedSize );
+    const quantity = this.getProductQuantity(selectedSize);
+
+    console.log('Kích Thước Đã Chọn:', selectedSize);
+    console.log('Giá:', price);
+    console.log('Số Lượng:', quantity);
+  }
+
+  
+getProductPrice(selectedSize: number | null): any {
+  if (selectedSize === null) {
+    return 0; 
+  }
+
+  this.sizeService.getSizes().pipe(
+    switchMap((item: any) => {
+      this.sizes = item.getAllSize;
+      const size = this.sizes.find((sizeItem: any) => sizeItem.name === selectedSize);
+      console.log(size);
+      return size ? size.price : 0;
+    })
+  ).subscribe((price) => {
+   
+    console.log(price);
+  });
+}
+getProductQuantity(selectedSize: number | null): any {
+  if (selectedSize === null) {
+    return 0; 
+  }
+
+  this.sizeService.getSizes().pipe(
+    switchMap((item: any) => {
+      this.sizes = item.getAllSize;
+      const size = this.sizes.find((sizeItem: any) => sizeItem.name === selectedSize);
+      console.log(size);
+      return size ? size.quantity : 0;
+    })
+  ).subscribe((quantity) => {
+   
+    console.log(quantity);
+  });
+}
 
   changeMainImage(event: Event, newImage: string) {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt

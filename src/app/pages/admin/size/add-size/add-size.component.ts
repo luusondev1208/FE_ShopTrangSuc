@@ -16,7 +16,8 @@ export class AddSizeComponent {
     list_size: this.formBuilder.array([
       this.formBuilder.group({
         name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-        quantity: [null, [Validators.required, Validators.min(1)]]
+        quantity: [null, [Validators.required, Validators.min(1)]],
+        price: [null, [Validators.required, Validators.min(1)]]
       })
     ]),
     nameSize: ['', Validators.required]
@@ -37,7 +38,8 @@ export class AddSizeComponent {
   addSize() {
     const sizeGroup = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1)]],
-      quantity: [null, [Validators.required, Validators.min(1)]]
+      quantity: [null, [Validators.required, Validators.min(1)]],
+      price: [null, [Validators.required, Validators.min(1)]]
     });
 
     this.listSizeFormArray.push(sizeGroup);
@@ -49,12 +51,12 @@ export class AddSizeComponent {
       this.title = response;
       this.toast.success({ detail: 'Thêm size thành công.', duration: 5000, position: 'topRight' });
       this.router.navigate(['/admin/listSize'])
-      // Additional logic if needed
+      
     },
     (error) => {
       console.log('Error when adding size: ', error);
       this.toast.error({ detail: 'Lỗi vui lòng kiếm tra lại thông tin đã nhập.', duration: 5000, position: 'topRight' });
-      // Handle error
+      
     }
   );
  }

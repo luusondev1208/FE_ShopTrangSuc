@@ -31,6 +31,8 @@
                   <div *ngFor="let sizeGroup of listSizeFormArray.controls; let i = index" class="size-item" [formGroupName]="i">
                     <label for="list_size_name">Số size:</label>
                     <input formControlName="name" type="number" id="list_size_name" />
+                    <label for="list_size_name">Giá:</label>
+                    <input formControlName="price" type="number" id="list_size_price" />
                     <label for="list_size_quantity">Số lượng:</label>
                     <input formControlName="quantity" type="number" id="list_size_quantity" />
                     <button type="button" (click)="removeSize(i)">Xóa</button>

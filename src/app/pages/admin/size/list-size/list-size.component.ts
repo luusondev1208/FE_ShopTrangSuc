@@ -4,8 +4,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { SizeService } from 'src/app/service/size.service';
 interface SizeResponse {
   getAllSize: {
-    list_size: any[]; // Adjust the type of list_size according to your actual data structure
-    // Other properties if any
+    list_size: any[]; 
   };
 }
 @Component({

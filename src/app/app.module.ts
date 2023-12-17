@@ -69,6 +69,9 @@ import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update
 import { BrandlistComponent } from './pages/brandlist/brandlist.component';
 import { BoxChatComponent } from './pages/box-chat/box-chat.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ListSizeComponent } from './pages/admin/size/list-size/list-size.component';
+import { UpdateSizeComponent } from './pages/admin/size/update-size/update-size.component';
+import { AddSizeComponent } from './pages/admin/size/add-size/add-size.component';
 
 
 
@@ -127,7 +130,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     AddCouponComponent,
     UpdateCouponComponent,
     BrandlistComponent,
-    BoxChatComponent
+    BoxChatComponent,
+    ListSizeComponent,
+    UpdateSizeComponent,
+    AddSizeComponent
 
   ],
   imports: [

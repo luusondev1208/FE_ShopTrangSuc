@@ -39,33 +39,40 @@ export class ListuserComponent {
    
 
   }
- //deleteUser
- deleteUser(_id:any){
-  var result = confirm("Bạn có muốn xóa không?");
-  if (result) {
-    // Người dùng đã chọn Đồng ý
-    console.log("Người dùng đã chọn xóa.");
-    // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
-    this.userService.deleteUser(_id).subscribe(
-      response => {
-        console.log(response);
-        this.toast.success({ detail: "Thông báo", summary: `:${response.deletedUser}`, duration: 5000, position: "topRight" });
-        this.router.navigate(['/admin/listUser']);
-        // Thực hiện các hành động sau khi sản phẩm được xóa thành công
-        this.users = this.users.filter((user:any) => user._id !== response.data._id)
-      },
-      error => {
-        console.error('Lỗi khi xóa tai khoan:', error);
-        // Xử lý lỗi nếu có
-      }
-    )
+
+//kiểm tra tài khoản có quyền admin?
+isAdmin(user: any): boolean {
+  return user.role === 'admin';
+}
+
+//xóa tài khoản, truyền vào tài khoản cần xóa
+deleteUser( _id:any, user:any) {
+  if (this.isAdmin(user)) {
+      this.toast.warning({ detail: "Thông báo", summary: `Không thể xóa tài khoản admin.`, duration: 5000, position: "topRight" });
   } else {
-    // Người dùng đã chọn Hủy
-    alert("Người dùng đã chọn không xóa.");
-    // Thực hiện các hành động khác tùy ý
+    var result = confirm("Bạn có muốn xóa không?");
+    if (result) {
+      // Người dùng đã chọn Đồng ý
+      console.log("Người dùng đã chọn xóa.");
+      // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
+      this.userService.deleteUser(_id).subscribe(
+        response => {
+          console.log(response);
+          this.toast.success({ detail: "Thông báo", summary: `:${response.deletedUser}`, duration: 5000, position: "topRight" });
+          this.router.navigate(['/admin/listUser']);
+          // Thực hiện các hành động sau khi sản phẩm được xóa thành công
+          this.users = this.users.filter((user:any) => user._id !== response.data._id)
+        },
+        error => {
+          console.error('Lỗi khi xóa tai khoan:', error);
+        }
+      )
+    } else {
+      alert("Người dùng đã chọn không xóa.");
+    }
   }
 }
-  
+ 
   
   /**Default name for excel file when download**/
   fileName = 'ExcelSheet.xlsx';

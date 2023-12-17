@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { BrandService } from 'src/app/service/brand.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -9,352 +11,137 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./listproduct.component.scss'],
 })
 export class ListproductComponent {
-  submitted: boolean = false
-  productsByCategory: any[] = []
-  categoryId: string = '656ae52bf2cd2ead26b7ca79';
-  lactay: string = '656ae318f2cd2ead26b7ca21'
-  khuyen:string = '656ae018f2cd2ead26b7c934'
-  categories: any = []
-  title: any
-  filteredProducts: any = [];
-  showForm: boolean = false;
-  showForms: boolean = false;
-  showFormss: boolean = false;
-  sortedByPrice: boolean = false;
-  products: any = [];
-  page: number = 1;
-  limit: number = 12;
-  type:string = ""
-filterOptions = {
-  filterProduct: 'option1',
-  filterCategory: 'option1',
-  filterBrand: 'option1'
-};
+  products: any[] = [];
+  sort: string = "";
+  page = 1;
+  limit = 10;
+  category: string = "";
+  brand: string = "";
+  categorories: any[] = [];
+  brands: any[] = [];
+  @ViewChild('searchInput') searchInput!: ElementRef;
 
-  constructor(private productService: ProductService, private router: Router, private categoryService: CategoryService) {
-    this.categoryService.getCategories().subscribe(
-      (response:any) => {
-        
-        
-        this.categories = response.getAllCategory;
-        console.log(this.categories);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-  isHovering: boolean = false;
-  //lấy dữ liệu
-  loadData() {
-    this.productService.getProducts(this.page, this.limit).subscribe(
-      (response: any) => {
-        console.log(response);
-        
-        this.products = response.productDatas;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+  productList: any = null;
 
-  ngOnInit() {
-    this.loadData();
-  }
-  
-
-
-//Lọc dựa vào lựa chọn theo option
-filterProducts() {
-  if(this.filterOptions.filterProduct === "option2"){
-    this.toggleSortByPrice()
-  } else if(this.filterOptions.filterProduct === "option3"){
-    this.toggleSortByPriceS()
-  } else if(this.filterOptions.filterProduct === "option4"){
-    this.filterProductsByassess()
-  } else if(this.filterOptions.filterProduct === "option5"){
-    this.filterProductsBySold()
-  } else if(this.filterOptions.filterBrand === "option2"){
-    this.filterProductsByBrandPNJ()
-  } else if(this.filterOptions.filterBrand === "option3"){
-    this.filterProductsByBrandNRO()
-  }  else if(this.filterOptions.filterBrand === "option4"){
-    this.filterProductsByBrandTTL()
-  } else if(this.filterOptions.filterCategory === "option2"){
-    this.filterProductsByCategori(this.categoryId)
-  } else if(this.filterOptions.filterCategory === "option3"){
-    this.filterProductsBylactay(this.lactay)
-  } else if(this.filterOptions.filterCategory === "option4"){
-    this.filterProductsBykhuyen(this.khuyen)
-  } 
-}
-
-
-// format giá tiền
-formatPrice(num: number | string) {
-  return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-}
-
-// hover sản phẩm
-  showHoverImage() {
-    this.isHovering = true;
-  }
-
-//ẩn hover
-  hideHoverImage() {
-    this.isHovering = false;
-  }
-  hover: Boolean = false;
-
-// chuyển trang -
-  previousPage() {
-    if (this.page > 1) {
-      this.page--;
-      this.loadData();
-    }
-  }
-
-// chuyển trang +
-  nextPage() {
-    this.page++;
-    this.loadData();
-  }
-
-
-// lọc giá từ thấp đến cao
-  toggleSortByPrice() {
-    this.sortedByPrice = !this.sortedByPrice;
-  
-    if (this.sortedByPrice) {
-  
-      this.products.sort((a: any, b: any) => a.price - b.price);
-    } else {
-      
-    }
-  }
-
-// lọc giá từ cao đến thấp
-  toggleSortByPriceS() {
-    this.sortedByPrice = !this.sortedByPrice;
-
-    if (this.sortedByPrice) {
-
-      this.products.sort((a: any, b: any) => b.price - a.price);
-    } else {
-      
-    }
-  }
-
-  // hiện thị lọc
-  toggleForm() {
-    this.showForm = !this.showForm;
-  }
-  toggleForms() {
-    this.showForms = !this.showForms;
-  }
-  toggleFormss() {
-    this.showFormss = !this.showFormss;
-  }
-
-  // lọc theo số lượng sản phẩm đã bán
-  filterProductsBySold() {
-    this.sortedByPrice = !this.sortedByPrice;
-    if(this.sortedByPrice){
-      this.productService
-      .getProducts(this.page, this.limit)
-      .subscribe((data: any[]) => {
-        this.products = data;
-        this.filteredProducts = this.products.productDatas.filter(
-          (product: any) => product.sold > 50
-        );
-        console.log(this.filteredProducts);
-        this.products = this.filteredProducts;
-      });
-    } else {
-      
-    }
-
-  }
-
-  // lọc theo số lượng người đánh giá
-  filterProductsByassess() {
-    this.sortedByPrice = !this.sortedByPrice;
-    if(this.sortedByPrice){
-      this.productService
-      .getProducts(this.page, this.limit)
-      .subscribe((data: any[]) => {
-        this.products = data;
-        // console.log(this.products);
-
-        this.filteredProducts = this.products.productDatas.filter(
-          (product: any) => product.assess > 50
-        );
-        console.log(this.filteredProducts);
-        this.products = this.filteredProducts;
-      });
-    } else {
-      
-    }
-
-  }
-
-//tìm kiếm
-  searchResults: any[] = [];
-  searchTerm: string = '';
-  filteredList: any[] = [];
-
-  search() {
-    this.filteredList = this.products.filter((item:any) =>
-      item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-    this.products = this.filteredList
-    console.log(this.products)
-  }
-
-  
-
-//loc theo loại nhẫn
-filterProductsByCategori(categoryId: string): void {
-  this.submitted = true
-  if (!categoryId) {
-    console.error('Invalid categoryId');
-    return;
-  }
-
-  this.categoryService.getProductsByCategoryId(categoryId).subscribe(
-    (response) => {
-      if (response && response.products) {
-        this.productsByCategory = response.products;
-        console.log(this.productsByCategory);
-      } else {
-        console.error('Empty response or missing products data');
-      }
-    },
-    (error) => {
-      console.error('Error getting products by category', error);
-    }
-  );
-}
-
-//loc theo lăc tay
-filterProductsBylactay(lactay: string): void {
-  this.submitted = true
-  if (!lactay) {
-    console.error('Invalid categoryId');
-    return;
-  }
-
-  this.categoryService.getProductsByCategoryId(lactay).subscribe(
-    (response) => {
-      if (response && response.products) {
-        this.productsByCategory = response.products;
-        console.log(this.productsByCategory);
-      } else {
-        console.error('Empty response or missing products data');
-      }
-    },
-    (error) => {
-      console.error('Error getting products by category', error);
-    }
-  );
-}
-
-//loc theo khuyên tai
-filterProductsBykhuyen(khuyen: string): void {
-  this.submitted = true
-  if (!khuyen) {
-    console.error('Invalid categoryId');
-    return;
-  }
-
-  this.categoryService.getProductsByCategoryId(khuyen).subscribe(
-    (response) => {
-      if (response && response.products) {
-        this.productsByCategory = response.products;
-        console.log(this.productsByCategory);
-      } else {
-        console.error('Empty response or missing products data');
-      }
-    },
-    (error) => {
-      console.error('Error getting products by category', error);
-    }
-  );
-}
-
-// lọc theo brand  PNJ
-filterProductsByBrandPNJ() {
-  this.sortedByPrice = !this.sortedByPrice;
-  if(this.sortedByPrice){
-    this.productService
-    .getProducts(this.page, this.limit)
-    .subscribe((data: any[]) => {
-      this.products = data;
-      this.filteredProducts = this.products.productDatas.filter(
-        (product: any) => product.brand == 'PNJ'
-      );
-      console.log(this.filteredProducts);
-      this.products = this.filteredProducts;
+  constructor(
+    private productService: ProductService,
+    private categoryService: CategoryService,
+    private formBuilder: FormBuilder,
+    private brandService: BrandService
+  ) {
+    this.categoryService.getCategories().subscribe((data) => {
+      this.categorories = data.getAllCategory;
     });
-  } else {
-    
+
+    this.brandService.getBrands().subscribe((data: any) => {
+      this.brands = data.getAllBrand;
+    });
   }
 
+  formValueSearch = this.formBuilder.group({
+    search: [''],
+  });
+
+  formatPrice(num: number | string) {
+    return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  }
+
+  ngOnInit(): void {
+    // Gọi hàm getFilteredProducts() một lần để hiển thị tất cả sản phẩm ban đầu
+    this.resetFilters();
+  }
+
+  resetFilters(): void {
+    // Gọi lại hàm getProducts để lấy tất cả sản phẩm
+    this.productService.getProducts(this.page, this.limit).subscribe(
+      (data) => {
+        // Gán dữ liệu sản phẩm vào biến products
+        this.products = data.productDatas;
+      },
+      (error) => {
+        console.error('Error fetching all products:', error);
+      }
+    );
+  }
+
+  getFilteredProducts(): void {
+    const params = new HttpParams()
+      .set('sort', this.sort)
+      .set('limit', this.limit.toString())
+      .set('category', this.category)
+      .set('brand', this.brand);
+  
+    const url = `http://localhost:5000/api/product?${params.toString()}`;
+  
+    this.productService.getFilteredProducts(url).subscribe(
+      (data: any) => {
+        this.products = data.productDatas;
+      },
+      (error: any) => {
+        console.error('Error fetching filtered products:', error);
+      }
+    );
+  }
+
+ // ...
+
+filterProducts(): void {
+  // Kiểm tra nếu sort, category, hoặc brand không tồn tại hoặc rỗng, không thêm chúng vào URL truy vấn
+  const queryParams: any = {};
+
+  if (this.sort && this.sort !== "") {
+    queryParams.sort = this.sort;
+  }
+
+  if (this.limit) {
+    queryParams.limit = this.limit;
+  }
+
+  if (this.category && this.category !== "") {
+    queryParams.category = this.category;
+  }
+
+  if (this.brand && this.brand !== "") {
+    queryParams.brand = this.brand;
+  }
+
+  // Sử dụng queryParams để xây dựng URL truy vấn
+  const query = Object.keys(queryParams)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(queryParams[key]))
+    .join('&');
+
+  const url = `http://localhost:5000/api/product?${query}`;
+
+  console.log('URL:', url); // In ra URL để kiểm tra giá trị của các biến
+
+  // Gọi API với URL đã xây dựng
+  this.productService.getFilteredProducts(url)
+    .subscribe(
+      (data: any) => {
+        this.products = data.productDatas;
+      },
+      (error: any) => {
+        console.error('Error fetching filtered products:', error);
+      }
+    );
 }
-  // lọc theo brand  NRO
-  filterProductsByBrandNRO() {
-    this.sortedByPrice = !this.sortedByPrice;
-    if(this.sortedByPrice){
-      this.productService
-      .getProducts(this.page, this.limit)
-      .subscribe((data: any[]) => {
-        this.products = data;
-        this.filteredProducts = this.products.productDatas.filter(
-          (product: any) => product.brand == 'NRO'
-        );
-        console.log(this.filteredProducts);
-        this.products = this.filteredProducts;
-      });
-    } else {
-      this.loadData()
+
+// ...
+
+  handleSearch() {
+    this.productService.search(this.formValueSearch.value).subscribe((resp) => {
+      this.productList = resp.data;
+    });
+  }
+
+  handleModalSearch() {
+    this.productList = null;
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: Event) {
+    if (!this.searchInput.nativeElement.contains(event.target)) {
+      this.handleModalSearch();
     }
-
-  }
-
-  // lọc theo brand TTl
-  filterProductsByBrandTTL() {
-    this.sortedByPrice = !this.sortedByPrice;
-    if(this.sortedByPrice){
-      this.productService
-      .getProducts(this.page, this.limit)
-      .subscribe((data: any[]) => {
-        this.products = data;
-        this.filteredProducts = this.products.productDatas.filter(
-          (product: any) => product.brand == 'TTL'
-        );
-        console.log(this.filteredProducts);
-        this.products = this.filteredProducts;
-      });
-    } else {
-      this.loadData()
-    }
-
-  }
-  selectProduct(id: Number) {
-    console.log(id);
-
-  this.router.navigate(['/product', id]).then();
-  }
-  images = ['https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_500,w_1341/v1701436522/9_we7kcr.png',
-  'https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_550,w_1500/v1701436537/5_drhdu7.png',
-   'https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_550,w_1500/v1701436513/1_muyliz.png'];
-  currentIndex = 0;
-
-  nextSlide() {
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
-  }
-  prevSlide() {
-    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
   }
 }

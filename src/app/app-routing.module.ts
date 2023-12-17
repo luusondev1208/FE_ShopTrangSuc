@@ -48,6 +48,9 @@ import { ListCouponComponent } from './pages/admin/coupon/list-coupon/list-coupo
 import { AddCouponComponent } from './pages/admin/coupon/add-coupon/add-coupon.component';
 import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update-coupon.component';
 import { BoxChatComponent } from './pages/box-chat/box-chat.component';
+import { ListSizeComponent } from './pages/admin/size/list-size/list-size.component';
+import { AddSizeComponent } from './pages/admin/size/add-size/add-size.component';
+import { UpdateSizeComponent } from './pages/admin/size/update-size/update-size.component';
 const routes: Routes = [
   //client
   {
@@ -95,6 +98,7 @@ const routes: Routes = [
       { path: 'list', component: ListComponent },
       { path: 'listCategori', component: ListCategoriComponent },
       { path: 'listOrder', component: ListOderComponent },
+      { path: 'listSize', component: ListSizeComponent },
       { path: 'listBlog', component: ListBlogComponent },
       { path: 'listUser', component: ListuserComponent },
       { path: 'listCoupon', component: ListCouponComponent },
@@ -110,9 +114,11 @@ const routes: Routes = [
       { path: 'addProduct', component: AddProdcutComponent },
       { path: 'addCategori', component: AddCategoriComponent },
       { path: 'addBlog', component: AddBlogComponent },
+      { path: 'addSize', component: AddSizeComponent },
       { path: 'addCoupon', component: AddCouponComponent },
       { path: 'addbrand', component: AddBrandComponent },
       { path: 'update/:id', component: UpdateProductComponent },
+      { path: 'updateSize/:id', component: UpdateSizeComponent },
       { path: 'updateCategori/:id', component: UpdateCategoriComponent },
       { path: 'updateUser/:id', component: UpdateUserComponent },
       { path: 'updateBrand/:id', component: UpdateBrandComponent },

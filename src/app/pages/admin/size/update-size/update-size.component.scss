@@ -1,0 +1,49 @@
+/* Add your existing styles for the form and other elements if any */
+form {
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .text-red-500 {
+    color: #e53e3e; /* Tailwind CSS red-500 color */
+    margin-top: 5px;
+  }
+  
+  .size-item {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    background-color: #4f46e5; /* Tailwind CSS indigo-500 color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #4338ca; /* Tailwind CSS indigo-600 color */
+  }
+  

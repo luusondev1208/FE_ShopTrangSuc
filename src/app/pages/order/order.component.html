@@ -309,7 +309,7 @@
                         <select
                           style="width: 220px"
                           id="countries"
-                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-100 dark:text-gray-950 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          class="bg-gray-50 border cursor-pointer border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-100 dark:text-gray-950 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           (change)="onVoucherChange($event)"
                         >
                           <option value="" selected>Chọn mã giảm giá</option>
@@ -319,6 +319,9 @@
                             [disabled]="isOptionDisabled(item.fromPrice)"
                           >
                             {{ item.name }}
+                            <br>
+                            <br>
+                            <p class="text-gray-500">Ngày kết thúc:{{item.endDate}}</p>
                           </option>
                         </select>
                       </p>

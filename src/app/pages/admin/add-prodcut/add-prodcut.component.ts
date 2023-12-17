@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/service/category.service';
 import { NgToastService } from 'ng-angular-popup';
 import { BrandService } from 'src/app/service/brand.service';
+import { SizeService } from 'src/app/service/size.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class AddProdcutComponent {
   // public images: File[] = [];
   categories: any = []
   brands: any = []
+  listsize: any = []
   productForm: FormGroup;
   selectedImages: FileList | null = null;
 
@@ -61,11 +63,21 @@ export class AddProdcutComponent {
   //   ],
 
   // })
-  constructor(private productService: ProductService, private brandService: BrandService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService) {
+  constructor(private productService: ProductService, private brandService: BrandService,private sizeService: SizeService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService) {
     this.categoryService.getCategories().subscribe(
       (response: any) => {
         this.categories = response.getAllCategory;
         // console.log(this.categories);
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this.sizeService.getSizes().subscribe(
+      (response: any) => {
+        this.listsize = response.getAllSize;
+        console.log(this.listsize);
 
       },
       (error) => {
@@ -91,6 +103,7 @@ export class AddProdcutComponent {
       priceroot: [0],
       assess: [0],
       quantity: [''],
+      list_size: ['']
       // ... other form fields ...
     });
 
@@ -106,6 +119,7 @@ export class AddProdcutComponent {
       description: ['', [Validators.required, Validators.minLength(6)]],
       category: ['', [Validators.required]],
       quantity: ['', [Validators.required, Validators.min(0)]],
+      list_size: ['',Validators.required]
     });
   }
   onFilesSelected(event: any) {
@@ -122,8 +136,8 @@ export class AddProdcutComponent {
     formData.append('priceroot', this.productForm.value.priceroot);
     formData.append('category', this.productForm.value.category);
     formData.append('quantity', this.productForm.value.quantity);
+    formData.append('list_size', this.productForm.value.list_size);
     // ... append other form fields ...
-
     if (this.selectedImages) {
       for (let i = 0; i < this.selectedImages.length; i++) {
         formData.append('image', this.selectedImages[i]);

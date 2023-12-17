@@ -35,7 +35,7 @@
 // }
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 @Injectable({
@@ -54,6 +54,7 @@ export class ProductService {
     return this.http.get<any>(`http://localhost:5000/api/product?page=${page}&limit=${limit}`);
 
   }
+ 
   getProduct(id: string): Observable<any> {
     const url = `${this.API_URL}/${id}`;
     return this.http.get<any>(url);
@@ -82,6 +83,13 @@ getSizeOptions(id: string): Observable<any> {
 
 addComent(comment: any): Observable<any> {
   return this.http.post<any>(`${this.API_URL}/ratings/add`, comment, this.httpOptions);
+}
+
+search (data:any):Observable<any> {
+  return this.http.post<any>("http://localhost:5000/api/product/search-product", data)
+}
+getFilteredProducts(url: string): Observable<any> {
+  return this.http.get<any>(url);
 }
 
 }

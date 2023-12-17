@@ -62,43 +62,41 @@
      
     </div>
   </div>
-    <div class="flex xl:grid-cols-5 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 gap-4 mx-[190px] mt-10">
-        <!-- Sorting options -->
-
-        <select class="custom-select" [(ngModel)]="sort" [ngModelOptions]="{standalone: true}">
-          <option value="" disabled selected hidden>Giá</option>
-          <option value="price">Giá từ thấp đến cao</option>
-          <option value="-price">Giá từ cao đến thấp</option>
-          <option value="assess">Đánh giá cao</option>
-          <option value="sold">Bán chạy</option>
-        </select>
-        
-
-
-        <select class="custom-select" [(ngModel)]="category" [ngModelOptions]="{standalone: true}">
-          <option value="" disabled selected hidden>Danh mục</option>
-            <!-- Assuming 'cate' is an array of categories from your component -->
-            <option *ngFor="let cate of categorories" [value]="cate._id">{{cate.title}}</option>
-        </select>
-
-
-        <select class="custom-select" [(ngModel)]="brand" [ngModelOptions]="{standalone: true}">
-          <option value="" disabled selected hidden>Thương hiệu</option>
-            <!-- Assuming 'item' is an array of brands from your component -->
-            <option *ngFor="let item of brands" [value]="item._id">{{item.title}}</option>
-            <!-- Thêm các thương hiệu khác tùy thuộc vào danh sách bạn có -->
-        </select>
-
-        <!-- Filter button -->
-        <button (click)="filterProducts()"
-            class="bg-blue-500 hover:bg-blue-700 block w-[200px] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
-            Gửi
-        </button>
-        <button (click)="resetFilters()"
-  class="bg-gray-500 hover:bg-gray-700 block w-[200px] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
-  Reset
-</button>
-    </div>
+  <div class="flex xl:grid-cols-5 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 gap-4 mx-[190px] mt-10">
+    <!-- Sorting options -->
+    <select class="custom-select" [(ngModel)]="sort" [ngModelOptions]="{standalone: true}">
+      <option value="" disabled selected hidden>Giá</option>
+      <option value="price">Giá từ thấp đến cao</option>
+      <option value="-price">Giá từ cao đến thấp</option>
+      <option value="assess">Đánh giá cao</option>
+      <option value="sold">Bán chạy</option>
+    </select>
+  
+    <!-- Category options -->
+    <select class="custom-select" [(ngModel)]="category" [ngModelOptions]="{standalone: true}">
+      <option value="" disabled selected hidden>Danh mục</option>
+      <option *ngFor="let cate of categorories" [value]="cate._id">{{cate.title}}</option>
+    </select>
+  
+    <!-- Brand options -->
+    <select class="custom-select" [(ngModel)]="brand" [ngModelOptions]="{standalone: true}">
+      <option value="" disabled selected hidden>Thương hiệu</option>
+      <option *ngFor="let item of brands" [value]="item._id">{{item.title}}</option>
+    </select>
+  
+    <!-- Filter button -->
+    <button (click)="filterProducts()"
+      class="bg-blue-500 hover:bg-blue-700 block w-[200px] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+      Gửi
+    </button>
+  
+    <!-- Reset button -->
+    <button (click)="resetFilters()"
+      class="bg-gray-500 hover:bg-gray-700 block w-[200px] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+      Reset
+    </button>
+  </div>
+  
 </div>
 
   

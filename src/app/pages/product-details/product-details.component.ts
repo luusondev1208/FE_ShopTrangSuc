@@ -142,7 +142,12 @@ export class ProductDetailsComponent implements OnInit {
     const size = this.demoSize
     const quantity = 1;
 if(this.demoQuantity===0){
-  return alert("het hang")
+  return this.toast.error({
+    detail: 'Đã hết hàng. Vui lòng thử lại sau',
+    summary: 'Lỗi',
+    duration: 5000,
+    position: 'topRight',
+  });
 }
 
     if (this.authService.checklogin()) {

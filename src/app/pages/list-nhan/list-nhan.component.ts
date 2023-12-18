@@ -60,4 +60,5 @@ nextSlide() {
 prevSlide() {
   this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
 }
+
 }

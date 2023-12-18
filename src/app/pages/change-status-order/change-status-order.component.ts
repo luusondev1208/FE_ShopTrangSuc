@@ -83,23 +83,28 @@ canChangeStatusXacNhanHang(order: any): boolean {
     this.orderService.getOrderDetails(userOrders).subscribe(
       (response) => {
         console.log('Dữ liệu đơn hàng:', response);
-  
+    
         // Check if the response is an array
         if (Array.isArray(response.orders)) {
           this.orderDetails = response.orders;
           response.orders.forEach((order: any) => {
             console.log(order);
-  
+    
             const orderCreationTime = new Date(order.createdAt).getTime();
             const currentTime = new Date().getTime();
             const timeDifference = currentTime - orderCreationTime;
-  
-            // Nếu đã qua 5 ngày, trạng thái không phải 'Đã hủy', và không phải 'Đã giao hàng', cập nhật trạng thái thành 'Đã giao hàng'
-            if (timeDifference >= 5 * 24 * 60 * 60 * 1000 && order.status !== 'Đã hủy' && order.status !== 'Đã giao hàng' && order.status !== 'Đang giao hàng') {
+    
+            // Kiểm tra nếu đã qua 5 ngày, trạng thái không phải 'Đã hủy', 'Đã nhận hàng' và không phải 'Đã giao hàng'
+            if (
+              timeDifference >= 5 * 24 * 60 * 60 * 1000 &&
+              order.status !== 'Đã hủy' &&
+              order.status !== 'Đã nhận hàng' &&
+              order.status !== 'Đã giao hàng'
+            ) {
               this.updateOrderStatus(order._id, 'Đã nhận hàng');
             }
           });
-        } else {  
+        } else {
           console.error('Lỗi: Dữ liệu đơn hàng không hợp lệ.');
         }
       },
@@ -107,6 +112,7 @@ canChangeStatusXacNhanHang(order: any): boolean {
         console.error('Lỗi khi lấy dữ liệu đơn hàng:', error);
       }
     );
+    
   }
   
   updateOrdersAfter10Seconds(userOrders: any[]) {

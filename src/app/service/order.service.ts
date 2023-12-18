@@ -38,6 +38,12 @@ export class OrderService {
 
     return this.http.put(url, body); // Gửi yêu cầu PUT đến API
   }
+  updateOrderStatusSendEmail(id: string, newStatus: string) {
+    const url = `${this.apiUrl}/statusSendEmail/${id}`;
+    const body = { status: newStatus }; // Dữ liệu cần gửi đi để cập nhật trạng thái
+
+    return this.http.put(url, body); // Gửi yêu cầu PUT đến API
+  }
 
   getAllOrders(): Observable<any> {
     return this.http.get(`${this.apiUrl}/getAll`);

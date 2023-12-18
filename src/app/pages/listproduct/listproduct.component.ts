@@ -63,6 +63,14 @@ export class ListproductComponent {
       }
     );
   }
+  nextPage(){
+    this.page++
+    this.resetFilters()
+  }
+  backPage(){
+    this.page--
+    this.resetFilters()
+  }
 
   getFilteredProducts(): void {
     const params = new HttpParams()

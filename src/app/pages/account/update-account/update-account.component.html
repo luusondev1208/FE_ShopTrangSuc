@@ -3,7 +3,7 @@
 
 <div class="container-xl px-4 mt-24">
     <!-- Account page navigation-->
-    <p style="text-align: center;font-size:40px;padding:15px">Cập Nhật Thông Tin Tài Khoản</p>
+    <p class="text-center md:text-[40px] text-[20px] py-[15px]">Cập Nhật Thông Tin Tài Khoản</p>
 
     <!-- <nav class="nav nav-borders ">
         <a class="nav-link "href="/infor-account">Hồ Sơ</a>
@@ -19,7 +19,8 @@
                 <div class="card-header">Ảnh Đại Diện</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2"style="margin-left:107px" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <img class="img-account-profile rounded-circle mb-2 ml-[75px] md:ml-[100px]"
+                    src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
                     <!-- Profile picture help block-->
                     <div class="small font-bold mb-4">Họ Và Tên: {{user?.firstname}} {{user?.lastname}} </div>
                         
@@ -32,7 +33,7 @@
         </div>
         <div class="col-xl-8 ">
             <!-- Account details card-->
-            <div class="card mb-4" style="width:800px">
+            <div class="card mb-4 md:w-[800px] w-[330px]" >
                 <div class="card-header">Chi Tiết Tài Khoản</div>
                 <div class="card-body">
                     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">

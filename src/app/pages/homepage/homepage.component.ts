@@ -35,7 +35,7 @@ export class HomepageComponent {
   toggleSortByPrice() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
-      this.topProducts = this.products.productDatas.filter((product:any) => product.assess > 100);
+      this.topProducts = this.products.productDatas.filter((product:any) => product.assess > 50);
       console.log(this.topProducts);
 
     });

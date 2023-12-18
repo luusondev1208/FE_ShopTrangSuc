@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { NgToastService } from 'ng-angular-popup';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-siderbar-admin',
@@ -9,7 +10,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./siderbar-admin.component.scss']
 })
 export class SiderbarAdminComponent {
-  constructor( private router: Router, private authService: AuthService,private toast:NgToastService) {
+  user!: any;
+  userRole!: string;
+  firstname: any;
+  lastname: any
+  constructor( private userService: UserService,
+    private router: Router,
+    private authService: AuthService,
+    private toast: NgToastService,
+    private route: ActivatedRoute) {
+    this.route.paramMap.subscribe((param) => {
+      const users = JSON.parse(localStorage.getItem("user") as string);
+      const id = users._id
+
+      this.userService.getUser(id).subscribe(
+        (user) => {
+          console.log(user);
+          this.user = user.use;
+          this.userRole = user.use.role
+          this.firstname = user.use.firstname.replace(/\b\w/g, function (char:any) {
+            return char.toUpperCase();
+          });
+          this.lastname = user.use.lastname.replace(/\b\w/g, function (char:any) {
+            return char.toUpperCase();
+          });
+          
+          console.log(this.userRole);
+          
+
+        },
+        (error) => console.log(error.message)
+      );
+    });
   }
   signOut() {
     var result= confirm("Bạn có muốn đăng xuất không?")

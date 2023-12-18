@@ -26,7 +26,7 @@ export class HomepageComponent {
       console.log(data);
       
       this.products = data;
-      this.filteredProducts = this.products.productDatas.filter((product:any) => product.sold > 100);
+      this.filteredProducts = this.products.productDatas.filter((product:any) => product.sold > 50);
       console.log(this.filteredProducts);
 
     });
@@ -56,10 +56,6 @@ export class HomepageComponent {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
       this.saleproduct = this.products.productDatas;
-      // Tạo mảng mới với các sản phẩm có giá gốc gấp đôi giá hiện tại
-      // this.saleproduct = this.saleproduct.filter((product:any) => product.price * 2 === product.priceroot);
-      // console.log(this.saleproduct);
-        // Tính giảm giá phần trăm và lọc sản phẩm giảm giá hơn 50%
         this.saleproduct = this.saleproduct.filter((product:any) => {
 
           const discountPercentage = ((product.priceroot - product.price) / product.priceroot) * 100;

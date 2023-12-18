@@ -14,7 +14,7 @@ export class ListproductComponent {
   products: any[] = [];
   sort: string = "";
   page = 1;
-  limit = 10;
+  limit = 12;
   category: string = "";
   brand: string = "";
   categorories: any[] = [];

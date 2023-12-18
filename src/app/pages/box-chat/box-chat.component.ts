@@ -14,12 +14,13 @@ export class BoxChatComponent {
   textBlocks: string[] = []
   constructor(private modalService: NgbModal){
     this.textBlocks = [
-      "Xin chào! Tôi là một trợ lý ảo của NRO. Bạn cần hỗ trợ gì nhỉ?",
-      "Bạn đang tìm kiếm sản phẩm nào? Tôi có thể giúp bạn tìm kiếm hoặc tư vấn về sản phẩm",
-      "Bạn cần biết về chính sách vận chuyển hoặc đổi trả hàng hóa không?",
-      "Chúng tôi đang có khuyến mãi đặc biệt cho chiếc sịt lọt khe. Có phải bạn quan tâm không?",
-      "Tiếc quá tôi đang không hiểu bạn nói linh tinh cái quái gì nữa...",
-      "Cảm ơn bạn đã liên hệ với chúng tôi. đừng ngần ngại liên hệ 0347617094, hoặc ib https://www.facebook.com/Quangchien.kg.2003/ Nếu cần thêm thông tin," 
+      "Xin chào! Tôi là một trợ lý ảo của NRO?",
+      "Bạn đã tìm thấy sản phẩm ưng ý chưa, tôi có thể giúp bạn tư vấn ?",
+      "Xin lỗi bạn, chức năng nói chuyện với bạn tôi đang phát triển....",
+      "Để được tư vấn kỹ hơn về sản phẩm vui lòng liên hệ 034761704 ạ ! Free nha bạn iu",
+      "Hoặc bạn có thể nhắn tin trực tiếp qua fanpage https://www.facebook.com/profile.php?id=100083060362771 nhé",
+      "Cảm ơn bạn đã liên hệ với chúng tôi. say bye !!" 
+      
     ];
   }
   // Hàm được gọi khi người dùng nhấn nút gửi tin nhắn

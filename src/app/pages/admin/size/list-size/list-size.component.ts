@@ -47,7 +47,9 @@ export class ListSizeComponent {
       }
     );
   }
-  
+  formatPrice(num: number | string) {
+    return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  }
   deletesize(id:any){
     var result = confirm(`Bạn có muốn xóa không ?`);
     if (result) {

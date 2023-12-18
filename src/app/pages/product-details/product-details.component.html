@@ -36,7 +36,7 @@
               <span>{{ product.sold }} đã bán</span>
             </div>
 
-            <p>Số lượng còn trong kho: {{ product.quantity }}</p>
+
 
             <!-- chọn size -->
 
@@ -245,22 +245,27 @@
                 <span class="mr-3">Kích thước</span>
                 <div class="relative">
                   <select
-                    id="sizeSelect"
+                    id="optionSelect"
                     class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10"
-                    [(ngModel)]="selectedSize" (change)="updatePriceAndQuantity()"
+                    [(ngModel)]="selectedSize"
+                    (change)="updatePriceAndQuantity()"
+
                   > <option value="">
                     Chọn size
                   </option>
                     <option
                       *ngFor="let size of product.list_size.list_size"
-                      [value]="size.quantity"
+                      [value]="size.name"
+
                     >
                       {{ size.name }}
                     </option>
                   </select>
+                  <p *ngIf="product.list_size.list_size">Số lượng còn trong kho: {{ demoQuantity>0?demoQuantity:0 }}</p>
                   <span
                     class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center"
                   >
+
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -274,6 +279,7 @@
                     </svg>
                   </span>
                 </div>
+
                 <div>
                   <button
                     class="btn btn-white"
@@ -298,7 +304,7 @@
               <span
                 style="margin-right: 30px"
                 class="font-medium text-xl text-orange-600"
-                >{{ formatPrice(product.price) }}đ</span
+                >{{ demoPrice > 0 ? formatPrice(demoPrice):  formatPrice(product.price) }}đ</span
               >
               <span class="text-gray-400 font-medium text-xl line-through mr-2"
                 >{{ formatPrice(product.priceroot) }}đ</span

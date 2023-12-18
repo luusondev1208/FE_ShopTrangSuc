@@ -290,10 +290,10 @@
                         </div>
                           <div>
                               <h4 class="my-0">{{ item.product.title }}</h4><br>
-                              <h3 class="text-muted"> {{ formatPrice(item.product.price) }} x {{ item.quantity }}</h3>
+                              <h3 class="text-muted"> {{ formatPrice(getPriceBySize(item.product,item.size)) }} x {{ item.quantity }}</h3>
                               <h3 class="text-muted"> Size: {{ item.size }}</h3>
                           </div>
-                          <span class="text-muted">{{ formatPrice(item.product.price) }}</span>
+                          <span class="text-muted">{{ formatPrice(getPriceBySize(item.product,item.size))}}</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between">
                         <span>Tạm tính</span>

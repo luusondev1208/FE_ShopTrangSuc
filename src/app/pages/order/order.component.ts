@@ -14,7 +14,7 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent {
-  
+
   cartItems: any;
   imgList: any;
   discountForm: FormGroup;
@@ -32,8 +32,8 @@ export class OrderComponent {
     email: '',
   };
   userID: any;
-  userList: any = {}; 
-  
+  userList: any = {};
+
   constructor(private cartService: CartService,
     private toast: NgToastService,
     private activatedRoute: ActivatedRoute,
@@ -81,6 +81,11 @@ export class OrderComponent {
 
   }
 
+  getPriceBySize(product:any,size:any){
+    const pr = product.list_size.list_size.find((item:any)=>Number(item.name)===Number(size))
+    return pr.price
+  }
+
   isOptionDisabled(fromPrice: any): boolean {
     return Number(this.getTotalPrice()) < Number(fromPrice);
   }
@@ -96,7 +101,8 @@ export class OrderComponent {
 
   getTotalPrice(): number {
     return this.cartItems.products.reduce((total: any, product: any) => {
-      const productTotal = product?.product.price * product.quantity;
+      const pr = this.getPriceBySize(product?.product,product.size)
+      const productTotal = pr * product.quantity;
       return total + productTotal;
     }, 0);
   }
@@ -114,7 +120,7 @@ export class OrderComponent {
     }
 
     this.orderData.user = this.userLogin._id;
-    console.log(this.orderData.user);
+    // console.log(this.orderData.user);
 
     this.orderData.totalPrice = this.calculatePrice();
     this.orderData.paymentMethod = this.paymentMethodChecked;
@@ -179,7 +185,8 @@ export class OrderComponent {
   calculatePrice(): number {
     if (this.checkedVoucher) {
       const total = this.cartItems.products.reduce((total: any, product: any) => {
-        const productTotal = product?.product.price * product.quantity;
+        const pr = this.getPriceBySize(product?.product,product.size)
+        const productTotal = pr * product.quantity;
         return total + productTotal;
       }, 0);
 
@@ -201,16 +208,16 @@ export class OrderComponent {
   this.userService.getUser(user._id).subscribe((res: any) => {
     this.userList = res.use;
     console.log(this.userList);
-    
+
     this.orderData.name = this.userList.firstname + ' ' + this.userList.lastname;
     this.orderData.address = this.userList.address;
     this.orderData.mobile = this.userList.mobile;
     this.orderData.email = this.userList.email;
-    this.orderData.note = ''; 
-    console.log('Name:', this.orderData.name);
-    console.log('Address:', this.orderData.address);
+    this.orderData.note = '';
+    // console.log('Name:', this.orderData.name);
+    // console.log('Address:', this.orderData.address);
 
-console.log('Address:', this.orderData.address);
+// console.log('Address:', this.orderData.address);
       this.cartService.getCart(res.use.cart).subscribe((items: any) => {
         this.cartItems = items?.cart;
         this.onSubmit();

@@ -15,6 +15,8 @@ export class CartComponent implements OnInit {
   cartItems: any;
   cart: any;
   imgList: any;
+  demoQuantity:any=0
+
   constructor(private cartService: CartService, private toast: NgToastService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService) {
     activatedRoute.params.subscribe((params) => {
 
@@ -32,7 +34,7 @@ export class CartComponent implements OnInit {
   }
 
   showImg() {
-    console.log(this.imgList);
+    // console.log(this.imgList);
 
   }
 
@@ -43,12 +45,20 @@ export class CartComponent implements OnInit {
     this.userService.getUser(user._id).subscribe((res) => { // đây
       this.cartService.getCart(res.use.cart).subscribe((items: any) => {
         this.cartItems = items?.cart;
+        // this.demoQuantity=
       });
     })
-
-
   }
 
+  getQuantityBySize(product:any,size:any){
+    const qty = product.list_size.list_size.find((item:any)=>Number(item.name)===Number(size))
+    return qty.quantity
+
+  }
+  getPriceBySize(product:any,size:any){
+    const pr = product.list_size.list_size.find((item:any)=>Number(item.name)===Number(size))
+    return pr.price
+  }
 
   removeFromCart(cartItem: CartItem): void {
     const local = localStorage.getItem("user");
@@ -74,9 +84,11 @@ export class CartComponent implements OnInit {
   // }
 
   getTotalPrice(): number {
-    return this.cartItems.products.reduce((total: any, product: any) => {
+    // console.log(this.cartItems);
 
-      const productTotal = product?.product.price *  product.quantity;
+    return this.cartItems.products.reduce((total: any, product: any) => {
+const pr = this.getPriceBySize(product?.product,product.size)
+      const productTotal = pr *  product.quantity;
       return total + productTotal;
     }, 0);
   }
@@ -86,7 +98,6 @@ export class CartComponent implements OnInit {
   updateCartItem(cartItem: CartItem, quantity: any): void {
     const local = localStorage.getItem("user");
     const user = local && JSON.parse(local);
-// console.log(cartItem);
 
     const data: any = {
       productId: cartItem.product._id,
@@ -94,8 +105,6 @@ export class CartComponent implements OnInit {
       quantity: quantity,
       userId: user?._id
     }
-    // console.log("data chekc",data);
-
 
     this.cartService.updateCartItem(data).subscribe(() => {
       this.loadCartItems();
@@ -114,7 +123,9 @@ export class CartComponent implements OnInit {
   }
 
   increaseQuantity(cartItem: CartItem, quantity: any): void {
-    if (cartItem.quantity < cartItem.product.quantity) {
+    const qty = this.getQuantityBySize(cartItem.product,cartItem.size)
+
+    if (quantity <= qty) {
       cartItem.quantity++;
       this.updateCartItem(cartItem, quantity);
     } else {

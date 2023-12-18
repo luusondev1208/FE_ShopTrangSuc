@@ -21,7 +21,7 @@ import { switchMap } from 'rxjs/internal/operators/switchMap';
 
 interface SizeResponse {
   getAllSize: {
-    list_size: any[]; 
+    list_size: any[];
   };
 }
 @Component({
@@ -44,7 +44,10 @@ export class ProductDetailsComponent implements OnInit {
   sizeOption: any[] = Object.values(sizeOptions).filter(value => typeof value === 'number')
   selectedSize: number | null = null;
   productsByCategory: any[] = []; // Thêm mảng để lưu trữ sản phẩm của category
-  sizes: any
+  sizes: any;
+  demoPrice: number=0;
+  demoSize: number=0;
+  demoQuantity: number=0;
 
   constructor(
     config: NgbRatingConfig,
@@ -82,7 +85,7 @@ export class ProductDetailsComponent implements OnInit {
   loadProductData(productId: string): void {
     this.productService.getProduct(productId).subscribe((data) => {
       this.product = data.productData;
-      console.log(this.product.list_size.list_size);
+      // console.log(this.product.list_size.list_size);
       this.demoProduct = data.productData;
       this.imgList = data.productData.images;
       this.getProductsByCategory(this.demoProduct.category);
@@ -130,21 +133,26 @@ export class ProductDetailsComponent implements OnInit {
   addToCart() {
     const local = localStorage.getItem('user');
     const user: any = local && JSON.parse(local);
-    const selectedSize = (document.querySelector('#sizeSelect') as HTMLSelectElement).value;
-    console.log(selectedSize);
+    // const selectedSize = (document.querySelector('#sizeSelect') as HTMLSelectElement).value;
+    // console.log(selectedSize);
+    // demoPrice
 
     const productId = this.demoProduct._id;
 
-    const size = Number(selectedSize);
+    const size = this.demoSize
     const quantity = 1;
+if(this.demoQuantity===0){
+  return alert("het hang")
+}
+
     if (this.authService.checklogin()) {
       this.cartService.addToCart(productId, size, quantity, user?._id).subscribe(
         (response) => {
-          
+
           this.toast.success({
             detail: 'Sản phẩm đã được thêm vào giỏ hàng.',
             summary: 'Thành công',
-            duration: 5000, 
+            duration: 5000,
             position: 'topRight',
           });
         },
@@ -153,7 +161,7 @@ export class ProductDetailsComponent implements OnInit {
           this.toast.error({
             detail: 'Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại sau.',
             summary: 'Lỗi',
-            duration: 5000, 
+            duration: 5000,
             position: 'topRight',
           });
         }
@@ -282,51 +290,61 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
   updatePriceAndQuantity() {
-    const selectedSize = this.selectedSize !== null ? Number(this.selectedSize) : null;
+    const optionSelect = document.getElementById("optionSelect") as HTMLSelectElement
+    const nameSizeSelect = optionSelect?.value
+    const SizeFInd = this.product.list_size.list_size.find((item: any) => item.name === nameSizeSelect);
+    // console.log(nameSizeSelect);
 
-    const price = this.getProductPrice(selectedSize );
-    const quantity = this.getProductQuantity(selectedSize);
+    this.demoPrice = SizeFInd.price
+    this.demoSize = SizeFInd.name
+    this.demoQuantity = SizeFInd.quantity
 
-    console.log('Kích Thước Đã Chọn:', selectedSize);
-    console.log('Giá:', price);
-    console.log('Số Lượng:', quantity);
+
+    // const selectedSize = this.selectedSize !== null ? Number(this.selectedSize) : null;
+
+    // const price = this.getProductPrice(selectedSize );
+    // const quantity = this.getProductQuantity(selectedSize);
+
+    // console.log('Kích Thước Đã Chọn:', test);
+    // console.log('Giá:', price);
+    // console.log('Số Lượng:', quantity);
   }
 
-  
-getProductPrice(selectedSize: number | null): any {
-  if (selectedSize === null) {
-    return 0; 
-  }
 
-  this.sizeService.getSizes().pipe(
-    switchMap((item: any) => {
-      this.sizes = item.getAllSize;
-      const size = this.sizes.find((sizeItem: any) => sizeItem.name === selectedSize);
-      console.log(size);
-      return size ? size.price : 0;
-    })
-  ).subscribe((price) => {
-   
-    console.log(price);
-  });
-}
-getProductQuantity(selectedSize: number | null): any {
-  if (selectedSize === null) {
-    return 0; 
-  }
+  getProductPrice(selectedSize: number | null): any {
+    if (selectedSize === null) {
+      return 0;
+    }
 
-  this.sizeService.getSizes().pipe(
-    switchMap((item: any) => {
-      this.sizes = item.getAllSize;
-      const size = this.sizes.find((sizeItem: any) => sizeItem.name === selectedSize);
-      console.log(size);
-      return size ? size.quantity : 0;
-    })
-  ).subscribe((quantity) => {
-   
-    console.log(quantity);
-  });
-}
+    this.sizeService.getSizes().pipe(
+      switchMap((item: any) => {
+        this.sizes = item.getAllSize;
+        const size = this.sizes.find((sizeItem: any) => sizeItem.name === selectedSize);
+        // console.log(size);
+        return size ? size.price : 0;
+      })
+    ).subscribe((price) => {
+
+      console.log(price);
+    });
+  }
+  getProductQuantity(selectedSize: number | null): any {
+    if (selectedSize === null) {
+      return 0;
+    }
+
+    this.sizeService.getSizes().pipe(
+      switchMap((item: any) => {
+        this.sizes = item.getAllSize;
+        const size = this.sizes.find((sizeItem: any) => sizeItem.name === selectedSize);
+        // console.log(size);
+        return size ? size.quantity : 0;
+      })
+    ).subscribe((quantity) => {
+
+      // console.log(quantity);
+    });
+  }
 
   changeMainImage(event: Event, newImage: string) {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt

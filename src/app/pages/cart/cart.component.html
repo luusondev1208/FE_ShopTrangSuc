@@ -12,7 +12,7 @@
           {{ item.product.title }}
         </a>
       </div>
-      <div>Số lượng còn lại: {{ item.product.quantity }}</div>
+      <div>Số lượng còn lại: {{getQuantityBySize(item.product,item.size)}} </div>
       <div>
         <label
           for="number-input"

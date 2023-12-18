@@ -93,7 +93,7 @@
                     </td> -->
             <td
               class="lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static whitespace-nowrap"
-      
+
             >
               <ul class="space-y-2">
                 <ul
@@ -143,7 +143,7 @@
                         *ngIf="product.product && product.product.price"
                       >
                         <p style="color: lightslategrey; font-weight: bold">
-                          Giá Tiền: {{ formatPrice(product.product.price) }}
+                          Giá Tiền: {{ formatPrice(getPriceBySize(product.product,product.size)) }}
                         </p>
                       </ng-container>
                     </li>

@@ -52,7 +52,7 @@ export class CartService {
     const cartItem: any = {
       product: product,
       quantity: quantity,
-      size: size,
+      size: Number(size),
       userId: usserId,
     };
 

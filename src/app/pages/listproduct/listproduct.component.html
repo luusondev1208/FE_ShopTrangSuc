@@ -1,10 +1,10 @@
 <!-- slideshow -->
 <div class="xl:slideshow">
-  <div class=" w-[700px] mx-auto">
+  <div class=" md:w-[700px] md:mx-auto">
     <form
     (submit)="handleSearch()"
     [formGroup]="formValueSearch"
-      class="w-[588px] h-[40px] bg-[#f3f3f3] rounded-[999px] flex items-center relative"
+      class="md:w-[588px] ml-[50px] md:ml-[50px]  w-[300px] h-[40px] bg-[#f3f3f3] rounded-[999px] flex items-center"
       action
     >
       <input
@@ -16,7 +16,7 @@
       />
       <button 
        
-        class="min-w-[100px] bg-[#EC8F5E] mr-[12px] text-[#fff] font-[300] rounded-[999px] py-[4px]"
+        class="md:min-w-[100px] my-3 w-[100px] bg-[#EC8F5E] mr-[12px] text-[#fff] font-[300] rounded-[999px] py-[4px]"
       >
         Tìm kiếm
       </button>
@@ -62,7 +62,7 @@
      
     </div>
   </div>
-  <div class="flex xl:grid-cols-5 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 gap-4 mx-[190px] mt-10">
+  <div class="md:flex xl:grid-cols-5 grid grid-cols-2 gap-4 md:mx-[190px] md:pt-10">
     <!-- Sorting options -->
     <select class="custom-select" [(ngModel)]="sort" [ngModelOptions]="{standalone: true}">
       <option value="" disabled selected hidden>Giá</option>
@@ -85,13 +85,13 @@
   
     <!-- Filter button -->
     <button (click)="filterProducts()"
-      class="bg-blue-500 hover:bg-blue-700 block w-[200px] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+      class="bg-blue-500 hover:bg-blue-700 block w-[180px] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
       Gửi
     </button>
   
     <!-- Reset button -->
     <button (click)="resetFilters()"
-      class="bg-gray-500 hover:bg-gray-700 block w-[200px] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+      class="bg-gray-500 hover:bg-gray-700 block w-[180px] ml-[100px] md:ml-0 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
       Reset
     </button>
   </div>
@@ -102,7 +102,7 @@
   <!-- component -->
   <div tabindex="0" class="focus:outline-none -mb-[50px]">
     <div class="mx-auto container py-8">
-      <div class="flex flex-wrap items-center lg:justify-between justify-center pb-10 mt-16">
+      <div class="flex flex-wrap items-center lg:justify-between justify-center pb-10 md:mt-16">
         <div *ngFor="let product of products" tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
           <div class="product">
             <div class="image-container">

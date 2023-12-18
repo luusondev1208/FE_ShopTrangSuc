@@ -107,7 +107,7 @@ export class ListOderComponent {
 
 
   updateStatus(orderId: string, newStatus: string): void {
-    this.orderService.updateOrderStatus(orderId, newStatus)
+    this.orderService.updateOrderStatusSendEmail(orderId, newStatus)
       .subscribe((data: any) => {
         console.log(data);
         this.getOrders();

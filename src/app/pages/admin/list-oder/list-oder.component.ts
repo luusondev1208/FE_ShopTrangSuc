@@ -195,4 +195,7 @@ export class ListOderComponent {
     // Xuất file PDF
     doc.save('hoadonbanhang.pdf');
   }
+  formatPrice(num: number | string) {
+    return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  }
 }

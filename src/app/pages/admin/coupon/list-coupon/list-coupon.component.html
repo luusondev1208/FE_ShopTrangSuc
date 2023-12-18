@@ -89,7 +89,7 @@
                   
                   <td class="text-sm text-gray-900 font-light px-6 whitespace-nowrap">
                     <div *ngIf="!isExpanded">
-                      {{ coupon.discountPrice | slice:0:15 }}
+                      {{ formatPrice(coupon.discountPrice) | slice:0:15 }}
                       <button (click)="toggleExpand()" *ngIf="coupon.discountPrice.length > 50">......</button>
                       
                     </div>
@@ -104,7 +104,7 @@
                   </td>
                   
                   <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
-                    {{coupon.fromPrice}}
+                    {{formatPrice(coupon.fromPrice)}}
                   </td>
                   <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
                     {{coupon.type}}

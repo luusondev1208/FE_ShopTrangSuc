@@ -32,6 +32,7 @@ export class HomepageComponent {
     });
   }
 
+  //sản phẩm bán chạy
   toggleSortByPrice() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
@@ -41,17 +42,17 @@ export class HomepageComponent {
     });
   }
 
+  //sản phẩm mới nhất
   filtercreatedAt() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
       this.topcreatedAt = this.products.productDatas
-      // Sắp xếp theo createdAt giảm dần (newest first)
       this.topcreatedAt = this.topcreatedAt.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-      // this.topcreatedAt = this.products.productDatas.filter((product:any) => product.createdAt >= 1698009190100);
       console.log(this.topcreatedAt);
     });
   }
 
+  //sản phẩm sale sock
   doubledPriceProducts(){
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;

@@ -33,7 +33,35 @@ export class OrderComponent {
   };
   userID: any;
   userList: any = {};
+  validationMessages: { [key: string]: string } = {};
 
+  validateInput(field: string, value: string): void {
+    switch (field) {
+      case 'name':
+        this.validationMessages['name'] = !value  ? 'Vui lòng nhập tên.' : '';
+        break;
+      case 'address':
+        this.validationMessages['address'] = !value ? 'Vui lòng nhập địa chỉ.' : '';
+        break;
+        case 'mobile':
+          if (!value || !/^\d{10}$/.test(value)) {
+            this.validationMessages['mobile'] = 'Vui lòng nhập số điện thoại .';
+          } else {
+            this.validationMessages['mobile'] = '';
+          }
+          break;
+        
+      case 'email':
+        this.validationMessages['email'] = !value || !value.match(/^\S+@\S+\.\S+$/) ? 'Vui lòng nhập địa chỉ email hợp lệ.' : '';
+        break;
+      case 'note':
+        this.validationMessages['note'] = !value ? 'Vui lòng nhập ghi chú.' : '';
+        break;
+      default:
+        break;
+    }
+  }
+  
   constructor(private cartService: CartService,
     private toast: NgToastService,
     private activatedRoute: ActivatedRoute,

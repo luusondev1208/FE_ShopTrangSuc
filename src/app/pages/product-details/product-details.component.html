@@ -32,7 +32,7 @@
             </h1>
             <div class="flex items-center justify-between my-3">
               <span class="text-gray-600">{{ product.assess }} đánh giá</span>
-              <ngb-rating class="" [rate]="5" />
+              <ngb-rating class="" [rate]="5" style="color:gold"/>
               <span>{{ product.sold }} đã bán</span>
             </div>
 
@@ -242,7 +242,7 @@
             </ng-template>
             <div class="flex mt-6 items-center">
               <div *ngIf="sizeOption.length > 0" class="flex items-center">
-                <span class="mr-3">Kích thước</span>
+                <span class="mr-3"style="width:70px;margin-bottom:27px">Kích thước</span>
                 <div class="relative">
                   <select
                     id="optionSelect"
@@ -250,20 +250,21 @@
                     [(ngModel)]="selectedSize"
                     (change)="updatePriceAndQuantity()"
 
-                  > <option value="">
+                  > <option value=""style="text-center">
                     Chọn size
                   </option>
                     <option
                       *ngFor="let size of product.list_size.list_size"
                       [value]="size.name"
+                      class="text-center"
 
                     >
                       {{ size.name }}
                     </option>
                   </select>
-                  <p *ngIf="product.list_size.list_size">Số lượng: {{ demoQuantity>0?demoQuantity:0 }}</p>
+                  <p *ngIf="product.list_size.list_size"style="margin-top:3px;margin-left:20px">Số lượng: {{ demoQuantity>0?demoQuantity:0 }}</p>
                   <span
-                    class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center"
+                    class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex mt-3 justify-center"
                   >
 
                     <svg
@@ -286,10 +287,12 @@
                     class="btn btn-white"
                     (click)="openShowSize(showSize)"
                     style="
-                      margin: 5px;
+                     
                       font-style: italic;
                       font-size: 13px;
                       color: goldenrod;
+                      width:100px;
+                      margin-bottom:27px
                     "
                   >
                     Cách đo size
@@ -350,7 +353,8 @@
                   </span>
                 </div>
                 <div class="item2" style="display: flex">
-               
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+
                   <span
                     style="color: #4c4c4c; font-weight: 400; margin-left: 4px"
                   >
@@ -402,7 +406,7 @@
                   Đổi sản phẩm trong 48h tại hệ thống cửa hàng NRO
                 </span>
               </div>
-              <div class="item3" style="display: flex">
+              <!-- <div class="item3" style="display: flex">
                 <img
                   src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
                   style="
@@ -418,7 +422,7 @@
                 >
                   Cầm đồ và Thu mua.
                 </span>
-              </div>
+              </div> -->
               <div class="item4" style="display: flex">
                 <img
                   src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
@@ -651,7 +655,7 @@
               ></textarea>
               <br />
               <div class="absolute -mt-10 flex justify-between items-center">
-                <ngb-rating class="absolute my-3 text-[25px] ml-2" [rate]="5" />
+                <ngb-rating class="absolute my-3 text-[25px] ml-2" [rate]="5" style="color:gold"/>
 
                 <button
                   class="px-[25px] py-[6px] ml-[920px] text-white rounded bg-blue-500 hover:bg-blue-600 justify-end"
@@ -688,7 +692,7 @@
                           <div class="text-xs">
                             {{ item.content }}
                           </div>
-                          <ngb-rating class="" [rate]="5" />
+                          <ngb-rating class="" [rate]="5"style="color:gold" />
                         </div>
                       </div>
                       <div
@@ -698,11 +702,11 @@
                           class="font-semibold text-gray-700 px-2 flex items-center justify-center space-x-1"
                         >
                           <a href="#" class="hover:underline">
-                            <small>Like</small>
+                            <small style="color:lightskyblue">Like</small>
                           </a>
                           <small class="self-center">.</small>
                           <a href="#" class="hover:underline">
-                            <small>Reply</small>
+                            <small style="color:lightskyblue">Reply</small>
                           </a>
                           <small class="self-center">.</small>
                           <a href="#" class="hover:underline">

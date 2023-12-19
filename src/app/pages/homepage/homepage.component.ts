@@ -23,11 +23,11 @@ export class HomepageComponent {
 
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
-      console.log(data);
+      // console.log(data);
       
       this.products = data;
-      this.filteredProducts = this.products.productDatas.filter((product:any) => product.sold > 50);
-      console.log(this.filteredProducts);
+      this.filteredProducts = this.products.productDatas.filter((product:any) => product.sold > 5);
+      // console.log(this.filteredProducts);
 
     });
   }
@@ -36,8 +36,8 @@ export class HomepageComponent {
   toggleSortByPrice() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
-      this.topProducts = this.products.productDatas.filter((product:any) => product.assess > 50);
-      console.log(this.topProducts);
+      this.topProducts = this.products.productDatas.filter((product:any) => product.assess > 5);
+      // console.log(this.topProducts);
 
     });
   }
@@ -48,7 +48,7 @@ export class HomepageComponent {
       this.products = data;
       this.topcreatedAt = this.products.productDatas
       this.topcreatedAt = this.topcreatedAt.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-      console.log(this.topcreatedAt);
+      // console.log(this.topcreatedAt);
     });
   }
 
@@ -65,7 +65,7 @@ export class HomepageComponent {
 
 
         });
-        console.log(this.saleproduct);
+        // console.log(this.saleproduct);
     })
   }
   formatPrice(num: number | string) {
@@ -101,7 +101,7 @@ export class HomepageComponent {
   hover: Boolean = false;
 
   selectProduct(id: Number) {
-    console.log(id);
+    // console.log(id);
 
   this.router.navigate(['/product', id]).then();
   }

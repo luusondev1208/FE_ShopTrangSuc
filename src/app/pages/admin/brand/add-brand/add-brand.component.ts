@@ -29,7 +29,7 @@ export class AddBrandComponent {
       // Thực hiện các hành động sau khi sản phẩm được thêm thành công
     },
     error => {
-      console.log("Lỗi khi thêm thương hiệu: ", error);
+      // console.log("Lỗi khi thêm thương hiệu: ", error);
       // Xử lý lỗi nếu có
     }
     );

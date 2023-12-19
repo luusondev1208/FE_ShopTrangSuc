@@ -47,18 +47,18 @@ constructor(
     this.userService.getUser(id).subscribe(
       (user) => {
         this.user = user.use;
-        console.log(this.user);
+        // console.log(this.user);
 
      
         
       },
-      (error) => console.log(error.message)
+      // (error) => console.log(error.message)
     );
   });
 }
 onChange(e:any){
  this.user[e.target.name] = e.target.value;
- console.log(this.user);
+//  console.log(this.user);
  
   
 }
@@ -87,7 +87,7 @@ onSubmit(){
 
 
   if(this.userForm.valid){
-    console.log(this.user);
+    // console.log(this.user);
     
     const password = this.userForm.get('newPassword')?.value;
     const confirmPassword = this.userForm.get('confirmPass')?.value;
@@ -121,18 +121,18 @@ onSubmit(){
       setTimeout(() => {
         window.location.reload();
       }, 2000);
-      console.log(response);
+      // console.log(response);
      
       
     },(error) => {
-      console.log("Lỗi trong quá trình subscribe:", error.error.error);
+      // console.log("Lỗi trong quá trình subscribe:", error.error.error);
       this.toast.error({ detail: "Thông báo", summary: `${error.error.error}`, duration: 5000, position: "topRight" });
 
       // Xử lý lỗi ở đây nếu cần
     }
     )
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     
   }
   

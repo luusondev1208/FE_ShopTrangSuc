@@ -29,7 +29,7 @@ export class AddCategoriComponent {
       // Thực hiện các hành động sau khi sản phẩm được thêm thành công
     },
     error => {
-      console.log("loi khi them danh muc: ", error);
+      // console.log("loi khi them danh muc: ", error);
       // Xử lý lỗi nếu có
     }
     );

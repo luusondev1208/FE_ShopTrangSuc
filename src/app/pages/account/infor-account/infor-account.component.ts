@@ -40,12 +40,12 @@ export class InforAccountComponent {
 
       this.userService.getUser(id).subscribe(
         (user) => {
-          console.log(user);
+          // console.log(user);
           this.user = user.use;
           this.userRole = user.use.role
 
         },
-        (error) => console.log(error.message)
+        // (error) => console.log(error.message)
       );
     });
 

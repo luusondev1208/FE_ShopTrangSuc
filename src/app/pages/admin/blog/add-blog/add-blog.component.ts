@@ -27,11 +27,11 @@ export class AddBlogComponent {
     this.categoryService.getAllCategory().subscribe(
       (response:any) => {
         this.categories = response.getAllCategory;
-        console.log(this.categories);
+        // console.log(this.categories);
         
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
     this.blogForm = this.formBuider.group({
@@ -67,7 +67,7 @@ export class AddBlogComponent {
       }
     }
 
-    console.log(formData);
+    // console.log(formData);
     
   this.blogService.addBlog(formData).subscribe(
 

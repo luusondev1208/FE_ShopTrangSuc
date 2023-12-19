@@ -19,10 +19,10 @@ export class ListCategoriComponent {
         
         
         this.categories = response.getAllCategory;
-        console.log(this.categories);
+        // console.log(this.categories);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   }
@@ -33,14 +33,14 @@ export class ListCategoriComponent {
     var result = confirm(`Bạn có muốn xóa không ?`);
     if (result) {
       // Người dùng đã chọn Đồng ý
-      console.log("Người dùng đã chọn xóa.");
+      // console.log("Người dùng đã chọn xóa.");
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.categoryService.deleteCategory(id).subscribe(
         response => {
           this.title = response.deleteCategory.title;
           this.toast.success({ detail: "Thông báo", summary: `xóa thành công danh mục: ${this.title}`, duration: 5000, position: "topRight" });
           this.router.navigate(['/admin/listCategori']);
-          console.log(response);
+          // console.log(response);
           
           this.categories = this.categories.filter((cate:any) => cate._id !== response.deleteCategory._id)
           
@@ -67,7 +67,7 @@ export class ListCategoriComponent {
       item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.categories = this.filteredList
-    console.log(this.categories)
+    // console.log(this.categories)
   }
 
   

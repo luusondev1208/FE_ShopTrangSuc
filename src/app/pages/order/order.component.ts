@@ -97,14 +97,14 @@ export class OrderComponent {
   paymentMethod(event: any) {
     const selectedpaymentMethod = event.target.value;
     this.paymentMethodChecked = selectedpaymentMethod
-    console.log(this.paymentMethodChecked);
+    // console.log(this.paymentMethodChecked);
 
   }
 
   onSubmit() {
     this.discountService.getCouponByDiscount().subscribe((response) => {
       this.discountList = response.data
-      console.log(this.discountList);
+      // console.log(this.discountList);
     })
 
   }
@@ -137,7 +137,7 @@ export class OrderComponent {
 
   paymentOrder() {
     if (this.paymentMethodChecked === "") {
-      console.log('Lỗi đặt hàng');
+      // console.log('Lỗi đặt hàng');
           this.toast.error({
             detail: 'Vui lòng chọn phương thức thanh toán',
             summary: 'Lỗi đặt hàng',
@@ -166,7 +166,7 @@ export class OrderComponent {
 
     // Lưu dữ liệu đã cập nhật trở lại localStorage
     localStorage.setItem("user", JSON.stringify(userData));
-        console.log('Đặt hàng thành công', response);
+        // console.log('Đặt hàng thành công', response);
             this.toast.success({
               detail: 'Đặt hàng thành công',
               summary: 'Thành công',
@@ -175,7 +175,7 @@ export class OrderComponent {
             });
             this.router.navigate(['/']);
       }, (error) => {
-        console.log('Lỗi đặt hàng', error);
+        // console.log('Lỗi đặt hàng', error);
         this.toast.error({
           detail: 'Vui lòng xem lại thông tin đơn hàng',
           summary: 'Lỗi đặt hàng',
@@ -199,12 +199,12 @@ export class OrderComponent {
           window.location.href = res.url
 
         }, (err) => {
-          console.log(err);
+          // console.log(err);
 
         })
 
       }, (error) => {
-          console.log(error);
+          // console.log(error);
 
         })
     }
@@ -235,7 +235,7 @@ export class OrderComponent {
 
   this.userService.getUser(user._id).subscribe((res: any) => {
     this.userList = res.use;
-    console.log(this.userList);
+    // console.log(this.userList);
 
     this.orderData.name = this.userList.firstname + ' ' + this.userList.lastname;
     this.orderData.address = this.userList.address;

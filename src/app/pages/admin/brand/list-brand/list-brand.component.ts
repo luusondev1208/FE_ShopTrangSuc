@@ -21,7 +21,7 @@ export class ListBrandComponent {
     this.brandService.getBrands().subscribe(
       (response: any) => {
         this.brands = response.getAllBrand;
-        console.log(this.brands);
+        // console.log(this.brands);
          // Gán dữ liệu từ API vào biến 'brands'
       },
       (error) => {
@@ -33,16 +33,16 @@ export class ListBrandComponent {
     var result = confirm(`Bạn có muốn xóa không ?`);
     if (result) {
       // Người dùng đã chọn Đồng ý
-      console.log("Người dùng đã chọn xóa.");
+      // console.log("Người dùng đã chọn xóa.");
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.brandService.deleteBrand(id).subscribe(
         response => {
-          console.log(response);
+          // console.log(response);
           
           this.title = response.deleteBrand.title;
           this.toast.success({ detail: "Thông báo", summary: `xóa thành công thương hiệu: ${this.title}`, duration: 5000, position: "topRight" });
           this.router.navigate(['/admin/listBrand']);
-          console.log(response);
+          // console.log(response);
           
           this.brands = this.brands.filter((brand:any) => brand._id !== response.deleteBrand._id)
           
@@ -69,7 +69,7 @@ export class ListBrandComponent {
       item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.brands = this.filteredList
-    console.log(this.brands)
+    // console.log(this.brands)
   }
   
 }

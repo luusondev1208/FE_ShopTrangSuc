@@ -16,7 +16,7 @@ export class ListNhanComponent {
   ngOnInit(): void {
     // Sử dụng paramMap để lấy giá trị của tham số 'id'
     this.categoryId = this.route.snapshot.paramMap.get('id');
-    console.log(this.categoryId);
+    // console.log(this.categoryId);
 
     this.getProductsByCategory(this.categoryId);
   }
@@ -32,7 +32,7 @@ export class ListNhanComponent {
         // Kiểm tra xem response có chứa dữ liệu không trước khi gán cho productsByCategory
         if (response && response.products) {
           this.productsByCategory = response.products;
-          console.log(this.productsByCategory);
+          // console.log(this.productsByCategory);
         } else {
           console.error('Empty response or missing products data');
         }

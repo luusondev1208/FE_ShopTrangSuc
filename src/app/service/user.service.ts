@@ -51,13 +51,13 @@ getFaverie(id: string): Observable<any> {
   return this.http.get<any>(url, this.httpOptions);
 }
 addPRoductFaveries(id: any): Observable<any> {
-  console.log(id);
+  // console.log(id);
   // The second parameter should be the request body, not httpOptions
   return this.http.post<any>(`${this.API_URL}/addFavorite/${id}`, null, this.httpOptions);
 }
 
 deleteProFaveries(id: any): Observable<any> {
-  console.log(id);
+  // console.log(id);
   // The second parameter should be the request body, not httpOptions
   return this.http.delete<any>(`${this.API_URL}/delFavorite/${id}`, this.httpOptions);
 }

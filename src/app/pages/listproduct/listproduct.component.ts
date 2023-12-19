@@ -120,7 +120,7 @@ filterProducts(): void {
 
   const url = `http://localhost:5000/api/product?${query}`;
 
-  console.log('URL:', url); // In ra URL để kiểm tra giá trị của các biến
+  // console.log('URL:', url); 
 
   // Gọi API với URL đã xây dựng
   this.productService.getFilteredProducts(url)

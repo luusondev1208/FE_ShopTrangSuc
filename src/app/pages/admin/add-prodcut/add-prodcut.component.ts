@@ -71,28 +71,28 @@ export class AddProdcutComponent {
 
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
     this.sizeService.getSizes().subscribe(
       (response: any) => {
         this.listsize = response.getAllSize;
-        console.log(this.listsize);
+        // console.log(this.listsize);
 
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
     this.brandService.getBrands().subscribe(
       (response: any) => {
 
         this.brands = response.getAllBrand;
-        console.log(this.brands);
+        // console.log(this.brands);
 
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
     this.productForm = this.formBuider.group({

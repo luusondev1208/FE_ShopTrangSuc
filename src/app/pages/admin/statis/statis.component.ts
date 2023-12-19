@@ -30,14 +30,14 @@ export class StatisComponent implements OnInit {
       data => {
         
           this.statistics = data.statistic;
-          console.log(this.statistics);
+          // console.log(this.statistics);
        ;
        
         if (this.statistics.bestSellingProduct) {
           this.productService.getProduct(this.statistics.bestSellingProduct).subscribe(
             productDetails => {
               this.bestSellingProductDetails = productDetails.productData;
-              console.log(this.bestSellingProductDetails); 
+              // console.log(this.bestSellingProductDetails); 
             },
             error => {
               console.error('Error fetching best selling product details:', error);

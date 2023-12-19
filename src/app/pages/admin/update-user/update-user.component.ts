@@ -43,7 +43,7 @@ export class UpdateUserComponent {
       const id = String(param.get('id'))
       this.userService.getUser(id).subscribe(
         (user) => {
-          console.log(user);
+          // console.log(user);
           this.user = user.userData;
           this.userForm.patchValue({
             firstname: user.categoryData.firstname,
@@ -54,7 +54,7 @@ export class UpdateUserComponent {
           })
           
         },
-        (error) => console.log(error.message)
+        // (error) => console.log(error.message)
       );
     });
   }
@@ -69,7 +69,7 @@ export class UpdateUserComponent {
         password: this.userForm.value.password || '',
         
       };
-      console.log(category);
+      // console.log(category);
 
       this.userService.updateUser(category).subscribe((user) => {
         alert("update thanh cong !!");

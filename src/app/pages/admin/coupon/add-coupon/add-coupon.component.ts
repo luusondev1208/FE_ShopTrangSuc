@@ -96,7 +96,7 @@ export class AddCouponComponent {
   // }
   onSubmit() {
     this.couponService.addCoupon(this.coupons).subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       
      this.name = response.data.name;
      this.code = response.data.code;
@@ -112,7 +112,7 @@ export class AddCouponComponent {
       // Thực hiện các hành động sau khi sản phẩm được thêm thành công
     },
     error => {
-      console.log("loi khi them danh muc: ", error);
+      // console.log("loi khi them danh muc: ", error);
       // Xử lý lỗi nếu có
     }
     );

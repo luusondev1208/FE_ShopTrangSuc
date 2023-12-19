@@ -16,7 +16,7 @@ export class ListuserComponent {
     this.userService.getUsers().subscribe(
       (response:any) => {
         this.users = response.users;
-        console.log(this.users);
+        // console.log(this.users);
         const dateParts: string[] = this.users.map((userItem: any) => {
           return userItem.createdAt.split('T')[0];
         });
@@ -29,10 +29,10 @@ export class ListuserComponent {
           userItem.datePart = dateParts[index];
           userItem.date = dates[index];
         });
-        console.log(this.users);
+        // console.log(this.users);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
 
@@ -53,11 +53,11 @@ deleteUser( _id:any, user:any) {
     var result = confirm("Bạn có muốn xóa không?");
     if (result) {
       // Người dùng đã chọn Đồng ý
-      console.log("Người dùng đã chọn xóa.");
+      // console.log("Người dùng đã chọn xóa.");
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.userService.deleteUser(_id).subscribe(
         response => {
-          console.log(response);
+          // console.log(response);
           this.toast.success({ detail: "Thông báo", summary: `:${response.deletedUser}`, duration: 5000, position: "topRight" });
           this.router.navigate(['/admin/listUser']);
           // Thực hiện các hành động sau khi sản phẩm được xóa thành công

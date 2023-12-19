@@ -51,7 +51,7 @@ export class ListBlogComponent {
   loadData() {
     this.blogService.getBlog().subscribe(
       (response: any) => {
-        console.log(response);
+        // console.log(response);
 
         this.blogs = response.getBlog;
 
@@ -62,10 +62,10 @@ export class ListBlogComponent {
         this.blogs.forEach((blogItem: any, index: number) => {
           blogItem.datePart = dateParts[index];
         });
-        console.log(this.blogs);
+        // console.log(this.blogs);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   }
@@ -78,7 +78,7 @@ export class ListBlogComponent {
   deleteBlog(id: any) {
     this.blogService.deleteBlog(id).subscribe(
       (response) => {
-        console.log(response);
+        // console.log(response);
 
         this.blogs = this.blogs.filter(
           (getBlog: any) => getBlog._id !== response.deleteBlog._id

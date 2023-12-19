@@ -28,12 +28,12 @@ export class ListproductfaveriesComponent {
       var userData = JSON.parse(userDataString);
       this.userId = userData._id
       // Sử dụng dữ liệu đã lấy được
-      console.log(this.userId);
+      // console.log(this.userId);
   } else {
-      console.log('Không có dữ liệu trong localStorage');
+      // console.log('Không có dữ liệu trong localStorage');
   }
     this.userService.getFaverie(this.userId).subscribe((data) =>{
-      console.log(data);
+      // console.log(data);
       this.products = data
     })
   }
@@ -51,7 +51,7 @@ export class ListproductfaveriesComponent {
       .subscribe(
         (response) => {
           // Handle success
-          console.log(response);
+          // console.log(response);
           
           this.products = this.products.filter((pro:any) => pro._id !== response.productIdToRemove)
           this.toast.success({

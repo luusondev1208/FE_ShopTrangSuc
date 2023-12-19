@@ -36,7 +36,7 @@ export class UpdateSizeComponent {
   getSize(): void {
     this.sizeService.getSize(this.sizeId).subscribe(
       (response) => {
-        console.log(response);
+        // console.log(response);
         
         this.size = response.getSize; // Assuming your service provides the size details
         this.populateForm();
@@ -84,7 +84,7 @@ export class UpdateSizeComponent {
         // Additional logic if needed
       },
       (error) => {
-        console.log('Error when updating size: ', error);
+        // console.log('Error when updating size: ', error);
         this.toast.error({ detail: 'Lỗi, kiếm tra lại thông tin đã nhập.', duration: 5000, position: 'topRight' });
         // Handle error
       }

@@ -22,7 +22,7 @@ export class UpdateBlogComponent {
       const id = String(param.get('id'))
       this.blogService.getBlogid(id).subscribe(
         (blog:any) => {
-          console.log(blog);
+          // console.log(blog);
           this.blog = blog.getBlog;
           
           
@@ -34,17 +34,17 @@ export class UpdateBlogComponent {
           })
           
         },
-        (error) => console.log(error.message)
+        // (error) => console.log(error.message)
       );
     });
     this.categoryService.getAllCategory().subscribe(
       (response:any) => {
         this.categories = response.getAllCategory;
-        console.log(this.categories);
+        // console.log(this.categories);
         
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
     this.blogForm = this.formBuider.group({
@@ -64,7 +64,7 @@ export class UpdateBlogComponent {
   }
   onFilesSelected(event: any) {
     this.selectedImages = event.target.files;
-    console.log(event.target.files);
+    // console.log(event.target.files);
     
   }
 
@@ -72,19 +72,19 @@ export class UpdateBlogComponent {
     
       const formData:any = {};
       formData.id =  this.blog._id;
-      console.log(this.blog);
+      // console.log(this.blog);
       
       formData.title = this.blogForm.value.title || '',
       formData.description = this.blogForm.value.description || '',
-      formData.category = this.blogForm.value.category || '',
+      formData.category = this.blogForm.value.category || ''
       // ... id other form fields ...
-  console.log(formData);
+  // console.log(formData);
  
   
       if (this.selectedImages?.length != 0 && this.selectedImages) {
 
         for (let i = 0; i < this.selectedImages.length; i++) {
-          console.log(this.selectedImages[i]);
+          // console.log(this.selectedImages[i]);
           formData.image = this.selectedImages[i];
         }
       }

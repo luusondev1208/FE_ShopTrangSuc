@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -18,7 +18,7 @@ export class HomepageComponent {
   topFourItems: any = [];
   page: number = 1;
   limit: number = 100;
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private productService: ProductService, private router: Router, private renderer: Renderer2, private el: ElementRef) {}
   isHovering: boolean = false;
 
   loadData() {
@@ -105,6 +105,12 @@ export class HomepageComponent {
   this.router.navigate(['/product', id]).then();
   }
 
+  scrollToSection(sectionId: string) {
+    const element = this.el.nativeElement.querySelector(`#${sectionId}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+    }
+  }
 
 
 }

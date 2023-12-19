@@ -16,8 +16,13 @@
     <img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,w_476/v1701436528/3_ssghru.png" alt="">
     <img src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,w_476/v1701436438/7_qnnojg.png" alt="">
 </div>
+<button class="my-1 bg-red-500 hover:bg-red-600 text-white w-full py-2 font-medium rounded-md shadow-md transition duration-300 ease-in-out" (click)="scrollToSection('yourSectionID')">
+    Chương trình NOEL SALE SOCK dành cho khách hàng mua hàng từ 19-12 đến hết 24-12
+</button>
+
+
 <!-- san pham ban chay -->
-<div class="md:mx-[150px] my-10">
+<div class="md:mx-[150px] my-b">
     <p class="pl-4 md:pl-0 text-[18px] font-bold text-cyan-600 pt-3 -pb-5">Sản phẩm bán chạy</p>
     <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10 pl-[40px] md:pl-0">
         <!-- san pham 1 -->
@@ -180,6 +185,7 @@
             <div class="product">
                 <div class="image-container">
                     <a href="/product/{{product._id}}">
+                        <img class="w-16 relative -mb-16" src="https://www.publicdomainpictures.net/pictures/210000/velka/new-text-overlay.jpg" alt="">
                     <img src={{product.images[0]}} alt="Product Image " width="250px" height="250px" class="product-image">
                     <div class="button-container flex space-x-10 ">
                         <button class="custom-button ">
@@ -215,7 +221,7 @@
 </div>
 <!-- trang suc phong thuy -->
 <img  class="md:ml-[160px] lg:block hidden" src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_450,w_1200/v1701436474/10_pqn86b.png" alt="">
-<div class="md:mx-[150px] my-10">
+<div id="yourSectionID" class="md:mx-[150px] my-10">
     <p class="pl-4 text-[18px] font-bold text-cyan-600 pt-10">Sản phẩm Sale Sock</p>
     <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 xl:gap-8 gap-10 pl-[40px] md:pl-0">
        <!-- san pham 1 -->
@@ -242,8 +248,10 @@
 
 
     <div *ngFor="let product of saleproduct.slice(0,4)" tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
+       
         <div class="product">
             <div class="image-container">
+                <img class="w-16 relative -mb-16" src="https://png.pngtree.com/png-vector/20200207/ourlarge/pngtree-red-big-sale-50-discount-for-your-product-png-image_2141901.jpg" alt="">
                <a [routerLink]="['/product', product._id]"> <img src={{product.images[0]}} alt="Product Image " width="250px" height="250px" class="product-image"></a>
                 <div class="button-container flex space-x-10 ">
                     <button class="custom-button ">

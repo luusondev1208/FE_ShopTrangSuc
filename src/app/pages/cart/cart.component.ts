@@ -15,7 +15,7 @@ export class CartComponent implements OnInit {
   cartItems: any;
   cart: any;
   imgList: any;
-  demoQuantity:any=0
+  demoQuantity: any = 0
 
   constructor(private cartService: CartService, private toast: NgToastService, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService) {
     activatedRoute.params.subscribe((params) => {
@@ -42,21 +42,21 @@ export class CartComponent implements OnInit {
     const local = localStorage.getItem("user");
     const user: any = local && JSON.parse(local);
 
-    this.userService.getUser(user._id).subscribe((res) => { // đây
+    this.userService.getUser(user._id).subscribe((res) => {
       this.cartService.getCart(res.use.cart).subscribe((items: any) => {
         this.cartItems = items?.cart;
-        // this.demoQuantity=
+
       });
     })
   }
 
-  getQuantityBySize(product:any,size:any){
-    const qty = product.list_size.list_size.find((item:any)=>Number(item.name)===Number(size))
+  getQuantityBySize(product: any, size: any) {
+    const qty = product.list_size.list_size.find((item: any) => Number(item.name) === Number(size))
     return qty.quantity
 
   }
-  getPriceBySize(product:any,size:any){
-    const pr = product.list_size.list_size.find((item:any)=>Number(item.name)===Number(size))
+  getPriceBySize(product: any, size: any) {
+    const pr = product.list_size.list_size.find((item: any) => Number(item.name) === Number(size))
     return pr.price
   }
 
@@ -78,23 +78,15 @@ export class CartComponent implements OnInit {
       });
     });
   }
-
-  // getTotalItemsCount(): number {
-  //   return this.cartItems.reduce((total, item) => total + item.quantity, 0);
-  // }
-
   getTotalPrice(): number {
-    // console.log(this.cartItems);
+
 
     return this.cartItems.products.reduce((total: any, product: any) => {
-    const pr = this.getPriceBySize(product?.product,product.size)
-      const productTotal = pr *  product.quantity;
+      const pr = this.getPriceBySize(product?.product, product.size)
+      const productTotal = pr * product.quantity;
       return total + productTotal;
     }, 0);
   }
-  // getTotal(): number {\ so luong nhan gia tien
-
-  // }
   updateCartItem(cartItem: CartItem, quantity: any): void {
     const local = localStorage.getItem("user");
     const user = local && JSON.parse(local);
@@ -121,9 +113,12 @@ export class CartComponent implements OnInit {
     }
 
   }
-
+  formatPrice(price: number): string {
+    const formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    return formattedPrice;
+  }
   increaseQuantity(cartItem: CartItem, quantity: any): void {
-    const qty = this.getQuantityBySize(cartItem.product,cartItem.size)
+    const qty = this.getQuantityBySize(cartItem.product, cartItem.size)
 
     if (quantity <= qty) {
       cartItem.quantity++;

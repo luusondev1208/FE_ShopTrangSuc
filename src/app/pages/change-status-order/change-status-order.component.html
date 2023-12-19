@@ -4,7 +4,9 @@
   <h2 class="text-2xl font-bold mb-4" style="margin-left: 195px">
     Danh sách đơn hàng
   </h2>
-  <div class="md:ml-[180px] mx-[50px] pb-[100px] lg:w-[75%] xl:w-[80%] 2xl:w-[85%] ">
+  <div
+    class="md:ml-[180px] mx-[50px] pb-[100px] lg:w-[75%] xl:w-[80%] 2xl:w-[85%]"
+  >
     <table
       class="border-red-800 table table-hover"
       style="width: 1280px; margin-left: 15px"
@@ -68,7 +70,7 @@
               <span
                 class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
               ></span>
-              {{ order.updatedAt | date : "dd/MM/yyyy |HH:mm" }}
+              {{ order.createdAt | date : "dd/MM/yyyy |HH:mm" }}
             </td>
             <td
               class="p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap"
@@ -93,7 +95,6 @@
                     </td> -->
             <td
               class="lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static whitespace-nowrap"
-
             >
               <ul class="space-y-2">
                 <ul
@@ -143,7 +144,12 @@
                         *ngIf="product.product && product.product.price"
                       >
                         <p style="color: lightslategrey; font-weight: bold">
-                          Giá Tiền: {{ formatPrice(getPriceBySize(product.product,product.size)) }}
+                          Giá Tiền:
+                          {{
+                            formatPrice(
+                              getPriceBySize(product.product, product.size)
+                            )
+                          }}
                         </p>
                       </ng-container>
                     </li>

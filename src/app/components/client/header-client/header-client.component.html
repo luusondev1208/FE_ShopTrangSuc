@@ -1,27 +1,38 @@
 <!-- component -->
 <div class="mb-10">
   <header>
-    <nav class="border-b border-b-yellow-200 border-gray-200 px-4 lg:px-6 ">
-      <div class="flex flex-wrap justify-between items-center mx-auto md:max-w-screen-xl">
-
+    <nav class="border-b border-b-yellow-200 border-gray-200 px-4 lg:px-6">
+      <div
+        class="flex flex-wrap justify-between items-center mx-auto md:max-w-screen-xl"
+      >
         <button class="-py-10 md:pt-3 ml-[100px] md:ml-0">
           <a routerLink="">
             <img
               src="https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_70,w_100/v1701499292/zyro-image_agesqp.png"
-              alt="">
+              alt=""
+            />
           </a>
         </button>
-        <div class="flex items-center justify-between ml-[65px] -mt-[20px] md:mt-0 md:ml-0 lg:order-2">
-          <a href="#"
-            class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
+        <div
+          class="flex items-center justify-between ml-[65px] -mt-[20px] md:mt-0 md:ml-0 lg:order-2"
+        >
+          <a
+            href="#"
+            class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+          >
             <div class="flex space-x-2 hover:text-red-500 mt-[25px]">
-              <button> <img class="w-[20px] -mt-[1px]" src="https://cdn.pnj.io/images/2023/user-regular.svg"
-                  alt=""></button>
+              <button>
+                <img
+                  class="w-[20px] -mt-[1px]"
+                  src="https://cdn.pnj.io/images/2023/user-regular.svg"
+                  alt=""
+                />
+              </button>
               <button (click)="CheckLogin()">
                 <nav class="">
                   <ul class="space-x-5 hidden md:block">
                     <li>
-                      <a  href="account/infor-account">Tài khoản của tôi</a>
+                      <a href="account/infor-account">Tài khoản của tôi</a>
                       <!-- <ul class="submenu w-[110px]">
                         <li><a href="account/infor-account">Hồ Sơ</a></li>
                         <li><a class="nav-link" href="/admin" *ngIf="userRole === 'admin'">Admin</a></li>
@@ -36,61 +47,91 @@
               </button>
             </div>
           </a>
-          <a href="#"
-            class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-            <div class="flex  hover:text-red-500 mt-[25px] ">
-            
-              <button><img class="-mt-[1px] " src="https://cdn.pnj.io/images/image-update/layout/icon-cart-new.svg" alt=""></button>
+          <a
+            href="#"
+            class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+          >
+            <div class="flex hover:text-red-500 mt-[25px]">
+              <button>
+                <img
+                  class="-mt-[1px]"
+                  src="https://cdn.pnj.io/images/image-update/layout/icon-cart-new.svg"
+                  alt=""
+                />
+              </button>
               <!-- <span id="cart-count" class=" text-red-500">{{ productCount }}</span> -->
-              <button class="hidden md:block -ml-10 md:-ml-0"><a routerLink="/cart">Giỏ hàng</a></button>
-          
+              <button class="hidden md:block -ml-10 md:-ml-0">
+                <a routerLink="/cart">Giỏ hàng</a>
+              </button>
             </div>
           </a>
 
-
-          <button *ngIf="isMenuOpen" (mouseenter)="toggleMenu()" data-collapse-toggle="mobile-menu-2" type="button"
+          <button
+            *ngIf="isMenuOpen"
+            (mouseenter)="toggleMenu()"
+            data-collapse-toggle="mobile-menu-2"
+            type="button"
             class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="mobile-menu-2" aria-expanded="false">
+            aria-controls="mobile-menu-2"
+            aria-expanded="false"
+          >
             <span class="sr-only">Open main menu</span>
-            <svg class="w-6 h-6 mt-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
+            <svg
+              class="w-6 h-6 mt-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"></path>
+                clip-rule="evenodd"
+              ></path>
             </svg>
           </button>
           <div *ngIf="!isMenuOpen" class="xl:hidden mt-4">
-
             <li>
-
-              <a routerLink="/products"><svg class="w-6 h-6 mt-1 mr-10" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
+              <a routerLink="/products"
+                ><svg
+                  class="w-6 h-6 mt-1 mr-10"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
                     d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clip-rule="evenodd"></path>
-                </svg></a>
+                    clip-rule="evenodd"
+                  ></path></svg
+              ></a>
               <ul class="submenu w-[150px]">
-                <li> <a href="/products">Trang sức</a></li>
+                <li><a href="/products">Trang sức</a></li>
                 <!-- <li><a href="**">Trang sức cưới</a></li> -->
                 <li><a href="**">Thương hiệu</a></li>
                 <li><a href="blog">Blog</a></li>
-            
               </ul>
             </li>
           </div>
         </div>
 
-        <div class="hidden justify-between md:ml-[50px] items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
-          <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+        <div
+          class="hidden justify-between md:ml-[50px] items-center w-full lg:flex lg:w-auto lg:order-1"
+          id="mobile-menu-2"
+        >
+          <ul
+            class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
+          >
             <li>
-
               <a routerLink="products">Trang sức</a>
               <ul class="submenu w-[150px]">
                 <li *ngFor="let category of categories">
-                  <a [href]="'/category/' + category._id">{{ category.title }}</a>
+                  <a [href]="'/category/' + category._id">{{
+                    category.title
+                  }}</a>
                 </li>
               </ul>
             </li>
-          
+
             <li>
               <a href="#">Thương hiệu</a>
               <ul class="submenu w-[150px]">
@@ -103,7 +144,7 @@
               <a href="blog">Blog</a>
             </li>
             <li>
-              <a href="**">Khuyến mãi</a>
+              <a href="listProductFaveries">Sản phẩm yêu thích</a>
             </li>
           </ul>
         </div>
@@ -111,8 +152,6 @@
     </nav>
     <!-- <hr class="pb-4 mt-2 text-yellow-500 font-bold absolute py-10"> -->
   </header>
-  
-
 
   <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </div>
@@ -122,7 +161,7 @@
 
   // Hàm cập nhật số lượng trên icon giỏ hàng
   function updateCartCount() {
-    const cartCountElement = document.getElementById('cart-count');
+    const cartCountElement = document.getElementById("cart-count");
     if (cartCountElement) {
       cartCountElement.textContent = cartCount.toString();
     }

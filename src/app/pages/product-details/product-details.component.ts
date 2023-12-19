@@ -45,9 +45,9 @@ export class ProductDetailsComponent implements OnInit {
   selectedSize: number | null = null;
   productsByCategory: any[] = []; // Thêm mảng để lưu trữ sản phẩm của category
   sizes: any;
-  demoPrice: number=0;
-  demoSize: number=0;
-  demoQuantity: number=0;
+  demoPrice: number = 0;
+  demoSize: number = 0;
+  demoQuantity: number = 0;
 
   constructor(
     config: NgbRatingConfig,
@@ -116,7 +116,7 @@ export class ProductDetailsComponent implements OnInit {
         }
       );
   }
-  
+
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user") as string)
     this.activatedRoute.params.subscribe((params) => {
@@ -167,14 +167,14 @@ export class ProductDetailsComponent implements OnInit {
 
     const size = this.demoSize
     const quantity = 1;
-if(this.demoQuantity===0){
-  return this.toast.error({
-    detail: 'Đã hết hàng. Vui lòng thử lại sau',
-    summary: 'Lỗi',
-    duration: 5000,
-    position: 'topRight',
-  });
-}
+    if (this.demoQuantity === 0) {
+      return this.toast.error({
+        detail: 'Đã hết hàng. Vui lòng thử lại sau',
+        summary: 'Lỗi',
+        duration: 5000,
+        position: 'topRight',
+      });
+    }
 
     if (this.authService.checklogin()) {
       this.cartService.addToCart(productId, size, quantity, user?._id).subscribe(
@@ -281,31 +281,31 @@ if(this.demoQuantity===0){
         this.formValueFeedback.reset();
         this.toastr.success(resp.message, 'Chúc mừng');
         console.log(resp);
-  
-   
+
+
         if (!Array.isArray(this.feedback)) {
           this.feedback = [];
         }
-  
-      
-         this.userService.getUser(resp.data.userId).subscribe(
+
+
+        this.userService.getUser(resp.data.userId).subscribe(
           (userResp) => {
-       
+
             const newFeedback = {
               _id: resp.data._id,
               userId: resp.data.userId,
-              userName: userResp.use.firstname + ' ' + userResp.use.lastname, 
+              userName: userResp.use.firstname + ' ' + userResp.use.lastname,
               productId: resp.data.productId,
               content: resp.data.content,
-              createdAt: resp.data.createdAt,  
+              createdAt: resp.data.createdAt,
             };
-  
-          
+
+
             this.feedback.push(newFeedback);
-  
+
             this.feedback = [...this.feedback];
-  
-   
+
+
             this.cdr.detectChanges();
 
             const element = document.getElementById('scroll-to-comment');
@@ -317,8 +317,8 @@ if(this.demoQuantity===0){
             console.error('Error getting user information:', userError);
           }
         );
-        })
-      }
+      })
+  }
 
 
   getFeedbackDetails(feedbackId: string[]): void {
@@ -345,7 +345,7 @@ if(this.demoQuantity===0){
     this.brandService.get(brandId).subscribe(
       (respons: any) => {
         // console.log(brand);
-        
+
         this.brand = respons.getBrand
         console.log(this.brand);
       },
@@ -355,24 +355,23 @@ if(this.demoQuantity===0){
     );
   }
   updatePriceAndQuantity() {
-    const optionSelect = document.getElementById("optionSelect") as HTMLSelectElement
-    const nameSizeSelect = optionSelect?.value
-    const SizeFInd = this.product.list_size.list_size.find((item: any) => item.name === nameSizeSelect);
-    // console.log(nameSizeSelect);
+    const optionSelect = document.getElementById("optionSelect") as HTMLSelectElement;
+    const nameSizeSelect = optionSelect?.value;
 
-    this.demoPrice = SizeFInd.price
-    this.demoSize = SizeFInd.name
-    this.demoQuantity = SizeFInd.quantity
+    if (nameSizeSelect === "") {
+
+      this.demoQuantity = 0;
+    } else {
+
+      const SizeFInd = this.product.list_size.list_size.find((item: any) => item.name === nameSizeSelect);
 
 
-    // const selectedSize = this.selectedSize !== null ? Number(this.selectedSize) : null;
+      this.demoPrice = SizeFInd.price;
+      this.demoSize = SizeFInd.name;
+      this.demoQuantity = SizeFInd.quantity;
+    }
 
-    // const price = this.getProductPrice(selectedSize );
-    // const quantity = this.getProductQuantity(selectedSize);
-
-    // console.log('Kích Thước Đã Chọn:', test);
-    // console.log('Giá:', price);
-    // console.log('Số Lượng:', quantity);
+    this.cdr.detectChanges();
   }
 
 

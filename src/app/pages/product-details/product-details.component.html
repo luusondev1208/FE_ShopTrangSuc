@@ -32,7 +32,7 @@
             </h1>
             <div class="flex items-center justify-between my-3">
               <span class="text-gray-600">{{ product.assess }} đánh giá</span>
-              <ngb-rating class="" [rate]="5" />
+              <ngb-rating class="" [rate]="5" style="color:gold"/>
               <span>{{ product.sold }} đã bán</span>
             </div>
 
@@ -242,7 +242,7 @@
             </ng-template>
             <div class="flex mt-6 items-center">
               <div *ngIf="sizeOption.length > 0" class="flex items-center">
-                <span class="mr-3">Kích thước</span>
+                <span class="mr-3"style="width:70px;margin-bottom:27px">Kích thước</span>
                 <div class="relative">
                   <select
                     id="optionSelect"
@@ -250,20 +250,21 @@
                     [(ngModel)]="selectedSize"
                     (change)="updatePriceAndQuantity()"
 
-                  > <option value="">
+                  > <option value=""style="text-center">
                     Chọn size
                   </option>
                     <option
                       *ngFor="let size of product.list_size.list_size"
                       [value]="size.name"
+                      class="text-center"
 
                     >
                       {{ size.name }}
                     </option>
                   </select>
-                  <p *ngIf="product.list_size.list_size">Số lượng: {{ demoQuantity>0?demoQuantity:0 }}</p>
+                  <p *ngIf="product.list_size.list_size"style="margin-top:3px;margin-left:20px">Số lượng: {{ demoQuantity>0?demoQuantity:0 }}</p>
                   <span
-                    class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center"
+                    class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex mt-3 justify-center"
                   >
 
                     <svg
@@ -277,6 +278,7 @@
                     >
                       <path d="M6 9l6 6 6-6"></path>
                     </svg>
+
                   </span>
                 </div>
 
@@ -285,10 +287,12 @@
                     class="btn btn-white"
                     (click)="openShowSize(showSize)"
                     style="
-                      margin: 5px;
+                     
                       font-style: italic;
                       font-size: 13px;
                       color: goldenrod;
+                      width:100px;
+                      margin-bottom:27px
                     "
                   >
                     Cách đo size
@@ -311,7 +315,8 @@
               >
               <button
                 class="rounded-full w-7 h-7 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
-              >
+              (click)="addproductfrivate(product._id)"
+                >
                 <svg
                   fill="currentColor"
                   stroke-linecap="round"
@@ -341,70 +346,29 @@
                   <p style="margin-left: 5px">Ưu đãi:</p>
                 </div>
                 <div class="item1" style="display: flex">
-                  <img
-                    src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
-                    style="
-                      width: 13px;
-                      height: 15px;
-                      margin-top: 3px;
-                      margin-left: 8px;
-                    "
-                    alt=""
-                  />
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
                   <span
                     style="color: #4c4c4c; font-weight: 400; margin-left: 8px"
-                    >Độc quyền Ngày đôi 12/12: Ưu đãi đa tầng trang sức Vàng đến
-                    9%.
+                    >Nhập mã ABOLISALE để giảm 39K khi thanh toán qua MOMO
                   </span>
                 </div>
                 <div class="item2" style="display: flex">
-                  <img
-                    src="https://i.gyazo.com/4914b35ab9381a3b5a1e7e998ee9550c.png"
-                    style="
-                      width: 23px;
-                      height: 20px;
-                      margin-top: 3px;
-                      margin-left: 8px;
-                    "
-                    alt=""
-                  />
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+
                   <span
                     style="color: #4c4c4c; font-weight: 400; margin-left: 4px"
                   >
-                    Mã VNPAYNROQ4 tự động hiển thị 50k cho đơn từ 2 triệu khi
-                    quét
-                    <a
-                      class="popup-option-item"
-                      href="javascript:void();"
-                      id="promo-6"
-                      style="color: #0000ff"
-                    >
-                      VNPAY-QR</a
-                    ></span
+                  Miễn phí đánh bóng trọn đời tại cửa hàng của Aboli
+                   </span
                   >
                 </div>
                 <div class="item3" style="display: flex">
-                  <img
-                    src="https://fintechnews.sg/wp-content/uploads/2015/09/momo-logo-150x150.jpg"
-                    style="
-                      width: 23px;
-                      height: 20px;
-                      margin-top: 5px;
-                      margin-left: 8px;
-                    "
-                    alt=""
-                  />
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
                   <span
                     style="color: #4c4c4c; font-weight: 400; margin-left: 4px"
                   >
-                    Nhập mã MMQUYPHAI giảm 2% tối đa 200K khi thanh toán qua
-                    <a
-                      class="popup-option-item"
-                      href="javascript:void();"
-                      id="promo-6"
-                      style="color: #0000ff"
-                      >MOMO</a
-                    ></span
+                  Miễn phí vận chuyển toàn quốc đối với đơn hàng từ 300K
+                    </span
                   >
                 </div>
               </div>
@@ -442,7 +406,7 @@
                   Đổi sản phẩm trong 48h tại hệ thống cửa hàng NRO
                 </span>
               </div>
-              <div class="item3" style="display: flex">
+              <!-- <div class="item3" style="display: flex">
                 <img
                   src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
                   style="
@@ -458,7 +422,7 @@
                 >
                   Cầm đồ và Thu mua.
                 </span>
-              </div>
+              </div> -->
               <div class="item4" style="display: flex">
                 <img
                   src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
@@ -691,7 +655,7 @@
               ></textarea>
               <br />
               <div class="absolute -mt-10 flex justify-between items-center">
-                <ngb-rating class="absolute my-3 text-[25px] ml-2" [rate]="5" />
+                <ngb-rating class="absolute my-3 text-[25px] ml-2" [rate]="5" style="color:gold"/>
 
                 <button
                   class="px-[25px] py-[6px] ml-[920px] text-white rounded bg-blue-500 hover:bg-blue-600 justify-end"
@@ -728,7 +692,7 @@
                           <div class="text-xs">
                             {{ item.content }}
                           </div>
-                          <ngb-rating class="" [rate]="5" />
+                          <ngb-rating class="" [rate]="5"style="color:gold" />
                         </div>
                       </div>
                       <div
@@ -738,11 +702,11 @@
                           class="font-semibold text-gray-700 px-2 flex items-center justify-center space-x-1"
                         >
                           <a href="#" class="hover:underline">
-                            <small>Like</small>
+                            <small style="color:lightskyblue">Like</small>
                           </a>
                           <small class="self-center">.</small>
                           <a href="#" class="hover:underline">
-                            <small>Reply</small>
+                            <small style="color:lightskyblue">Reply</small>
                           </a>
                           <small class="self-center">.</small>
                           <a href="#" class="hover:underline">

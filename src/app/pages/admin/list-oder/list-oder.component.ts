@@ -92,6 +92,10 @@ export class ListOderComponent {
       this.updateStatus(orderId, this.selectedNewStatus);
     }
   }
+ getPriceBySize(product:any,size:any){
+    const pr = product.list_size.list_size.find((item:any)=>Number(item.name)===Number(size))
+    return pr.price
+  }
 
   filterOrders() {
     if (this.selectedStatus) {

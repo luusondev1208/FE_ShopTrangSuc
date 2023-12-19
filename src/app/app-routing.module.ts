@@ -51,6 +51,7 @@ import { BoxChatComponent } from './pages/box-chat/box-chat.component';
 import { ListSizeComponent } from './pages/admin/size/list-size/list-size.component';
 import { AddSizeComponent } from './pages/admin/size/add-size/add-size.component';
 import { UpdateSizeComponent } from './pages/admin/size/update-size/update-size.component';
+import { ListproductfaveriesComponent } from './pages/listproductfaveries/listproductfaveries.component';
 const routes: Routes = [
   //client
   {
@@ -65,7 +66,7 @@ const routes: Routes = [
       { path: 'blog', component: BlogpageComponent },
       { path: 'blog/:id', component: BlogDetailsComponent },
       { path: 'box', component: BoxChatComponent },
-
+      { path: 'listProductFaveries', component: ListproductfaveriesComponent },
       { path: 'invoice', component: InvoiceComponent },
       { path: 'user-payment', component: UserPaymentComponent },
       { path: 'checkout', component: CheckoutCartComponent },
@@ -101,6 +102,7 @@ const routes: Routes = [
       { path: 'listSize', component: ListSizeComponent },
       { path: 'listBlog', component: ListBlogComponent },
       { path: 'listUser', component: ListuserComponent },
+  
       { path: 'listCoupon', component: ListCouponComponent },
       { path: 'listBrand', component: ListBrandComponent },
       { path: 'addUser', component: AddUserComponent },

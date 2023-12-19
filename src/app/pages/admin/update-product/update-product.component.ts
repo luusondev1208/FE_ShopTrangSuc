@@ -5,6 +5,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 import { BrandService } from 'src/app/service/brand.service';
+import { SizeService } from 'src/app/service/size.service';
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
@@ -16,6 +17,7 @@ export class UpdateProductComponent {
   selectedImages: FileList | null = null;
   brands: any = []
   product: any
+  listsize: any = []
   products: any = {};
   // productForm = this.formBuider.group({
   //   title:[
@@ -52,7 +54,7 @@ export class UpdateProductComponent {
   //   ],
 
   // })
-  constructor(private productService: ProductService, private categoryService: CategoryService, private brandService: BrandService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService, private route: ActivatedRoute) {
+  constructor(private productService: ProductService,private sizeService: SizeService, private categoryService: CategoryService, private brandService: BrandService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService, private route: ActivatedRoute) {
     this.route.paramMap.subscribe((param) => {
       const id = String(param.get('id'))
       this.productService.getProduct(id).subscribe(
@@ -72,7 +74,8 @@ export class UpdateProductComponent {
             description: product.productData.description,
             slug: product.productData.slug,
             category: product.productData.category,
-            quantity: product.productData.quantity
+            quantity: product.productData.quantity,
+            list_size: product.productData.list_size
           })
 
         },
@@ -83,6 +86,16 @@ export class UpdateProductComponent {
       (response: any) => {
         this.categories = response.getAllCategory;
         console.log(this.categories);
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this.sizeService.getSizes().subscribe(
+      (response: any) => {
+        this.listsize = response.getAllSize;
+        console.log(this.listsize);
 
       },
       (error) => {
@@ -106,6 +119,7 @@ export class UpdateProductComponent {
       brand: [''],
       price: [0],
       quantity: [0],
+      list_size: ['']
       // ... other form fields ...
     });
 
@@ -121,6 +135,7 @@ export class UpdateProductComponent {
       description: ['', [Validators.required, Validators.minLength(6)]],
       category: ['', [Validators.required]],
       quantity: ['', [Validators.required, Validators.min(0)]],
+      list_size: ['', [Validators.required]],
     });
   }
   onFilesSelected(event: any) {
@@ -143,6 +158,7 @@ export class UpdateProductComponent {
       formData.assess = this.productForm.value.assess || 0,
       formData.category = this.productForm.value.category || '',
       formData.quantity = this.productForm.value.quantity || 0,
+      formData.list_size = this.productForm.value.list_size || '',
       // ... id other form fields ...
       console.log(formData);
 

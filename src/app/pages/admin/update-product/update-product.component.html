@@ -249,8 +249,8 @@
               </div>
 
               <div class="flex space-x-3">
-                <div class="relative">
-                  <p
+                <!-- <div class="relative"> -->
+                  <!-- <p
                     class="bg-white pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600"
                   >
                     Số lượng
@@ -282,7 +282,7 @@
                     "
                   >
                     Vui lòng nhập số lượng sản phẩm
-                  </p>
+                  </p> -->
                   <!-- </div>
               <div class="relative ">
                 <p class="bg-white  pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600
@@ -310,7 +310,7 @@
             >
             Vui lòng nhập assess sản phẩm trên 6 ký tự -->
                   <!-- </p> -->
-                </div>
+                <!-- </div> -->
                 <div class="relative">
                   <p
                     class="bg-white pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600"
@@ -518,6 +518,31 @@
                       <option value="" disabled selected>Thương hiệu</option>
                       <option *ngFor="let item of brands" [value]="item._id">
                         {{ item.title }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="mg-b-5">
+                <p
+                  class="bg-white pr-2 pl-2-mb-3 mb-10 ml-2 font-medium text-gray-600"
+                >
+                  Size
+                </p>
+                <div
+                  class="flex justify-between items-center border placeholder-gray-400 focus:outline-none focus:border-black w-full pt-3 pr-4 pb-3 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md"
+                >
+                  <div class="items-center flex space-x-3">
+                    <label for="list_size" class="mr-2">Chọn size:</label>
+                    <select
+                      id="list_size"
+                      name="list_size"
+                      formControlName="list_size"
+                      class="border placeholder-gray-400 focus:outline-none focus:border-black flex-1"
+                    >
+                      <option value="" disabled selected>Size</option>
+                      <option *ngFor="let item of listsize" [value]="item._id">
+                        {{ item.nameSize }}
                       </option>
                     </select>
                   </div>

@@ -35,7 +35,7 @@ export class ProductDetailsComponent implements OnInit {
   product: any = {};
   imgList: any;
   user: any = null
-  feedbackId: any;
+  feedbackId: string[] = [];
   feedback: any = {};
   feedbackList: any[] = [];
   demoProduct: any = {}
@@ -233,7 +233,16 @@ if(this.demoQuantity===0){
       this.toastr.info("Bạn cần nhập nội dung phản hồi", "Cảnh báo");
       return;
     }
+    if (!this.user.orders || this.user.orders.length === 0) {
+      this.toast.error({
+        detail: 'Bạn cần mua hàng trước. Vui lòng thử lại sau.',
+        summary: 'Lỗi',
+        duration: 5000, // Display duration in milliseconds
+        position: 'topRight',
+      });
 
+      return;
+    }
     const newValue = {
       content: this.formValueFeedback.value.content,
       productId: this.product._id,
@@ -244,21 +253,46 @@ if(this.demoQuantity===0){
       (resp) => {
         // Cập nhật form và hiển thị thông báo khi phản hồi đã được xử lý thành công
         this.formValueFeedback.reset();
-        this.toastr.success(resp.message, "Chúc mừng");
+        this.toastr.success(resp.message, 'Chúc mừng');
+        console.log(resp);
+  
+   
+        if (!Array.isArray(this.feedback)) {
+          this.feedback = [];
+        }
+  
+      
+         this.userService.getUser(resp.data.userId).subscribe(
+          (userResp) => {
+       
+            const newFeedback = {
+              _id: resp.data._id,
+              userId: resp.data.userId,
+              userName: userResp.use.firstname + ' ' + userResp.use.lastname, 
+              productId: resp.data.productId,
+              content: resp.data.content,
+              createdAt: resp.data.createdAt,  
+            };
+  
+          
+            this.feedback.push(newFeedback);
+  
+            this.feedback = [...this.feedback];
+  
+   
+            this.cdr.detectChanges();
 
-        // Sau khi tạo phản hồi, cập nhật lại chi tiết phản hồi
-        this.getFeedbackDetails([...this.feedbackId, resp.feedback._id]);
-
-        // Kích hoạt change detection
-        this.cdr.detectChanges();
-
-      },
-      (error) => {
-        // Xử lý lỗi nếu cần
-        console.error('Error creating feedback:', error);
+            const element = document.getElementById('scroll-to-comment');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+          },
+          (userError) => {
+            console.error('Error getting user information:', userError);
+          }
+        );
+        })
       }
-    );
-  }
 
 
   getFeedbackDetails(feedbackId: string[]): void {
@@ -283,11 +317,11 @@ if(this.demoQuantity===0){
   getBrandDetails(brandId: string): void {
     // Fetch brand details based on brandId
     this.brandService.get(brandId).subscribe(
-      (brand: any) => {
+      (respons: any) => {
         // console.log(brand);
-
-        this.brand = brand.getBrand
-        // console.log(brand.getBrand);
+        
+        this.brand = respons.getBrand
+        console.log(this.brand);
       },
       (error) => {
         console.error('Error fetching brand details:', error);

@@ -132,7 +132,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'forgotPassword', component: SendEmailComponent },
   { path: 'resetpassword', component: ForgotPasswordComponent },
-  {path:'**', component: ErrorComponent}
+ 
 ];
 
 @NgModule({

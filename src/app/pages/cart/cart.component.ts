@@ -87,7 +87,7 @@ export class CartComponent implements OnInit {
     // console.log(this.cartItems);
 
     return this.cartItems.products.reduce((total: any, product: any) => {
-const pr = this.getPriceBySize(product?.product,product.size)
+    const pr = this.getPriceBySize(product?.product,product.size)
       const productTotal = pr *  product.quantity;
       return total + productTotal;
     }, 0);

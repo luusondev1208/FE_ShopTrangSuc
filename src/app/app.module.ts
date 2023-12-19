@@ -72,6 +72,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { ListSizeComponent } from './pages/admin/size/list-size/list-size.component';
 import { UpdateSizeComponent } from './pages/admin/size/update-size/update-size.component';
 import { AddSizeComponent } from './pages/admin/size/add-size/add-size.component';
+import { ListproductfaveriesComponent } from './pages/listproductfaveries/listproductfaveries.component';
 
 
 
@@ -133,7 +134,8 @@ import { AddSizeComponent } from './pages/admin/size/add-size/add-size.component
     BoxChatComponent,
     ListSizeComponent,
     UpdateSizeComponent,
-    AddSizeComponent
+    AddSizeComponent,
+    ListproductfaveriesComponent
 
   ],
   imports: [

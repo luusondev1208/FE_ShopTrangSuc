@@ -91,6 +91,32 @@ export class ProductDetailsComponent implements OnInit {
       this.getProductsByCategory(this.demoProduct.category);
     });
   }
+  addproductfrivate(id: any) {
+    this.userService.addPRoductFaveries(id)
+      .subscribe(
+        (response) => {
+          // Handle success
+          console.log('Product added to favorites:', response);
+          this.toast.success({
+            detail: 'Đã thêm sản phẩm vào danh mục yêu thích.',
+            summary: 'Thành công',
+            duration: 5000,
+            position: 'topRight',
+          });
+        },
+        (error) => {
+          // Handle error
+          console.error('Error adding product to favorites:', error);
+          this.toast.error({
+            detail: 'Đã xảy ra lỗi khi thêm sản phẩm vào danh mục yêu thích.',
+            summary: 'Lỗi',
+            duration: 5000,
+            position: 'topRight',
+          });
+        }
+      );
+  }
+  
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user") as string)
     this.activatedRoute.params.subscribe((params) => {

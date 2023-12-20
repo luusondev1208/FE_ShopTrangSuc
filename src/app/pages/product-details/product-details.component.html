@@ -4,26 +4,13 @@
       <div class="lg:w-4/5 mx-auto flex flex-wrap">
         <div *ngIf="imgList && imgList.length > 0" class="flex space-x-4">
           <div class="w-[150px]">
-            <button
-              *ngFor="let img of imgList.slice(1)"
-              (click)="changeMainImage($event, img)"
-            >
-              <img
-                class="w-[150px] border border-gray-200 hover:bg-slate-100"
-                [src]="img"
-                alt=""
-              />
+            <button *ngFor="let img of imgList.slice(1)" (click)="changeMainImage($event, img)">
+              <img class="w-[150px] border border-gray-200 hover:bg-slate-100" [src]="img" alt="" />
             </button>
           </div>
-          <img
-            class="w-[500px] object-cover object-center rounded border border-gray-200"
-            [src]="imgList[0]"
-            alt=""
-          />
+          <img class="w-[500px] object-cover object-center rounded border border-gray-200" [src]="imgList[0]" alt="" />
           <div class="lg:w-1/3 w-full lg:pl-10 lg:py-6lg:mt-0">
-            <h2
-              class="-mt-6 text-[30px] text-gray-900 title-font tracking-widest"
-            >
+            <h2 class="-mt-6 text-[30px] text-gray-900 title-font tracking-widest">
               {{ product.title }}
             </h2>
             <h1 class="text-gray-500 title-font font-medium mb-1">
@@ -39,59 +26,25 @@
 
             <ng-template let-modal #showSize>
               <div class="modal-header">
-                <button
-                  class="flex items-center space-x-2"
-                  *ngIf="!sizeVong"
-                  (click)="showSizevong()"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-arrow-left-circle-fill mr-2"
-                    viewBox="0 0 16 16"
-                  >
+                <button class="flex items-center space-x-2" *ngIf="!sizeVong" (click)="showSizevong()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-left-circle-fill mr-2" viewBox="0 0 16 16">
                     <path
-                      d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-                    /></svg
-                  >Đo size lắc
+                      d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+                  </svg>Đo size lắc
                 </button>
-                <button
-                  class="flex items-center space-x-2"
-                  *ngIf="sizeVong"
-                  (click)="showSizevong()"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-arrow-left-circle-fill mr-2"
-                    viewBox="0 0 16 16"
-                  >
+                <button class="flex items-center space-x-2" *ngIf="sizeVong" (click)="showSizevong()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-left-circle-fill mr-2" viewBox="0 0 16 16">
                     <path
-                      d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-                    /></svg
-                  >Đo size nhẫn
+                      d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+                  </svg>Đo size nhẫn
                 </button>
-                <button
-                  type="button"
-                  class="btn-close"
-                  aria-label="Close"
-                  (click)="closeInferClusterModal()"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-x-lg"
-                    viewBox="0 0 16 16"
-                  >
+                <button type="button" class="btn-close" aria-label="Close" (click)="closeInferClusterModal()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+                    viewBox="0 0 16 16">
                     <path
-                      d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
-                    />
+                      d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
                   </svg>
                 </button>
               </div>
@@ -103,29 +56,19 @@
                     1. Dùng chỉ hoặc giấy bản nhỏ đo quấn quanh khớp tay, đánh
                     dấu vị trí cắt nhau
                   </p>
-                  <img
-                    class="ml-[140px]"
-                    src="https://cdn.PNJ.io/images/image-update/2022/guide-size/size-nhan.svg"
-                    alt=""
-                  />
+                  <img class="ml-[140px]" src="https://cdn.PNJ.io/images/image-update/2022/guide-size/size-nhan.svg"
+                    alt="" />
                   <p>
                     2. Dùng thước đo chiều dài đoạn dây vừa đo được (đơn vị cm)
                   </p>
-                  <img
-                    class="ml-[140px]"
-                    src="https://cdn.PNJ.io/images/image-update/2022/guide-size/thuoc-do.svg"
-                    alt=""
-                  />
+                  <img class="ml-[140px]" src="https://cdn.PNJ.io/images/image-update/2022/guide-size/thuoc-do.svg"
+                    alt="" />
                 </div>
                 <div class="flex justify-center bg-zinc-300 px-3 py-2">
                   <div>
                     <p>Kết quả bạn đo được là:</p>
-                    <div
-                      class="overflow-auto ... w-[200px] h-[100px] bg-white -py-2 rounded-md"
-                    >
-                      <div
-                        class="flex ml-2 -mt-4"
-                        *ngFor="
+                    <div class="overflow-auto ... w-[200px] h-[100px] bg-white -py-2 rounded-md">
+                      <div class="flex ml-2 -mt-4" *ngFor="
                           let size of [
                             '4.6',
                             '4.7',
@@ -140,23 +83,15 @@
                             '5.6',
                             '5.7'
                           ]
-                        "
-                      >
-                        <input
-                          type="radio"
-                          name="age"
-                          (change)="selectedRingSize = determineRingSize(size)"
-                        />
+                        ">
+                        <input type="radio" name="age" (change)="selectedRingSize = determineRingSize(size)" />
                         <p class="mt-3 pl-1">{{ size }} cm</p>
                       </div>
                     </div>
                   </div>
                   <div class="ml-10">
                     <p>Bảng size phổ biến</p>
-                    <img
-                      src="https://cdn.NRO.io/images/image-update/2022/guide-size/nhan_v2.svg"
-                      alt=""
-                    />
+                    <img src="https://cdn.NRO.io/images/image-update/2022/guide-size/nhan_v2.svg" alt="" />
                     <div class="flex mt-4">
                       <p class="mr-4">Size nhẫn của bạn là:</p>
                       <p class="bg-white ml-4 w-[25px] pl-2">
@@ -175,29 +110,19 @@
                     quấn trừ hao sao cho kích cỡ thoải mái một chút, đánh dấu vị
                     trí cắt nhau
                   </p>
-                  <img
-                    class="ml-[140px]"
-                    src="https://cdn.PNJ.io/images/image-update/2022/guide-size/size-vong-lac.svg"
-                    alt=""
-                  />
+                  <img class="ml-[140px]" src="https://cdn.PNJ.io/images/image-update/2022/guide-size/size-vong-lac.svg"
+                    alt="" />
                   <p>
                     2. Dùng thước đo chiều dài đoạn dây vừa đo được (đơn vị cm)
                   </p>
-                  <img
-                    class="ml-[140px]"
-                    src="https://cdn.PNJ.io/images/image-update/2022/guide-size/thuoc-do.svg"
-                    alt=""
-                  />
+                  <img class="ml-[140px]" src="https://cdn.PNJ.io/images/image-update/2022/guide-size/thuoc-do.svg"
+                    alt="" />
                 </div>
                 <div class="flex justify-center bg-zinc-300 px-3 py-2">
                   <div>
                     <p>Kết quả bạn đo được là:</p>
-                    <div
-                      class="overflow-auto ... w-[200px] h-[100px] bg-white -py-2 rounded-md"
-                    >
-                      <div
-                        class="flex ml-2 -mt-4"
-                        *ngFor="
+                    <div class="overflow-auto ... w-[200px] h-[100px] bg-white -py-2 rounded-md">
+                      <div class="flex ml-2 -mt-4" *ngFor="
                           let size of [
                             '14',
                             '15',
@@ -212,23 +137,15 @@
                             '24',
                             '25'
                           ]
-                        "
-                      >
-                        <input
-                          type="radio"
-                          name="age"
-                          (change)="selectedRingSize = determineRingSize(size)"
-                        />
+                        ">
+                        <input type="radio" name="age" (change)="selectedRingSize = determineRingSize(size)" />
                         <p class="mt-3 pl-1">{{ size }} cm</p>
                       </div>
                     </div>
                   </div>
                   <div class="ml-10">
                     <p>Bảng size phổ biến</p>
-                    <img
-                      src="https://cdn.NRO.io/images/image-update/2022/guide-size/lactay_lacchan_v2.svg"
-                      alt=""
-                    />
+                    <img src="https://cdn.NRO.io/images/image-update/2022/guide-size/lactay_lacchan_v2.svg" alt="" />
                     <div class="flex mt-4">
                       <p class="mr-4">Size lắc của bạn là:</p>
                       <p class="bg-white ml-4 w-[25px] pl-2">
@@ -241,60 +158,36 @@
             </ng-template>
             <div class="flex mt-6 items-center">
               <div *ngIf="sizeOption.length > 0" class="flex items-center">
-                <span class="mr-3" style="width: 70px; margin-bottom: 27px"
-                  >Kích thước</span
-                >
+                <span class="mr-3" style="width: 70px; margin-bottom: 27px">Kích thước</span>
                 <div class="relative">
-                  <select
-                    id="optionSelect"
+                  <select id="optionSelect"
                     class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10"
-                    [(ngModel)]="selectedSize"
-                    (change)="updatePriceAndQuantity()"
-                  >
-                    <option value="" style="text-center ">Chọn size</option>
-                    <option
-                      *ngFor="let size of product.list_size.list_size"
-                      [value]="size.name"
-                      class="text-center"
-                    >
+                    [(ngModel)]="selectedSize" (change)="updatePriceAndQuantity()">
+                    <option value="" class="text-center ">Chọn size</option>
+                    <option *ngFor="let size of product.list_size.list_size" [value]="size.name" class="text-center">
                       {{ size.name }}
                     </option>
                   </select>
-                  <p
-                    *ngIf="product.list_size.list_size"
-                    style="margin-top: 3px; margin-left: 20px"
-                  >
+                  <p *ngIf="product.list_size.list_size" class="margin-top: 3px; margin-left: 20px">
                     Số lượng: {{ demoQuantity > 0 ? demoQuantity : 0 }}
                   </p>
                   <span
-                    class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex mt-3 justify-center"
-                  >
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      class="w-4 h-4"
-                      viewBox="0 0 24 24"
-                    >
+                    class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex mt-3 justify-center">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2" class="w-4 h-4" viewBox="0 0 24 24">
                       <path d="M6 9l6 6 6-6"></path>
                     </svg>
                   </span>
                 </div>
 
                 <div>
-                  <button
-                    class="btn btn-white"
-                    (click)="openShowSize(showSize)"
-                    style="
+                  <button class="btn btn-white" (click)="openShowSize(showSize)" style="
                       font-style: italic;
                       font-size: 13px;
                       color: goldenrod;
                       width: 100px;
                       margin-bottom: 27px;
-                    "
-                  >
+                    ">
                     Cách đo size
                   </button>
                 </div>
@@ -305,98 +198,59 @@
             <!-- end size new -->
 
             <div class="flex mb-4 mt-3">
-              <span
-                style="margin-right: 30px"
-                class="font-medium text-xl text-orange-600"
-                >{{
-                  demoPrice > 0
-                    ? formatPrice(demoPrice)
-                    : formatPrice(product.price)
-                }}đ</span
-              >
-              <span class="text-gray-400 font-medium text-xl line-through mr-2"
-                >{{ formatPrice(product.priceroot) }}đ</span
-              >
+              <span style="margin-right: 30px" class="font-medium text-xl text-orange-600">{{
+                demoPrice > 0
+                ? formatPrice(demoPrice)
+                : formatPrice(product.price)
+                }}đ</span>
+              <span class="text-gray-400 font-medium text-xl line-through mr-2">{{ formatPrice(product.priceroot)
+                }}đ</span>
               <button
                 class="rounded-full w-7 h-7 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
-                (click)="addproductfrivate(product._id)"
-              >
-                <svg
-                  fill="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  class="w-5 h-5"
-                  viewBox="0 0 24 24"
-                >
+                (click)="addproductfrivate(product._id)">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+                  viewBox="0 0 24 24">
                   <path
-                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
-                  ></path>
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z">
+                  </path>
                 </svg>
               </button>
             </div>
             <div class="uudai">
-              <div
-                class="noidunguudai"
-                style="
+              <div class="noidunguudai" style="
                   width: 380px;
                   border: 1px solid #808080;
                   border-radius: 5px;
-                "
-              >
+                ">
                 <!-- Nội dung của div -->
 
                 <div style="background-color: rgb(233, 233, 233)">
                   <p style="margin-left: 5px">Ưu đãi:</p>
                 </div>
                 <div class="item1" style="display: flex">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="16"
-                    width="14"
-                    viewBox="0 0 448 512"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
                     <path
-                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
-                    />
+                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
                   </svg>
-                  <span
-                    style="color: #4c4c4c; font-weight: 400; margin-left: 4px"
-                  >
+                  <span style="color: #4c4c4c; font-weight: 400; margin-left: 4px">
                     Bảo hành 6 tháng lỗi kỹ thuật, nước xi.
                   </span>
                 </div>
                 <div class="item2" style="display: flex">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="16"
-                    width="14"
-                    viewBox="0 0 448 512"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
                     <path
-                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
-                    />
+                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
                   </svg>
-                  <span
-                    style="color: #4c4c4c; font-weight: 400; margin-left: 4px"
-                  >
+                  <span style="color: #4c4c4c; font-weight: 400; margin-left: 4px">
                     Miễn phí đánh bóng trọn đời tại cửa hàng của NRO
                   </span>
                 </div>
                 <div class="item3" style="display: flex">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="16"
-                    width="14"
-                    viewBox="0 0 448 512"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
                     <path
-                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
-                    />
+                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
                   </svg>
-                  <span
-                    style="color: #4c4c4c; font-weight: 400; margin-left: 4px"
-                  >
+                  <span style="color: #4c4c4c; font-weight: 400; margin-left: 4px">
                     Sản phẩm bị oxy hóa sẽ được làm sạch bằng máy chuyên dụng
                   </span>
                 </div>
@@ -405,19 +259,14 @@
 
             <div class="flex">
               <a href="/cart">
-                <button
-                  (click)="addToCart()"
-                  class="w-[380px] text-[20px] font-medium text-white my-3 bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded text-center"
-                >
+                <button (click)="addToCart()"
+                  class="w-[380px] text-[20px] font-medium text-white my-3 bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded text-center">
                   Thêm giỏ hàng
                 </button>
               </a>
             </div>
             <!-- ghichu -->
-            <div
-              class="ghichu"
-              style="margin-top: 5px; width: 500px; margin-left: 0px"
-            >
+            <div class="ghichu" style="margin-top: 5px; width: 500px; margin-left: 0px">
               <div class="item2" style="display: flex">
                 <img
                   src="https://lh3.googleusercontent.com/CHRPV8fhuQzBx58BgnhIWkCMyGyr6BjPNvIzvflFjaKWMrvP2l-NW_haEtnN5p2ZBhTvfrBZzh77dS7X0Mk28vwiyctTa_HlyTeW"
@@ -426,12 +275,8 @@
                     height: 15px;
                     margin-top: 3px;
                     margin-left: 8px;
-                  "
-                  alt=""
-                />
-                <span
-                  style="color: #4c4c4c; font-weight: 400; margin-left: 4px"
-                >
+                  " alt="" />
+                <span style="color: #4c4c4c; font-weight: 400; margin-left: 4px">
                   Đổi sản phẩm trong 48h tại hệ thống cửa hàng NRO
                 </span>
               </div>
@@ -460,12 +305,9 @@
                     height: 15px;
                     margin-top: 3px;
                     margin-left: 8px;
-                  "
-                  alt=""
-                />
-                <span style="color: #4c4c4c; font-weight: 400; margin-left: 4px"
-                  >Miễn phí giao nhanh Toàn Quốc 1-7 ngày</span
-                >
+                  " alt="" />
+                <span style="color: #4c4c4c; font-weight: 400; margin-left: 4px">Miễn phí giao nhanh Toàn Quốc 1-7
+                  ngày</span>
               </div>
             </div>
           </div>
@@ -616,10 +458,7 @@
   </form>
   <div class="mx-[230px]">
     <mat-accordion>
-      <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-      >
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title class="font-medium text-[17px]">
             Thông số và mô tả
@@ -653,10 +492,7 @@
   </div>
   <div class="mx-[230px] my-3">
     <mat-accordion>
-      <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-      >
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title class="font-medium text-[17px]">
             Bình Luận
@@ -668,29 +504,15 @@
             Nhận xét của khách hàng
           </h2>
           <div *ngIf="user">
-            <form
-              [formGroup]="formValueFeedback"
-              (submit)="handleSearch()"
-              action=""
-            >
-              <textarea
-                formControlName="content"
-                class="border-[1px] border-[gray] outline-none p-[12px]"
-                cols="133"
-                rows="4"
-                placeholder="Nhập nội dung"
-              ></textarea>
+            <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
+              <textarea formControlName="content" class="border-[1px] border-[gray] outline-none p-[12px]" cols="133"
+                rows="4" placeholder="Nhập nội dung"></textarea>
               <br />
               <div class="absolute -mt-10 flex justify-between items-center">
-                <ngb-rating
-                  class="absolute my-3 text-[25px] ml-2"
-                  [rate]="5"
-                  style="color: gold"
-                />
+                <ngb-rating class="absolute my-3 text-[25px] ml-2" [rate]="5" style="color: gold" />
 
                 <button
-                  class="px-[25px] py-[6px] ml-[920px] text-white rounded bg-blue-500 hover:bg-blue-600 justify-end"
-                >
+                  class="px-[25px] py-[6px] ml-[920px] text-white rounded bg-blue-500 hover:bg-blue-600 justify-end">
                   Gửi
                 </button>
               </div>
@@ -698,79 +520,85 @@
             <div class="max-h-[300px] overflow-y-auto">
               <div class="flex items-center space-x-2">
                 <div>
-                  <div class="">
-                    <div *ngFor="let item of feedback" class="block mt-4">
-                      <div
-                        class="flex items-center bg-gray-100 w-[1000px] rounded-xl px-2 pb-2"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="50"
-                          height="50"
-                          fill="currentColor"
-                          class="bi bi-person-square"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                          <path
-                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"
-                          />
-                        </svg>
-                        <div class="font-medium ml-3">
-                          <a href="#" class="hover:underline text-xl font-bold">
-                            <small>{{ item.userName }}</small>
-                          </a>
-                          <div class="text-xs">
-                            {{ item.content }}
-                          </div>
-                          <ngb-rating class="" [rate]="5" style="color: gold" />
+                  <div *ngFor="let item of feedback" class="block mt-4 relative">
+                    <div class="flex items-center bg-gray-100 w-[1000px] rounded-xl px-2 pb-2 relative">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                        class="bi bi-person-square" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                        <path
+                          d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                      </svg>
+                      <!-- Thêm một nút "Sửa" để bật chế độ chỉnh sửa -->
+                      <div *ngIf="!item.editMode" class="font-medium ml-3">
+                        <a href="#" class="hover:underline text-xl font-bold">
+                          <small>{{ item.userName }}</small>
+                        </a>
+                        <div class="text-xs">
+                          {{ item.content }}
+                        </div>
+                        <ngb-rating class="" [rate]="5" style="color: gold"></ngb-rating>
+                      </div>
+                      <div *ngIf="!item.editMode" class="absolute top-0 right-0 mt-2 mr-2">
+                        <span (click)="toggleOptions(item)" class="text-gray-500 hover:text-red-500 cursor-pointer">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path
+                              d="M12 2a2 2 0 1 0-4 0 2 2 0 0 0 4 0zm-2 4a2 2 0 1 0-4 0 2 2 0 0 0 4 0zm-2 4a2 2 0 1 0-4 0 2 2 0 0 0 4 0z" />
+                          </svg>
+                        </span>
+                        <div *ngIf="item.showOptions"
+                          class="absolute top-0 right-0 bg-white border rounded-md mt-2 p-2">
+                          <button (click)="deleteComment(item._id)" class="inline-block">Xóa</button>
+                          <button (click)="editComment(item)" class="inline-block">Sửa</button>
                         </div>
                       </div>
-                      <div
-                        class="flex justify-start items-center text-xs w-full"
-                      >
-                        <div
-                          class="font-semibold text-gray-700 px-2 flex items-center justify-center space-x-1"
-                        >
-                          <a href="#" class="hover:underline">
-                            <small style="color: lightskyblue">Like</small>
-                          </a>
-                          <small class="self-center">.</small>
-                          <a href="#" class="hover:underline">
-                            <small style="color: lightskyblue">Reply</small>
-                          </a>
-                          <small class="self-center">.</small>
-                          <a href="#" class="hover:underline">
-                            <small>{{
-                              item.createdAt | date : "dd/MM/yyyy HH:mm"
-                            }}</small>
-                          </a>
+
+                      <!-- Thêm một form sửa bình luận khi ở chế độ chỉnh sửa -->
+                      <div *ngIf="item.editMode" class="font-medium ml-3">
+                        <a href="#" class="hover:underline text-xl font-bold">
+                          <small>{{ item.userName }}</small>
+                        </a>
+                        <div class="text-xs">
+                          <textarea [(ngModel)]="item.content"></textarea>
                         </div>
+                        <ngb-rating class="" [rate]="5" style="color: gold"></ngb-rating>
+                      </div>
+                      <div *ngIf="item.editMode" class="absolute top-0 right-0 mt-2 mr-2 flex ">
+                        <button (click)="saveCommentEdit(item)" class="inline-block">Lưu</button>
+                        <p class="mx-2"></p>
+                        <button  (click)="cancelEdit(item)" class="inline-block">Xác nhận</button>
+                      </div>
+
+                    </div>
+                    <div class="flex justify-start items-center text-xs w-full">
+                      <div class="font-semibold text-gray-700 px-2 flex items-center justify-center space-x-1">
+                        <a class="hover:underline">
+                          <small style="color: lightskyblue">Like</small>
+                        </a>
+                        <small class="self-center">.</small>
+                        <a class="hover:underline">
+                          <small style="color: lightskyblue">Reply</small>
+                        </a>
+                        <small class="self-center">.</small>
+                        <a class="hover:underline">
+                          <small>{{ item.createdAt | date : "dd/MM/yyyy HH:mm" }}</small>
+                        </a>
                       </div>
                     </div>
                   </div>
+
                 </div>
 
                 <div
-                  class="self-stretch flex justify-center items-center transform transition-opacity duration-200 opacity-0 translate -translate-y-2 hover:opacity-100"
-                >
+                  class="self-stretch flex justify-center items-center transform transition-opacity duration-200 opacity-0 translate -translate-y-2 hover:opacity-100">
                   <a href="#" class="">
                     <div
-                      class="text-xs cursor-pointer flex h-6 w-6 transform transition-colors duration-200 hover:bg-gray-100 rounded-full items-center justify-center"
-                    >
-                      <svg
-                        class="w-4 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                        ></path>
+                      class="text-xs cursor-pointer flex h-6 w-6 transform transition-colors duration-200 hover:bg-gray-100 rounded-full items-center justify-center">
+                      <svg class="w-4 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z">
+                        </path>
                       </svg>
                     </div>
                   </a>
@@ -784,10 +612,7 @@
   </div>
   <div class="mx-[230px]">
     <mat-accordion>
-      <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-      >
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title class="font-medium text-[17px]">
             Dịch vụ sau mua
@@ -841,10 +666,7 @@
   </div>
   <div class="mx-[230px] my-3">
     <mat-accordion>
-      <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-      >
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title class="font-medium text-[17px]">
             Câu hỏi thường gặp
@@ -892,8 +714,7 @@
           <p>- Trang sức bạc: 3 tháng.​</p>
 
           <button
-            class="w-[350px] text-[15px] font-medium text-white my-3 bg-blue-500 border-0 py-2 px-4 focus:outline-none hover:bg-blue-600 rounded text-center"
-          >
+            class="w-[350px] text-[15px] font-medium text-white my-3 bg-blue-500 border-0 py-2 px-4 focus:outline-none hover:bg-blue-600 rounded text-center">
             Hotline: 0347617094 (Miễn phí)
           </button>
         </div>
@@ -903,54 +724,29 @@
 
   <div class="mx-[150px] my-10">
     <h1 class="text-2xl font-bold mb-3 text-center">SẢN PHẨM TƯƠNG TỰ</h1>
-    <div
-      class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-auto xl:gap-8 gap-10"
-      *ngIf="productsByCategory.length"
-    >
-      <div
-        *ngFor="let product of productsByCategory.slice(0, 4)"
-        tabindex="0"
-        class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8"
-      >
+    <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-auto xl:gap-8 gap-10"
+      *ngIf="productsByCategory.length">
+      <div *ngFor="let product of productsByCategory.slice(0, 4)" tabindex="0"
+        class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
         <div class="product">
           <div class="image-container">
             <a (click)="navigateToProductDetail(product._id)">
-              <img
-                src="{{ product.images[0] }}"
-                alt="Product Image "
-                width="250px"
-                height="250px"
-                class="product-image"
-            /></a>
+              <img src="{{ product.images[0] }}" alt="Product Image " width="250px" height="250px"
+                class="product-image" /></a>
             <div class="button-container flex space-x-10">
               <button class="custom-button">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-cart4"
-                  viewBox="0 0 16 16"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4"
+                  viewBox="0 0 16 16">
                   <path
-                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
-                  />
+                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
                 </svg>
               </button>
               <a href="/cart">
                 <button class="custom-button">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-bag-heart"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"
-                    />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-bag-heart" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
                   </svg>
                 </button>
               </a>

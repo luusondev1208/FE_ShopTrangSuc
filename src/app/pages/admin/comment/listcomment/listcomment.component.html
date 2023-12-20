@@ -1,0 +1,74 @@
+<!-- component -->
+<div class="md:ml-[350px] mx-[50px] pb-[100px] lg:w-[75%] xl:w-[80%] 2xl:w-[85%] ">
+    <div class="flex">
+      <div class="">
+        <div class=" inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="overflow-hidden mr-10 md:mr-0">
+            <!-- <h1 class="font-bold text-center my-16 text-[30px]">Quản Lý Sản Phẩm</h1> -->
+
+           
+            <table class="min-w-full mt-4" id="table-data">
+              <thead class="bg-white py-2">
+                <tr>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-[50px]  text-left">
+                    STT
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 w-[170px]  text-left">
+                    Ngày bình luận 
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 w-[100px] px-6 py-2 text-left">
+                    Nội dung
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 w-[150px] px-6 py-2 text-left">
+                    Sản phẩm
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 w-[150px] px-6 py-2 text-left">
+                    action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let comment of comments; let i = index" class="bg-gray-100 border-b">
+                  <td class="px-6  whitespace-nowrap text-sm text-gray-900">{{i+1}}</td>
+                  <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
+                    {{comment.feedback.createdAt | date : "dd/MM/yyyy HH:mm" }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
+                    {{comment.feedback.content}}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light px-6 whitespace-nowrap">
+                    {{ comment.product.title }}
+                  </td>
+                  <td class="text-sm text-gray-900 font-light pl-12  whitespace-nowrap space-x-4">
+                    <button (click)="deleteComment(comment.feedback._id)" 
+                      class="hover:text-red-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill ml-8" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                      </svg>
+                      <div
+                        class="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
+                      </div>
+                    </button>
+                  </td>
+                </tr>
+  
+              </tbody>
+            </table>
+            <div class="flex space-x-4 items-center ml-[1000px] ">
+              <button class="hover:text-blue-500"  (click)="previousPage()" [disabled]="page === 1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+              </svg></button>
+              <p class="pt-3">{{page}}</p>
+              <button class="hover:text-blue-500" (click)="nextPage()" [disabled]="comments.length < limit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+              </svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- add -->
+  
+  
+  

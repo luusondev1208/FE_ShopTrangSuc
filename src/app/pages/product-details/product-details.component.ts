@@ -34,6 +34,7 @@ interface SizeResponse {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailsComponent implements OnInit {
+  editMode = false;
   panelOpenState = false;
   product: any = {};
   imgList: any;
@@ -44,6 +45,7 @@ export class ProductDetailsComponent implements OnInit {
   demoProduct: any = {};
   brandId: any;
   brand: any = {};
+  showOptions: boolean = false;
   sizeOption: any[] = Object.values(sizeOptions).filter(
     (value) => typeof value === 'number'
   );
@@ -53,7 +55,7 @@ export class ProductDetailsComponent implements OnInit {
   demoPrice: number = 0;
   demoSize: number = 0;
   demoQuantity: number = 0;
-
+  showModal: boolean = false; 
   constructor(
     config: NgbRatingConfig,
     private activatedRoute: ActivatedRoute,
@@ -314,7 +316,8 @@ export class ProductDetailsComponent implements OnInit {
           this.feedback = [...this.feedback];
 
           this.cdr.detectChanges();
-
+          console.log(this.feedback);
+          
           const element = document.getElementById('scroll-to-comment');
           if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'end' });
@@ -326,7 +329,128 @@ export class ProductDetailsComponent implements OnInit {
       );
     });
   }
+  deleteComment(id: any): void {
+    const localUser = localStorage.getItem('user');
+    const localUserId = localUser ? JSON.parse(localUser)._id : null;
+    const feedbackItem = this.feedback.find((item: any) => item._id === id);
+    if (feedbackItem && feedbackItem.userId === localUserId) {
+      const isConfirmed = window.confirm('Bạn có chắc chắn muốn xóa bình luận này không?');
+      if (isConfirmed) {
+        this.confirmDelete(feedbackItem._id);
+        this.feedback = this.feedback.filter((item: any) => item._id !== feedbackItem._id);
+      } else {
+        console.log('Xóa bình luận đã bị hủy bởi người dùng.');
+      }
+    } else {
+      this.toast.error({
+        detail: "Thông báo",
+        summary: `Bạn không có quyền xóa bình luận của người khác`,
+        duration: 5000,
+        position: "topRight",
+      });
+    }
+  }
+  
+  
+  confirmDelete(id: any): void {
+    this.feedbackService.deleteFeback(id).subscribe(
+      (response) => {
+        console.log(this.feedback);
+        
+        this.feedback = this.feedback.filter(
+          (feedback: any) => feedback._id !== response.data._id
+        );
+        this.toast.success({
+          detail: "Thông báo",
+          summary: `Xóa thành công bình luận: ${response.data.content}`,
+          duration: 5000,
+          position: "topRight",
+        });
+      },
+      (error) => {
+        this.toast.error({
+          detail: "Thông báo",
+          summary: 'Lỗi khi xóa bình luận!',
+          duration: 5000,
+          position: "topRight",
+        });
+        console.error('Lỗi khi xóa bình luận:', error);
+      }
+    );
+  }
+  closeModal(): void {
+    this.showModal = false;
+  }
 
+  toggleOptions(item: any): void {
+    item.showOptions = !item.showOptions;
+  }
+  editComment(item: any): void {
+    const localUser = localStorage.getItem('user');
+    const localUserId = localUser ? JSON.parse(localUser)._id : null;
+  
+    if (item.userId === localUserId) {
+      item.editMode = true;
+    } else {
+      console.log('Bạn không có quyền sửa bình luận này.');
+      this.toast.error({
+        detail: "Thông báo",
+        summary: `Bạn không có quyền sửa bình luận của người khác`,
+        duration: 5000,
+        position: "topRight",
+      });
+    }
+  }
+  
+  UpdateComment(item: any): void {
+    const localUser = localStorage.getItem('user');
+    const localUserId = localUser ? JSON.parse(localUser)._id : null;
+  
+    const feedbackItem = this.feedback.find((feedback: any) => feedback._id === item._id);
+  
+    if (feedbackItem && feedbackItem.userId === localUserId) {
+      item.editMode = true;
+    } else {
+      console.log('Bạn không có quyền sửa bình luận này.');
+      this.toast.error({
+        detail: 'Thông báo',
+        summary: 'Bạn không có quyền sửa bình luận của người khác',
+        duration: 5000,
+        position: 'topRight',
+      });
+    }
+  }
+  
+  saveCommentEdit(item: any): void {
+    // Gọi API để cập nhật bình luận
+    this.feedbackService.updateFeeback({ id: item._id, content: item.content }).subscribe(
+      (response) => {
+   
+        this.toast.success({
+          detail: 'Thông báo',
+          summary: 'Sửa thành công bình luận',
+          duration: 5000,
+          position: 'topRight',
+        });
+        this.cancelEdit(response.data)
+        console.log(response);
+        
+      },
+      (error) => {
+        this.toast.error({
+          detail: 'Thông báo',
+          summary: 'Lỗi khi sửa bình luận',
+          duration: 5000,
+          position: 'topRight',
+        });
+      }
+    );
+  }
+  
+  cancelEdit(item: any): void {
+    item.editMode = false;
+  }
+  
   getFeedbackDetails(feedbackId: string[]): void {
     this.feedbackService.getFebacks(feedbackId).subscribe(
       async (feedbackDetails: any) => {

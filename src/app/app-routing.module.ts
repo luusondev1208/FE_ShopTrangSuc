@@ -52,6 +52,7 @@ import { ListSizeComponent } from './pages/admin/size/list-size/list-size.compon
 import { AddSizeComponent } from './pages/admin/size/add-size/add-size.component';
 import { UpdateSizeComponent } from './pages/admin/size/update-size/update-size.component';
 import { ListproductfaveriesComponent } from './pages/listproductfaveries/listproductfaveries.component';
+import { ListcommentComponent } from './pages/admin/comment/listcomment/listcomment.component';
 const routes: Routes = [
   //client
   {
@@ -102,7 +103,7 @@ const routes: Routes = [
       { path: 'listSize', component: ListSizeComponent },
       { path: 'listBlog', component: ListBlogComponent },
       { path: 'listUser', component: ListuserComponent },
-  
+      { path: 'listComment', component: ListcommentComponent },
       { path: 'listCoupon', component: ListCouponComponent },
       { path: 'listBrand', component: ListBrandComponent },
       { path: 'addUser', component: AddUserComponent },

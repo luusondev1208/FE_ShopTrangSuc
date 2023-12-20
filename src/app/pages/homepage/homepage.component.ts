@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent {
-  topcreatedAt: any = []
+  topUpdatedAt: any = []
   saleproduct: any = []
   topProducts: any = []
   filteredProducts: any = [];
@@ -46,8 +46,10 @@ export class HomepageComponent {
   filtercreatedAt() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
-      this.topcreatedAt = this.products.productDatas
-      this.topcreatedAt = this.topcreatedAt.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      console.log(data);
+      
+      this.topUpdatedAt = this.products.productDatas
+      this.topUpdatedAt = this.topUpdatedAt.sort((a:any, b:any) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
       // console.log(this.topcreatedAt);
     });
   }

@@ -73,6 +73,7 @@ import { ListSizeComponent } from './pages/admin/size/list-size/list-size.compon
 import { UpdateSizeComponent } from './pages/admin/size/update-size/update-size.component';
 import { AddSizeComponent } from './pages/admin/size/add-size/add-size.component';
 import { ListproductfaveriesComponent } from './pages/listproductfaveries/listproductfaveries.component';
+import { ListcommentComponent } from './pages/admin/comment/listcomment/listcomment.component';
 
 
 
@@ -135,7 +136,8 @@ import { ListproductfaveriesComponent } from './pages/listproductfaveries/listpr
     ListSizeComponent,
     UpdateSizeComponent,
     AddSizeComponent,
-    ListproductfaveriesComponent
+    ListproductfaveriesComponent,
+    ListcommentComponent
 
   ],
   imports: [

@@ -30,14 +30,14 @@ export class UpdateCategoriComponent {
       const id = String(param.get('id'))
       this.categoryService.getCategory(id).subscribe(
         (category) => {
-          console.log(category);
+          // console.log(category);
           this.category = category.getOneCategory;
           this.categoryForm.patchValue({
             title: category.getOneCategory.title,
           })
           
         },
-        (error) => console.log(error.message)
+        // (error) => console.log(error.message)
       );
     });
   }
@@ -52,7 +52,7 @@ export class UpdateCategoriComponent {
       
 
       this.categoryService.updateCategory(category).subscribe((category) => {
-        console.log(category);
+        // console.log(category);
         
         this.title = category.updateCategory.title;
         this.toast.success({ detail: "Thông báo", summary: `Sửa thành công, danh mục mới: ${this.title}`, duration: 5000, position: "topRight" });

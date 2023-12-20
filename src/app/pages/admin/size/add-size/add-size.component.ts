@@ -54,7 +54,7 @@ export class AddSizeComponent {
       
     },
     (error) => {
-      console.log('Error when adding size: ', error);
+      // console.log('Error when adding size: ', error);
       this.toast.error({ detail: 'Lỗi vui lòng kiếm tra lại thông tin đã nhập.', duration: 5000, position: 'topRight' });
       
     }

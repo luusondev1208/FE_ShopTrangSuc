@@ -16,7 +16,7 @@ export class BrandlistComponent {
   ngOnInit(): void {
     // Sử dụng paramMap để lấy giá trị của tham số 'id'
     this.brandId = this.route.snapshot.paramMap.get('id');
-    console.log(this.brandId);
+    // console.log(this.brandId);
 
     this.getProductsByCategory(this.brandId);
   }
@@ -32,7 +32,7 @@ export class BrandlistComponent {
         // Kiểm tra xem response có chứa dữ liệu không trước khi gán cho productsByCategory
         if (response && response.products) {
           this.productsByBrand = response.products;
-          console.log(this.productsByBrand);
+          // console.log(this.productsByBrand);
         } else {
           console.error('Empty response or missing products data');
         }

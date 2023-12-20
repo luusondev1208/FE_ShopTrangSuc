@@ -24,15 +24,15 @@ export class ListComponent {
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe(
       (response: any) => {
-        console.log(response);
+        // console.log(response);
         
         this.products = response.productDatas;
-        console.log(this.products);
+        // console.log(this.products);
 
         //  console.log(this.products.docs);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   }
@@ -44,11 +44,11 @@ export class ListComponent {
     var result = confirm("Bạn có muốn xóa không?");
     if (result) {
       // Người dùng đã chọn Đồng ý
-      console.log("Người dùng đã chọn xóa.");
+      // console.log("Người dùng đã chọn xóa.");
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.productService.deleteProduct(id).subscribe(
         response => {
-          console.log(response);
+          // console.log(response);
           
           this.products = this.products.filter((product:any) => product._id !== response.deletedProduct._id)
           this.toast.success({ detail: "Thông báo", summary: `Xóa thành công sản phẩm: ${response.deletedProduct.title}`, duration: 5000, position: "topRight" });

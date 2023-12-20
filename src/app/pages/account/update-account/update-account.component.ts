@@ -71,7 +71,7 @@ export class UpdateAccountComponent {
           })
 
         },
-        (error) => console.log(error.message)
+        // (error) => console.log(error.message)
       );
     });
 
@@ -104,7 +104,7 @@ export class UpdateAccountComponent {
         setTimeout(() => {
           window.location.reload();
         }, 2000);
-        console.log(response);
+        // console.log(response);
 
 
       })

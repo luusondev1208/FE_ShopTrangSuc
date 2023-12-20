@@ -26,17 +26,17 @@ export class ListSizeComponent {
     this.sizeService.getSizes().subscribe(
       (response: any) => {
         this.sizes = response.getAllSize;
-        console.log(this.sizes);
+        // console.log(this.sizes);
   
         // Iterate through each size object
         this.sizes.forEach((sizeObj: any) => {
           // Access the list_size array for each size object
           const listSize = sizeObj.list_size;
-          console.log(listSize);
+          // console.log(listSize);
           
           // Iterate through the list_size array to access individual size details
           listSize.forEach((sizeDetail: any) => {
-            console.log(sizeDetail);
+            // console.log(sizeDetail);
             // Now 'sizeDetail' contains the individual size details
           });
         });
@@ -54,12 +54,12 @@ export class ListSizeComponent {
     var result = confirm(`Bạn có muốn xóa không ?`);
     if (result) {
       // Người dùng đã chọn Đồng ý
-      console.log("Người dùng đã chọn xóa.");
+      // console.log("Người dùng đã chọn xóa.");
       // Gọi hàm xóa hoặc thực hiện các hành động khác tùy ý
       this.sizeService.deleteSize(id).subscribe(
         response => {
           // console.log(response);
-          console.log(response);
+          // console.log(response);
           
           this.nameSize = response.deleteSize.nameSize;
           this.toast.success({ detail: "Thông báo", summary: `xóa thành công thương hiệu: ${this.nameSize}`, duration: 5000, position: "topRight" });
@@ -91,7 +91,7 @@ export class ListSizeComponent {
       item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.sizes = this.filteredList
-    console.log(this.sizes)
+    // console.log(this.sizes)
   }
   
 }

@@ -140,7 +140,7 @@ export class UpdateProductComponent {
   }
   onFilesSelected(event: any) {
     this.selectedImages = event.target.files;
-    console.log(event.target.files);
+    // console.log(event.target.files);
 
   }
 
@@ -148,7 +148,7 @@ export class UpdateProductComponent {
 
     const formData: any = {};
     formData.id = this.product._id;
-    console.log(this.product);
+    // console.log(this.product);
 
     formData.title = this.productForm.value.title || '',
       formData.description = this.productForm.value.description || '',
@@ -158,15 +158,15 @@ export class UpdateProductComponent {
       formData.assess = this.productForm.value.assess || 0,
       formData.category = this.productForm.value.category || '',
       formData.quantity = this.productForm.value.quantity || 0,
-      formData.list_size = this.productForm.value.list_size || '',
+      formData.list_size = this.productForm.value.list_size || ''
       // ... id other form fields ...
-      console.log(formData);
+      // console.log(formData);
 
 
     if (this.selectedImages?.length != 0 && this.selectedImages) {
 
       for (let i = 0; i < this.selectedImages.length; i++) {
-        console.log(this.selectedImages[i]);
+        // console.log(this.selectedImages[i]);
         formData.image = this.selectedImages[i];
       }
     }

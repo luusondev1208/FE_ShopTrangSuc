@@ -27,7 +27,7 @@ export class CouponService {
   }
 
   updateCoupon(coupon: any): Observable<any> {
-    console.log(coupon);
+    // console.log(coupon);
     
     return this.http.put<any>(`${this.API_URL}/update/${coupon.id}`, coupon, this.httpOptions);
   }

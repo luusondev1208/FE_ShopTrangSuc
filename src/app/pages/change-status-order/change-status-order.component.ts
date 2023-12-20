@@ -62,7 +62,7 @@ canChangeStatusXacNhanHang(order: any): boolean {
       this.userService.getUser(userId).subscribe(
         (userData) => {
           this.user = userData.use;
-          console.log(this.user);
+          // console.log(this.user);
 
           // Gọi service để lấy thông tin đơn hàng của người dùng
           this.getOrderDetails(this.user.orders);
@@ -87,16 +87,16 @@ canChangeStatusXacNhanHang(order: any): boolean {
     // Gọi service để lấy thông tin đơn hàng
     this.orderService.getOrderDetails(userOrders).subscribe(
       (response) => {
-        console.log('Dữ liệu đơn hàng:', response);
+        // console.log('Dữ liệu đơn hàng:', response);
 
         // Check if the response is an array
         if (Array.isArray(response.orders)) {
           this.orderDetails = response.orders;
           response.orders.forEach((order: any) => {
-            console.log(order);
+            // console.log(order);
 
             const orderCreationTime = new Date(order.createdAt).getTime();
-            const currentTime = new Date().getTime();
+            const currentTime = new Date().getTime(); 
             const timeDifference = currentTime - orderCreationTime;
 
             // Kiểm tra nếu đã qua 5 ngày, trạng thái không phải 'Đã hủy', 'Đã nhận hàng' và không phải 'Đã giao hàng'
@@ -127,7 +127,7 @@ canChangeStatusXacNhanHang(order: any): boolean {
   updateOrderStatus(orderId: string, newStatus: string) {
     this.orderService.updateOrderStatus(orderId, newStatus).subscribe(
       (response) => {
-        console.log('Hủy đơn hàng thành công:', response);
+        // console.log('Hủy đơn hàng thành công:', response);
         // Gọi lại hàm lấy thông tin đơn hàng để cập nhật dữ liệu mới
         this.getOrderDetails(this.user.orders);
         // Hiển thị thông báo toast
@@ -143,7 +143,7 @@ canChangeStatusXacNhanHang(order: any): boolean {
   updateXacNhanHang(orderId: string, newStatus: string) {
     this.orderService.updateOrderStatus(orderId, newStatus).subscribe(
       (response) => {
-        console.log('Xác nhận hàng thành công:', response);
+        // console.log('Xác nhận hàng thành công:', response);
         // Gọi lại hàm lấy thông tin đơn hàng để cập nhật dữ liệu mới
         this.getOrderDetails(this.user.orders);
         // Hiển thị thông báo toast

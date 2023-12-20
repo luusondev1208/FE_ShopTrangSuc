@@ -38,7 +38,7 @@ export class UpdateCouponComponent {
       const id = String(param.get('id'))
       this.couponService.getCouponid(id).subscribe(
         (respon) => {
-          console.log(respon);
+          // console.log(respon);
           this.couponid = respon.data;
           this.couponForm.patchValue({
             code: respon.data.code,
@@ -52,7 +52,7 @@ export class UpdateCouponComponent {
           })
           
         },
-        (error) => console.log(error.message)
+        // (error) => console.log(error.message)
       );
     });
     this.couponForm = this.formBuilder.group({
@@ -87,7 +87,7 @@ export class UpdateCouponComponent {
       
 
       this.couponService.updateCoupon(coupon).subscribe((respon) => {
-        console.log(respon);
+        // console.log(respon);
         
         this.name = respon.data.name;
         this.toast.success({ detail: "Thông báo", summary: `Sửa thành công, danh mục mới: ${this.name}`, duration: 5000, position: "topRight" });

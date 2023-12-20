@@ -31,13 +31,13 @@ export class UpdateBrandComponent {
       const id = String(param.get('id'))
       this.brandService.get(id).subscribe(
         (response: any) => {  // Adjust the type here if possible
-          console.log(response);
+          // console.log(response);
           this.brand = response.getBrand;
           this.brandForm.patchValue({
             title: this.brand.title,
           });
         },
-        (error) => console.log(error.message)
+        // (error) => console.log(error.message)
       );
     });
     
@@ -50,11 +50,11 @@ export class UpdateBrandComponent {
        
         
       };
-      console.log(brand);
+      // console.log(brand);
       
 
       this.brandService.updateBrand(brand).subscribe((brand) => {
-        console.log(brand);
+        // console.log(brand);
         
         this.title = brand.updateBrand.title;
         this.toast.success({ detail: "Thông báo", summary: `Sửa thành công, thương hiệu mới: ${this.title}`, duration: 5000, position: "topRight" });

@@ -15,7 +15,7 @@ export class SizeService {
   constructor(private http: HttpClient) { }
   
   createSize(size: any): Observable<any> {
-    console.log('Request Payload:', size);
+    // console.log('Request Payload:', size);
     return this.http.post<any>(`${this.API_URL}/add`, size, this.httpOptions);
   }
   getSizes(): Observable<any[]> {

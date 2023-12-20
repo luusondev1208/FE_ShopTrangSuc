@@ -81,9 +81,9 @@ export class ListOderComponent {
   getOrders() {
     this.orderService.getAllOrders()
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.orders = data.response;
-        console.log(this.orders);
+        // console.log(this.orders);
       });
   }
 
@@ -93,9 +93,8 @@ export class ListOderComponent {
       this.updateStatus(orderId, this.selectedNewStatus);
     }
   }
-  getPriceBySize(product: any, size: any) {
-
-    const pr = product.list_size.list_size.find((item: any) => Number(item.name) === Number(size))
+ getPriceBySize(product:any,size:any){
+    const pr = product.list_size.list_size.find((item:any)=>Number(item.name)===Number(size))
     return pr.price
   }
 
@@ -116,7 +115,7 @@ export class ListOderComponent {
   updateStatus(orderId: string, newStatus: string): void {
     this.orderService.updateOrderStatusSendEmail(orderId, newStatus)
       .subscribe((data: any) => {
-        console.log(data);
+        // console.log(data);
         this.getOrders();
 
         this.toast.success({

@@ -30,7 +30,7 @@ export class ListCouponComponent {
   loadData() {
     this.couponService.getAll().subscribe(
       (response: any) => {
-        console.log(response);
+        // console.log(response);
 
         this.coupons = response.data;
 
@@ -41,10 +41,10 @@ export class ListCouponComponent {
         this.coupons.forEach((couponItem: any, index: number) => {
           couponItem.datePart = dateParts[index];
         });
-        console.log(this.coupons);
+        // console.log(this.coupons);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   }
@@ -61,7 +61,7 @@ export class ListCouponComponent {
   deleteCoupon(id: any) {
     this.couponService.deleteCoupon(id).subscribe(
       (response) => {
-        console.log(response);
+        // console.log(response);
 
         this.coupons = this.coupons.filter(
           (data: any) => data._id !== response.deleteCoupon._id

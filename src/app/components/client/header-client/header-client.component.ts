@@ -47,15 +47,15 @@ export class HeaderClientComponent {
         //  console.log(this.products.docs);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
     this.categoryService.getCategories().subscribe( (response: any) =>{
-      console.log(response.getAllCategory);
+      // console.log(response.getAllCategory);
       this.categories= response.getAllCategory
     })
     this.brandService.getBrands().subscribe( (response: any) =>{
-      console.log(response.getAllBrand);
+      // console.log(response.getAllBrand);
       this.brand= response.getAllBrand
     })
   }
@@ -64,7 +64,7 @@ export class HeaderClientComponent {
     this.ButtonAdmin();
     this.userData = JSON.parse(localStorage.getItem('user') || '{}');
     this.idcart = this.userData.cart
-    console.log(this.idcart);
+    // console.log(this.idcart);
     // this.refreshCartData();
 
     // // Set up an interval to refresh the cart data every second until the component is destroyed

@@ -1,4 +1,3 @@
-
 import { BrandService } from 'src/app/service/brand.service';
 import { UserService } from 'src/app/service/user.service';
 import { FeedbackService } from './../../service/feedback.service';
@@ -7,7 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/shared/model/product';
 import { ProductService } from 'src/app/service/product.service';
 import { CartService } from 'src/app/service/cart.service';
-import { ChangeDetectionStrategy, ChangeDetectorRef, NgZone } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  NgZone,
+} from '@angular/core';
 import { sizeOptions } from 'src/app/shared/model/size';
 import { AuthService } from 'src/app/service/auth.service';
 import { NgToastService } from 'ng-angular-popup';
@@ -34,14 +37,16 @@ export class ProductDetailsComponent implements OnInit {
   panelOpenState = false;
   product: any = {};
   imgList: any;
-  user: any = null
+  user: any = null;
   feedbackId: string[] = [];
   feedback: any = {};
   feedbackList: any[] = [];
-  demoProduct: any = {}
-  brandId: any
+  demoProduct: any = {};
+  brandId: any;
   brand: any = {};
-  sizeOption: any[] = Object.values(sizeOptions).filter(value => typeof value === 'number')
+  sizeOption: any[] = Object.values(sizeOptions).filter(
+    (value) => typeof value === 'number'
+  );
   selectedSize: number | null = null;
   productsByCategory: any[] = []; // Thêm mảng để lưu trữ sản phẩm của category
   sizes: any;
@@ -66,16 +71,16 @@ export class ProductDetailsComponent implements OnInit {
     private feedbackService: FeedbackService,
     private userService: UserService,
     private modalService: NgbModal,
-    private sizeService: SizeService,
+    private sizeService: SizeService
   ) {
     config.max = 5;
     activatedRoute.params.subscribe((params) => {
       this.loadProductData(params['id']);
-      this.getRoute(params['id'])
+      this.getRoute(params['id']);
       productService.getProduct(params['id']).subscribe((data) => {
         this.imgList = data.productData.images;
-        this.getFeedbackDetails(data.productData.feedbacks)
-        this.getBrandDetails(data.productData.brand)
+        this.getFeedbackDetails(data.productData.feedbacks);
+        this.getBrandDetails(data.productData.brand);
         this.cdr.detectChanges();
         this.getSizeOptions(this.demoProduct._id);
         this.getProductsByCategory(this.demoProduct.category);
@@ -92,33 +97,32 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
   addproductfrivate(id: any) {
-    this.userService.addPRoductFaveries(id)
-      .subscribe(
-        (response) => {
-          // Handle success
-          console.log('Product added to favorites:', response);
-          this.toast.success({
-            detail: 'Đã thêm sản phẩm vào danh mục yêu thích.',
-            summary: 'Thành công',
-            duration: 5000,
-            position: 'topRight',
-          });
-        },
-        (error) => {
-          // Handle error
-          console.error('Error adding product to favorites:', error);
-          this.toast.error({
-            detail: 'Đã xảy ra lỗi khi thêm sản phẩm vào danh mục yêu thích.',
-            summary: 'Lỗi',
-            duration: 5000,
-            position: 'topRight',
-          });
-        }
-      );
+    this.userService.addPRoductFaveries(id).subscribe(
+      (response) => {
+        // Handle success
+        // console.log('Product added to favorites:', response);
+        this.toast.success({
+          detail: 'Đã thêm sản phẩm vào danh mục yêu thích.',
+          summary: 'Thành công',
+          duration: 5000,
+          position: 'topRight',
+        });
+      },
+      (error) => {
+        // Handle error
+        console.error('Error adding product to favorites:', error);
+        this.toast.error({
+          detail: 'Đã xảy ra lỗi khi thêm sản phẩm vào danh mục yêu thích.',
+          summary: 'Lỗi',
+          duration: 5000,
+          position: 'topRight',
+        });
+      }
+    );
   }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem("user") as string)
+    this.user = JSON.parse(localStorage.getItem('user') as string);
     this.activatedRoute.params.subscribe((params) => {
       this.loadProductData(params['id']);
       this.getRoute(params['id']);
@@ -134,9 +138,8 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
   formValueFeedback = this.formBuilder.group({
-    content: [""],
-  })
-
+    content: [''],
+  });
 
   currentIndex = 0;
 
@@ -148,7 +151,8 @@ export class ProductDetailsComponent implements OnInit {
     return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   }
   prevSlide() {
-    this.currentIndex = (this.currentIndex - 1 + this.imgList.length) % this.imgList.length;
+    this.currentIndex =
+      (this.currentIndex - 1 + this.imgList.length) % this.imgList.length;
   }
   navigateToProductDetail(productId: string) {
     // Navigate to the product details page with the specified product ID
@@ -165,7 +169,7 @@ export class ProductDetailsComponent implements OnInit {
 
     const productId = this.demoProduct._id;
 
-    const size = this.demoSize
+    const size = this.demoSize;
     const quantity = 1;
     if (this.demoQuantity === 0) {
       return this.toast.error({
@@ -177,26 +181,28 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     if (this.authService.checklogin()) {
-      this.cartService.addToCart(productId, size, quantity, user?._id).subscribe(
-        (response) => {
-
-          this.toast.success({
-            detail: 'Sản phẩm đã được thêm vào giỏ hàng.',
-            summary: 'Thành công',
-            duration: 5000,
-            position: 'topRight',
-          });
-        },
-        (error) => {
-          console.error('Add to cart failed', error);
-          this.toast.error({
-            detail: 'Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại sau.',
-            summary: 'Lỗi',
-            duration: 5000,
-            position: 'topRight',
-          });
-        }
-      );
+      this.cartService
+        .addToCart(productId, size, quantity, user?._id)
+        .subscribe(
+          (response) => {
+            this.toast.success({
+              detail: 'Sản phẩm đã được thêm vào giỏ hàng.',
+              summary: 'Thành công',
+              duration: 5000,
+              position: 'topRight',
+            });
+          },
+          (error) => {
+            console.error('Add to cart failed', error);
+            this.toast.error({
+              detail:
+                'Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại sau.',
+              summary: 'Lỗi',
+              duration: 5000,
+              position: 'topRight',
+            });
+          }
+        );
     } else {
       this.router.navigate(['/login']);
       this.toast.info({
@@ -211,7 +217,6 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProduct(id).subscribe((res: any) => {
       this.product = res.productData;
       // console.log(this.product);
-
     });
   }
 
@@ -244,19 +249,27 @@ export class ProductDetailsComponent implements OnInit {
       this.router.navigate(['/cart']);
       return true;
     } else {
-      this.toast.error({ detail: "Thông báo", summary: 'Vui lòng đăng nhập để tiếp tục!', duration: 5000, position: "topRight" });
+      this.toast.error({
+        detail: 'Thông báo',
+        summary: 'Vui lòng đăng nhập để tiếp tục!',
+        duration: 5000,
+        position: 'topRight',
+      });
       this.router.navigate(['/login']);
       return false;
     }
   }
   handleSearch() {
-    this.user = JSON.parse(localStorage.getItem("user") as string);
+    this.user = JSON.parse(localStorage.getItem('user') as string);
     if (!this.user) {
-      this.toastr.info("Bạn cần đăng nhập để thực hiện hàng động này", "Nhắc nhở");
+      this.toastr.info(
+        'Bạn cần đăng nhập để thực hiện hàng động này',
+        'Nhắc nhở'
+      );
       return;
     }
-    if (this.formValueFeedback.value.content == "") {
-      this.toastr.info("Bạn cần nhập nội dung phản hồi", "Cảnh báo");
+    if (this.formValueFeedback.value.content == '') {
+      this.toastr.info('Bạn cần nhập nội dung phản hồi', 'Cảnh báo');
       return;
     }
     if (!this.user.orders || this.user.orders.length === 0) {
@@ -272,62 +285,58 @@ export class ProductDetailsComponent implements OnInit {
     const newValue = {
       content: this.formValueFeedback.value.content,
       productId: this.product._id,
-      userId: this.user._id
+      userId: this.user._id,
     };
 
-    this.feedbackService.create(newValue).subscribe(
-      (resp) => {
-        // Cập nhật form và hiển thị thông báo khi phản hồi đã được xử lý thành công
-        this.formValueFeedback.reset();
-        this.toastr.success(resp.message, 'Chúc mừng');
-        console.log(resp);
+    this.feedbackService.create(newValue).subscribe((resp) => {
+      // Cập nhật form và hiển thị thông báo khi phản hồi đã được xử lý thành công
+      this.formValueFeedback.reset();
+      this.toastr.success(resp.message, 'Chúc mừng');
+      // console.log(resp);
 
+      if (!Array.isArray(this.feedback)) {
+        this.feedback = [];
+      }
 
-        if (!Array.isArray(this.feedback)) {
-          this.feedback = [];
-        }
+      this.userService.getUser(resp.data.userId).subscribe(
+        (userResp) => {
+          const newFeedback = {
+            _id: resp.data._id,
+            userId: resp.data.userId,
+            userName: userResp.use.firstname + ' ' + userResp.use.lastname,
+            productId: resp.data.productId,
+            content: resp.data.content,
+            createdAt: resp.data.createdAt,
+          };
 
+          this.feedback.push(newFeedback);
 
-        this.userService.getUser(resp.data.userId).subscribe(
-          (userResp) => {
+          this.feedback = [...this.feedback];
 
-            const newFeedback = {
-              _id: resp.data._id,
-              userId: resp.data.userId,
-              userName: userResp.use.firstname + ' ' + userResp.use.lastname,
-              productId: resp.data.productId,
-              content: resp.data.content,
-              createdAt: resp.data.createdAt,
-            };
+          this.cdr.detectChanges();
 
-
-            this.feedback.push(newFeedback);
-
-            this.feedback = [...this.feedback];
-
-
-            this.cdr.detectChanges();
-
-            const element = document.getElementById('scroll-to-comment');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth', block: 'end' });
-            }
-          },
-          (userError) => {
-            console.error('Error getting user information:', userError);
+          const element = document.getElementById('scroll-to-comment');
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'end' });
           }
-        );
-      })
+        },
+        (userError) => {
+          console.error('Error getting user information:', userError);
+        }
+      );
+    });
   }
-
 
   getFeedbackDetails(feedbackId: string[]): void {
     this.feedbackService.getFebacks(feedbackId).subscribe(
       async (feedbackDetails: any) => {
         for (const item of feedbackDetails.feeback) {
           try {
-            const userDetails = await this.userService.getUser(item.userId).toPromise();
-            item.userName = userDetails.use.firstname + ' ' + userDetails.use.lastname;
+            const userDetails = await this.userService
+              .getUser(item.userId)
+              .toPromise();
+            item.userName =
+              userDetails.use.firstname + ' ' + userDetails.use.lastname;
             this.cdr.detectChanges();
           } catch (error) {
             console.error('Error getting user details:', error);
@@ -346,8 +355,8 @@ export class ProductDetailsComponent implements OnInit {
       (respons: any) => {
         // console.log(brand);
 
-        this.brand = respons.getBrand
-        console.log(this.brand);
+        this.brand = respons.getBrand;
+        // console.log(this.brand);
       },
       (error) => {
         console.error('Error fetching brand details:', error);
@@ -355,16 +364,17 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
   updatePriceAndQuantity() {
-    const optionSelect = document.getElementById("optionSelect") as HTMLSelectElement;
+    const optionSelect = document.getElementById(
+      'optionSelect'
+    ) as HTMLSelectElement;
     const nameSizeSelect = optionSelect?.value;
 
-    if (nameSizeSelect === "") {
-
+    if (nameSizeSelect === '') {
       this.demoQuantity = 0;
     } else {
-
-      const SizeFInd = this.product.list_size.list_size.find((item: any) => item.name === nameSizeSelect);
-
+      const SizeFInd = this.product.list_size.list_size.find(
+        (item: any) => item.name === nameSizeSelect
+      );
 
       this.demoPrice = SizeFInd.price;
       this.demoSize = SizeFInd.name;
@@ -374,40 +384,47 @@ export class ProductDetailsComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-
   getProductPrice(selectedSize: number | null): any {
     if (selectedSize === null) {
       return 0;
     }
 
-    this.sizeService.getSizes().pipe(
-      switchMap((item: any) => {
-        this.sizes = item.getAllSize;
-        const size = this.sizes.find((sizeItem: any) => sizeItem.name === selectedSize);
-        // console.log(size);
-        return size ? size.price : 0;
-      })
-    ).subscribe((price) => {
-
-      console.log(price);
-    });
+    this.sizeService
+      .getSizes()
+      .pipe(
+        switchMap((item: any) => {
+          this.sizes = item.getAllSize;
+          const size = this.sizes.find(
+            (sizeItem: any) => sizeItem.name === selectedSize
+          );
+          // console.log(size);
+          return size ? size.price : 0;
+        })
+      )
+      .subscribe((price) => {
+        // console.log(price);
+      });
   }
   getProductQuantity(selectedSize: number | null): any {
     if (selectedSize === null) {
       return 0;
     }
 
-    this.sizeService.getSizes().pipe(
-      switchMap((item: any) => {
-        this.sizes = item.getAllSize;
-        const size = this.sizes.find((sizeItem: any) => sizeItem.name === selectedSize);
-        // console.log(size);
-        return size ? size.quantity : 0;
-      })
-    ).subscribe((quantity) => {
-
-      // console.log(quantity);
-    });
+    this.sizeService
+      .getSizes()
+      .pipe(
+        switchMap((item: any) => {
+          this.sizes = item.getAllSize;
+          const size = this.sizes.find(
+            (sizeItem: any) => sizeItem.name === selectedSize
+          );
+          // console.log(size);
+          return size ? size.quantity : 0;
+        })
+      )
+      .subscribe((quantity) => {
+        // console.log(quantity);
+      });
   }
 
   changeMainImage(event: Event, newImage: string) {

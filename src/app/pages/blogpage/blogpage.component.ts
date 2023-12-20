@@ -23,7 +23,7 @@ export class BlogpageComponent {
   loadData() {
     this.blogService.getBlog().subscribe(
       (response: any) => {
-        console.log(response.getBlog);
+        // console.log(response.getBlog);
         
         this.blogs = response.getBlog;
         // console.log(this.products);
@@ -31,7 +31,7 @@ export class BlogpageComponent {
         //  console.log(this.products.docs);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   }

@@ -88,15 +88,10 @@
           <td *ngIf="order.products && order.products.length > 0">
             <div *ngFor="let product of order.products">
               <ng-container *ngIf="product.product">
-                <p>Sản phẩm: {{ product.product.title }}</p>
+                <p>Sản phẩm: {{ product.product.title }} </p>
                 <p>Số lượng: {{ product.quantity }}</p>
-                <p>Size: {{ product.size }}</p>
-                <p>
-                  Giá:
-                  {{
-                    formatPrice(getPriceBySize(product.product, product.size))
-                  }}đ
-                </p>
+                <p>Size: {{product.size}}</p>
+                <p>Giá: {{ formatPrice(product.product.price) }}đ</p>
               </ng-container>
             </div>
           </td>

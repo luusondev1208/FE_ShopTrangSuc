@@ -37,7 +37,7 @@ export class AddUserComponent {
   constructor(private UserService: UserService, private router: Router, private formBuider: FormBuilder, private toast:NgToastService) {}
   onsubmit() {
     this.UserService.addUser(this.users).subscribe((response) => {
-      console.log('danh tai khoan thanh cong: ',response);
+      // console.log('danh tai khoan thanh cong: ',response);
       this.toast.success({ detail: "Thông báo", summary: 'Thêm user thành công!', duration: 5000, position: "topRight" });
       this.router.navigate(['/admin/listUser'])
       
@@ -45,7 +45,7 @@ export class AddUserComponent {
     },
     error => {
       this.toast.error({ detail: "Thông báo", summary: 'Lỗi khi thêm User!', duration: 5000, position: "topRight" });
-      console.log("loi khi them tai khoan: ", error);
+      // console.log("loi khi them tai khoan: ", error);
       // Xử lý lỗi nếu có
     }
     );

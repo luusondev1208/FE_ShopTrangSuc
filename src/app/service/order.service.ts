@@ -25,24 +25,20 @@ export class OrderService {
   }
 
   getOrderDetails(orderIds: string[]): Observable<any> {
-    const url = `${this.apiUrl}/getOrder`; // Thêm "/getOrder" vào URL
+    const url = `${this.apiUrl}/getOrder`;
     return this.http.post<any>(url, { orderIds });
   }
-  // updateStatus(status:any): Observable<any> {
-  //   return this.http.put<any>(`${this.apiUrl}/status`, status);
-  // }
-  
+
   updateOrderStatus(id: string, newStatus: string) {
     const url = `${this.apiUrl}/status/${id}`;
-    const body = { status: newStatus }; // Dữ liệu cần gửi đi để cập nhật trạng thái
+    const body = { status: newStatus };
 
-    return this.http.put(url, body); // Gửi yêu cầu PUT đến API
+    return this.http.put(url, body);
   }
   updateOrderStatusSendEmail(id: string, newStatus: string) {
     const url = `${this.apiUrl}/statusSendEmail/${id}`;
-    const body = { status: newStatus }; // Dữ liệu cần gửi đi để cập nhật trạng thái
-
-    return this.http.put(url, body); // Gửi yêu cầu PUT đến API
+    const body = { status: newStatus };
+    return this.http.put(url, body);
   }
 
   getAllOrders(): Observable<any> {

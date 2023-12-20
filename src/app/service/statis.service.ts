@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -13,10 +13,27 @@ export class StatisService {
       'Authorization', `Bearer ${this.Token}`
     )
   };
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getStatistics(): Observable<any> {
-    return this.http.get<any>(`${this.API_URL}/getStat`, this.httpOptions);
+  getStatistics(startDate?: string, endDate?: string): Observable<any> {
+    let params = new HttpParams();
+    if (startDate) {
+      params = params.set('startDate', startDate);
+    }
+    if (endDate) {
+      params = params.set('endDate', endDate);
+    }
+    return this.http.get<any>(`${this.API_URL}/getStat`, { ...this.httpOptions, params });
   }
+  getTopBuyer(startDate?: string, endDate?: string): Observable<any> {
+    let params = new HttpParams();
+    if (startDate) {
+      params = params.set('startDate', startDate);
+    }
+    if (endDate) {
+      params = params.set('endDate', endDate);
+    }
 
+    return this.http.get<any>(`${this.API_URL}/getTopBuyer`, { ...this.httpOptions, params });
+  }
 }

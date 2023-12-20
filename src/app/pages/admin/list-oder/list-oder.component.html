@@ -1,10 +1,13 @@
-<div class="ml-[400px] pb-[100px] lg:w-[75%] xl:w-[80%] 2xl:w-[85%] ">
+<div class="ml-[400px] pb-[100px] lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
   <!-- orders.component.html -->
 
   <div class="flex items-center justify-between my-3">
     <div>
-     
-      <select class="border px-3 py-1 rounded-xl" id="status" [(ngModel)]="selectedStatus">
+      <select
+        class="border px-3 py-1 rounded-xl"
+        id="status"
+        [(ngModel)]="selectedStatus"
+      >
         <option value="">Tất cả</option>
         <option value="Đợi xác nhận">Đợi xác nhận</option>
         <option value="Đã xác nhận">Đã xác nhận</option>
@@ -13,43 +16,69 @@
         <option value="Đã hủy">Đã hủy</option>
         <!-- Thêm các trạng thái khác nếu cần -->
       </select>
-      <button class="bg-green-500 px-3 mx-3 py-1 rounded-xl ml-2" (click)="filterOrders()">Lọc</button>
+      <button
+        class="bg-green-500 px-3 mx-3 py-1 rounded-xl ml-2"
+        (click)="filterOrders()"
+      >
+        Lọc
+      </button>
     </div>
-    <button (click)="exportexcel()" class="bg-gray-300 w-[100px] mr-[170px] hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-      <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+    <button
+      (click)="exportexcel()"
+      class="bg-gray-300 w-[100px] mr-[170px] hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+    >
+      <svg
+        class="fill-current w-4 h-4 mr-2"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+      </svg>
       <span>Excel </span>
     </button>
-   
   </div>
 
   <div *ngIf="orders.length > 0">
-    <table class="table table-bordered table-striped w-[1050px]" *ngIf="!showloyalCustomer" >
+    <table
+      class="table table-bordered table-striped w-[1050px]"
+      *ngIf="!showloyalCustomer"
+    >
       <thead class="thead-dark">
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Order ID</th>
-          <th scope="col" (click)="sortTable('createdAt')"  class="cursor-pointer">
+          <th
+            scope="col"
+            (click)="sortTable('createdAt')"
+            class="cursor-pointer"
+          >
             Ngày tạo
             <i *ngIf="sortBy === 'createdAt'" class="bi bi-arrow-up-down"></i>
           </th>
-          <th scope="col" (click)="sortTable('name')"  class="cursor-pointer">
+          <th scope="col" (click)="sortTable('name')" class="cursor-pointer">
             Thông tin khách hàng
             <i *ngIf="sortBy === 'name'" class="bi bi-arrow-up-down"></i>
           </th>
-          <th scope="col" >Sản phẩm đã đặt</th>
-          <th scope="col" >Trạng thái</th>
-          <th scope="col" (click)="sortTableByPrice()"  class="cursor-pointer">
+          <th scope="col">Sản phẩm đã đặt</th>
+          <th scope="col">Trạng thái</th>
+          <th scope="col" (click)="sortTableByPrice()" class="cursor-pointer">
             Tổng giá
-            <i class="bi bi-caret-down-fill" *ngIf="sortPriceOrder === 'asc'"></i>
-            <i class="bi bi-caret-up-fill" *ngIf="sortPriceOrder === 'desc'"></i>
+            <i
+              class="bi bi-caret-down-fill"
+              *ngIf="sortPriceOrder === 'asc'"
+            ></i>
+            <i
+              class="bi bi-caret-up-fill"
+              *ngIf="sortPriceOrder === 'desc'"
+            ></i>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of orders, index as i ">
+        <tr *ngFor="let order of orders; index as i">
           <td>{{ i + 1 }}</td>
           <td>{{ order._id }}</td>
-          <td>{{ order.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ order.createdAt | date : "dd/MM/yyyy HH:mm" }}</td>
           <td>
             <p>Người nhận: {{ order.name }}</p>
             <p>Số điện thoại: {{ order.mobile }}</p>
@@ -59,21 +88,30 @@
           <td *ngIf="order.products && order.products.length > 0">
             <div *ngFor="let product of order.products">
               <ng-container *ngIf="product.product">
-                <p>Sản phẩm: {{ product.product.title }} </p>
+                <p>Sản phẩm: {{ product.product.title }}</p>
                 <p>Số lượng: {{ product.quantity }}</p>
-                <p>Size: {{product.size}}</p>
-                <p>Giá: {{ formatPrice(product.product.price) }}đ</p>
+                <p>Size: {{ product.size }}</p>
+                <p>
+                  Giá:
+                  {{
+                    formatPrice(getPriceBySize(product.product, product.size))
+                  }}đ
+                </p>
               </ng-container>
             </div>
           </td>
           <td *ngIf="!order.products || order.products.length === 0">
             <p>No products found.</p>
           </td>
-          
-          <td>
 
-            <select [(ngModel)]="order.status" (change)="updateStatus(order._id, order.status)">
-              <option [value]="order.status" [selected]="true">{{ order.status }}</option>
+          <td>
+            <select
+              [(ngModel)]="order.status"
+              (change)="updateStatus(order._id, order.status)"
+            >
+              <option [value]="order.status" [selected]="true">
+                {{ order.status }}
+              </option>
 
               <option value="Đã xác nhận">Đã xác nhận</option>
               <option value="Đang giao hàng">Đang giao hàng</option>
@@ -81,8 +119,9 @@
               <option value="Đã hủy">Đã hủy</option>
             </select>
           </td>
-          <td>{{ order.totalPrice | currency:'VND':'symbol':'1.0-0' }}</td>
-
+          <td>
+            {{ order.totalPrice | currency : "VND" : "symbol" : "1.0-0" }}
+          </td>
         </tr>
       </tbody>
     </table>

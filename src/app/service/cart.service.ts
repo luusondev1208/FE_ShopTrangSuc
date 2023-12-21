@@ -58,7 +58,22 @@ export class CartService {
 
     return this.http.post<any>(`${this.apiUrl}/addToCart`, cartItem);
   }
+  isProductInCart(productId: string, size: number, userId: string): Observable<boolean> {
+    const cartItem: any = {
+      productId: productId,
+      size: size,
+      userId: userId,
+    };
 
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: cartItem,
+    };
+
+    return this.http.post<boolean>(`${this.apiUrl}/isProductInCart`, null, options);
+  }
 
 
 }

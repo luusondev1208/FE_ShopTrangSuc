@@ -34,6 +34,8 @@ interface SizeResponse {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailsComponent implements OnInit {
+  
+  private cart: any[] = JSON.parse(localStorage.getItem('cart') || '[]');
   editMode = false;
   panelOpenState = false;
   product: any = {};
@@ -162,7 +164,11 @@ export class ProductDetailsComponent implements OnInit {
     // Scroll to the top of the page
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  isProductInCart(productId: string, size: number): boolean {
+    return this.cart.some((item) => item.product === productId && item.size === size);
+  }
   addToCart() {
+    
     const local = localStorage.getItem('user');
     const user: any = local && JSON.parse(local);
     // const selectedSize = (document.querySelector('#sizeSelect') as HTMLSelectElement).value;
@@ -172,6 +178,8 @@ export class ProductDetailsComponent implements OnInit {
     const productId = this.demoProduct._id;
 
     const size = this.demoSize;
+    console.log(size);
+    
     const quantity = 1;
     if (this.demoQuantity === 0) {
       return this.toast.error({
@@ -183,22 +191,27 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     if (this.authService.checklogin()) {
-      this.cartService
-        .addToCart(productId, size, quantity, user?._id)
-        .subscribe(
-          (response) => {
-            this.toast.success({
-              detail: 'Sản phẩm đã được thêm vào giỏ hàng.',
-              summary: 'Thành công',
-              duration: 5000,
-              position: 'topRight',
-            });
-          },
+      this.cartService.addToCart(productId, size, quantity, user?._id).subscribe(
+        (response) => {
+          // Kiểm tra giỏ hàng có giá trị không null trước khi cập nhật localStorage
+          if (response.cart) {
+            user.cart = response.cart; // Giả sử response.cart chứa ID của giỏ hàng
+            localStorage.setItem('user', JSON.stringify(user));
+          } 
+          console.log(response);
+          
+          this.toast.success({
+            detail: 'Sản phẩm đã được thêm vào giỏ hàng.',
+            summary: 'Thành công',
+            duration: 5000,
+            position: 'topRight',
+          });
+        },
           (error) => {
             console.error('Add to cart failed', error);
             this.toast.error({
               detail:
-                'Có lỗi xảy ra khi thêm vào giỏ hàng. Vui lòng thử lại sau.',
+                'Size sản phẩm này đã có trong giỏ hàng, nếu muốn tăng số lượng hàng hãy vào giỏ hàng.',
               summary: 'Lỗi',
               duration: 5000,
               position: 'topRight',
@@ -573,7 +586,30 @@ export class ProductDetailsComponent implements OnInit {
   }
   //do size nhan
   selectedRingSize: string = '0';
-
+  onRatingChange(newRating: number): void {
+    console.log('New Rating:', newRating);
+  
+    // Cập nhật đánh giá sản phẩm
+    this.productService.updateAssess(this.product._id, newRating).subscribe(
+      (response) => {
+        // Nếu cập nhật thành công, cập nhật lại giá trị assess
+        this.product.assess = response.updatedProduct.assess;
+        // Thực hiện các bước khác nếu cần
+      },
+      (error) => {
+        console.error('Error updating product assess:', error);
+        // Log the error details for debugging
+        if (error.error instanceof ErrorEvent) {
+          console.error('Client-side error:', error.error.message);
+        } else {
+          console.error('Server-side error:', error.status, error.error);
+        }
+        // Handle the error based on your application's requirements
+      }
+    );
+  }
+  
+  
   determineRingSize(value: string): string {
     switch (value) {
       case '4.6':

@@ -125,6 +125,16 @@ export class OrderComponent {
 
   ngOnInit(): void {
     this.loadCartItems();
+    const local = localStorage.getItem("user");
+    const user: any = local && JSON.parse(local);
+    this.userLogin = user;
+  
+    // Kiểm tra giỏ hàng trước khi load thông tin đơn hàng
+    if (!user.cart) {
+      // Nếu không có giỏ hàng, chuyển hướng về trang nơi người dùng có thể thêm sản phẩm vào giỏ hàng
+      this.router.navigate(['/']); // Thay đổi đường dẫn tùy thuộc vào cấu trúc của ứng dụng của bạn
+      return;
+    }
   }
 
   getTotalPrice(): number {
@@ -163,9 +173,10 @@ export class OrderComponent {
 
     // Thêm dữ liệu đơn hàng mới vào mảng orders
     userData.orders = [...userData.orders, response.order];
-
+    delete userData.cart;
     // Lưu dữ liệu đã cập nhật trở lại localStorage
     localStorage.setItem("user", JSON.stringify(userData));
+    
         // console.log('Đặt hàng thành công', response);
             this.toast.success({
               detail: 'Đặt hàng thành công',

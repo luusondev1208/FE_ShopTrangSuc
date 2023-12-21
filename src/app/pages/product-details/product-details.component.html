@@ -18,9 +18,10 @@
             </h1>
             <div class="flex items-center justify-between my-3">
               <span class="text-gray-600">{{ product.assess }} đánh giá</span>
-              <ngb-rating class="" [rate]="5" style="color: gold" />
+              <ngb-rating [rate]="product.averageRating" (rateChange)="onRatingChange($event)" style="color: gold"></ngb-rating>
               <span>{{ product.sold }} đã bán</span>
             </div>
+            
 
             <!-- chọn size -->
 

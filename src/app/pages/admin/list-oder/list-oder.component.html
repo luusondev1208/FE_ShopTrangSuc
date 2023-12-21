@@ -9,6 +9,7 @@
         [(ngModel)]="selectedStatus"
       >
         <option value="">Tất cả</option>
+        <option value="Đã nhận hàng">Đã nhận hàng</option>
         <option value="Đợi xác nhận">Đợi xác nhận</option>
         <option value="Đã xác nhận">Đã xác nhận</option>
         <option value="Đang giao hàng">Đang giao hàng</option>
@@ -103,17 +104,20 @@
             <select
               [(ngModel)]="order.status"
               (change)="updateStatus(order._id, order.status)"
+              [@fadeInOut]="'void'"
             >
               <option [value]="order.status" [selected]="true">
                 {{ order.status }}
               </option>
-
-              <option value="Đã xác nhận">Đã xác nhận</option>
-              <option value="Đang giao hàng">Đang giao hàng</option>
-              <option value="Đã giao hàng">Đã giao hàng</option>
-              <option value="Đã hủy">Đã hủy</option>
+              <option value="Đợi xác nhận" [disabled]="order.status === 'Đợi xác nhận' || order.status === 'Đã xác nhận' || order.status === 'Đã nhận hàng' || order.status === 'Đang giao hàng'|| order.status === 'Đã giao hàng' || order.status === 'Đã hủy'">Đợi xác nhận</option>
+              <option value="Đã xác nhận" [disabled]="order.status === 'Đang giao hàng' || order.status === 'Đã giao hàng' || order.status === 'Đã hủy'  || order.status === 'Đã nhận hàng' || order.status === 'Đã xác nhận'" >Đã xác nhận</option>
+              <option value="Đang giao hàng" [disabled]="order.status === 'Đã giao hàng' || order.status === 'Đã hủy' || order.status === 'Đang giao hàng'|| order.status === 'Đã nhận hàng'  ">Đang giao hàng</option>
+              <option value="Đã giao hàng"  [disabled]=" order.status === 'Đã giao hàng'  || order.status === 'Đã hủy'  || order.status === 'Đã nhận hàng'">Đã giao hàng</option>
+              <option value="Đã hủy" [disabled]="order.status === 'Đã giao hàng' || order.status === 'Đã hủy'  || order.status === 'Đã nhận hàng'  || order.status === 'Đang giao hàng' ">Đã hủy</option>
             </select>
           </td>
+          
+          
           <td>
             {{ order.totalPrice | currency : "VND" : "symbol" : "1.0-0" }}
           </td>

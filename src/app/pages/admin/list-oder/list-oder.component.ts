@@ -24,6 +24,7 @@ export class ListOderComponent {
   showloyalCustomer: boolean = false
   title: any
   user: any
+  previousStatus: string = '';
   searchTerm: string = '';
   constructor(private orderService: OrderService, private userService: UserService, private toast: NgToastService, private route: ActivatedRoute) {
 

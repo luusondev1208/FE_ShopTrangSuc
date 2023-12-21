@@ -124,12 +124,20 @@ export class CartComponent implements OnInit {
   handleQuantityInput(cartItem: CartItem): void {
     const availableQuantity = this.getQuantityBySize(cartItem.product, cartItem.size);
 
-
+    // Ensure that the input quantity does not exceed the available quantity
     if (cartItem.quantity > availableQuantity) {
       cartItem.quantity = availableQuantity;
+
+      // Show a warning toast
+      this.toast.warning({
+        detail: 'Số lượng vượt quá số lượng còn lại trong kho.',
+        summary: 'Cảnh báo',
+        duration: 5000,
+        position: 'topRight',
+      });
     }
 
-
+    // Update the cart item immediately
     this.updateCartItem(cartItem, cartItem.quantity);
   }
   increaseQuantity(cartItem: CartItem, quantity: any): void {

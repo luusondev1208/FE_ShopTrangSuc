@@ -43,11 +43,12 @@
                 -
               </button>
               <input
-                [max]="item.product.quantity"
-                type="number"
-                class="form-control text-center"
-                [value]="item.quantity"
-              />
+              [max]="getQuantityBySize(item.product, item.size)"
+              type="number"
+              class="form-control text-center"
+              [(ngModel)]="item.quantity"
+              (input)="handleQuantityInput(item)"
+            />
               <button
                 class="btn btn-outline-secondary"
                 type="button"

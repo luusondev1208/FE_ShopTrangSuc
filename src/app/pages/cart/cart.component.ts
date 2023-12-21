@@ -117,6 +117,21 @@ export class CartComponent implements OnInit {
     const formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
     return formattedPrice;
   }
+  updateQuantity(cartItem: CartItem): void {
+
+    this.updateCartItem(cartItem, cartItem.quantity);
+  }
+  handleQuantityInput(cartItem: CartItem): void {
+    const availableQuantity = this.getQuantityBySize(cartItem.product, cartItem.size);
+
+
+    if (cartItem.quantity > availableQuantity) {
+      cartItem.quantity = availableQuantity;
+    }
+
+
+    this.updateCartItem(cartItem, cartItem.quantity);
+  }
   increaseQuantity(cartItem: CartItem, quantity: any): void {
     const qty = this.getQuantityBySize(cartItem.product, cartItem.size)
 

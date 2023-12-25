@@ -30,16 +30,16 @@
               <tbody>
                 <tr *ngFor="let comment of comments; let i = index" class="bg-gray-100 border-b">
                   <td class="px-6  whitespace-nowrap text-sm text-gray-900">{{i+1}}</td>
-                  <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2  whitespace-nowrap">
                     {{comment.feedback.createdAt | date : "dd/MM/yyyy HH:mm" }}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                     {{comment.feedback.content}}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 whitespace-nowrap">
+                  <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                     {{ comment.product.title }}
                   </td>
-                  <td class="text-sm text-gray-900 font-light pl-12  whitespace-nowrap space-x-4">
+                  <td class="text-sm text-gray-900 font-light pl-12 py-2  whitespace-nowrap space-x-4">
                     <button (click)="deleteComment(comment.feedback._id)" 
                       class="hover:text-red-500">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill ml-8" viewBox="0 0 16 16">

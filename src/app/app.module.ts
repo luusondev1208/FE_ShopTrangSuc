@@ -74,6 +74,8 @@ import { UpdateSizeComponent } from './pages/admin/size/update-size/update-size.
 import { AddSizeComponent } from './pages/admin/size/add-size/add-size.component';
 import { ListproductfaveriesComponent } from './pages/listproductfaveries/listproductfaveries.component';
 import { ListcommentComponent } from './pages/admin/comment/listcomment/listcomment.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -156,6 +158,8 @@ import { ListcommentComponent } from './pages/admin/comment/listcomment/listcomm
     ToastNoAnimationModule.forRoot(),
     BrowserAnimationsModule, 
     MatExpansionModule,
+    MatTableModule,
+    MatCheckboxModule,
     // required animations module
     // NgbPaginationModule,
     // NgbAlertModule,

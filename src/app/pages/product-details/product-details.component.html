@@ -510,7 +510,7 @@
                 rows="4" placeholder="Nhập nội dung"></textarea>
               <br />
               <div class="absolute -mt-10 flex justify-between items-center">
-                <ngb-rating class="absolute my-3 text-[25px] ml-2" [rate]="5" style="color: gold" />
+                
 
                 <button
                   class="px-[25px] py-[6px] ml-[920px] text-white rounded bg-blue-500 hover:bg-blue-600 justify-end">
@@ -534,10 +534,10 @@
                         <a href="#" class="hover:underline text-xl font-bold">
                           <small>{{ item.userName }}</small>
                         </a>
-                        <div class="text-xs">
+                        <div class="text-xs py-2">
                           {{ item.content }}
                         </div>
-                        <ngb-rating class="" [rate]="5" style="color: gold"></ngb-rating>
+                      
                       </div>
                     
 
@@ -549,7 +549,7 @@
                         <div class="text-xs">
                           <textarea [(ngModel)]="item.content"></textarea>
                         </div>
-                        <ngb-rating class="" [rate]="5" style="color: gold"></ngb-rating>
+                        
                       </div>
                       <div *ngIf="item.editMode" class="absolute bot-0 right-0 mt-2 mr-2 flex ">
                         <button (click)="saveCommentEdit(item)" class="inline-block px-[25px] py-[6px] text-white rounded bg-blue-500 hover:bg-blue-600">Lưu</button>

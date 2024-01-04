@@ -19,15 +19,15 @@ export class ChangeStatusOrderComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private toastService: ToastrService
-  ) {}
+  ) { }
   scrollY = 0;
   canChangeStatus(order: any): boolean {
     return order.status !== 'Đã giao hàng' && order.status !== 'Đã hủy' && order.status !== 'Đã nhận hàng';
-}
+  }
 
-canChangeStatusXacNhanHang(order: any): boolean {
+  canChangeStatusXacNhanHang(order: any): boolean {
     return (order.status === 'Đã giao hàng') && order.status !== 'Đã hủy';
-}
+  }
 
 
 
@@ -77,9 +77,9 @@ canChangeStatusXacNhanHang(order: any): boolean {
     });
 
   }
-  
-  getPriceBySize(product:any,size:any){
-    const pr = product.list_size.list_size.find((item:any)=>Number(item.name)===Number(size))
+
+  getPriceBySize(product: any, size: any) {
+    const pr = product.list_size.list_size.find((item: any) => Number(item.name) === Number(size))
     return pr.price
   }
 
@@ -96,7 +96,7 @@ canChangeStatusXacNhanHang(order: any): boolean {
             // console.log(order);
 
             const orderCreationTime = new Date(order.createdAt).getTime();
-            const currentTime = new Date().getTime(); 
+            const currentTime = new Date().getTime();
             const timeDifference = currentTime - orderCreationTime;
 
             // Kiểm tra nếu đã qua 5 ngày, trạng thái không phải 'Đã hủy', 'Đã nhận hàng' và không phải 'Đã giao hàng'
@@ -125,7 +125,7 @@ canChangeStatusXacNhanHang(order: any): boolean {
   }
 
   updateOrderStatus(orderId: string, newStatus: string) {
-    this.orderService.updateOrderStatus(orderId, newStatus).subscribe(
+    this.orderService.updateOrderStatusSendEmail(orderId, newStatus).subscribe(
       (response) => {
         // console.log('Hủy đơn hàng thành công:', response);
         // Gọi lại hàm lấy thông tin đơn hàng để cập nhật dữ liệu mới

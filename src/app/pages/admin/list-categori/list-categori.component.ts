@@ -9,6 +9,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import * as XLSX from 'xlsx';
 import { SelectionModel } from '@angular/cdk/collections';
+import { UpdateCategoriComponent } from '../update-categori/update-categori.component';
+import { DialogRef } from '@angular/cdk/dialog';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -29,7 +31,7 @@ export class ListCategoriComponent {
   // Khởi tạo dataSource với dữ liệu ban đầu là mảng rỗng
   dataSource = new MatTableDataSource<any>(this.categories);
   title: any
-  constructor(private categoryService: CategoryService, private router: Router, private toast:NgToastService) {
+  constructor(private modalService: NgbModal, private categoryService: CategoryService, private router: Router, private toast:NgToastService) {
     this.categoryService.getCategories().subscribe(
       (response:any) => {
         this.categories = response.getAllCategory;
@@ -121,4 +123,47 @@ export class ListCategoriComponent {
     /*save to file*/
     XLSX.writeFile(wb, this.fileName);
   }
+
+  deleteSelectedRows(): void {
+    const selectedRows = this.selection.selected;
+
+    selectedRows.forEach(row => {
+      this.categoryService.deleteCategory(row._id).subscribe(() => {
+        // Xóa dữ liệu thành công từ DB, cập nhật giao diện người dùng
+        const index = this.dataSource.data.findIndex(d => d._id === row._id);
+        
+        if (index > -1) {
+          this.dataSource.data.splice(index, 1);
+          this.dataSource._updateChangeSubscription(); // Cập nhật sự thay đổi
+        }
+      });
+    });
+
+    this.selection.clear();
+  }
+  selectedRowData:any
+  show:any
+  openFormUpdate(id: number) {
+    let data = this.categories.find((cate: any) => cate._id == id);
+    console.log(data);
+    
+    const modalRef = this.modalService.open(UpdateCategoriComponent, {
+      centered: true,
+      size: 'xl',
+      backdrop: 'static',
+    });
+  
+    (modalRef.componentInstance as any).data = data;
+
+    // Kiểm tra this.selectedRowData để đảm bảo dữ liệu đã được gán thành công
+    console.log((modalRef.componentInstance as any).data);
+  
+  }
+  
+    // Phương thức để hiển thị form cập nhật và truyền dữ liệu
+    submitUpdateForm(rowData: any): void {
+      this.selectedRowData = { ...rowData }; // Sao chép dữ liệu của hàng được chọn vào biến selectedRowData
+      // Hiển thị form cập nhật
+    }
+  
 }

@@ -76,8 +76,8 @@ import { ListproductfaveriesComponent } from './pages/listproductfaveries/listpr
 import { ListcommentComponent } from './pages/admin/comment/listcomment/listcomment.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -160,6 +160,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatExpansionModule,
     MatTableModule,
     MatCheckboxModule,
+    MatButtonModule,
+    MatDividerModule,
     // required animations module
     // NgbPaginationModule,
     // NgbAlertModule,

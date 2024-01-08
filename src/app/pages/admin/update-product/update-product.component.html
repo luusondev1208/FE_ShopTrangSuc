@@ -380,7 +380,7 @@
                   >
                     Vui lòng nhập price sản phẩm trên 6 ký tự
                   </p>
-                  <!-- </div>
+                </div>
               <div class="relative ">
                 <p class="bg-white  pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600
                     ">Đánh giá</p>
@@ -405,9 +405,37 @@
             (productForm.get('assess')?.touched || productForm.get('assess')?.dirty)
             "
             >
-            Vui lòng nhập assess sản phẩm trên 6 ký tự -->
-                  <!-- </p> -->
+            Vui lòng nhập assess sản phẩm trên 6 ký tự
+                  </p> 
                 </div>
+                <div class="relative ">
+                  <p class="bg-white  pr-2 pl-2 -mb-3 -mb-10 ml-2 font-medium text-gray-600
+                      ">dã ban</p>
+                  <input
+                  formControlName="sold"
+                    type="number"
+                    name="sold"
+                    id="sold" placeholder="sold" class="border placeholder-gray-400 focus:outline-none
+                      focus:border-black w-full pt-3 pr-4 pb-3 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
+                      border-gray-300 rounded-md"/>
+                      <p class="text-red-500"
+              *ngIf="
+              productForm.get('sold')?.hasError('required')&&
+              (productForm.get('sold')?.touched || productForm.get('sold')?.dirty)
+              "
+              >
+             Vui lòng nhập sold sản phẩm
+              </p>
+              <p class="text-red-500"
+              *ngIf="
+              productForm.get('sold')?.hasError('minlength')&&
+              (productForm.get('sold')?.touched || productForm.get('sold')?.dirty)
+              "
+              >
+              Vui lòng nhập sold sản phẩm trên 6 ký tự
+                    </p> 
+                  </div>
+                
               </div>
               <div class="relative">
                 <p

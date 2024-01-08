@@ -1,10 +1,10 @@
 <!-- slideshow -->
 <div class="xl:slideshow">
-  <div class=" md:w-[700px] md:mx-auto">
+  <div class="w-[50%] ml-[28%]">
     <form
     (submit)="handleSearch()"
     [formGroup]="formValueSearch"
-      class="md:w-[588px] ml-[50px] md:ml-[50px]  w-[300px] h-[40px] bg-[#f3f3f3] rounded-[999px] flex items-center"
+      class="md:w-[588px] ml-[50px] md:ml-[40px]  w-[300px] h-[40px] bg-[#f3f3f3] rounded-[999px] flex items-center"
       action
     >
       <input
@@ -62,7 +62,7 @@
      
     </div>
   </div>
-  <div class="md:flex xl:grid-cols-5 grid grid-cols-2 gap-4 md:mx-[190px] md:ml-[250px] md:pt-10">
+  <div class="md:flex xl:grid-cols-5 grid grid-cols-2 gap-4 ml-[20%] md:pt-10">
     <!-- Sorting options -->
     <select class="custom-select mt-3 md:mt-0" [(ngModel)]="sort" [ngModelOptions]="{standalone: true}">
       <option value="" disabled selected hidden>Giá</option>

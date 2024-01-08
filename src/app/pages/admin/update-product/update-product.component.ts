@@ -67,6 +67,7 @@ export class UpdateProductComponent {
             title: product.productData.title,
             price: product.productData.price,
             assess: product.productData.assess,
+            sold: product.productData.sold,
             priceroot: product.productData.priceroot,
             // images: product.productData.images,
             imageschange: product.productData.images,
@@ -130,6 +131,7 @@ export class UpdateProductComponent {
       priceroot: ['', [Validators.required, Validators.min(0)]],
       price: ['', [Validators.required, Validators.min(0)]],
       assess: ['', [Validators.required, Validators.min(0)]],
+      sold: ['', [Validators.required, Validators.min(0)]],
       images: ['', [Validators.required]], // Add the required validator for images
       brand: [''], // Set a default value or remove it if not needed
       description: ['', [Validators.required, Validators.minLength(6)]],
@@ -156,6 +158,7 @@ export class UpdateProductComponent {
       formData.priceroot = this.productForm.value.priceroot || 0,
       formData.price = this.productForm.value.price || 0,
       formData.assess = this.productForm.value.assess || 0,
+      formData.sold = this.productForm.value.sold || 0,
       formData.category = this.productForm.value.category || '',
       formData.quantity = this.productForm.value.quantity || 0,
       formData.list_size = this.productForm.value.list_size || ''

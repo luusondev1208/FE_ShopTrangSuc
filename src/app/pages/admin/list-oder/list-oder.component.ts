@@ -84,7 +84,7 @@ export class ListOderComponent {
       .subscribe(data => {
         // console.log(data);
         this.orders = data.response;
-        // console.log(this.orders);
+        console.log(this.orders);
       });
   }
 
@@ -104,6 +104,7 @@ export class ListOderComponent {
       this.orderService.getOrdersByStatus(this.selectedStatus)
         .subscribe(data => {
           this.orders = data.orders;
+      
 
         });
     } else {
@@ -150,46 +151,40 @@ export class ListOderComponent {
   }
   exportRowToPDF(order: any): void {
     const doc = new jsPDF();
-    const columns = ['ID', 'Name', 'Address', 'SDT'];
     const rows = [];
-
-    rows.push([order._id, order.name, order.address, order.phone]);
+    rows.push([order.name, order.address, order.phone]);
 
     const cellWidth = 40;
     const cellHeight = 10;
-    const startY = 20;
+    const startY = 10;
     const margin = 20;
     const pageWidth = doc.internal.pageSize.width - 2 * margin;
 
 
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    doc.text('HÓA ĐƠN BÁN HÀNG SHOP NRO', margin, margin);
+    doc.text('NRO SHOP SALES INVOICE', margin, margin);
     doc.setLineWidth(0.1);
     doc.line(margin, margin + 5, margin + pageWidth, margin + 5);
 
 
-    for (let i = 0; i < columns.length; i++) {
-      doc.text(columns[i], margin + i * cellWidth, startY + cellHeight);
-    }
-
-
-    for (let i = 0; i < rows.length; i++) {
-      const rowData = rows[i];
-      for (let j = 0; j < rowData.length; j++) {
-        doc.text(String(rowData[j]), margin + j * cellWidth, startY + (i + 2) * cellHeight);
-      }
-    }
+    
 
     let additionalInfoY = startY + rows.length * (cellHeight + 25);
-
-
+    
+   const title: String = "Shop NRO"
+   const addressWithoutDiacritics = this.removeDiacritics(order.address);
+    console.log(addressWithoutDiacritics);
     const additionalInfo: any = {
-      'Tổng tiền': order.totalPrice,
-      'Ngày bán hàng': new Date().toLocaleDateString(),
-      'Người bán hàng': 'Shop Trang Sức NRO',
+      'Total price': order.totalPrice,
+      'Name': order.name,
+      'Phone': order.mobile,
+      'Adrees': addressWithoutDiacritics,
+      'Note': order.note,
+      'Day for sales': new Date().toLocaleDateString(),
+      'Salesman': title,
     };
-
+    
     for (const key in additionalInfo) {
       doc.text(key + ': ' + additionalInfo[key], margin, additionalInfoY);
       additionalInfoY += cellHeight;
@@ -197,7 +192,11 @@ export class ListOderComponent {
 
     doc.save('hoadonbanhang.pdf');
   }
+  removeDiacritics(str: string): string {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
   formatPrice(num: number | string) {
     return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   }
+
 }

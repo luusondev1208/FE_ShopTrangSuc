@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { forkJoin } from 'rxjs';
+import { forkJoin, map } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { OrderService } from 'src/app/service/order.service';
 import { UserService } from 'src/app/service/user.service';
@@ -85,6 +85,7 @@ export class ListOderComponent {
         // console.log(data);
         this.orders = data.response;
         console.log(this.orders);
+        
       });
   }
 
@@ -152,11 +153,10 @@ export class ListOderComponent {
   exportRowToPDF(order: any): void {
     const doc = new jsPDF();
     const rows = [];
-    rows.push([order.name, order.address, order.phone]);
 
     const cellWidth = 40;
     const cellHeight = 10;
-    const startY = 10;
+    const startY = 30;
     const margin = 20;
     const pageWidth = doc.internal.pageSize.width - 2 * margin;
 
@@ -174,14 +174,18 @@ export class ListOderComponent {
     
    const title: String = "Shop NRO"
    const addressWithoutDiacritics = this.removeDiacritics(order.address);
+   const titleWithoutDiacritics = this.removeDiacritics(order.products[0].product ? order.products[0].product.title : "No Name");
     console.log(addressWithoutDiacritics);
     const additionalInfo: any = {
-      'Total price': order.totalPrice,
       'Name': order.name,
-      'Phone': order.mobile,
       'Adrees': addressWithoutDiacritics,
+      'Phone': order.mobile,
+      'title': titleWithoutDiacritics,
+      'Total price': order.totalPrice,
       'Note': order.note,
       'Day for sales': new Date().toLocaleDateString(),
+      'quantity': order.products?.[0].quantity,
+      'size': order.products?.[0].size,
       'Salesman': title,
     };
     
@@ -195,6 +199,7 @@ export class ListOderComponent {
   removeDiacritics(str: string): string {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
+  
   formatPrice(num: number | string) {
     return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   }

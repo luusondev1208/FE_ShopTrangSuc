@@ -78,7 +78,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let order of orders; index as i">
-          <td>{{ i + 1 }}</td>
+          <td>{{ i + 1 }}  </td>
           <td>{{ order._id }}</td>
           <td>{{ order.createdAt | date : "dd/MM/yyyy HH:mm" }}</td>
           <td>
@@ -134,3 +134,4 @@
     <p>Không có sản phẩm cần tìm.</p>
   </div>
 </div>
+

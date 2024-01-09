@@ -156,20 +156,16 @@ export class ListOderComponent {
 
     const cellWidth = 40;
     const cellHeight = 10;
-    const startY = 30;
+    const startY = 40;
     const margin = 20;
     const pageWidth = doc.internal.pageSize.width - 2 * margin;
 
-
+    doc.setFont('helvetica', 'normal');
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
     doc.text('NRO SHOP SALES INVOICE', margin, margin);
     doc.setLineWidth(0.1);
     doc.line(margin, margin + 5, margin + pageWidth, margin + 5);
-
-
-    
-
     let additionalInfoY = startY + rows.length * (cellHeight + 25);
     
    const title: String = "Shop NRO"

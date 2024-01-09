@@ -159,7 +159,7 @@
             </ng-template>
             <div class="flex mt-6 items-center">
               <div *ngIf="sizeOption.length > 0" class="flex items-center">
-                <span class="mr-3" style="width: 70px; margin-bottom: 27px">Kích thước</span>
+               
                 <div class="relative">
                   <select id="optionSelect"
                     class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10"
@@ -169,7 +169,7 @@
                       {{ size.name }}
                     </option>
                   </select>
-                  <p *ngIf="product.list_size.list_size" class="margin-top: 3px; margin-left: 20px">
+                  <p *ngIf="product.list_size.list_size" class="pt-3 margin-left: 2px">
                     Số lượng: {{ demoQuantity > 0 ? demoQuantity : 0 }}
                   </p>
                   <span
@@ -186,7 +186,7 @@
                       font-style: italic;
                       font-size: 13px;
                       color: goldenrod;
-                      width: 100px;
+                      width: 120px;
                       margin-bottom: 27px;
                     ">
                     Cách đo size

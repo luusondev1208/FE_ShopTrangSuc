@@ -73,7 +73,7 @@
               *ngIf="sortPriceOrder === 'desc'"
             ></i>
           </th>
-          <th>export PDF</th>
+          <th scope="col" class="w-[%]">export PDF</th>
         </tr>
       </thead>
       <tbody>
@@ -124,7 +124,7 @@
             {{ order.totalPrice | currency : "VND" : "symbol" : "1.0-0" }}
           </td>
           <td>
-            <button (click)="exportRowToPDF(order)" class="bg-red-500 px-3 py-2 rounded"> PDF</button>
+            <button (click)="exportRowToPDF(order)" class="text-white hover:bg-red-500 bg-red-400 px-4 py-2 rounded mx-3"> PDF</button>
           </td>
         </tr>
       </tbody>

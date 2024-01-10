@@ -506,14 +506,14 @@
           </h2>
           <div *ngIf="user">
             <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
-              <textarea formControlName="content" class="border-[1px] border-[gray] outline-none p-[12px]" cols="133"
+              <textarea formControlName="content" class="border-[1px] border-[gray] outline-none p-[12px]  rounded-lg" cols="133"
                 rows="4" placeholder="Nhập nội dung"></textarea>
               <br />
-              <div class="absolute -mt-10 flex justify-between items-center">
+              <div class="absolute -mt-10 flex justify-between items-center ">
                 
 
                 <button
-                  class="px-[25px] py-[6px] ml-[920px] text-white rounded bg-blue-500 hover:bg-blue-600 justify-end">
+                  class="px-[25px] py-[5px] ml-[910px] text-white rounded bg-blue-500 hover:bg-blue-600 justify-end">
                   Gửi
                 </button>
               </div>

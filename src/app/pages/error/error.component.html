@@ -1,30 +1,86 @@
-<table class="example-table mat-elevation-z8" mat-table recycleRows [dataSource]="dataSource">
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-  
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-    </ng-container>
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
-  
+
+<div class="frame">
+  <div class="card">
+  	<div class="header">
+			<span class="title big">Weekly report</span>
+			<span class="date small">01. Feb - 07. Feb</span>
+			<span class="type small">Revenue</span>
+			<span class="value">3621.79</span>
+		</div>
+		<div class="clearfix"></div>
+		<div class="parameter">
+			<span class="red">Views</span>
+			<span class="blue">Purchases</span>
+		</div>
+		<div class="statistic">
+			<div class="line-1"></div>
+			<div class="line-2"></div>
+			<div class="line-3"></div>
+			<div class="data red">
+				<svg>
+					<polyline points="9,46 50,12 90,23 130,11 171,38 211,48 251,19"></polyline>    
+				</svg>
+				<div class="points">
+					<div class="point-1">
+						<div class="tooltip">458</div>
+					</div>
+					<div class="point-2">
+						<div class="tooltip">812</div>
+					</div>
+					<div class="point-3">
+						<div class="tooltip">746</div>
+					</div>
+					<div class="point-4">
+						<div class="tooltip">877</div>
+					</div>
+					<div class="point-5">
+						<div class="tooltip">517</div>
+					</div>
+					<div class="point-6">
+						<div class="tooltip">434</div>
+					</div>
+					<div class="point-7">
+						<div class="tooltip">458</div>
+					</div>
+				</div>
+			</div>
+			<div class="data blue">
+				<svg>
+					<polyline points="9,61 50,50 90,65 130,55 171,61 211,74 251,64"></polyline>    
+				</svg>
+				<div class="points">
+					<div class="point-1">
+						<div class="tooltip">26</div>
+					</div>
+					<div class="point-2">
+						<div class="tooltip">41</div>
+					</div>
+					<div class="point-3">
+						<div class="tooltip">22</div>
+					</div>
+					<div class="point-4">
+						<div class="tooltip">36</div>
+					</div>
+					<div class="point-5">
+						<div class="tooltip">25</div>
+					</div>
+					<div class="point-6">
+						<div class="tooltip">13</div>
+					</div>
+					<div class="point-7">
+						<div class="tooltip">20</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="days">
+			<span class="day">Mon</span>
+			<span class="day">Tue</span>
+			<span class="day">Wed</span>
+			<span class="day">Thu</span>
+			<span class="day">Fri</span>
+			<span class="day">Sat</span>
+			<span class="day">Sun</span>
+		</div>
+  </div>
+</div>

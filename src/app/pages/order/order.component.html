@@ -20,8 +20,8 @@
 
       <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Giỏ hàng</span>
+          <h4 class="d-flex justify-content-between align-items-center mb-3 font-bold">
+            <span class=" text-xl font-medium">Giỏ hàng</span>
             <span class="badge badge-secondary badge-pill">2</span>
           </h4>
           <ul class="list-group mb-3">
@@ -34,7 +34,7 @@
             <input type="hidden" name="sanphamgiohang[1][soluong]" value="2" />
 
             <li
-              class="list-group-item d-flex justify-content-between lh-condensed"
+              class="list-group-item d-flex  lh-condensed w-[110%]"
               *ngFor="let item of cartItems.products"
             >
               <div class="w-full md:w-40 mr-5">
@@ -47,21 +47,22 @@
               <div>
                 <h4 class="my-0">{{ item.product.title }}</h4>
                 <br />
-                <h3 class="text-muted">
+                <h3 class="text-muted ">
                   {{ formatPrice(getPriceBySize(item.product, item.size)) }} x
                   {{ item.quantity }}
                 </h3>
                 <h3 class="text-muted">Size: {{ item.size }}</h3>
+                <span class="font-medium">{{
+                  formatPrice(getPriceBySize(item.product, item.size))
+                }}</span>
               </div>
-              <span class="text-muted">{{
-                formatPrice(getPriceBySize(item.product, item.size))
-              }}</span>
+              
             </li>
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex justify-content-between w-[110%]">
               <span>Tạm tính</span>
               <strong>{{ formatPrice(getTotalPrice()) }}</strong>
             </li>
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex justify-content-between w-[110%]">
               <div class="flex justify-between items-center w-full">
                 <p class="text-base dark:text-gray-950 leading-4 text-gray-800">
                   Mã giảm giá
@@ -91,14 +92,14 @@
               </div>
             </li>
 
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex justify-content-between w-[110%]">
               <span>Tổng thành tiền</span>
               <strong>{{ formatPrice(calculatePrice()) }}</strong>
             </li>
           </ul>
         </div>
         <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Thông tin khách hàng</h4>
+          <p class="mb-3 text-xl font-medium">Thông tin khách hàng</p>
 
           <div class="row">
             <div class="col-md-12">
@@ -116,7 +117,7 @@
                 {{ validationMessages["name"] }}
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 my-2">
               <label for="kh_diachi">Địa chỉ</label>
               <input
                 type="text"
@@ -147,7 +148,7 @@
               </div>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12 my-2">
               <label for="kh_email">Email</label>
               <input
                 type="text"
@@ -180,7 +181,7 @@
             </div>
           </div>
 
-          <h4 class="mb-3">Hình thức thanh toán</h4>
+          <h4 class="my-4">Hình thức thanh toán</h4>
 
           <div class="d-block my-3" (change)="paymentMethod($event)">
             <div class="custom-control custom-radio">

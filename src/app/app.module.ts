@@ -78,6 +78,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -162,10 +163,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatCheckboxModule,
     MatButtonModule,
     MatDividerModule,
-    // required animations module
-    // NgbPaginationModule,
-    // NgbAlertModule,
-    
+    NgChartsModule,
     ToastrModule.forRoot(
 
       {

@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
-
+import { Chart } from 'chart.js';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -28,6 +28,31 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./error.component.scss'],
 })
 export class ErrorComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  public lineChartData = [
+    { data: [10, 15, 7, 12, 18, 6, 22, 11, 10, 8, 23, 30], label: 'Doanh số bán hàng' }
+  ];
+
+  public lineChartLabels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5','Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10','Tháng 11', 'Tháng 12',];
+
+  public lineChartOptions: any = {
+    responsive: true,
+  };
+
+  public lineChartColors: any[] = [
+    {
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 2,
+      fill: false
+    }
+  ];
+
+  
+
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+
+  // bieudoduong
+  
+
+  
 }

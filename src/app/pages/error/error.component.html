@@ -84,3 +84,20 @@
 		</div>
   </div>
 </div>
+<div style="width: 400px; height: 400px;">
+	<canvas id="myChart"></canvas>
+  </div>
+
+  <!-- Biểu đồ cột -->
+   <div style="display: block;" class="w-[50%]">
+      <canvas baseChart
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [legend]="lineChartLegend">
+      </canvas>
+    </div>
+
+	<!-- biểu đồ đường -->
+	
+  

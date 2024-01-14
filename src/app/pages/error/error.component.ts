@@ -46,6 +46,24 @@ export class ErrorComponent {
     }
   ];
 
+
+  public lineChartDatas = [
+    { data: [10, 15, 7, 12, 18, 6, 22, 11, 10, 8, 23, 30], label: 'Doanh số bán cứt' }
+  ];
+
+  public lineChartLabelss = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5','Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10','Tháng 11', 'Tháng 12',];
+
+  public lineChartOptionss: any = {
+    responsive: true,
+  };
+
+  public lineChartColorss: any[] = [
+    {
+      borderColor: 'rgba(255, 0, 0, 1)',
+      borderWidth: 2,
+      fill: false
+    }
+  ];
   
 
   public lineChartLegend = true;
@@ -53,6 +71,13 @@ export class ErrorComponent {
 
   // bieudoduong
   
+  ngOnInit(){
+    this.currentStatistical = 'statistical1';
+  }
+  currentStatistical: string | null = null;
 
+  statistical2() {
+    this.currentStatistical = 'statistical2';
+  }
   
 }

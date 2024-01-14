@@ -1,103 +1,467 @@
 
-<div class="frame">
-  <div class="card">
-  	<div class="header">
-			<span class="title big">Weekly report</span>
-			<span class="date small">01. Feb - 07. Feb</span>
-			<span class="type small">Revenue</span>
-			<span class="value">3621.79</span>
-		</div>
-		<div class="clearfix"></div>
-		<div class="parameter">
-			<span class="red">Views</span>
-			<span class="blue">Purchases</span>
-		</div>
-		<div class="statistic">
-			<div class="line-1"></div>
-			<div class="line-2"></div>
-			<div class="line-3"></div>
-			<div class="data red">
-				<svg>
-					<polyline points="9,46 50,12 90,23 130,11 171,38 211,48 251,19"></polyline>    
-				</svg>
-				<div class="points">
-					<div class="point-1">
-						<div class="tooltip">458</div>
+<!-- Biểu đồ cột -->
+
+
+<!-- biểu đồ đường -->
+<div id="main-content" class="h-full w-[85%] bg-gray-50 relative overflow-y-auto lg:ml-64">
+	<main>
+		<div class="pt-6 px-4">
+			<div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+				<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+					<div class="flex items-center justify-between mb-2">
+						<div class="flex-shrink-0">
+							<span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">statistical</span>
+							<h3 class="text-base font-normal text-gray-500">Sales this week</h3>
+						</div>
 					</div>
-					<div class="point-2">
-						<div class="tooltip">812</div>
+					<div class="ml-[8%] flex space-x-2 my-2">
+						<button (click)="currentStatistical = 'statistical1'" class="bg-orange-400 hover:bg-orange-500 px-3 py-2 rounded text-white">statistical 1</button>
+						<button (click)="statistical2()" class="bg-red-400 hover:bg-red-500 px-3 py-2 rounded text-white">statistical 2</button>
+						<button (click)="currentStatistical = 'statistical3'" class="bg-pink-400 hover:bg-pink-500 px-3 py-2 rounded text-white">statistical 3</button>
+						<button (click)="currentStatistical = 'statistical4'" class="bg-yellow-400 hover:bg-yellow-500 px-3 py-2 rounded text-white">statistical 4</button>
+					  </div>
+					<div *ngIf="currentStatistical === 'statistical1'" class="w-[90%] ml-[50px]">
+						<canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
+							[options]="lineChartOptions" [legend]="lineChartLegend">
+						</canvas>
 					</div>
-					<div class="point-3">
-						<div class="tooltip">746</div>
+					<div *ngIf="currentStatistical === 'statistical2'" class="w-[90%] ml-[50px]">
+						<canvas baseChart [datasets]="lineChartDatas" [labels]="lineChartLabelss"
+							[options]="lineChartOptionss" [legend]="lineChartLegend">
+						</canvas>
 					</div>
-					<div class="point-4">
-						<div class="tooltip">877</div>
+					<!-- bieu do duong -->
+					
+				</div>
+				<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+					<div class="mb-4 flex items-center justify-between">
+						<div>
+							<h3 class="text-xl font-bold text-gray-900 mb-2">Top 5 sản phẩm bán chạy nhất</h3>
+
+						</div>
+						<div class="flex-shrink-0">
+							<a href="#" class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">View
+								all</a>
+						</div>
 					</div>
-					<div class="point-5">
-						<div class="tooltip">517</div>
+					<div class="flex justify-start space-x-2 items-center">
+						<input type="text" id="first_name"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+							type="date" />
+						<p class="pt-2">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+								class="bi bi-arrow-right" viewBox="0 0 16 16">
+								<path fill-rule="evenodd"
+									d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+							</svg>
+						</p>
+						<input type="text" id="first_name"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+							type="date" />
 					</div>
-					<div class="point-6">
-						<div class="tooltip">434</div>
-					</div>
-					<div class="point-7">
-						<div class="tooltip">458</div>
+					<div class="flex flex-col mt-3">
+						<div class="overflow-x-auto rounded-lg">
+							<div class="align-middle inline-block min-w-full">
+								<div class="shadow overflow-hidden sm:rounded-lg">
+									<table class="min-w-full divide-y divide-gray-200">
+										<thead class="bg-gray-50">
+											<tr>
+												<th scope="col"
+													class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+													Id
+												</th>
+												<th scope="col"
+													class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+													Tên sản phẩm
+												</th>
+												<th scope="col"
+													class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+													Giá
+												</th>
+												<th scope="col"
+													class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+													SL
+												</th>
+												<th scope="col"
+													class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+													Ds
+												</th>
+											</tr>
+										</thead>
+										<tbody class="bg-white">
+											<!-- sp1 -->
+											<tr class="bg-gray-50">
+												<td
+													class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900 rounded-lg rounded-left">
+													#0192910212<span class="font-semibold"></span>
+												</td>
+												<td
+													class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+													Nhẫn rừng xanh<span class="font-semibold"></span>
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+													200.000đ
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													30
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													100.000.000
+												</td>
+											</tr>
+											<!-- sp1 -->
+											<tr class="bg-gray-50">
+												<td
+													class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900 rounded-lg rounded-left">
+													#0192910212<span class="font-semibold"></span>
+												</td>
+												<td
+													class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+													Nhẫn rừng xanh<span class="font-semibold"></span>
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+													200.000đ
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													30
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													100.000.000
+												</td>
+											</tr>
+											<!-- sp1 -->
+											<tr class="bg-gray-50">
+												<td
+													class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900 rounded-lg rounded-left">
+													#0192910212<span class="font-semibold"></span>
+												</td>
+												<td
+													class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+													Nhẫn rừng xanh<span class="font-semibold"></span>
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+													200.000đ
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													30
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													100.000.000
+												</td>
+											</tr>
+											<!-- sp1 -->
+											<tr class="bg-gray-50">
+												<td
+													class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900 rounded-lg rounded-left">
+													#0192910212<span class="font-semibold"></span>
+												</td>
+												<td
+													class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+													Nhẫn rừng xanh<span class="font-semibold"></span>
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+													200.000đ
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													30
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													100.000.000
+												</td>
+											</tr>
+											<!-- sp1 -->
+											<tr class="bg-gray-50">
+												<td
+													class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900 rounded-lg rounded-left">
+													#0192910212<span class="font-semibold"></span>
+												</td>
+												<td
+													class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+													Nhẫn rừng xanh<span class="font-semibold"></span>
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+													200.000đ
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													30
+												</td>
+												<td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+													100.000.000
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="data blue">
-				<svg>
-					<polyline points="9,61 50,50 90,65 130,55 171,61 211,74 251,64"></polyline>    
-				</svg>
-				<div class="points">
-					<div class="point-1">
-						<div class="tooltip">26</div>
+			<div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+				<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+					<div class="flex items-center">
+						<div class="flex-shrink-0">
+							<span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">2,340</span>
+							<h3 class="text-base font-normal text-gray-500">Tổng số lượng đơn hàng</h3>
+						</div>
+						<div class="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
+							14.6%
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
 					</div>
-					<div class="point-2">
-						<div class="tooltip">41</div>
+				</div>
+				<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+					<div class="flex items-center">
+						<div class="flex-shrink-0">
+							<span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">5,355</span>
+							<h3 class="text-base font-normal text-gray-500">Tổng doanh thu</h3>
+						</div>
+						<div class="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
+							32.9%
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
 					</div>
-					<div class="point-3">
-						<div class="tooltip">22</div>
+				</div>
+				<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+					<div class="flex items-center">
+						<div class="flex-shrink-0">
+							<span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">385</span>
+							<h3 class="text-base font-normal text-gray-500">Tổng doanh số</h3>
+						</div>
+						<div class="ml-5 w-0 flex items-center justify-end flex-1 text-red-500 text-base font-bold">
+							-2.7%
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
+									clip-rule="evenodd"></path>
+							</svg>
+						</div>
 					</div>
-					<div class="point-4">
-						<div class="tooltip">36</div>
+				</div>
+			</div>
+			<div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
+				<div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
+					<div class="flex items-center justify-between mb-4">
+						<h3 class="text-xl font-bold leading-none text-gray-900">Top 5 người mua hàng nhiều nhất</h3>
+						<a href="#"
+							class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
+							Số đơn
+						</a>
+						<a href="#"
+							class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
+							Tổng tiền
+						</a>
 					</div>
-					<div class="point-5">
-						<div class="tooltip">25</div>
+					<div class="flow-root">
+						<ul role="list" class="divide-y divide-gray-200">
+							<li class="py-3 sm:py-4">
+								<div class="flex items-center space-x-4">
+									<div class="flex-shrink-0">
+										<img class="h-8 w-8 rounded-full"
+											src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/373091598_2007369482963617_498760771772999272_n.jpg?_nc_cat=106&cb=99be929b-b574a898&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeHgml7aysYVBHDO3t2LUrzPAeSEYd4ldn8B5IRh3iV2f7nQD_yN0uXbaJDpwGTsJ5Q-z14yDleZhEdBwV4uP8xz&_nc_ohc=liiJhicKGN8AX-JMR2Z&_nc_ht=scontent.fhan14-2.fna&oh=00_AfAnX2Zf3J6z2Vuhqpch5fFIQOXbf-U9kqgsDnjiYCGsRg&oe=65A6ECC6"
+											alt="Neil image">
+									</div>
+									<div class="flex-1 min-w-0">
+										<p class="text-sm font-medium text-gray-900 truncate">
+											Trần Lương
+										</p>
+										<p class="text-sm text-gray-500 truncate">
+											<a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+												data-cfemail="17727a767e7b57607e7973646372653974787a">luongdeptrai2003@gmail.com</a>
+										</p>
+									</div>
+									<div class="items-center text-base font-semibold text-gray-900 pr-[18%]">
+										32
+									</div>
+									<div class="inline-flex items-center text-base font-semibold text-gray-900">
+										10.000.000đ
+									</div>
+								</div>
+							</li>
+							<li class="py-3 sm:py-4">
+								<div class="flex items-center space-x-4">
+									<div class="flex-shrink-0">
+										<img class="h-8 w-8 rounded-full"
+											src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/373091598_2007369482963617_498760771772999272_n.jpg?_nc_cat=106&cb=99be929b-b574a898&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeHgml7aysYVBHDO3t2LUrzPAeSEYd4ldn8B5IRh3iV2f7nQD_yN0uXbaJDpwGTsJ5Q-z14yDleZhEdBwV4uP8xz&_nc_ohc=liiJhicKGN8AX-JMR2Z&_nc_ht=scontent.fhan14-2.fna&oh=00_AfAnX2Zf3J6z2Vuhqpch5fFIQOXbf-U9kqgsDnjiYCGsRg&oe=65A6ECC6"
+											alt="Neil image">
+									</div>
+									<div class="flex-1 min-w-0">
+										<p class="text-sm font-medium text-gray-900 truncate">
+											Trần Lương
+										</p>
+										<p class="text-sm text-gray-500 truncate">
+											<a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+												data-cfemail="17727a767e7b57607e7973646372653974787a">luongdeptrai2003@gmail.com</a>
+										</p>
+									</div>
+									<div class="items-center text-base font-semibold text-gray-900 pr-[18%]">
+										32
+									</div>
+									<div class="inline-flex items-center text-base font-semibold text-gray-900">
+										10.000.000đ
+									</div>
+								</div>
+							</li>
+							<li class="py-3 sm:py-4">
+								<div class="flex items-center space-x-4">
+									<div class="flex-shrink-0">
+										<img class="h-8 w-8 rounded-full"
+											src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/373091598_2007369482963617_498760771772999272_n.jpg?_nc_cat=106&cb=99be929b-b574a898&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeHgml7aysYVBHDO3t2LUrzPAeSEYd4ldn8B5IRh3iV2f7nQD_yN0uXbaJDpwGTsJ5Q-z14yDleZhEdBwV4uP8xz&_nc_ohc=liiJhicKGN8AX-JMR2Z&_nc_ht=scontent.fhan14-2.fna&oh=00_AfAnX2Zf3J6z2Vuhqpch5fFIQOXbf-U9kqgsDnjiYCGsRg&oe=65A6ECC6"
+											alt="Neil image">
+									</div>
+									<div class="flex-1 min-w-0">
+										<p class="text-sm font-medium text-gray-900 truncate">
+											Trần Lương
+										</p>
+										<p class="text-sm text-gray-500 truncate">
+											<a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+												data-cfemail="17727a767e7b57607e7973646372653974787a">luongdeptrai2003@gmail.com</a>
+										</p>
+									</div>
+									<div class="items-center text-base font-semibold text-gray-900 pr-[18%]">
+										32
+									</div>
+									<div class="inline-flex items-center text-base font-semibold text-gray-900">
+										10.000.000đ
+									</div>
+								</div>
+							</li>
+							<li class="py-3 sm:py-4">
+								<div class="flex items-center space-x-4">
+									<div class="flex-shrink-0">
+										<img class="h-8 w-8 rounded-full"
+											src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/373091598_2007369482963617_498760771772999272_n.jpg?_nc_cat=106&cb=99be929b-b574a898&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeHgml7aysYVBHDO3t2LUrzPAeSEYd4ldn8B5IRh3iV2f7nQD_yN0uXbaJDpwGTsJ5Q-z14yDleZhEdBwV4uP8xz&_nc_ohc=liiJhicKGN8AX-JMR2Z&_nc_ht=scontent.fhan14-2.fna&oh=00_AfAnX2Zf3J6z2Vuhqpch5fFIQOXbf-U9kqgsDnjiYCGsRg&oe=65A6ECC6"
+											alt="Neil image">
+									</div>
+									<div class="flex-1 min-w-0">
+										<p class="text-sm font-medium text-gray-900 truncate">
+											Trần Lương
+										</p>
+										<p class="text-sm text-gray-500 truncate">
+											<a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+												data-cfemail="17727a767e7b57607e7973646372653974787a">luongdeptrai2003@gmail.com</a>
+										</p>
+									</div>
+									<div class="items-center text-base font-semibold text-gray-900 pr-[18%]">
+										32
+									</div>
+									<div class="inline-flex items-center text-base font-semibold text-gray-900">
+										10.000.000đ
+									</div>
+								</div>
+							</li>
+							<li class="py-3 sm:py-4">
+								<div class="flex items-center space-x-4">
+									<div class="flex-shrink-0">
+										<img class="h-8 w-8 rounded-full"
+											src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/373091598_2007369482963617_498760771772999272_n.jpg?_nc_cat=106&cb=99be929b-b574a898&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeHgml7aysYVBHDO3t2LUrzPAeSEYd4ldn8B5IRh3iV2f7nQD_yN0uXbaJDpwGTsJ5Q-z14yDleZhEdBwV4uP8xz&_nc_ohc=liiJhicKGN8AX-JMR2Z&_nc_ht=scontent.fhan14-2.fna&oh=00_AfAnX2Zf3J6z2Vuhqpch5fFIQOXbf-U9kqgsDnjiYCGsRg&oe=65A6ECC6"
+											alt="Neil image">
+									</div>
+									<div class="flex-1 min-w-0">
+										<p class="text-sm font-medium text-gray-900 truncate">
+											Trần Lương
+										</p>
+										<p class="text-sm text-gray-500 truncate">
+											<a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+												data-cfemail="17727a767e7b57607e7973646372653974787a">luongdeptrai2003@gmail.com</a>
+										</p>
+									</div>
+									<div class="items-center text-base font-semibold text-gray-900 pr-[18%]">
+										32
+									</div>
+									<div class="inline-flex items-center text-base font-semibold text-gray-900">
+										10.000.000đ
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
-					<div class="point-6">
-						<div class="tooltip">13</div>
-					</div>
-					<div class="point-7">
-						<div class="tooltip">20</div>
+				</div>
+				<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+					<h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Sản phẩm đã bán theo danh mục</h3>
+					<div class="block w-full overflow-x-auto">
+						<table class="items-center w-full bg-transparent border-collapse">
+							<thead>
+								<tr>
+									<th
+										class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+										Danh mục</th>
+									<th
+										class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+										Sản phẩm</th>
+									<th
+										class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+										Đã bán</th>
+									<th
+										class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap min-w-140-px">
+									</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-gray-100">
+								<tr class="text-gray-500">
+									<th
+										class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
+										Nhẫn</th>
+									<td
+										class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+										12</td>
+
+									<td
+										class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+										323</td>
+									<td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+										<div class="flex items-center">
+											<span class="mr-2 text-xs font-medium">30%</span>
+											<div class="relative w-full">
+												<div class="w-full bg-gray-200 rounded-sm h-2">
+													<div class="bg-cyan-600 h-2 rounded-sm" style="width: 30%"></div>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr class="text-gray-500">
+									<th
+										class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
+										Lắc tay</th>
+									<td
+										class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+										15</td>
+
+									<td
+										class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+										123</td>
+									<td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+										<div class="flex items-center">
+											<span class="mr-2 text-xs font-medium">20%</span>
+											<div class="relative w-full">
+												<div class="w-full bg-gray-200 rounded-sm h-2">
+													<div class="bg-cyan-600 h-2 rounded-sm" style="width: 20%"></div>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="days">
-			<span class="day">Mon</span>
-			<span class="day">Tue</span>
-			<span class="day">Wed</span>
-			<span class="day">Thu</span>
-			<span class="day">Fri</span>
-			<span class="day">Sat</span>
-			<span class="day">Sun</span>
-		</div>
-  </div>
+	</main>
+
 </div>
-<div style="width: 400px; height: 400px;">
-	<canvas id="myChart"></canvas>
-  </div>
-
-  <!-- Biểu đồ cột -->
-   <div style="display: block;" class="w-[50%]">
-      <canvas baseChart
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [legend]="lineChartLegend">
-      </canvas>
-    </div>
-
-	<!-- biểu đồ đường -->
-	
-  
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="https://demo.themesberg.com/windster/app.bundle.js"></script>

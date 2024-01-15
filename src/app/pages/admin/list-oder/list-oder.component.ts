@@ -26,6 +26,7 @@ export class ListOderComponent {
   user: any
   previousStatus: string = '';
   searchTerm: string = '';
+  sortmt: boolean = false
   constructor(private orderService: OrderService, private userService: UserService, private toast: NgToastService, private route: ActivatedRoute) {
 
   }
@@ -34,6 +35,7 @@ export class ListOderComponent {
     this.getOrders();
   }
   sortTable(column: string): void {
+    this.sortmt = !this.sortmt
     if (this.sortColumn === column) {
       this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
 

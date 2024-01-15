@@ -34,6 +34,7 @@ export class ListOderComponent {
   ngOnInit() {
     this.getOrders();
   }
+
   sortTable(column: string): void {
     this.sortmt = !this.sortmt
     if (this.sortColumn === column) {
@@ -87,7 +88,7 @@ export class ListOderComponent {
         // console.log(data);
         this.orders = data.response;
         console.log(this.orders);
-        
+
       });
   }
 
@@ -97,8 +98,8 @@ export class ListOderComponent {
       this.updateStatus(orderId, this.selectedNewStatus);
     }
   }
- getPriceBySize(product:any,size:any){
-    const pr = product.list_size.list_size.find((item:any)=>Number(item.name)===Number(size))
+  getPriceBySize(product: any, size: any) {
+    const pr = product.list_size.list_size.find((item: any) => Number(item.name) === Number(size))
     return pr.price
   }
 
@@ -107,7 +108,7 @@ export class ListOderComponent {
       this.orderService.getOrdersByStatus(this.selectedStatus)
         .subscribe(data => {
           this.orders = data.orders;
-      
+
 
         });
     } else {
@@ -169,10 +170,10 @@ export class ListOderComponent {
     doc.setLineWidth(0.1);
     doc.line(margin, margin + 5, margin + pageWidth, margin + 5);
     let additionalInfoY = startY + rows.length * (cellHeight + 25);
-    
-   const title: String = "Shop NRO"
-   const addressWithoutDiacritics = this.removeDiacritics(order.address);
-   const titleWithoutDiacritics = this.removeDiacritics(order.products[0].product ? order.products[0].product.title : "No Name");
+
+    const title: String = "Shop NRO"
+    const addressWithoutDiacritics = this.removeDiacritics(order.address);
+    const titleWithoutDiacritics = this.removeDiacritics(order.products[0].product ? order.products[0].product.title : "No Name");
     console.log(addressWithoutDiacritics);
     const additionalInfo: any = {
       'Name': order.name,
@@ -186,7 +187,7 @@ export class ListOderComponent {
       'size': order.products?.[0].size,
       'Salesman': title,
     };
-    
+
     for (const key in additionalInfo) {
       doc.text(key + ': ' + additionalInfo[key], margin, additionalInfoY);
       additionalInfoY += cellHeight;
@@ -197,7 +198,7 @@ export class ListOderComponent {
   removeDiacritics(str: string): string {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
-  
+
   formatPrice(num: number | string) {
     return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   }

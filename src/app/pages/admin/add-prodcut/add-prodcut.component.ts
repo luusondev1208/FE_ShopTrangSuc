@@ -28,42 +28,8 @@ export class AddProdcutComponent {
 
 
   products: any = {};
-  // productForm = this.formBuider.group({
-  //   title:[
-  //     '',
-  //     [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
-  //   ],
-  //   price:[
-  //     0,
-  //     [Validators.required, Validators.min(1)]
-  //   ],
-  //   description:[
-  //     '',
-  //     [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
-  //   ],
-  //   brand:[
-  //     '',
-  //     [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
-  //   ],
-  //   slug:[
-  //     '',
-  //     [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
-  //   ],
-  //   images:[
-  //     '',
-  //     [Validators.required]
-  //   ],
-  //   priceroot:[
-  //     '',
-  //     [Validators.required,Validators.min(1), Validators.minLength(6), Validators.maxLength(255)]
-  //   ],
-  //   category:[
-  //     '',
-  //     [Validators.required]
-  //   ],
 
-  // })
-  constructor(private productService: ProductService, private brandService: BrandService,private sizeService: SizeService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService) {
+  constructor(private productService: ProductService, private brandService: BrandService, private sizeService: SizeService, private categoryService: CategoryService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService) {
     this.categoryService.getCategories().subscribe(
       (response: any) => {
         this.categories = response.getAllCategory;
@@ -119,7 +85,7 @@ export class AddProdcutComponent {
       description: ['', [Validators.required, Validators.minLength(6)]],
       category: ['', [Validators.required]],
       quantity: ['', [Validators.required, Validators.min(0)]],
-      list_size: ['',Validators.required]
+      list_size: ['', Validators.required]
     });
   }
   onFilesSelected(event: any) {

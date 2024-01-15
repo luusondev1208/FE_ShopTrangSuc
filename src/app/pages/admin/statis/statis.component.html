@@ -1,272 +1,250 @@
-<label class="toggle-switch ml-[1400px] mb-2 -pt-10">
-  <div>
-    <label
-      for="first_name"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >Ngày bắt đầu</label
-    >
-    <input
-      type="text"
-      id="first_name"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      type="date"
-      [(ngModel)]="startDate"
-    />
-    <label
-      for="first_name"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >Ngày kết thúc</label
-    >
-    <input
-      type="text"
-      id="first_name"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      type="date"
-      [(ngModel)]="endDate"
-    />
-    <button
-      (click)="getStatistics(startDate, endDate)"
-      type="submit"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    >
-      Lấy thống kê
-    </button>
-  </div>
-</label>
+<!-- Biểu đồ cột -->
 
-<div [ngClass]="{ 'dark-theme': isDarkMode }">
-  <div class="xl:ml-80 pb-16">
-    <nav
-      class="block w-full max-w-full bg-transparent text-white shadow-none rounded-xl transition-all px-0 py-1"
-    ></nav>
-    <div class="mt-12">
-      <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
-        <div
-          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md"
-        >
-          <div
-            class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-              class="w-6 h-6 text-white"
-            >
-              <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z"></path>
-              <path
-                fill-rule="evenodd"
-                d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z"
-                clip-rule="evenodd"
-              ></path>
-              <path
-                d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z"
-              ></path>
-            </svg>
+
+<!-- biểu đồ đường -->
+<div id="main-content" class="h-full w-[85%] bg-gray-50 relative overflow-y-auto lg:ml-64">
+  <main>
+    <div class="pt-6 px-4">
+      <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex-shrink-0 flex justify-between">
+              <div>
+                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">statistical</span>
+              </div>
+              <div class="flex justify-start space-x-2 items-center justify-end ml-[90%]" [formGroup]="myForm">
+                <input type="text"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  type="date" formControlName="startDate" (input)="onDateSelect()" />
+
+                <p class="pt-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                  </svg>
+                </p>
+
+                <input type="text" id="first_name"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  type="date" formControlName="endDate" (input)="onDateSelect()" />
+              </div>
+            </div>
           </div>
-          <div class="p-4 text-right">
-            <p
-              class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600"
-            >
-              Tổng số lượng đơn hàng
-            </p>
-            <h4
-              class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"
-            >
-              {{ statistics.totalOrdersL }}
-            </h4>
+          <div class="ml-[8%] flex space-x-2 my-2">
+            <button (click)="currentStatistical = 'statistical1'"
+              class="bg-orange-400 hover:bg-orange-500 px-3 py-2 rounded text-white">statistical 1</button>
+            <button (click)="statistical2()"
+              class="bg-red-400 hover:bg-red-500 px-3 py-2 rounded text-white">statistical 2</button>
+            <!-- <button (click)="currentStatistical = 'statistical3'"
+              class="bg-pink-400 hover:bg-pink-500 px-3 py-2 rounded text-white">statistical 3</button>
+            <button (click)="currentStatistical = 'statistical4'"
+              class="bg-yellow-400 hover:bg-yellow-500 px-3 py-2 rounded text-white">statistical 4</button> -->
           </div>
-          <div class="border-t border-blue-gray-50 p-4">
-            <p
-              class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600"
-            ></p>
+
+          <div *ngIf="currentStatistical === 'statistical1'" class="w-full">
+            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+              [legend]="lineChartLegend">
+            </canvas>
           </div>
-        </div>
-        <div
-          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md"
-        >
-          <div
-            class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-              class="w-6 h-6 text-white"
-            >
-              <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z"></path>
-              <path
-                fill-rule="evenodd"
-                d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z"
-                clip-rule="evenodd"
-              ></path>
-              <path
-                d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z"
-              ></path>
-            </svg>
+          <div *ngIf="currentStatistical === 'statistical2'" class="w-full">
+            <canvas baseChart [datasets]="lineChartDatas" [labels]="lineChartLabelss" [options]="lineChartOptionss"
+              [legend]="lineChartLegend">
+            </canvas>
           </div>
-          <div class="p-4 text-right">
-            <p
-              class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600"
-            >
-              <br />Tổng doanh thu
-            </p>
-            <h4
-              class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"
-            >
-              {{ formatPrice(statistics.totalRevenue) }}
-            </h4>
-          </div>
-          <div class="border-t border-blue-gray-50 p-4">
-            <p
-              class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600"
-            ></p>
-          </div>
-        </div>
-<div
-          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md"
-        >
-          <div
-            class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-              class="w-6 h-6 text-white"
-            >
-              <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z"></path>
-              <path
-                fill-rule="evenodd"
-                d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z"
-                clip-rule="evenodd"
-              ></path>
-              <path
-                d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z"
-              ></path>
-            </svg>
-          </div>
-          <div class="p-4 text-right">
-            <p
-              class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600"
-            >
-              <br />Tổng doanh số
-            </p>
-            <h4
-              class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"
-            >
-              {{ formatPrice(statistics.confirmedOrdersTotal) }}
-            </h4>
-          </div>
-          <div class="border-t border-blue-gray-50 p-4">
-            <p
-              class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600"
-            ></p>
-          </div>
-        </div>
-        <div
-          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md"
-          *ngIf="bestSellingProductDetails"
-        >
-          <div
-            class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-              class="w-6 h-6 text-white"
-            >
-              <path
-                d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"
-              ></path>
-            </svg>
-          </div>
-          <div class="p-4 text-right">
-            <p
-              class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600"
-            >
-              <br />Sản phẩm bán chạy nhất
-            </p>
-            <h4
-              class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"
-            >
-              <p
-                class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600"
-              >
-                <br /><span style="color: rgb(206, 118, 4)"
-                  >Tên sản phẩm: {{ bestSellingProductDetails.title }}</span
-                >
-              </p>
-              <p
-                class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600"
-              >
-                <br /><span style="color: rgb(206, 118, 4)"
-                  >Giá sản phẩm:
-                  {{ formatPrice(bestSellingProductDetails.price) }}</span
-                >
-              </p>
-              <p
-                class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600"
-              >
-                <br /><span style="color: rgb(206, 118, 4)"
-                  >Số lượng đã bán: {{ bestSellingProductDetails.sold }}</span
-                >
-              </p>
-            </h4>
-          </div>
+
         </div>
 
-       
-        <!-- <div
-          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md"
-          *ngIf="topBuyers"
-        >
-          <div
-            class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-              class="w-6 h-6 text-white"
-            >
-              <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z"></path>
-              <path
-                fill-rule="evenodd"
-                d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z"
-                clip-rule="evenodd"
-              ></path>
-              <path
-                d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z"
-              ></path>
-            </svg>
-          </div>
-          <div class="p-4 text-right">
-            <p
-              class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600"
-            >
-              <br />Tổng đơn hàng bị hủy
-            </p>
-            <h4
-              class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900"
-              *ngFor="let buyer of topBuyers"
-            >
+      </div>
+      <div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div *ngFor="let status of orderStatusCounts | keyvalue">
+          <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{ status.value }}</span>
+                <h3 class="text-base font-normal text-gray-500">{{ status.key }}</h3>
+              </div>
 
-              {{ buyer.firstname }} {{ buyer.lastname }} ({{ buyer.email }})
-
-            </h4>
+            </div>
           </div>
-          <div class="border-t border-blue-gray-50 p-4"></div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
+        <div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold leading-none text-gray-900">Top 5 người mua hàng nhiều nhất</h3>
+            <a href="#"
+              class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
+              Số đơn
+            </a>
+            <a href="#"
+              class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
+              Tổng tiền
+            </a>
+          </div>
+          <div class="flow-root">
+            <ul role="list" class="divide-y divide-gray-200">
+              <div *ngFor="let user of topBuyers">
+                <li class="py-3 sm:py-4">
+                  <div class="flex items-center space-x-4">
+                    <div class="flex-shrink-0">
+                      <img class="h-8 w-8 rounded-full"
+                        src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/373091598_2007369482963617_498760771772999272_n.jpg?_nc_cat=106&cb=99be929b-b574a898&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeHgml7aysYVBHDO3t2LUrzPAeSEYd4ldn8B5IRh3iV2f7nQD_yN0uXbaJDpwGTsJ5Q-z14yDleZhEdBwV4uP8xz&_nc_ohc=liiJhicKGN8AX-JMR2Z&_nc_ht=scontent.fhan14-2.fna&oh=00_AfAnX2Zf3J6z2Vuhqpch5fFIQOXbf-U9kqgsDnjiYCGsRg&oe=65A6ECC6"
+                        alt="Neil image">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium text-gray-900 truncate">
+                        {{user._id.firstname +" "+ user._id.lastname}}
+                      </p>
+                      <p class="text-sm text-gray-500 truncate">
+                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                          data-cfemail="17727a767e7b57607e7973646372653974787a">{{user._id.email}}</a>
+                      </p>
+                    </div>
+                    <div class="items-center text-base font-semibold text-gray-900 pr-[18%]">
+                      {{user._id.orders.length}}
+                    </div>
+                    <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                      {{user.totalPrice}}
+                    </div>
+                  </div>
+                </li>
+              </div>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+          <div class="mb-4 flex items-center justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Top 5 sản phẩm bán chạy nhất</h3>
+            </div>
+          </div>
+          <div class="flex flex-col mt-3">
+            <div class="overflow-x-auto rounded-lg">
+              <div class="align-middle inline-block min-w-full">
+                <div class="shadow overflow-hidden sm:rounded-lg">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th scope="col"
+                          class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Id
+                        </th>
+                        <th scope="col"
+                          class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Tên sản phẩm
+                        </th>
+                        <th scope="col"
+                          class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Giá
+                        </th>
+                        <th scope="col"
+                          class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          SL
+                        </th>
+                        <th scope="col"
+                          class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Ds
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="bg-white" *ngFor="let product of topProductSeller">
+                      <!-- sp1 -->
+                      <tr class="bg-gray-50">
+                        <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900 rounded-lg rounded-left">
+                          {{product._id}}<span class="font-semibold"></span>
+                        </td>
+                        <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+                          {{product.title}}<span class="font-semibold"></span>
+                        </td>
+                        <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+                          {{product.price}}
+                        </td>
+                        <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                          {{product.sold}}
+                        </td>
+                        <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                          {{product.price * product.sold}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+          <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Sản phẩm đã bán theo danh mục</h3>
+          <div class="block w-full overflow-x-auto">
+            <table class="items-center w-full bg-transparent border-collapse">
+              <thead>
+                <tr>
+                  <th
+                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                    Danh mục</th>
+                  <th
+                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                    Sản phẩm</th>
+                  <th
+                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                    Đã bán</th>
+                  <th
+                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap min-w-140-px">
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr class="text-gray-500">
+                  <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
+                    Nhẫn</th>
+                  <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                    12</td>
+
+                  <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                    323</td>
+                  <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                    <div class="flex items-center">
+                      <span class="mr-2 text-xs font-medium">30%</span>
+                      <div class="relative w-full">
+                        <div class="w-full bg-gray-200 rounded-sm h-2">
+                          <div class="bg-cyan-600 h-2 rounded-sm" style="width: 30%"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="text-gray-500">
+                  <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
+                    Lắc tay</th>
+                  <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                    15</td>
+
+                  <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                    123</td>
+                  <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                    <div class="flex items-center">
+                      <span class="mr-2 text-xs font-medium">20%</span>
+                      <div class="relative w-full">
+                        <div class="w-full bg-gray-200 rounded-sm h-2">
+                          <div class="bg-cyan-600 h-2 rounded-sm" style="width: 20%"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
         </div> -->
       </div>
     </div>
-  </div>
+  </main>
 
 </div>
-
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="https://demo.themesberg.com/windster/app.bundle.js"></script>

@@ -54,14 +54,14 @@ export class UpdateProductComponent {
   //   ],
 
   // })
-  constructor(private productService: ProductService,private sizeService: SizeService, private categoryService: CategoryService, private brandService: BrandService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService, private route: ActivatedRoute) {
+  constructor(private productService: ProductService, private sizeService: SizeService, private categoryService: CategoryService, private brandService: BrandService, private router: Router, private formBuider: FormBuilder, private toast: NgToastService, private route: ActivatedRoute) {
     this.route.paramMap.subscribe((param) => {
       const id = String(param.get('id'))
       this.productService.getProduct(id).subscribe(
         (product: any) => {
-          console.log(product);
           this.product = product.productData;
 
+          console.log("data", product.productData);
 
           this.productForm.patchValue({
             title: product.productData.title,
@@ -76,7 +76,8 @@ export class UpdateProductComponent {
             slug: product.productData.slug,
             category: product.productData.category,
             quantity: product.productData.quantity,
-            list_size: product.productData.list_size
+            list_size: product.productData.list_size,
+            active: product.productData.active
           })
 
         },
@@ -86,7 +87,7 @@ export class UpdateProductComponent {
     this.categoryService.getCategories().subscribe(
       (response: any) => {
         this.categories = response.getAllCategory;
-        console.log(this.categories);
+
 
       },
       (error) => {
@@ -96,7 +97,7 @@ export class UpdateProductComponent {
     this.sizeService.getSizes().subscribe(
       (response: any) => {
         this.listsize = response.getAllSize;
-        console.log(this.listsize);
+
 
       },
       (error) => {
@@ -107,7 +108,7 @@ export class UpdateProductComponent {
       (response: any) => {
 
         this.brands = response.getAllBrand;
-        console.log(this.brands);
+
 
       },
       (error) => {
@@ -138,11 +139,12 @@ export class UpdateProductComponent {
       category: ['', [Validators.required]],
       quantity: ['', [Validators.required, Validators.min(0)]],
       list_size: ['', [Validators.required]],
+      active: ['', [Validators.required]],
     });
   }
   onFilesSelected(event: any) {
     this.selectedImages = event.target.files;
-    // console.log(event.target.files);
+
 
   }
 
@@ -150,7 +152,7 @@ export class UpdateProductComponent {
 
     const formData: any = {};
     formData.id = this.product._id;
-    // console.log(this.product);
+
 
     formData.title = this.productForm.value.title || '',
       formData.description = this.productForm.value.description || '',
@@ -162,14 +164,15 @@ export class UpdateProductComponent {
       formData.category = this.productForm.value.category || '',
       formData.quantity = this.productForm.value.quantity || 0,
       formData.list_size = this.productForm.value.list_size || ''
-      // ... id other form fields ...
-      // console.log(formData);
+    formData.active = this.productForm.value.active || ''
+    // ... id other form fields ...
+
 
 
     if (this.selectedImages?.length != 0 && this.selectedImages) {
 
       for (let i = 0; i < this.selectedImages.length; i++) {
-        // console.log(this.selectedImages[i]);
+
         formData.image = this.selectedImages[i];
       }
     }

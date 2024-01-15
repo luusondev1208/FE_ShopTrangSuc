@@ -2,6 +2,9 @@ import { Component, OnInit, Renderer2, ElementRef, NgZone, ChangeDetectorRef } f
 import { ProductService } from 'src/app/service/product.service';
 import { StatisService } from 'src/app/service/statis.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { startOfMonth, endOfMonth, format } from 'date-fns';
 
 @Component({
   selector: 'app-statis',
@@ -9,77 +12,135 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./statis.component.scss']
 })
 export class StatisComponent implements OnInit {
-  statistics: any = {};
-  bestSellingProductDetails: any;
-  isDarkMode: boolean = false;
-  topBuyers:  any [] = [];
-  startDate: string = '';
-  endDate: string = '';
-  cancelledOrders: number = 0;
-  totalOrdersValue: number = 0;
-  constructor(
-    private statisticService: StatisService,
-    private productService: ProductService,
-    private renderer: Renderer2,
-    private el: ElementRef,
-    private zone: NgZone,
-    private cdr: ChangeDetectorRef
+  constructor(private StatisService: StatisService, private datePipe: DatePipe) { }
 
-  ) { }
+  // statistical 1
+  public lineChartData = [
+    { data: [], label: 'Doanh thu theo ngày và tháng' }
+  ];
 
-  ngOnInit(): void {
-    this.getStatistics();
-  }
-  getStatistics(startDate?: string, endDate?: string): void {
-    this.statisticService.getStatistics(startDate, endDate).subscribe(
-      data => {
+  public lineChartLabels: any = [];
+  public lineChartOptions: any = {
+    responsive: true,
+  };
 
-          this.statistics = data.statistic;
-          console.log(this.statistics);
-       ;
+  public lineChartColors: any[] = [
+    {
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 2,
+      fill: false
+    }
+  ];
 
-        if (this.statistics.bestSellingProduct) {
-          this.productService.getProduct(this.statistics.bestSellingProduct).subscribe(
-            productDetails => {
-              this.bestSellingProductDetails = productDetails.productData;
-              console.log(this.bestSellingProductDetails);
-            },
-            error => {
-              console.error('Error fetching best selling product details:', error);
-            }
-          );
-        }
-      },
-      error => {
-        console.error('Error fetching statistics:', error);
-      }
-    );
-  }
-  getTopBuyer(startDate?: string, endDate?: string): void {
-    this.statisticService.getTopBuyer(startDate, endDate).subscribe(
-      data => {
-        this.topBuyers = data.topBuyers;
-        console.log(data.topBuyers);
+  // statistical 2
+  public lineChartDatas = [
+    { data: [], label: 'Doanh thu theo tháng và năm' }
+  ];
 
-      },
-      error => {
-        console.error('Error fetching top buyers:', error);
-      }
-    );
-  }
-  toggleTheme(event: any): void {
-    this.isDarkMode = !this.isDarkMode;
-    const slider = this.el.nativeElement.querySelector('.slider');
-    const isChecked = event.target.checked;
+  public lineChartLabelss = [];
 
-    if (isChecked) {
-      this.renderer.addClass(slider, 'dark-theme');
-    } else {
-      this.renderer.removeClass(slider, 'dark-theme');
+  public lineChartOptionss: any = {
+    responsive: true,
+  };
+
+  public lineChartColorss: any[] = [
+    {
+      borderColor: 'rgba(255, 0, 0, 1)',
+      borderWidth: 2,
+      fill: false
+    }
+  ];
+
+
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+
+  // bieudoduong
+  myForm: any;
+  orderStatusCounts: any
+  topBuyers: any
+  topProductSeller: any
+
+  onDateSelect() {
+    if (this.myForm.value.startDate && this.myForm.value.endDate) {
+      this.getTotalPriceMonthAndYear();
+      this.getTotalPriceDayAndMonth()
     }
   }
-  formatPrice(price: number): string {
-    const formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-    return formattedPrice;
+
+  ngOnInit() {
+    this.currentStatistical = 'statistical2';
+    const currentDate = new Date();
+    const firstDayOfMonth = startOfMonth(currentDate);
+    const lastDayOfMonth = endOfMonth(currentDate);
+
+    this.myForm = new FormGroup({
+      startDate: new FormControl(this.datePipe.transform(firstDayOfMonth, 'yyyy-MM-dd')),
+      endDate: new FormControl(this.datePipe.transform(lastDayOfMonth, 'yyyy-MM-dd'))
+    });
+
+    this.getTotalPriceMonthAndYear();
+    this.getTotalPriceDayAndMonth()
+    this.getStatis()
+    this.getTopBuyer()
+    this.getTopProductSeller()
+  }
+
+  getTotalPriceMonthAndYear() {
+    if (this.myForm?.value.startDate && this.myForm?.value.endDate) {
+      const startYear = new Date(this.myForm.value.startDate).getFullYear();
+      const endYear = new Date(this.myForm.value.endDate).getFullYear();
+
+      const data = {
+        startYear: startYear,
+        endYear: endYear
+      }
+
+      this.StatisService.getTotalPriceMonth(data)
+        .subscribe(data => {
+          this.lineChartLabelss = data.result.map((item: any) => item.month);
+          this.lineChartDatas[0].data = data.result.map((item: any) => item.totalAmount);
+        });
+    }
+  }
+
+  getStatis() {
+    this.StatisService.getStatistics().subscribe(data => {
+      this.orderStatusCounts = data.statistic.orderStatusCounts;
+    })
+  }
+
+  getTopProductSeller() {
+    this.StatisService.getTopProductSeller().subscribe(data => {
+      this.topProductSeller = data.topProducts;
+    })
+  }
+
+
+  getTopBuyer() {
+    this.StatisService.getTopBuyer().subscribe(data => {
+      this.topBuyers = data.topBuyers
+    })
+  }
+
+  getTotalPriceDayAndMonth() {
+    if (this.myForm?.value.startDate && this.myForm?.value.endDate) {
+      const data = {
+        startDate: this.myForm.value.startDate,
+        endDate: this.myForm.value.endDate
+      }
+
+      this.StatisService.getTotalPriceDay(data)
+        .subscribe(data => {
+          this.lineChartLabels = data.dailyTotals.map((item: any) => item._id);
+          this.lineChartData[0].data = data.dailyTotals.map((item: any) => item.totalAmount);
+        });
+    }
+  }
+
+  currentStatistical: string | null = null;
+
+  statistical2() {
+    this.currentStatistical = 'statistical2';
   }
 }

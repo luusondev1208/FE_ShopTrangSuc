@@ -18,16 +18,17 @@ export class HomepageComponent {
   topFourItems: any = [];
   page: number = 1;
   limit: number = 100;
-  constructor(private productService: ProductService, private router: Router, private renderer: Renderer2, private el: ElementRef) {}
+  constructor(private productService: ProductService, private router: Router, private renderer: Renderer2, private el: ElementRef) { }
   isHovering: boolean = false;
 
   loadData() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       // console.log(data);
-      
+
       this.products = data;
-      this.filteredProducts = this.products.productDatas.filter((product:any) => product.sold > 50);
-      // console.log(this.filteredProducts);
+      console.log("data", data);
+      this.filteredProducts = this.products.productDatas.filter((product: any) => product.sold > 50);
+
 
     });
   }
@@ -36,9 +37,7 @@ export class HomepageComponent {
   toggleSortByPrice() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
-      this.topProducts = this.products.productDatas.filter((product:any) => product.assess > 50);
-      // console.log(this.topProducts);
-
+      this.topProducts = this.products.productDatas.filter((product: any) => product.assess > 50);
     });
   }
 
@@ -47,27 +46,27 @@ export class HomepageComponent {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
       console.log(data);
-      
+
       this.topUpdatedAt = this.products.productDatas
-      this.topUpdatedAt = this.topUpdatedAt.sort((a:any, b:any) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+      this.topUpdatedAt = this.topUpdatedAt.sort((a: any, b: any) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
       // console.log(this.topcreatedAt);
     });
   }
 
   //sản phẩm sale sock
-  doubledPriceProducts(){
+  doubledPriceProducts() {
     this.productService.getProducts(this.page, this.limit).subscribe((data: any[]) => {
       this.products = data;
       this.saleproduct = this.products.productDatas;
-        this.saleproduct = this.saleproduct.filter((product:any) => {
+      this.saleproduct = this.saleproduct.filter((product: any) => {
 
-          const discountPercentage = ((product.priceroot - product.price) / product.priceroot) * 100;
+        const discountPercentage = ((product.priceroot - product.price) / product.priceroot) * 100;
 
-          return discountPercentage > 50;
+        return discountPercentage > 50;
 
 
-        });
-        // console.log(this.saleproduct);
+      });
+      // console.log(this.saleproduct);
     })
   }
   formatPrice(num: number | string) {
@@ -82,8 +81,8 @@ export class HomepageComponent {
   }
 
   images = ['https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_500,w_1341/v1701436522/9_we7kcr.png',
-  'https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_550,w_1500/v1701436537/5_drhdu7.png',
-   'https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_550,w_1500/v1701436513/1_muyliz.png'];
+    'https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_550,w_1500/v1701436537/5_drhdu7.png',
+    'https://res.cloudinary.com/dmkh3w0of/image/upload/c_scale,h_550,w_1500/v1701436513/1_muyliz.png'];
   currentIndex = 0;
 
   nextSlide() {
@@ -105,7 +104,7 @@ export class HomepageComponent {
   selectProduct(id: Number) {
     // console.log(id);
 
-  this.router.navigate(['/product', id]).then();
+    this.router.navigate(['/product', id]).then();
   }
 
   scrollToSection(sectionId: string) {

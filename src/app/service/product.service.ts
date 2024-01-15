@@ -16,10 +16,16 @@ export class ProductService {
   private httpOptions = {
     headers: new HttpHeaders().set('Authorization', `Bearer ${this.Token}`),
   };
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   getProducts(page: any, limit: any): Observable<any> {
     return this.http.get<any>(
       `http://localhost:5000/api/product?page=${page}&limit=${limit}`
+    );
+  }
+
+  getAdminProducts(page: any, limit: any): Observable<any> {
+    return this.http.get<any>(
+      `http://localhost:5000/api/product/getAdminProducts?page=${page}&limit=${limit}`
     );
   }
 

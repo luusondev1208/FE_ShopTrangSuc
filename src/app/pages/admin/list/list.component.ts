@@ -17,15 +17,15 @@ export class ListComponent {
   products: any = []
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router,private toast: NgToastService) {
-    
+  constructor(private productService: ProductService, private router: Router, private toast: NgToastService) {
+
   }
-  
+
   loadData() {
-    this.productService.getProducts(this.page, this.limit).subscribe(
+    this.productService.getAdminProducts(this.page, this.limit).subscribe(
       (response: any) => {
         // console.log(response);
-        
+
         this.products = response.productDatas;
         // console.log(this.products);
 
@@ -40,7 +40,7 @@ export class ListComponent {
     this.loadData();
   }
   //deleteProduct
-  deleteProduct(id:any){
+  deleteProduct(id: any) {
     var result = confirm("Bạn có muốn xóa không?");
     if (result) {
       // Người dùng đã chọn Đồng ý
@@ -49,8 +49,8 @@ export class ListComponent {
       this.productService.deleteProduct(id).subscribe(
         response => {
           // console.log(response);
-          
-          this.products = this.products.filter((product:any) => product._id !== response.deletedProduct._id)
+
+          this.products = this.products.filter((product: any) => product._id !== response.deletedProduct._id)
           this.toast.success({ detail: "Thông báo", summary: `Xóa thành công sản phẩm: ${response.deletedProduct.title}`, duration: 5000, position: "topRight" });
           this.router.navigate(['/admin/list']);
           // Thực hiện các hành động sau khi sản phẩm được xóa thành công
@@ -71,8 +71,8 @@ export class ListComponent {
   formatPrice(num: number | string) {
     return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   }
-   
-  
+
+
   previousPage() {
     if (this.page > 1) {
       this.page--;
@@ -90,14 +90,14 @@ export class ListComponent {
   filteredList: any[] = [];
 
   search() {
-    this.filteredList = this.products.filter((item:any) =>
+    this.filteredList = this.products.filter((item: any) =>
       item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.products = this.filteredList
     console.log(this.filteredList)
   }
 
- 
+
   /**Default name for excel file when download**/
   fileName = 'ExcelSheet.xlsx';
 

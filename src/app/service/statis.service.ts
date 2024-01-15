@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StatisService {
-  private API_URL = 'http://localhost:5000/api';
+  private API_URL = 'http://localhost:5000/api/statis';
   Token = JSON.parse(localStorage.getItem('accessToken') || '{}');
   private httpOptions = {
     headers: new HttpHeaders().set(
@@ -16,24 +16,20 @@ export class StatisService {
   constructor(private http: HttpClient) { }
 
   getStatistics(startDate?: string, endDate?: string): Observable<any> {
-    let params = new HttpParams();
-    if (startDate) {
-      params = params.set('startDate', startDate);
-    }
-    if (endDate) {
-      params = params.set('endDate', endDate);
-    }
-    return this.http.get<any>(`${this.API_URL}/getStat`, { ...this.httpOptions, params });
+    return this.http.get<any>(`${this.API_URL}/getStat`, { ...this.httpOptions });
   }
-  getTopBuyer(startDate?: string, endDate?: string): Observable<any> {
-    let params = new HttpParams();
-    if (startDate) {
-      params = params.set('startDate', startDate);
-    }
-    if (endDate) {
-      params = params.set('endDate', endDate);
-    }
+  getTopBuyer(): Observable<any> {
+    return this.http.get<any>(`${this.API_URL}/getTopBuyer`, { ...this.httpOptions });
+  }
+  getTopProductSeller(): Observable<any> {
+    return this.http.get<any>(`${this.API_URL}/getTopProductSeller`, { ...this.httpOptions });
+  }
 
-    return this.http.get<any>(`${this.API_URL}/getTopBuyer`, { ...this.httpOptions, params });
+  getTotalPriceMonth(data: any): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/getTotalPriceMonth`, data);
+  }
+
+  getTotalPriceDay(data: any): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/getTotalPriceDay`, data);
   }
 }

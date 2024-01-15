@@ -43,6 +43,7 @@ import { ToastrModule, ToastrService, ToastNoAnimationModule } from 'ngx-toastr'
 import { SendEmailComponent } from './pages/send-email/send-email.component'
 import { NgToastModule } from 'ng-angular-popup';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
 
 import { provideToastr } from 'ngx-toastr';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
@@ -57,7 +58,7 @@ import { AddBlogComponent } from './pages/admin/blog/add-blog/add-blog.component
 import { ListBlogComponent } from './pages/admin/blog/list-blog/list-blog.component';
 import { UpdateBlogComponent } from './pages/admin/blog/update-blog/update-blog.component';
 import { ErrorComponent } from './pages/error/error.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ListNhanComponent } from './pages/list-nhan/list-nhan.component';
 import { StatisComponent } from './pages/admin/statis/statis.component';
 import { ListBrandComponent } from './pages/admin/brand/list-brand/list-brand.component';
@@ -68,7 +69,7 @@ import { AddCouponComponent } from './pages/admin/coupon/add-coupon/add-coupon.c
 import { UpdateCouponComponent } from './pages/admin/coupon/update-coupon/update-coupon.component';
 import { BrandlistComponent } from './pages/brandlist/brandlist.component';
 import { BoxChatComponent } from './pages/box-chat/box-chat.component';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ListSizeComponent } from './pages/admin/size/list-size/list-size.component';
 import { UpdateSizeComponent } from './pages/admin/size/update-size/update-size.component';
 import { AddSizeComponent } from './pages/admin/size/add-size/add-size.component';
@@ -76,8 +77,8 @@ import { ListproductfaveriesComponent } from './pages/listproductfaveries/listpr
 import { ListcommentComponent } from './pages/admin/comment/listcomment/listcomment.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -157,7 +158,7 @@ import { NgChartsModule } from 'ng2-charts';
     NgToastModule,
     MatTabsModule,
     ToastNoAnimationModule.forRoot(),
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     MatExpansionModule,
     MatTableModule,
     MatCheckboxModule,
@@ -177,6 +178,7 @@ import { NgChartsModule } from 'ng2-charts';
   ],
   providers: [
     ToastrService,
+    DatePipe,
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers
   ],

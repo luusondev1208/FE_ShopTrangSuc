@@ -19,12 +19,10 @@ export class UpdateCategoriComponent {
     ],
     title:[
       '',
-      [Validators.required, Validators.minLength(6), Validators.maxLength(255)]
+      [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
     ]
   });
-  @Input() data: any; // Thuộc tính để nhận dữ liệu từ bên ngoài
   constructor(
-    // @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
     private router: Router,
@@ -32,29 +30,40 @@ export class UpdateCategoriComponent {
     private toast: NgToastService
   ){
     
-    // this.route.paramMap.subscribe((param)=> {
-    //   const id = String(param.get('id'))
-    //   this.categoryService.getCategory(id).subscribe(
-    //     (category) => {
-    //       this.category = category.getOneCategory;
-    //       this.categoryForm.patchValue({
-    //         title: category.getOneCategory.title,
-    //       })
+    this.route.paramMap.subscribe((param)=> {
+      const id = String(param.get('id'))
+      this.categoryService.getCategory(id).subscribe(
+        (category) => {
+          console.log(category);
           
-    //     },
-    //   );
-    // });
+          this.category = category.getOneCategory;
+          console.log(this.category);
+          
+          this.categoryForm.patchValue({
+            title: category.getOneCategory.title,
+          })
+        },
+      );
+    });
   }
   // Gán giá trị từ data vào FormControl trong FormGroup
   
   onHandleSubmit() {
     if (this.categoryForm.valid) {
-      const updatedData = { ...this.categoryForm.value, };
-      this.categoryService.updateCategory(updatedData).subscribe(
+      // const updatedData = { ...this.categoryForm.value, };
+      const category = {
+        id: this.category._id,
+        title: this.categoryForm.value.title || '',
+      };
+      console.log(category);
+      
+      
+      this.categoryService.updateCategory(category).subscribe(
         (response) => {
           console.log('Update successful:', response);
+          this.toast.success({ detail: "Thông báo", summary: `Update thành công danh mục: ${this.title}`, duration: 5000, position: "topRight" });
           // Xử lý sau khi cập nhật thành công, ví dụ: điều hướng tới trang khác
-          this.router.navigate(['/your-route']);
+          this.router.navigate(['/admin/listCategori']);
         },
         (error) => {
           console.error('Update failed:', error);

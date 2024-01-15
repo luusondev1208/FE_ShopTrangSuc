@@ -47,24 +47,6 @@ export class ListCategoriComponent {
     );
   }
 
-  // Khai báo một SelectionModel để quản lý việc chọn hàng
-  selection = new SelectionModel<any>(true, []);
-
-  // Phương thức masterToggle để chọn tất cả hoặc bỏ chọn tất cả
-  
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach((row: any) => this.selection.select(row));
-  }
-  
-
-  // Phương thức kiểm tra xem tất cả các hàng đã được chọn hay không
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
   //deleteCategory
   deleteCategory(id:any){
     var result = confirm(`Bạn có muốn xóa không ?`);
@@ -95,18 +77,6 @@ export class ListCategoriComponent {
     }
   }
 
-  searchResults: any[] = [];
-  searchTerm: string = '';
-  filteredList: any[] = [];
-
-  search() {
-    this.filteredList = this.categories.filter((item:any) =>
-      item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-    this.categories = this.filteredList
-    // console.log(this.categories)
-  }
-
   
   /**Default name for excel file when download**/
   fileName = 'ExcelSheet.xlsx';
@@ -124,46 +94,5 @@ export class ListCategoriComponent {
     XLSX.writeFile(wb, this.fileName);
   }
 
-  deleteSelectedRows(): void {
-    const selectedRows = this.selection.selected;
-
-    selectedRows.forEach(row => {
-      this.categoryService.deleteCategory(row._id).subscribe(() => {
-        // Xóa dữ liệu thành công từ DB, cập nhật giao diện người dùng
-        const index = this.dataSource.data.findIndex(d => d._id === row._id);
-        
-        if (index > -1) {
-          this.dataSource.data.splice(index, 1);
-          this.dataSource._updateChangeSubscription(); // Cập nhật sự thay đổi
-        }
-      });
-    });
-
-    this.selection.clear();
-  }
-  selectedRowData:any
-  show:any
-  openFormUpdate(id: number) {
-    let data = this.categories.find((cate: any) => cate._id == id);
-    console.log(data);
-    
-    const modalRef = this.modalService.open(UpdateCategoriComponent, {
-      centered: true,
-      size: 'xl',
-      backdrop: 'static',
-    });
-  
-    (modalRef.componentInstance as any).data = data;
-
-    // Kiểm tra this.selectedRowData để đảm bảo dữ liệu đã được gán thành công
-    console.log((modalRef.componentInstance as any).data);
-  
-  }
-  
-    // Phương thức để hiển thị form cập nhật và truyền dữ liệu
-    submitUpdateForm(rowData: any): void {
-      this.selectedRowData = { ...rowData }; // Sao chép dữ liệu của hàng được chọn vào biến selectedRowData
-      // Hiển thị form cập nhật
-    }
   
 }

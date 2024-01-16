@@ -9,10 +9,13 @@
         <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-3">
           <div class="flex items-center justify-between mb-2">
             <div class="flex-shrink-0 flex justify-between">
-              <div>
-                <p class="w-[200px] text-xl sm:text-2xl leading-none font-bold text-gray-900">Thống Kê</p>
+              <div class="flex items-center space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+                  <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
+                </svg>
+                <p class="w-[200px] mt-3 text-xl sm:text-2xl leading-none font-bold text-gray-900">Thống Kê</p>
               </div>
-              <div class="flex justify-start space-x-2 items-center ml-[158%]" [formGroup]="myForm">
+              <div class="flex justify-start space-x-2 items-center ml-[140%]" [formGroup]="myForm">
                 <input type="text"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   type="date" formControlName="startDate" (input)="onDateSelect()" />

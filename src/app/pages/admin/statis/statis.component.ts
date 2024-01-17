@@ -123,6 +123,7 @@ export class StatisComponent implements OnInit {
   getTopBuyer() {
     this.StatisService.getTopBuyer().subscribe(data => {
       this.topBuyers = data.topBuyers
+      this.topBuyers.sort((a:any, b:any) => b._id.orders.length - a._id.orders.length);
     })
   }
 

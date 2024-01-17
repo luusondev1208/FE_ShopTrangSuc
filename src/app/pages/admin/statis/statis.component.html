@@ -70,13 +70,13 @@
         </div>
 
       </div>
-      <div class="mt-4 w-[60%] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div class="mt-4 grid grid-cols-5 md:grid-cols-2 xl:grid-cols-5 gap-4 ">
         <div *ngFor="let status of orderStatusCounts | keyvalue">
-          <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+          <div class="text-gray-900 hover:text-white shadow rounded-lg p-4 sm:p-6 xl:p-8 border border-black hover:bg-green-400">
             <div class="flex space-x-10">
-              <div class="flex-shrink-0">
-                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{ status.value }}</span>
-                <h3 class="text-base font-normal text-gray-500">{{ status.key }}</h3>
+              <div class="flex-shrink-0 ">
+                <span class="text-2xl hover:text-white sm:text-3xl leading-none font-bold ">{{ status.value }}</span>
+                <h3 class="text-base  font-normal ">{{ status.key }}</h3>
               </div>
 
             </div>

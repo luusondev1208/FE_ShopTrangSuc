@@ -50,8 +50,12 @@
                   Price
                 </th>
                 <th scope="col" class="text-sm font-medium text-gray-900 w-[150px] px-6 py-2 text-left">
+                  Size
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-900 w-[150px] px-6 py-2 text-left">
                   Image
                 </th>
+
                 <th scope="col" class="text-sm font-medium text-gray-900 w-[150px] px-6 py-2 text-left">
                   action
                 </th>
@@ -65,6 +69,9 @@
                 </td>
                 <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
                   {{formatPrice(product.price)}}đ
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6  whitespace-nowrap">
+                  <p> {{ product.sizeName }}</p>
                 </td>
                 <td  class="text-sm text-gray-900 font-light pl-10  whitespace-nowrap">
                   <img class="w-[90px]" src={{product.images[0]}} alt="">

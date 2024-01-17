@@ -5,6 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgToastService } from 'ng-angular-popup';
 import * as XLSX from 'xlsx';
+import { SizeService } from 'src/app/service/size.service';
+import { combineLatest, forkJoin, EMPTY } from 'rxjs';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -17,23 +20,42 @@ export class ListComponent {
   products: any = []
   page: number = 1;
   limit: number = 10;
-  constructor(private productService: ProductService, private router: Router, private toast: NgToastService) {
+  size: any = []
+  constructor(private productService: ProductService,private sizeService: SizeService, private router: Router, private toast: NgToastService) {
 
   }
-
   loadData() {
     this.productService.getAdminProducts(this.page, this.limit).subscribe(
       (response: any) => {
-        // console.log(response);
-
         this.products = response.productDatas;
-        // console.log(this.products);
 
-        //  console.log(this.products.docs);
+        // Assuming list_size is available in every product
+        const sizeObservables = this.products.map((product: any) => this.loadSizeData(product.list_size, product));
+
+        // Wait for all size observables to complete
+        combineLatest(sizeObservables).subscribe(() => {
+          // All size data is loaded, you can perform further processing if needed
+        });
       },
       (error) => {
-        // console.log(error);
+        console.error(error);
       }
+    );
+  }
+
+  loadSizeData(sizeId: string, product: any) {
+    return this.sizeService.getSize(sizeId).pipe(
+      // Assuming the size data will be available in sizeData
+      tap((sizeData: any) => {
+        console.log(sizeData.getSize.nameSize);
+        // Assign size information to a property in each product
+        product.sizeName = sizeData.getSize.nameSize;
+        // Further processing of sizeData if needed
+      }),
+      catchError((error) => {
+        console.error(`Error fetching size data for ${sizeId}:`, error);
+        return EMPTY; // or return an observable with a default value
+      })
     );
   }
   ngOnInit() {
@@ -89,20 +111,29 @@ export class ListComponent {
   searchTerm: string = '';
   filteredList: any[] = [];
 
-    search() {
-    this.productService.search({ search: this.searchTerm })
-      .subscribe(response => {
+  search() {
+    this.productService.search({ search: this.searchTerm }).pipe(
+      switchMap((response) => {
         if (response.data && response.data.length > 0) {
           this.products = response.data;
-        } else {
-       
-          this.toast.error({ detail: "Thông báo", summary: 'Không tìm thấy sản phẩm!', duration: 5000, position: "topRight" });
-        }
-      }, error => {
 
-        console.error(error);
-      });
+          // Assuming list_size is available in every product
+          const sizeObservables = this.products.map((product: any) => this.loadSizeData(product.list_size, product));
+
+          // Wait for all size observables to complete
+          return combineLatest(sizeObservables);
+        } else {
+          this.toast.error({ detail: 'Thông báo', summary: 'Không tìm thấy sản phẩm!', duration: 5000, position: 'topRight' });
+          return EMPTY;
+        }
+      })
+    ).subscribe(() => {
+      // All size data is loaded, you can perform further processing if needed
+    }, (error) => {
+      console.error(error);
+    });
   }
+
 
   /**Default name for excel file when download**/
   fileName = 'ExcelSheet.xlsx';

@@ -69,7 +69,7 @@ export class AddProdcutComponent {
       priceroot: [0],
       assess: [0],
       quantity: [''],
-      list_size: ['']
+
       // ... other form fields ...
     });
 
@@ -85,7 +85,7 @@ export class AddProdcutComponent {
       description: ['', [Validators.required, Validators.minLength(6)]],
       category: ['', [Validators.required]],
       quantity: ['', [Validators.required, Validators.min(0)]],
-      list_size: ['', Validators.required]
+      list_size: ['', [Validators.required]]
     });
   }
   onFilesSelected(event: any) {

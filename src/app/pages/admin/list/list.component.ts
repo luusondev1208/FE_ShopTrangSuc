@@ -89,14 +89,20 @@ export class ListComponent {
   searchTerm: string = '';
   filteredList: any[] = [];
 
-  search() {
-    this.filteredList = this.products.filter((item: any) =>
-      item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-    this.products = this.filteredList
-    console.log(this.filteredList)
-  }
+    search() {
+    this.productService.search({ search: this.searchTerm })
+      .subscribe(response => {
+        if (response.data && response.data.length > 0) {
+          this.products = response.data;
+        } else {
+       
+          this.toast.error({ detail: "Thông báo", summary: 'Không tìm thấy sản phẩm!', duration: 5000, position: "topRight" });
+        }
+      }, error => {
 
+        console.error(error);
+      });
+  }
 
   /**Default name for excel file when download**/
   fileName = 'ExcelSheet.xlsx';

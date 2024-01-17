@@ -116,6 +116,23 @@ export class ListOderComponent {
       this.getOrders();
     }
   }
+  searchResults: any[] = [];
+ 
+  filteredList: any[] = [];
+  search() {
+    this.orderService.search({ search: this.searchTerm })
+      .subscribe(response => {
+        if (response.data && response.data.length > 0) {
+          this.orders = response.data;
+        } else {
+       
+          this.toast.error({ detail: "Thông báo", summary: 'Không tìm thấy người mua!', duration: 5000, position: "topRight" });
+        }
+      }, error => {
+
+        console.error(error);
+      });
+  }
 
   updateStatus(orderId: string, newStatus: string): void {
     this.orderService

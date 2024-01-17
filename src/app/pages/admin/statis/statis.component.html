@@ -1,57 +1,115 @@
 <!-- Biểu đồ cột -->
 
-
 <!-- biểu đồ đường -->
-<div id="main-content" class="h-full w-[85%] bg-gray-50 relative overflow-y-auto lg:ml-64">
+<div
+  id="main-content"
+  class="h-full w-[85%] bg-gray-50 relative overflow-y-auto lg:ml-64"
+>
   <main>
     <div class="pt-6 px-4">
       <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-3">
+        <div
+          class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-3"
+        >
           <div class="flex items-center justify-between mb-2">
             <div class="flex-shrink-0 flex justify-between">
               <div class="flex items-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                  class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  class="bi bi-bar-chart-line-fill"
+                  viewBox="0 0 16 16"
+                >
                   <path
-                    d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z" />
+                    d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"
+                  />
                 </svg>
-                <p class="w-[200px] mt-3 text-xl sm:text-2xl leading-none font-bold text-gray-900">Thống Kê</p>
+                <p
+                  class="w-[200px] mt-3 text-xl sm:text-2xl leading-none font-bold text-gray-900"
+                >
+                  Thống Kê
+                </p>
               </div>
-              <div class="flex justify-start space-x-2 items-center ml-[140%]" [formGroup]="myForm">
-                <input type="text"
+              <div
+                class="flex justify-start space-x-2 items-center ml-[140%]"
+                [formGroup]="myForm"
+              >
+                <input
+                  type="text"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  type="date" formControlName="startDate" (input)="onDateSelect()" />
+                  type="date"
+                  formControlName="startDate"
+                  (input)="onDateSelect()"
+                />
 
                 <p class="pt-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrow-right"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                    />
                   </svg>
                 </p>
 
-                <input type="text" id="first_name"
+                <input
+                  type="text"
+                  id="first_name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  type="date" formControlName="endDate" (input)="onDateSelect()" />
+                  type="date"
+                  formControlName="endDate"
+                  (input)="onDateSelect()"
+                />
               </div>
             </div>
           </div>
-          <div class="flex  justify-between">
+          <div class="flex justify-between">
             <div class="flex space-x-2 my-2">
-              <button (click)="currentStatistical = 'statistical1'"
-                class="bg-orange-400 hover:bg-orange-500 px-3 py-2 rounded text-white">Ngày/Tháng</button>
-              <button (click)="statistical2()"
-                class="bg-red-400 hover:bg-red-500 px-3 py-2 rounded text-white">Tháng/Năm</button>
+              <button
+                (click)="currentStatistical = 'statistical1'"
+                class="bg-orange-400 hover:bg-orange-500 px-3 py-2 rounded text-white"
+              >
+                Ngày/Tháng
+              </button>
+              <button
+                (click)="statistical2()"
+                class="bg-red-400 hover:bg-red-500 px-3 py-2 rounded text-white"
+              >
+                Tháng/Năm
+              </button>
             </div>
-            <div class="flex items-center space-x-2 text-black ">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bank"
-                viewBox="0 0 16 16">
+            <div class="flex items-center space-x-2 text-black">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-bank"
+                viewBox="0 0 16 16"
+              >
                 <path
-                  d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z" />
+                  d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"
+                />
               </svg>
-              <div class="flex space-x-2 pt-3">
-                <p class="font-medium">Tổng tiền: </p>
-                <p>999.999 đ</p>
+              <div *ngIf="currentStatistical === 'statistical1'" class="w-full">
+                <div class="flex space-x-2 pt-3">
+                  <p class="font-medium">Tổng tiền:</p>
+                  <p>{{ formatPrice(totalStatisDayAndMonth) }}đ</p>
+                </div>
+              </div>
+              <div *ngIf="currentStatistical === 'statistical2'" class="w-full">
+                <div class="flex space-x-2 pt-3">
+                  <p class="font-medium">Tổng tiền:</p>
+                  <p>{{ formatPrice(totalStatisMonthAndYear) }}đ</p>
+                </div>
               </div>
             </div>
             <!-- <button (click)="currentStatistical = 'statistical3'"
@@ -61,43 +119,63 @@
           </div>
 
           <div *ngIf="currentStatistical === 'statistical1'" class="w-full">
-            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
-              [legend]="lineChartLegend">
+            <canvas
+              baseChart
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [legend]="lineChartLegend"
+            >
             </canvas>
           </div>
           <div *ngIf="currentStatistical === 'statistical2'" class="w-full">
-            <canvas baseChart [datasets]="lineChartDatas" [labels]="lineChartLabelss" [options]="lineChartOptionss"
-              [legend]="lineChartLegend">
+            <canvas
+              baseChart
+              [datasets]="lineChartDatas"
+              [labels]="lineChartLabelss"
+              [options]="lineChartOptionss"
+              [legend]="lineChartLegend"
+            >
             </canvas>
           </div>
-
         </div>
-
       </div>
-      <div class="mt-4 grid grid-cols-6 md:grid-cols-3 xl:grid-cols-6 gap-4 ">
+      <div class="mt-4 grid grid-cols-6 md:grid-cols-3 xl:grid-cols-6 gap-4">
         <div *ngFor="let status of orderStatusCounts | keyvalue">
           <div
-            class="text-gray-900 hover:text-white shadow rounded-lg p-4 sm:p-6 xl:p-8 border border-black hover:bg-green-400">
+            class="text-gray-900 hover:text-white shadow rounded-lg p-4 sm:p-6 xl:p-8 border border-black hover:bg-green-400"
+          >
             <div class="flex space-x-10">
-              <div class="flex-shrink-0 ">
-                <span class="text-2xl hover:text-white sm:text-3xl leading-none font-bold ">{{ status.value }}</span>
-                <h3 class="text-base  font-normal ">{{ status.key }}</h3>
+              <div class="flex-shrink-0">
+                <span
+                  class="text-2xl hover:text-white sm:text-3xl leading-none font-bold"
+                  >{{ status.value }}</span
+                >
+                <h3 class="text-base font-normal">{{ status.key }}</h3>
               </div>
-
             </div>
           </div>
         </div>
       </div>
       <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
-        <div class="bg-white border-1 hover:border-black shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
+        <div
+          class="bg-white border-1 hover:border-black shadow rounded-lg mb-4 p-4 sm:p-6 h-full"
+        >
           <div class="flex items-center justify-between mb-4">
-            <p class="text-xl font-bold leading-none text-black ">Top 5 người mua hàng nhiều</p>
-            <a href="#"
-              class="text-sm font-medium text-black hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
+            <p class="text-xl font-bold leading-none text-black">
+              Top 5 người mua hàng nhiều
+            </p>
+
+            <a
+              href="#"
+              class="text-sm font-medium text-black hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
+            >
               Số đơn
             </a>
-            <a href="#"
-              class="text-sm font-medium text-black hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
+            <a
+              href="#"
+              class="text-sm font-medium text-black hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
+            >
               Tổng tiền
             </a>
           </div>
@@ -107,39 +185,54 @@
                 <li class="py-3 sm:py-4">
                   <div class="flex items-center space-x-4">
                     <div class="flex-shrink-0">
-                      <img class="h-8 w-8 rounded-full"
+                      <img
+                        class="h-8 w-8 rounded-full"
                         src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/373091598_2007369482963617_498760771772999272_n.jpg?_nc_cat=106&cb=99be929b-b574a898&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeHgml7aysYVBHDO3t2LUrzPAeSEYd4ldn8B5IRh3iV2f7nQD_yN0uXbaJDpwGTsJ5Q-z14yDleZhEdBwV4uP8xz&_nc_ohc=liiJhicKGN8AX-JMR2Z&_nc_ht=scontent.fhan14-2.fna&oh=00_AfAnX2Zf3J6z2Vuhqpch5fFIQOXbf-U9kqgsDnjiYCGsRg&oe=65A6ECC6"
-                        alt="Neil image">
+                        alt="Neil image"
+                      />
                     </div>
                     <div class="flex-1 min-w-0">
                       <p class="text-sm font-medium text-gray-900 truncate">
-                        {{user._id.firstname +" "+ user._id.lastname}}
+                        {{ user._id.firstname + " " + user._id.lastname }}
                       </p>
                       <p class="text-sm text-gray-500 truncate">
-                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                          data-cfemail="17727a767e7b57607e7973646372653974787a">{{user._id.email}}</a>
+                        <a
+                          href="/cdn-cgi/l/email-protection"
+                          class="__cf_email__"
+                          data-cfemail="17727a767e7b57607e7973646372653974787a"
+                          >{{ user._id.email }}</a
+                        >
                       </p>
                     </div>
-                    <div class="items-center text-base font-semibold text-gray-900 pr-[11%]">
-                      {{user._id.orders.length}}
+                    <div
+                      class="items-center text-base font-semibold text-gray-900 pr-[11%]"
+                    >
+                      {{ user._id.orders.length }}
                     </div>
-                    <div class="pl-[5%] inline-flex items-center text-base font-semibold text-gray-900 w-[140px]">
-                      {{formatPrice(user.totalPrice)}} đ
+                    <div
+                      class="pl-[5%] inline-flex items-center text-base font-semibold text-gray-900 w-[140px]"
+                    >
+                      {{ formatPrice(user.totalPrice) }} đ
                     </div>
                   </div>
                 </li>
               </div>
             </ul>
           </div>
-
         </div>
 
-        <div class="bg-white border-1 hover:border-black shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+        <div
+          class="bg-white border-1 hover:border-black shadow rounded-lg p-4 sm:p-6 xl:p-8"
+        >
           <div class="mb-4 flex items-center justify-between">
             <div>
-              <p class="text-xl font-bold text-black mb-2">Top 5 sản phẩm bán chạy</p>
+              <p class="text-xl font-bold text-black mb-2">
+                Top 5 sản phẩm bán chạy
+              </p>
             </div>
+
           </div>
+          
           <div class="flex flex-col mt-3">
             <div class="overflow-x-auto rounded-lg">
               <div class="align-middle inline-block min-w-full">
@@ -147,46 +240,70 @@
                   <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                       <tr>
-                        <th scope="col"
-                          class="p-4 text-left text-xs font-medium text-gray-900  tracking-wider">
+                        <th
+                          scope="col"
+                          class="p-4 text-left text-xs font-medium text-gray-900 tracking-wider"
+                        >
                           Id
                         </th>
-                        <th scope="col"
-                          class="p-4 text-left text-xs font-medium text-gray-900  tracking-wider">
+                        <th
+                          scope="col"
+                          class="p-4 text-left text-xs font-medium text-gray-900 tracking-wider"
+                        >
                           Tên sản phẩm
                         </th>
-                        <th scope="col"
-                          class="p-4 text-left text-xs font-medium text-gray-900  tracking-wider">
+                        <th
+                          scope="col"
+                          class="p-4 text-left text-xs font-medium text-gray-900 tracking-wider"
+                        >
                           Giá
                         </th>
-                        <th scope=""
-                          class="p-4 text-left text-xs w-10 font-medium text-gray-900  tracking-wider">
+                        <th
+                          scope=""
+                          class="p-4 text-left text-xs w-10 font-medium text-gray-900 tracking-wider"
+                        >
                           SL
                         </th>
-                        <th scope="col"
-                          class="p-4 text-left text-xs font-medium text-gray-900  tracking-wider">
-                          Doanh số
+                        <th
+                          scope="col"
+                          class="p-4 text-left text-xs font-medium text-gray-900 tracking-wider"
+                        >
+                          Tổng tiền
                         </th>
                       </tr>
                     </thead>
 
-                    <tbody class="bg-white" *ngFor="let product of topProductSeller">
+                    <tbody
+                      class="bg-white"
+                      *ngFor="let product of topProductSeller"
+                    >
                       <!-- sp1 -->
                       <tr class="bg-gray-50">
-                        <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                          {{product._id}}<span></span>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left"
+                        >
+                          {{ product._id }}<span></span>
                         </td>
-                        <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                          {{product.title}}<span class="font-font-normal"></span>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left"
+                        >
+                          {{ product.title
+                          }}<span class="font-font-normal"></span>
                         </td>
-                        <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                          {{formatPrice(product.price)}} đ
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-900"
+                        >
+                          {{ formatPrice(product.price) }} đ
                         </td>
-                        <td class="p-4 whitespace-nowrap text-sm font-normal  text-gray-900">
-                          {{product.sold}}
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-900"
+                        >
+                          {{ product.sold }}
                         </td>
-                        <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                          {{formatPrice(product.price * product.sold)}} đ
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900"
+                        >
+                          {{ formatPrice(product.price * product.sold) }} đ
                         </td>
                       </tr>
                     </tbody>
@@ -263,7 +380,6 @@
       </div>
     </div>
   </main>
-
 </div>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>

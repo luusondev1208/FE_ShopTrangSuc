@@ -60,6 +60,8 @@ export class StatisComponent implements OnInit {
   orderStatusCounts: any
   topBuyers: any
   topProductSeller: any
+  totalStatisDayAndMonth: any
+  totalStatisMonthAndYear: any
 
   onDateSelect() {
     if (this.myForm.value.startDate && this.myForm.value.endDate) {
@@ -103,6 +105,7 @@ export class StatisComponent implements OnInit {
         .subscribe(data => {
           this.lineChartLabelss = data.result.map((item: any) => item.month);
           this.lineChartDatas[0].data = data.result.map((item: any) => item.totalAmount);
+          this.totalStatisMonthAndYear = data.totalAmountAllMonths
         });
     }
   }
@@ -114,16 +117,24 @@ export class StatisComponent implements OnInit {
   }
 
   getTopProductSeller() {
-    this.StatisService.getTopProductSeller().subscribe(data => {
-      this.topProductSeller = data.topProducts;
-    })
+    if (this.myForm?.value.startDate && this.myForm?.value.endDate) {
+      const data = {
+        startDate: this.myForm.value.startDate,
+        endDate: this.myForm.value.endDate
+      }
+
+      this.StatisService.getTopProductSeller().subscribe(data => {
+        this.topProductSeller = data.topProducts;
+        this.topProductSeller.sort((a: any, b: any) => b.totalPrice - a.totalPrice);
+      })
+    }
   }
 
 
   getTopBuyer() {
     this.StatisService.getTopBuyer().subscribe(data => {
       this.topBuyers = data.topBuyers
-      this.topBuyers.sort((a:any, b:any) => b.totalPrice - a.totalPrice);
+      this.topBuyers.sort((a: any, b: any) => b.totalPrice - a.totalPrice);
     })
   }
 
@@ -138,6 +149,7 @@ export class StatisComponent implements OnInit {
         .subscribe(data => {
           this.lineChartLabels = data.dailyTotals.map((item: any) => item._id);
           this.lineChartData[0].data = data.dailyTotals.map((item: any) => item.totalAmount);
+          this.totalStatisDayAndMonth = data.totalAmountInRange
         });
     }
   }

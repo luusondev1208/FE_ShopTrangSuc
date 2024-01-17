@@ -86,6 +86,9 @@ export class StatisComponent implements OnInit {
     this.getTopProductSeller()
   }
 
+  formatPrice(num: number | string) {
+    return num?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  }
   getTotalPriceMonthAndYear() {
     if (this.myForm?.value.startDate && this.myForm?.value.endDate) {
       const startYear = new Date(this.myForm.value.startDate).getFullYear();

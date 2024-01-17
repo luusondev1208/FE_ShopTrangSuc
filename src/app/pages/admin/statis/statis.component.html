@@ -119,7 +119,7 @@
                       {{user._id.orders.length}}
                     </div>
                     <div class="inline-flex items-center text-base font-semibold text-gray-900">
-                      {{user.totalPrice}}
+                      {{formatPrice(user.totalPrice)}} VND
                     </div>
                   </div>
                 </li>
@@ -175,13 +175,13 @@
                           {{product.title}}<span class="font-font-normal"></span>
                         </td>
                         <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                          {{product.price}}
+                          {{formatPrice(product.price)}} VND
                         </td>
                         <td class="p-4 whitespace-nowrap text-sm font-normal  text-gray-900">
                           {{product.sold}}
                         </td>
                         <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                          {{product.price * product.sold}}
+                          {{formatPrice(product.price * product.sold)}} VND
                         </td>
                       </tr>
                     </tbody>

@@ -4,47 +4,32 @@
   <h2 class="text-2xl font-bold mb-4" style="margin-left: 195px">
     Danh sách đơn hàng
   </h2>
-  <div
-    class="md:ml-[180px] mx-[50px] pb-[100px] lg:w-[75%] xl:w-[80%] 2xl:w-[85%]"
-  >
-    <table
-      class="border-red-800 table table-hover"
-      style="width: 1280px; margin-left: 15px"
-    >
+  <div class="md:ml-[180px] mx-[50px] pb-[100px] lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+    <table class="border-red-800 table table-hover" style="width: 1280px; margin-left: 15px">
       <thead class="text-center">
         <tr>
           <th
-            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell whitespace-nowrap"
-          >
+            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell whitespace-nowrap">
             Mã đơn hàng
           </th>
-          <th
-            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell"
-          >
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
             Ngày Mua
           </th>
-          <th
-            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell"
-          >
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
             Thông tin người đặt
           </th>
           <th
-            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell whitespace-nowrap"
-          >
+            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell whitespace-nowrap">
             Thông tin Sản Phẩm
           </th>
           <!-- <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Địa chỉ nhận hàng</th> -->
           <!-- <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Số điện thoại</th> -->
           <!-- <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Email</th> -->
           <!-- <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell  whitespace-nowrap">Tổng tiền</th> -->
-          <th
-            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell"
-          >
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
             Ghi chú
           </th>
-          <th
-            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell"
-          >
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
             Trạng Thái
           </th>
           <!--<th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell  whitespace-nowrap">Số lượng</th>
@@ -54,27 +39,19 @@
       <tbody>
         <ng-container *ngFor="let order of orderDetails">
           <tr
-            class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0"
-          >
+            class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
             <td
-              class="lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static whitespace-nowrap"
-            >
-              <span
-                class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
-              ></span>
+              class="lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static whitespace-nowrap">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
               {{ "*********" + order._id.slice(-4) }}
             </td>
             <td
-              class="lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static whitespace-nowrap"
-            >
-              <span
-                class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
-              ></span>
+              class="lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static whitespace-nowrap">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
               {{ order.createdAt | date : "dd/MM/yyyy |HH:mm" }}
             </td>
             <td
-              class="p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap"
-            >
+              class="p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap">
               <!-- <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span> -->
 
               <ul>
@@ -94,40 +71,28 @@
                         {{ order.mobile }}
                     </td> -->
             <td
-              class="lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static whitespace-nowrap"
-            >
+              class="lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static whitespace-nowrap">
               <ul class="space-y-2">
-                <ul
-                  *ngFor="let product of order.products"
-                  style="
+                <ul *ngFor="let product of order.products" style="
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     grid-gap: 1px;
-                  "
-                >
+                  ">
                   <div class="image-container">
                     <li>
                       <!-- Kiểm tra xem product có tồn tại và có trường images không -->
-                      <ng-container
-                        *ngIf="product.product && product.product.images"
-                        style="margin-right: 3px"
-                      >
+                      <ng-container *ngIf="product.product && product.product.images" style="margin-right: 3px">
                         <div class="image-container">
                           Ảnh Sản Phẩm
-                          <img
-                            [src]="product.product.images[0]"
-                            alt="Product Image"
-                            class="w-16 h-16 object-cover rotating-image"
-                          />
+                          <img [src]="product.product.images[0]" alt="Product Image"
+                            class="w-16 h-16 object-cover rotating-image" />
                         </div>
                       </ng-container>
                     </li>
                   </div>
                   <div>
                     <li>
-                      <ng-container
-                        *ngIf="product.product && product.product.title"
-                      >
+                      <ng-container *ngIf="product.product && product.product.title">
                         <p style="font-weight: initial">
                           Tên sản phẩm: {{ product.product.title }}
                         </p>
@@ -140,15 +105,13 @@
                       </ng-container>
                     </li>
                     <li>
-                      <ng-container
-                        *ngIf="product.product && product.product.price"
-                      >
+                      <ng-container *ngIf="product.product && product.product.price">
                         <p style="color: lightslategrey; font-weight: bold">
                           Giá Tiền:
                           {{
-                            formatPrice(
-                              getPriceBySize(product.product, product.size)
-                            )
+                          formatPrice(
+                          getPriceBySize(product.product, product.size)
+                          )
                           }}
                         </p>
                       </ng-container>
@@ -173,69 +136,44 @@
                           </div>
                         </div> -->
 
-              <ng-container
-                *ngIf="
+              <ng-container *ngIf="
                   order.status === 'Đang giao hàng' ||
                   order.status === 'Đã giao hàng'
-                "
-              >
-                <button
-                  *ngIf="canChangeStatusXacNhanHang(order)"
-                  (click)="order.showConfirm = true"
-                  class="btn btn-light"
-                >
+                ">
+                <button *ngIf="canChangeStatusXacNhanHang(order)" (click)="order.showConfirm = true"
+                  class="btn btn-light">
                   Đã nhận hàng
                 </button>
               </ng-container>
-              <ng-container
-                *ngIf="
+              <ng-container *ngIf="
                   order.status !== 'Đã giao hàng' &&
                   order.status !== 'Đang giao hàng'
-                "
-              >
-                <button
-                  *ngIf="canChangeStatus(order)"
-                  (click)="order.showConfirm = true"
-                  class="btn btn-primary"
-                >
+                ">
+                <button *ngIf="canChangeStatus(order)" (click)="order.showConfirm = true" class="btn btn-primary">
                   Hủy Đơn
                 </button>
               </ng-container>
-              <div
-                *ngIf="order.showConfirm"
-                class="fixed top-0 right-0 w-1/4 mt-5 card confirmation-dialog"
-              >
+              <div *ngIf="order.showConfirm" class="fixed top-0 right-0 w-1/4 mt-5 card confirmation-dialog">
                 <div class="card-body p-2">
-                  <ng-container
-                    *ngIf="
+                  <ng-container *ngIf="
                       order.status !== 'Đang giao hàng' &&
                       order.status !== 'Đã giao hàng'
-                    "
-                  >
+                    ">
                     <p class="card-text text-sm">
                       Bạn có chắc muốn hủy đơn không?
                     </p>
-                    <button
-                      (click)="updateOrderStatus(order._id, 'Đã hủy')"
-                      class="btn btn-danger mr-2 text-sm"
-                    >
+                    <button (click)="updateOrderStatus(order._id, 'Đã hủy')" class="btn btn-danger mr-2 text-sm">
                       Xác Nhận
                     </button>
                   </ng-container>
                   <ng-container *ngIf="order.status === 'Đã giao hàng'">
                     <p class="card-text text-sm">Xác nhận bạn đã nhận hàng</p>
-                    <button
-                      *ngIf="canChangeStatusXacNhanHang(order)"
-                      (click)="updateXacNhanHang(order._id, 'Đã nhận hàng')"
-                      class="btn btn-danger mr-2 text-sm"
-                    >
+                    <button *ngIf="canChangeStatusXacNhanHang(order)"
+                      (click)="updateXacNhanHang(order._id, 'Đã nhận hàng')" class="btn btn-danger mr-2 text-sm">
                       Xác nhận
                     </button>
                   </ng-container>
-                  <button
-                    (click)="cancelConfirmDialog(order)"
-                    class="btn btn-secondary text-sm"
-                  >
+                  <button (click)="cancelConfirmDialog(order)" class="btn btn-secondary text-sm">
                     Hủy
                   </button>
                 </div>
@@ -250,17 +188,13 @@
                     {{  formatPrice(order.totalPrice)}}
                 </td> -->
             <td
-              class="lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap"
-            >
-              <span
-                class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
-              ></span>
+              class="lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap">
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
               {{ order.note }}
             </td>
 
             <td
-              class="lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap"
-            >
+              class="lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static whitespace-nowrap">
               <!-- <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase ">Status</span> -->
               <!-- <span [ngClass]="{
                                             'rounded bg-green-400 py-1 px-3 text-xs font-bold': order.status === 'Đã xác nhận',
@@ -271,8 +205,7 @@
                               {{ order.status }}
                           </span> -->
               <ng-container>
-                <span
-                  [ngClass]="{
+                <span class="text-black font-medium" [ngClass]="{
                     'status-container': true,
                     confirmed: order.status === 'Đã xác nhận',
                     cancelled: order.status === 'Đã hủy',
@@ -282,8 +215,7 @@
                     danggiao: order.status === 'Đang giao hàng',
                     thanhtoan: order.status === 'Đã thanh toán',
                     rounded: true
-                  }"
-                >
+                  }">
                   {{ order.status }}
                 </span>
               </ng-container>

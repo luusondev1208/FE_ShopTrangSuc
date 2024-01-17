@@ -10,8 +10,10 @@
           <div class="flex items-center justify-between mb-2">
             <div class="flex-shrink-0 flex justify-between">
               <div class="flex items-center space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
-                  <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                  class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z" />
                 </svg>
                 <p class="w-[200px] mt-3 text-xl sm:text-2xl leading-none font-bold text-gray-900">Thống Kê</p>
               </div>
@@ -35,21 +37,23 @@
             </div>
           </div>
           <div class="flex  justify-between">
-           <div class="flex space-x-2 my-2">
-            <button (click)="currentStatistical = 'statistical1'"
-            class="bg-orange-400 hover:bg-orange-500 px-3 py-2 rounded text-white">Ngày/Tháng</button>
-          <button (click)="statistical2()"
-            class="bg-red-400 hover:bg-red-500 px-3 py-2 rounded text-white">Tháng/Năm</button>
-           </div>
-           <div class="flex items-center space-x-2 text-black ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bank" viewBox="0 0 16 16">
-              <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"/>
-            </svg>
-            <div class="flex space-x-2 pt-3">
-              <p class="font-medium">Tổng tiền: </p>
-            <p>999.999 đ</p>
+            <div class="flex space-x-2 my-2">
+              <button (click)="currentStatistical = 'statistical1'"
+                class="bg-orange-400 hover:bg-orange-500 px-3 py-2 rounded text-white">Ngày/Tháng</button>
+              <button (click)="statistical2()"
+                class="bg-red-400 hover:bg-red-500 px-3 py-2 rounded text-white">Tháng/Năm</button>
             </div>
-           </div>
+            <div class="flex items-center space-x-2 text-black ">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bank"
+                viewBox="0 0 16 16">
+                <path
+                  d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z" />
+              </svg>
+              <div class="flex space-x-2 pt-3">
+                <p class="font-medium">Tổng tiền: </p>
+                <p>999.999 đ</p>
+              </div>
+            </div>
             <!-- <button (click)="currentStatistical = 'statistical3'"
               class="bg-pink-400 hover:bg-pink-500 px-3 py-2 rounded text-white">statistical 3</button>
             <button (click)="currentStatistical = 'statistical4'"
@@ -72,7 +76,8 @@
       </div>
       <div class="mt-4 grid grid-cols-6 md:grid-cols-3 xl:grid-cols-6 gap-4 ">
         <div *ngFor="let status of orderStatusCounts | keyvalue">
-          <div class="text-gray-900 hover:text-white shadow rounded-lg p-4 sm:p-6 xl:p-8 border border-black hover:bg-green-400">
+          <div
+            class="text-gray-900 hover:text-white shadow rounded-lg p-4 sm:p-6 xl:p-8 border border-black hover:bg-green-400">
             <div class="flex space-x-10">
               <div class="flex-shrink-0 ">
                 <span class="text-2xl hover:text-white sm:text-3xl leading-none font-bold ">{{ status.value }}</span>
@@ -262,4 +267,3 @@
 </div>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
-

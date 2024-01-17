@@ -73,5 +73,10 @@ export class OrderService {
     const params = new HttpParams().set('status', status);
     return this.http.get(`${this.apiUrl}/filterByStatus`, { params });
   }
-
+  search(data: any): Observable<any> {
+    return this.http.post<any>(
+      'http://localhost:5000/order/search-order',
+      data
+    );
+  }
 }

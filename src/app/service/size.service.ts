@@ -31,4 +31,10 @@ export class SizeService {
   updateSize(id: string, size: any): Observable<any> {
     return this.http.put<any>(`${this.API_URL}/${id}`, size, this.httpOptions);
   }
+  search(data: any): Observable<any> {
+    return this.http.post<any>(
+      'http://localhost:5000/api/size/search-size',
+      data
+    );
+  }
 }

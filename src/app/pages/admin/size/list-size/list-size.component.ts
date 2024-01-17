@@ -87,11 +87,18 @@ export class ListSizeComponent {
   filteredList: any[] = [];
 
   search() {
-    this.filteredList = this.sizes.filter((item:any) =>
-      item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-    this.sizes = this.filteredList
-    // console.log(this.sizes)
+    this.sizeService.search({ search: this.searchTerm })
+      .subscribe(response => {
+        if (response.data && response.data.length > 0) {
+          this.sizes = response.data;
+        } else {
+       
+          this.toast.error({ detail: "Thông báo", summary: 'Không tìm thấy size!', duration: 5000, position: "topRight" });
+        }
+      }, error => {
+
+        console.error(error);
+      });
   }
   
 }
